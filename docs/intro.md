@@ -3,10 +3,9 @@ slug: /
 sidebar_position: 1
 ---
 
-# Overview
+# Introduction
 
-The **[postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)** project is designed to deploy and manage high-availability PostgreSQL clusters in production environments. This solution is tailored for use on dedicated physical servers, virtual machines, and within both on-premises and cloud-based infrastructures.
-
+**[postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)** automates the deployment and management of highly available PostgreSQL clusters in production environments. This solution is tailored for use on dedicated physical servers, virtual machines, and within both on-premises and cloud-based infrastructures.
 
 ## Getting Started
 
@@ -32,7 +31,7 @@ It is recommended to run the console in the same network as your database server
 
 ### Open the Console UI
 
-Open the console UI at the following address: `http://localhost`
+Open the console UI at the following address: http://localhost/
 
 Use `secret_token` for authorization.
 
