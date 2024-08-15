@@ -95,7 +95,6 @@ const config = {
       /*
       footer: {
         style: 'light',
-        /* TODO
         links: [
           {
             title: 'Docs',
@@ -137,6 +136,18 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
+
+    plugins: [
+      [
+        '@cmfcmf/docusaurus-search-local',
+        {
+          indexDocs: true,     // Index documents
+          indexBlog: false,    // Do not index the blog because it is disabled
+          indexPages: false,   // Do not index pages
+          language: "en",      // The indexing language is English
+        },
+      ],
+    ],
 };
 
 export default config;
