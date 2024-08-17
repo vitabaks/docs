@@ -1,6 +1,6 @@
 {
   "label": "Deployment",
-  "position": 2,
+  "position": 3,
   "link": {
     "type": "generated-index",
     "description": "Deploy Postgres to supported cloud providers: AWS, GCP, Azure, DigitalOcean and Hetzner Cloud (all components are installed within your cloud account). Or Install on your existing resources, whether it's any other cloud or your own data center."

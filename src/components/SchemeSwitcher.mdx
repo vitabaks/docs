@@ -1,0 +1,14 @@
+import React from 'react';
+import { useColorMode } from '@docusaurus/theme-common';
+
+export default function SchemeSwitcher() {
+  const { colorMode } = useColorMode();
+  const isDarkTheme = colorMode === 'dark';
+
+  return (
+    <img
+      src={isDarkTheme ? '/img/postgresql_cluster.dark_mode.png' : '/img/postgresql_cluster.png'}
+      alt="Scheme"
+    />
+  );
+}
