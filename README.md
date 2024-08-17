@@ -1,4 +1,4 @@
-# Documentation
+# Documentation (draft)
 
 Documentation for [postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)
 
