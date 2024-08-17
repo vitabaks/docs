@@ -17,7 +17,11 @@ For a detailed description of the cluster components, visit the [Architecture](.
 
 ## Getting Started
 
-### Run the Console container
+You have the option to easily deploy Postgres clusters using the Console (UI) or from the command line with the ansible-playbook command.
+
+### Console (UI)
+
+#### Run the Console container
 
 To run the PostgreSQL Cluster Console, execute the following command:
 
@@ -38,13 +42,33 @@ docker run -d --name pg-console \
 It is recommended to run the console in the same network as your database servers to enable monitoring of the cluster status. In this case, replace `localhost` with your server's IP address in the PG_CONSOLE_API_URL variable.
 :::
 
-### Open the Console UI
+#### Open the Console UI
 
-Open the console UI at the following address: http://localhost/
-
-Use `secret_token` for authorization.
+Go to http://localhost/ and use `secret_token` for authorization.
 
 :::note
 - If you have set up the console on a different server, replace 'localhost' with the server's address.
 - Use the value of your token if you have redefined it in the PG_CONSOLE_AUTHORIZATION_TOKEN variable.
 :::
+
+### Command line
+
+1. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) on one control node (which could easily be a laptop)
+
+    Example:
+    ```shell
+    sudo apt update && sudo apt install -y python3-pip sshpass git
+    pip3 install ansible
+    ```
+
+2. Download or clone this repository
+
+    ```shell
+    git clone https://github.com/vitabaks/postgresql_cluster.git
+    ```
+
+3. Go to the playbook directory
+
+    ```shell
+    cd postgresql_cluster/
+    ```
