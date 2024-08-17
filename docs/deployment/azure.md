@@ -2,7 +2,9 @@
 sidebar_position: 2
 ---
 
-# Create a Document
+# Azure
+
+Microsoft Azure
 
 Documents are **groups of pages** connected through:
 

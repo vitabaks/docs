@@ -25,6 +25,7 @@ docker run -d --name pg-console \
   --restart=unless-stopped \
   vitabaks/postgresql_cluster_console:2.0.0
 ```
+
 :::tip
 It is recommended to run the console in the same network as your database servers to enable monitoring of the cluster status. In this case, replace `localhost` with your server's IP address in the PG_CONSOLE_API_URL variable.
 :::
