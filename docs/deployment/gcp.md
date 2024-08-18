@@ -6,11 +6,11 @@ sidebar_position: 4
 
 Google Cloud Platform
 
-The **[postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)** will automatically set up the following in Google Cloud:
+**[postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)** will automatically set up the following in Google Cloud:
 
-1. A virtual machine and disk for your database.
-2. A cloud load balancer to serve as the entry point for connecting to the database.
-3. A storage bucket, along with configuration for automated backups using pgBackRest.
+1. A virtual machine (with a dedicated data disk), with all cluster components installed and configured.
+2. A cloud load balancer to serve as the entry point for database connections.
+3. A storage bucket, configured for automated backups using pgBackRest.
 
 :::info
 All components are installed within your cloud account.
