@@ -6,5 +6,8 @@ sidebar_position: 6
 
 Deploy on existing servers
 
-in another cloud provider or your own data center.
+:::info
+This method is suitable for deployment on existing servers, whether with another cloud provider or in your own data center.
+:::
 
+It will be published soon.
