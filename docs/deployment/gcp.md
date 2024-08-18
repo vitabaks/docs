@@ -6,6 +6,16 @@ sidebar_position: 4
 
 Google Cloud Platform
 
+The **[postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)** will automatically set up the following in Google Cloud:
+
+1. A virtual machine and disk for your database.
+2. A cloud load balancer to serve as the entry point for connecting to the database.
+3. A storage bucket, along with configuration for automated backups using pgBackRest.
+
+:::info
+All components are installed within your cloud account.
+:::
+
 ### Prerequisites
 
 You will need the service account credentials (in JSON or base64 format) to deploy the PostgreSQL cluster to your Google Cloud account.
@@ -55,11 +65,9 @@ Select the PostgreSQL version to install.
 
 ![postgres-version](/img/postgres-version.png)
 
-Review the summary.
+Review the summary and click the "CREATE CLUSTER" button.
 
 <img src="/img/summary-gcp.png" alt="summary" style={{ width: '45%' }} />
-
-![create-cluster](/img/create-cluster.png)
 
 Wait until deployment is complete. This process takes about 10 to 15 minutes.
 
