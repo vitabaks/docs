@@ -10,7 +10,7 @@ Google Cloud Platform
 
 1. A virtual machine (with a dedicated data disk), with all cluster components installed and configured.
 2. A cloud load balancer to serve as the entry point for database connections.
-3. A storage bucket, configured for automated backups using pgBackRest.
+3. A storage bucket, and configured backups using pgBackRest.
 
 :::info
 All components are installed within your cloud account.
