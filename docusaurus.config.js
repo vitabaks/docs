@@ -138,6 +138,7 @@ const config = {
     }),
 
     plugins: [
+      /*
       [
         '@cmfcmf/docusaurus-search-local',
         {
@@ -147,6 +148,7 @@ const config = {
           language: "en",      // The indexing language is English
         },
       ],
+      */
     ],
 };
 
