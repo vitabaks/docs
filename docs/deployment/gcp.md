@@ -61,14 +61,21 @@ Review the summary.
 
 ![create-cluster](/img/create-cluster.png)
 
-Wait until deployment is complete.
-
-![deploying](/img/deploying.png)
+Wait until deployment is complete. This process takes about 10 to 15 minutes.
 
 :::info
 You can see the deployment log in the "Operations" section. To do this, select the relevant event with the "deploy" type and click "Show details" under the Actions tab.
 :::
 
+:::tip
+After a successful deployment, you can obtain the connection info on the cluster page. To do this, click on the name of your cluster on the "Clusters" page.
+:::
+
+![сluster](/img/сluster.png)
+
+Example of a cluster page:
+
+![cluster-overview](/img/cluster-overview.png)
 
 ---
 
