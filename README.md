@@ -1,9 +1,6 @@
 # Documentation (draft)
 
-Documentation for [postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)
-
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
-
+Documentation for [postgresql_cluster](https://github.com/vitabaks/postgresql_cluster) - https://postgresql-cluster.org
 
 ### Local Development
 
