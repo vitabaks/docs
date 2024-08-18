@@ -7,7 +7,7 @@ export default function SchemeSwitcher() {
 
   return (
     <img
-      src={isDarkTheme ? '/img/postgresql_cluster.dark_mode.png' : '/img/postgresql_cluster.png'}
+      src={isDarkTheme ? require('@site/static/img/postgresql_cluster.dark_mode.png').default : require('@site/static/img/postgresql_cluster.png').default}
       alt="Scheme"
     />
   );
