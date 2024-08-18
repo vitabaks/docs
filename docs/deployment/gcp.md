@@ -67,7 +67,9 @@ Select the PostgreSQL version to install.
 
 Review the summary and click the "CREATE CLUSTER" button.
 
-<img src="/img/summary-gcp.png" alt="summary" style={{ width: '45%' }} />
+<p align="left">
+  <img src={require('@site/static/img/summary-gcp.png').default} alt="summary" width="45%"/>
+</p>
 
 Wait until deployment is complete. This process takes about 10 to 15 minutes.
 
