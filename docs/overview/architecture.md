@@ -60,7 +60,7 @@ Implementing VRRP (Virtual Router Redundancy Protocol) for Linux. In our configu
 
 To use this scheme, specify `dcs_type: consul` in variable file vars/main.yml
 
-:::warning For Your Information
+:::note
 The selection of this scheme is currently not available in the Console UI and can be made in command line mode.
 :::
 
