@@ -10,7 +10,6 @@ DigitalOcean Cloud
 
 1. Virtual machine (with a dedicated data disk), with all cluster components installed and configured.
 2. DigitalOcean Load Balancer to serve as the entry point for database connections.
-3. DigitalOcean Spaces, and configured backups using pgBackRest.
 
 :::info
 All components are installed within your cloud account.
