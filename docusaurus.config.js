@@ -131,6 +131,12 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} postgresql_cluster Project. Built with Docusaurus.`,
       },
       */
+      docs: {
+        sidebar: {
+          hideable: true, // Enable the hideable sidebar feature
+          autoCollapseCategories: true, // Optional: set to false if you don't want categories to auto-collapse
+        },
+      },
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
