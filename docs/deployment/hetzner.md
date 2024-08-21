@@ -17,7 +17,7 @@ All components are installed within your cloud account.
 
 ### Prerequisites
 
-You will need the API token to deploy the cluster to your Hetzner Cloud provider account below.
+You will need the API token to deploy the cluster to your Hetzner Cloud provider account.
 See the [official documentation](https://docs.hetzner.com/cloud/api/getting-started/generating-api-token/) for instructions on creating an access token.
 
 ### Console (UI)
