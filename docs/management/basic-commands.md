@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Basic Commands
 
-Basic cluster management commands using the terminal.
+Basic cluster management commands using the command line.
 
 ## Patroni
 
