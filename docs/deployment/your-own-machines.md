@@ -105,4 +105,58 @@ Example of a cluster page:
 
 ### Command line
 
-It will be published soon.
+
+1. Edit the `inventory` file
+
+Specify IP addresses and connection settings (`ansible_user`, `ansible_ssh_pass`, or `ansible_ssh_private_key_file`) for your environment:
+
+```
+nano inventory
+```
+
+2. Edit the variable file `vars/main.yml`
+
+```
+nano vars/main.yml
+```
+
+Minimum set of variables: 
+- `proxy_env` to download packages in environments without direct internet access (optional)
+- `patroni_cluster_name`
+- `postgresql_version`
+- `postgresql_data_dir`
+- `cluster_vip` to provide a single entry point for client access to databases in the cluster (optional)
+- `with_haproxy_load_balancing` to enable load balancing (optional)
+- `dcs_type` "etcd" (default) or "consul"
+
+:::tip
+See the vars/[main.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/main.yml), [system.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/system.yml) and ([Debian.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/Debian.yml) or [RedHat.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/RedHat.yml)) files for more details.
+:::
+
+:::note
+If dcs_type is set to "consul", install the Consul role requirements on the control node:
+```
+ansible-galaxy install -r roles/consul/requirements.yml
+```
+:::
+
+1. Try to connect to hosts
+
+```
+ansible all -m ping
+```
+
+1. Run playbook:
+
+```
+ansible-playbook deploy_pgcluster.yml
+```
+
+#### Deploy Cluster with TimescaleDB
+
+To deploy a PostgreSQL High-Availability Cluster with the TimescaleDB extension, add the `enable_timescale` variable:
+
+Example:
+```
+ansible-playbook deploy_pgcluster.yml -e "enable_timescale=true"
+```
