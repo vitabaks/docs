@@ -140,13 +140,13 @@ ansible-galaxy install -r roles/consul/requirements.yml
 ```
 :::
 
-1. Try to connect to hosts
+3. Try to connect to hosts
 
 ```
 ansible all -m ping
 ```
 
-1. Run playbook:
+4. Run playbook:
 
 ```
 ansible-playbook deploy_pgcluster.yml
