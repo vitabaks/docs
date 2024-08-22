@@ -12,7 +12,7 @@ Basic cluster management commands using the command line.
 Official [documentation](https://patroni.readthedocs.io/en/latest/)
 :::
 
-### Service Operations
+### Service
 
 #### Check Patroni service status
 
@@ -157,10 +157,10 @@ This command is used when you need to reinitialize the database data files on a 
 Official [documentation](https://www.postgresql.org/docs/current/index.html)
 :::
 
-### Service Operations
+### Service
 
 :::note
-In a clustered environment, there is no need to manage PostgreSQL services separately, as Patroni handles this automatically. See Patroni "[Service Operations](#service-operations)" section.
+In a clustered environment, there is no need to manage PostgreSQL services separately, as Patroni handles this automatically. See Patroni "[Service](#service-operations)" section.
 :::
 
 ### logs
@@ -199,7 +199,7 @@ psql -h 127.0.0.1 -p 5432 -U postgres -d postgres -c "select version()"
 Official documentation: [Operations guide](https://etcd.io/docs/v3.5/op-guide/)
 :::
 
-### Service Operations
+### Service
 
 #### Check etcd service status
 
