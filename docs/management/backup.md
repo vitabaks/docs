@@ -2,6 +2,6 @@
 sidebar_position: 3
 ---
 
-# Backup and Restore
+# Backup
 
 It will be published soon.

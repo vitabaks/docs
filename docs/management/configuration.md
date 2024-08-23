@@ -2,9 +2,9 @@
 sidebar_position: 2
 ---
 
-# Configuration Changes
+# Configuration
 
-This section guides you through the process of updating your PostgreSQL cluster configuration.
+This section guides you through the process of changes your PostgreSQL cluster configuration.
 
 ### Console (UI)
 
