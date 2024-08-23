@@ -179,12 +179,12 @@ In a clustered environment, there is no need to manage PostgreSQL services separ
 View the list of log files:
 
 ```
-sudo ls -lth  /var/log/postgresql/
+sudo ls -lth /var/log/postgresql/
 ```
 
 View current Postgres log (last 50 lines, with live updates):
 ```
-sudo tail -n 50 -f /var/log/postgresql/$(sudo ls -t  /var/log/postgresql/ | head -n 1)
+sudo tail -n 50 -f $(ls -t /var/log/postgresql/*.log | head -n 1)
 ```
 
 **CLI (psql)**
@@ -441,6 +441,10 @@ Reload vip-manager service:
 sudo systemctl reload vip-manager
 ```
 
+:::warning
+When the vip-manager service is stopped, the VIP address is [removed](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/roles/vip-manager/templates/vip-manager.service.j2#L12). It will be re-added when the service starts again, provided that the current server is the leader.
+:::
+
 **logs**
 
 View vip-manager service logs (last 50 lines, with live updates):
@@ -555,3 +559,38 @@ sudo journalctl -u consul -n 50 -f
 
 #### CLI (consul)
 
+:::tip
+For more information on all available options, run `consul --help`
+:::
+
+List all members in the cluster:
+```
+consul members
+```
+
+Check the health of the cluster:
+```
+consul operator raft list-peers
+```
+
+Print out the status of all services in the cluster:
+```
+consul catalog services
+```
+
+List all nodes running a specific service (e.g., postgres-cluster):
+```
+consul catalog nodes -service=<cluster-name>
+```
+
+#### CLI (dig)
+
+Resolve DNS for the master node of the cluster:
+```
+dig @127.0.0.1 -p 8600 +short master.<cluster-name>.service.consul SRV
+```
+
+Resolve DNS for the replica nodes of the cluster:
+```
+dig @127.0.0.1 -p 8600 +short replica.<cluster-name>.service.consul SRV
+```
