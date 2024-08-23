@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Recommendations
 
-This section provides essential recommendations to ensure the optimal performance, stability, and reliability of your PostgreSQL High-Availability Cluster. Following these guidelines will help you avoid common pitfalls and make the most of your deployment.
+This section provides essential recommendations to ensure the optimal performance, stability, and reliability of your PostgreSQL Cluster. Following these guidelines will help you avoid common pitfalls and make the most of your deployment.
 
 ### Linux (Operating System)
 
