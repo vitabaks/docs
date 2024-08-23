@@ -4,18 +4,22 @@ sidebar_position: 3
 
 # Requirements
 
+This page outlines the essential requirements for deploying and managing your PostgreSQL high-availability cluster.
+
 ### Console (UI)
 
-When using the PostgreSQL Cluster Console (UI), you only need [Docker](https://docs.docker.com/engine/install/) to run the container, all other requirements are already included in the `postgresql_cluster` docker [image](https://hub.docker.com/repository/docker/vitabaks/postgresql_cluster).
+For users of the PostgreSQL Cluster Console (UI), the setup is simplified. You only need [Docker](https://docs.docker.com/engine/install/) to run the container. All other dependencies and tools are bundled within the `postgresql_cluster` [image](https://hub.docker.com/repository/docker/vitabaks/postgresql_cluster).
+
+:::note
+Ensure that ports 80 (for the UI) and 8080 (for the API) are open to allow access to the Console and its underlying services.
+:::
 
 ### Command line
 
-This playbook requires `root` privileges or `sudo`.
+When deploying via the command line, ensure that you have the necessary `root` privileges or `sudo` access to manage the servers. \
+Additionally, you'll need [Ansible](https://www.ansible.com/how-ansible-works/), a powerful automation tool, to execute the playbook.
 
-Ansible ([What is Ansible](https://www.ansible.com/how-ansible-works/)?)
-
-If `dcs_type: "consul"`, please install consul role requirements on the control node:
-
+If you're using Consul as your DCS (`dcs_type: "consul"`), make sure to install the Consul role requirements on your control node:
 ```shell
 ansible-galaxy install -r roles/consul/requirements.yml
 ```
@@ -23,7 +27,7 @@ ansible-galaxy install -r roles/consul/requirements.yml
 ### Port requirements
 
 :::info
-When deploying to cloud providers (such as AWS, GCP, Azure, DigitalOcean, and Hetzner Cloud) using the Console UI, all necessary ports are automatically configured when creating a Firewall/Security Group (controlled by the `cloud_firewall` variable).
+When deploying to cloud providers (such as AWS, GCP, Azure, DigitalOcean, and Hetzner Cloud) using the Console UI, all necessary ports are automatically configured during the creation of the Firewall/Security Group, controlled by the `cloud_firewall` variable.
 :::
 
 List of required TCP ports that must be open for the database cluster:
