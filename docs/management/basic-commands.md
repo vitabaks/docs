@@ -12,35 +12,41 @@ Basic cluster management commands using the command line.
 Official [documentation](https://patroni.readthedocs.io/en/latest/)
 :::
 
-### Service
+**Service**
 
-#### Check Patroni service status
+Check Patroni service status:
 
 ```
 sudo systemctl status patroni
 ```
 
-#### Stop Patroni service
+Stop Patroni service:
 ```
 sudo systemctl stop patroni
 ```
 
-#### Start Patroni service
+Start Patroni service:
 ```
 sudo systemctl start patroni
 ```
 
-#### Restart Patroni service
-```shell
+Restart Patroni service:
+```
 sudo systemctl restart patroni
+```
+
+Reload Patroni service:
+```
+sudo systemctl reload patroni
 ```
 
 :::info
 When executing commands such as stop, start, or restart, Patroni also restarts the Postgres service, unless the Patroni cluster is in maintenance mode.
 :::
 
-### logs
-View Patroni service logs (last 50 lines, with live updates)
+**logs**
+
+View Patroni service logs (last 50 lines, with live updates):
 ```
 sudo journalctl -u patroni -n 50 -f
 ```
@@ -50,13 +56,13 @@ If you use logging to a file (variable `patroni_log_destination: logfile`):
 sudo tail -n 50 -f /var/log/patroni/patroni.log
 ```
 
-### CLI (patronictl)
+**CLI (patronictl)**
 
 :::tip
-For more information on all available options, run `patronictl --help`. Or refer to the official [documentation](https://patroni.readthedocs.io/en/latest/patronictl.html).
+For more information on all available options, run `patronictl --help`. Or refer to the patronictl [documentation](https://patroni.readthedocs.io/en/latest/patronictl.html).
 :::
 
-#### List the cluster members
+List the cluster members:
 ```
 patronictl list
 ```
@@ -65,19 +71,19 @@ Auto update the screen every 2 seconds and print timestamp:
 patronictl list -t -W
 ```
 
-#### Show cluster configuration
+Show cluster configuration:
 
 ```
 patronictl show-config <cluster-name>
 ```
 
-#### Edit cluster configuration
+Edit cluster configuration:
 
 ```
 patronictl edit-config <cluster-name>
 ```
 
-#### Reload cluster configuration
+Reload cluster configuration:
 
 ```
 patronictl reload <cluster-name>
@@ -88,7 +94,7 @@ Reload for specific cluster member:
 patronictl reload <cluster-name> <server-name>
 ```
 
-#### Restart cluster
+Restart cluster:
 ```
 patronictl restart <cluster-name>
 ```
@@ -102,7 +108,7 @@ patronictl restart <cluster-name> <server-name>
 This command restarts the Postgres service but does not affect the Patroni service. If you need to restart the Patroni service, use the `systemctl restart patroni` command.
 :::
 
-#### Switchover to a replica
+Switchover to a replica:
 
 ```
 patronictl switchover <cluster-name>
@@ -112,7 +118,7 @@ patronictl switchover <cluster-name>
 This is typically done during scheduled maintenance, for example, when you need to perform maintenance on a server currently holding the "leader" role.
 :::
 
-#### Failover to a replica
+Failover to a replica:
 
 ```
 patronictl failover <cluster-name>
@@ -122,25 +128,30 @@ patronictl failover <cluster-name>
 Usually, this command is not necessary, as Patroni will handle failover automatically. However, it may be required in certain situations, such as when there is no suitable candidate for the leader role (e.q, when the lag specified in the `maximum_lag_on_failover` option is exceeded). Use this command with caution.
 :::
 
-#### Show the history of failovers/switchovers
+Show the history of failovers/switchovers:
 
 ```
 patronictl history <cluster-name>
 ```
 
-#### Disable auto failover (start maintenance mode)
+Disable auto failover (start maintenance mode):
 
 ```
 patronictl pause <cluster-name> --wait
 ```
 
-#### Enable auto failover (stop maintenance mode)
+:::note
+Maintenance mode is an option in Patroni that allows you to pause automatic failover. \
+This can be useful in scenarios such as performing a PostgreSQL upgrade or during DCS maintenance, where you may need to temporarily disable automatic cluster management. Without this mode, if the master becomes unavailable, Patroni will automatically promote a replica to the leader role.
+:::
+
+Enable auto failover (stop maintenance mode):
 
 ```
 patronictl resume <cluster-name> --wait
 ```
 
-#### Reinitialize cluster member
+Reinitialize cluster member:
 
 ```
 patronictl reinit <cluster-name> <server-name>
@@ -157,13 +168,13 @@ This command is used when you need to reinitialize the database data files on a 
 Official [documentation](https://www.postgresql.org/docs/current/index.html)
 :::
 
-### Service
+**Service**
 
 :::note
 In a clustered environment, there is no need to manage PostgreSQL services separately, as Patroni handles this automatically. See Patroni "[Service](#service-operations)" section.
 :::
 
-### logs
+**logs**
 
 View the list of log files:
 
@@ -171,15 +182,15 @@ View the list of log files:
 sudo ls -lth  /var/log/postgresql/
 ```
 
-View current Postgres log (last 50 lines, with live updates)
+View current Postgres log (last 50 lines, with live updates):
 ```
 sudo tail -n 50 -f /var/log/postgresql/$(sudo ls -t  /var/log/postgresql/ | head -n 1)
 ```
 
-### CLI (psql)
+**CLI (psql)**
 
 :::tip
-For more information on all available options, run `psql --help`. Or refer to the official [documentation](https://www.postgresql.org/docs/current/app-psql.html).
+For more information on all available options, run `psql --help`. Or refer to the psql [documentation](https://www.postgresql.org/docs/current/app-psql.html).
 :::
 
 Connect to database "postgres":
@@ -187,9 +198,261 @@ Connect to database "postgres":
 psql -h 127.0.0.1 -p 5432 -U postgres -d postgres
 ```
 
-Execute the command:
+Execute the SQL command:
 ```
 psql -h 127.0.0.1 -p 5432 -U postgres -d postgres -c "select version()"
+```
+
+
+## PgBouncer
+
+:::info
+Official [documentation](https://www.pgbouncer.org)
+:::
+
+**Service**
+
+Check pgbouncer service status:
+```
+sudo systemctl status pgbouncer
+```
+
+Stop pgbouncer service:
+```
+sudo systemctl stop pgbouncer
+```
+
+Start pgbouncer service:
+```
+sudo systemctl start pgbouncer
+```
+
+Restart pgbouncer service:
+```
+sudo systemctl restart pgbouncer
+```
+
+Reload pgbouncer service:
+```
+sudo systemctl reload pgbouncer
+```
+
+**logs**
+
+View pgbouncer service logs (last 50 lines, with live updates):
+```
+sudo tail -n 50 -f /var/log/pgbouncer/pgbouncer.log
+```
+
+**CLI (psql)**
+
+:::tip
+For more information on all available options, run `SHOW HELP`. Or refer to the [documentation](https://www.pgbouncer.org/usage.html).
+:::
+
+Connect to pgbouncer database:
+```
+psql -h 127.0.0.1 -p 6432 -U postgres -d pgbouncer
+```
+
+Show databases:
+```
+SHOW DATABASES;
+```
+
+Show pools:
+```
+SHOW POOLS;
+```
+
+Show stats:
+```
+SHOW STATS;
+```
+
+## HAProxy
+
+:::info
+Official [documentation](http://docs.haproxy.org)
+:::
+
+**Service**
+
+Check haproxy service status:
+```
+sudo systemctl status haproxy
+```
+
+Stop haproxy service:
+```
+sudo systemctl stop haproxy
+```
+
+Start haproxy service:
+```
+sudo systemctl start haproxy
+```
+
+Restart haproxy service:
+```
+sudo systemctl restart haproxy
+```
+
+Reload haproxy service:
+```
+sudo systemctl reload haproxy
+```
+
+**logs**
+
+View haproxy service logs (last 50 lines, with live updates):
+```
+sudo journalctl -u haproxy -n 50 -f
+```
+```
+sudo tail -n 50 -f /var/log/haproxy.log
+```
+
+**Stats**
+
+To view HAProxy statistics, navigate to the following URL in your web browser: \
+`http://<server-ip>:7000`
+
+
+## confd
+
+:::info
+Official [documentation](https://github.com/kelseyhightower/confd/tree/master/docs)
+:::
+
+**Service**
+
+Check confd service status:
+```
+sudo systemctl status confd
+```
+
+Stop confd service:
+```
+sudo systemctl stop confd
+```
+
+Start confd service:
+```
+sudo systemctl start confd
+```
+
+Restart confd service:
+```
+sudo systemctl restart confd
+```
+
+Reload confd service:
+```
+sudo systemctl reload confd
+```
+
+**logs**
+
+View confd service logs (last 50 lines, with live updates):
+```
+sudo journalctl -u confd -n 50 -f
+```
+
+
+## Keepalived
+
+:::info
+Official [documentation](https://www.keepalived.org/manpage.html)
+:::
+
+**Service**
+
+Check pgbouncer keepalived status:
+```
+sudo systemctl status keepalived
+```
+
+Stop keepalived service:
+```
+sudo systemctl stop keepalived
+```
+
+Start keepalived service:
+```
+sudo systemctl start keepalived
+```
+
+Restart keepalived service:
+```
+sudo systemctl restart keepalived
+```
+
+Reload keepalived service:
+```
+sudo systemctl reload keepalived
+```
+
+**logs**
+
+View keepalived service logs (last 50 lines, with live updates):
+```
+sudo journalctl -u keepalived -n 50 -f
+```
+
+**CLI (ip)**
+
+Check the IP address list:
+```
+ip a
+```
+
+
+## vip-manager
+
+:::info
+Official [documentation](https://www.keepalived.org/manpage.html)
+:::
+
+**Service**
+
+Check vip-manager service status:
+```
+sudo systemctl status vip-manager
+```
+
+Stop vip-manager service:
+```
+sudo systemctl stop vip-manager
+```
+
+Start vip-manager service:
+```
+sudo systemctl start vip-manager
+```
+
+Restart vip-manager service:
+```
+sudo systemctl restart vip-manager
+```
+
+Reload vip-manager service:
+```
+sudo systemctl reload vip-manager
+```
+
+**logs**
+
+View vip-manager service logs (last 50 lines, with live updates):
+```
+sudo journalctl -u vip-manager -n 50 -f
+```
+
+**CLI (ip)**
+
+Check the IP address list:
+```
+ip a
 ```
 
 
@@ -199,77 +462,96 @@ psql -h 127.0.0.1 -p 5432 -U postgres -d postgres -c "select version()"
 Official documentation: [Operations guide](https://etcd.io/docs/v3.5/op-guide/)
 :::
 
-### Service
+**Service**
 
-#### Check etcd service status
-
+Check etcd service status:
 ```
 sudo systemctl status etcd
 ```
 
-#### Stop etcd service
+Stop etcd service:
 ```
 sudo systemctl stop etcd
 ```
 
-#### Start etcd service
+Start etcd service:
 ```
 sudo systemctl start etcd
 ```
 
-#### Restart etcd service
-```shell
+Restart etcd service:
+```
 sudo systemctl restart etcd
 ```
 
-### logs
-View Patroni service logs (last 50 lines, with live updates)
+Reload etcd service:
+```
+sudo systemctl reload etcd
+```
+
+**logs**
+
+View etcd service logs (last 50 lines, with live updates):
 ```
 sudo journalctl -u etcd -n 50 -f
 ```
 
-### CLI (etcdctl)
+**CLI (etcdctl)**
 
 :::tip
 For more information on all available options, run `etcdctl --help`
 :::
 
-#### Lists all members in the cluster
+Lists all members in the cluster:
 ```
 etcdctl member list
 ```
 
-#### Check the cluster health
+Check the cluster health:
 ```
 etcdctl endpoint health --cluster
 ```
 
-#### Prints out the status of cluster endpoints
+Prints out the status of cluster endpoints:
 ```
 etcdctl endpoint status --cluster -w table
 ```
 
-
 ## Consul
 
-It will be published soon.
+**Service**
 
-## PgBouncer
+Check consul service status:
+```
+sudo systemctl status consul
+```
 
-It will be published soon.
+Stop consul service:
+```
+sudo systemctl stop consul
+```
 
-## HAProxy
+Start consul service:
+```
+sudo systemctl start consul
+```
 
-It will be published soon.
+Restart consul service:
+```
+sudo systemctl restart consul
+```
 
-## confd
+Reload consul service:
+```
+sudo systemctl reload consul
+```
 
-It will be published soon.
+**logs**
 
-## Keepalived
+View Consul service logs (last 50 lines, with live updates):
+```
+sudo journalctl -u consul -n 50 -f
+```
 
-It will be published soon.
+#### CLI (consul)
 
-## vip-manager
-
-It will be published soon.
