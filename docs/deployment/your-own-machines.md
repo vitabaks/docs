@@ -129,7 +129,7 @@ Minimum set of variables:
 - `with_haproxy_load_balancing` to enable load balancing (optional)
 - `dcs_type` "etcd" (default) or "consul"
 
-:::tip
+:::info
 See the vars/[main.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/main.yml), [system.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/system.yml) and ([Debian.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/Debian.yml) or [RedHat.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/RedHat.yml)) files for more details.
 :::
 
@@ -160,3 +160,9 @@ Example:
 ```
 ansible-playbook deploy_pgcluster.yml -e "enable_timescale=true"
 ```
+
+:::tip
+We also supports integrating with pre-existing PostgreSQL instances. If you intend to upgrade your existing PostgreSQL setup to a high-availability configuration, simply set `postgresql_exists=true` in the inventory file.
+:::note
+Please note that initiating cluster mode requires temporarily stopping your existing PostgreSQL service, which will result in a brief period of database downtime. Plan this transition accordingly.
+:::
