@@ -164,5 +164,5 @@ ansible-playbook deploy_pgcluster.yml -e "enable_timescale=true"
 :::tip
 We also supports integrating with pre-existing PostgreSQL instances. If you intend to upgrade your existing PostgreSQL setup to a high-availability configuration, simply set `postgresql_exists=true` in the inventory file.
 :::note
-Please note that initiating cluster mode requires temporarily stopping your existing PostgreSQL service, which will result in a brief period of database downtime. Plan this transition accordingly.
+Please note that during the cluster setup process, your existing PostgreSQL service will be automatically restarted, leading to a brief period of database downtime. Plan this transition accordingly.
 :::
