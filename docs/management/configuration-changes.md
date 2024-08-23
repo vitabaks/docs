@@ -29,7 +29,7 @@ ansible-playbook config_pgcluster.yml
 Optionally, set `pending_restart: true` to automatically restart PostgreSQL if the parameter change requires a restart.
 :::
 
-### GitOps
+### GitOps (CI/CD)
 
 **Using Git for cluster configuration management**.
 
