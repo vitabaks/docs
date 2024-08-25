@@ -4,7 +4,9 @@ sidebar_position: 100
 
 # Sponsor
 
-Join our sponsorship program to directly contribute to our project's growth and gain exclusive access to personalized support. Your sponsorship is crucial for innovation and progress. Become a sponsor today!
+By sponsoring our project, you directly contribute to its continuous improvement and innovation. As a sponsor, you'll receive exclusive benefits, including personalized support, early access to new features, and the opportunity to influence the project's direction. Your sponsorship is invaluable to us and helps ensure the project's sustainability and progress.
+
+Become a sponsor today and help us take this project to the next level!
 
 Support our work through [GitHub Sponsors](https://github.com/sponsors/vitabaks)
 
