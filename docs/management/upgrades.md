@@ -384,7 +384,7 @@ The variable file is located on the path: `vars/upgrade.yml`
     - Print error message: "There's a replication lag in the PostgreSQL Cluster. Please try again later"
 - **Perform PAUSE on all pgbouncers servers**
   - Notes: if 'pgbouncer_install' is 'true' and 'pgbouncer_pool_pause' is 'true'
-  - Notes: pgbouncer pause script (details in [pgbouncer_pause.yml](tasks/pgbouncer_pause.yml)) performs the following actions:
+  - Notes: pgbouncer pause script performs the following actions:
     - Waits for active queries on the database servers to complete (with a runtime more than `pg_slow_active_query_treshold`).
     - If there are no active queries, sends a `PAUSE` command to each pgbouncer servers in parallel (using `xargs` and ssh connections).
     - If all pgbouncer are successfully paused, the script exits with code 0 (successful).
