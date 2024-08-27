@@ -6,7 +6,7 @@ sidebar_position: 7
 
 Once your PostgreSQL cluster is successfully deployed, you may find the need to scale it by adding additional nodes or balancers to handle increased load or redundancy.
 
-### Console (UI)
+## Console (UI)
 
 Scaling the cluster through the UI is not yet implemented.
 
@@ -14,9 +14,9 @@ Scaling the cluster through the UI is not yet implemented.
 If you're interested in this feature, please consider becoming a [sponsor](../sponsor.md).
 :::
 
-### Command line
+## Command line
 
-#### Adding a new PostgreSQL node
+### Add Postgres Node
 
 To scale your cluster by adding a new PostgreSQL node, follow these steps:
 
@@ -46,7 +46,7 @@ ansible-playbook add_pgnode.yml
 When you run this playbook, the new node will undergo the same preparation process as during the initial cluster deployment. However, unlike the initial setup, all necessary configuration files will be automatically copied from server listed in the "master" group in the inventory file.
 :::
 
-#### Adding a new HAProxy Load Balancer node
+### Add HAProxy Node
 
 If you’re using HAProxy load balancing (with the `with_haproxy_load_balancing` variable set to `true`), you can add a new balancer node by following these steps:
 
