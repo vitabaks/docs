@@ -15,8 +15,10 @@
 
 .support-page .card-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 20px;
+    gap: 10px;
     text-decoration: none;
 }
 
@@ -60,4 +62,28 @@ html[data-theme='light'] .support-page .card li {
 html[data-theme='dark'] .support-page .card:hover {
     background-color: #333;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+/* For screens less than 1440px wide  */
+@media (max-width: 1440px) {
+    .support-page .card-container {
+        flex-direction: column;
+    }
+
+    .support-page .card {
+        margin-bottom: 20px;
+        width: 100%; /* Full width for one card per line */
+    }
+}
+
+/* For screens with a width of 1440px or more */
+@media (min-width: 1439px) {
+    .support-page .card-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .support-page .card {
+        width: calc(30%); /* Three cards per line */
+    }
 }
