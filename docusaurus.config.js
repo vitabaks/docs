@@ -79,7 +79,7 @@ const config = {
       //image: 'img/postgresql_cluster.png',
       announcementBar: {
         content:
-          '🎉️ <a target="_blank" href="https://github.com/vitabaks/postgresql_cluster/releases/tag/2.0.0">postgresql_cluster v2.0</a> is out!</b> 🥳️',
+          '🎉️ <a target="_blank" href="https://github.com/vitabaks/postgresql_cluster/releases/tag/2.0.0">postgresql_cluster v2.0</a> is out! 🥳️',
           //'⭐️ If you like postgresql_cluster, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/vitabaks/postgresql_cluster">GitHub</a>! ⭐️',
           backgroundColor: '#F6F8FA',
           textColor: '#091E42',
@@ -93,6 +93,11 @@ const config = {
         },
         items: [
           //{to: '/blog', label: 'Blog', position: 'left'},
+          {
+            href: '/support',
+            label: 'Support',
+            position: 'right',
+          },
           {
             href: 'https://github.com/vitabaks/postgresql_cluster',
             label: 'GitHub',
