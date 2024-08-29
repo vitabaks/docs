@@ -77,6 +77,14 @@ const config = {
     ({
       // Replace with your project's social card
       //image: 'img/postgresql_cluster.png',
+      announcementBar: {
+        content:
+          '🎉️ <a target="_blank" href="https://github.com/vitabaks/postgresql_cluster/releases/tag/2.0.0">postgresql_cluster v2.0</a> is out!</b> 🥳️',
+          //'⭐️ If you like postgresql_cluster, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/vitabaks/postgresql_cluster">GitHub</a>! ⭐️',
+          backgroundColor: '#fafbfc',
+          textColor: '#091E42',
+          isCloseable: true,
+      },
       navbar: {
         title: 'PostgreSQL Cluster\ndocumentation',
         logo: {
@@ -142,20 +150,6 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
-
-    plugins: [
-      /*
-      [
-        '@cmfcmf/docusaurus-search-local',
-        {
-          indexDocs: true,     // Index documents
-          indexBlog: false,    // Do not index the blog because it is disabled
-          indexPages: false,   // Do not index pages
-          language: "en",      // The indexing language is English
-        },
-      ],
-      */
-    ],
 };
 
 export default config;
