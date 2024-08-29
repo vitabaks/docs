@@ -80,4 +80,17 @@ Refer to the [Deployment](./category/deployment) section to learn more about the
     cd postgresql_cluster/automation
     ```
 
+4. Install requirements on the control node
+
+    ```shell
+    ansible-galaxy install --force -r requirements.yml 
+    ```
+
+    :::note
+    If you plan to use Consul (`dcs_type: consul`), install the consul role requirements
+    ```
+    ansible-galaxy install -r roles/consul/requirements.yml
+    ```
+    :::
+
 Refer to the [Deployment](./category/deployment) section to learn more about the different deployment methods.

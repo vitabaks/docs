@@ -133,13 +133,6 @@ Minimum set of variables:
 See the vars/[main.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/main.yml), [system.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/system.yml) and ([Debian.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/Debian.yml) or [RedHat.yml](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/vars/RedHat.yml)) files for more details.
 :::
 
-:::note
-If dcs_type is set to "consul", install the Consul role requirements on the control node:
-```
-ansible-galaxy install -r roles/consul/requirements.yml
-```
-:::
-
 3. Try to connect to hosts
 
 ```
