@@ -59,7 +59,7 @@ pgbackrest_install: true
 pgbackrest_install_from_pgdg_repo: true
 pgbackrest_stanza: "{{ patroni_cluster_name }}"  # stanza name
 pgbackrest_repo_type: "posix"
-pgbackrest_repo_host: "10.128.64.110"
+pgbackrest_repo_host: "10.128.64.110"  # change this value
 pgbackrest_repo_user: "postgres"
 pgbackrest_conf_file: "/etc/pgbackrest/pgbackrest.conf"
 pgbackrest_conf:
@@ -125,12 +125,12 @@ pgbackrest_conf:
     - { option: "log-path", value: "/var/log/pgbackrest" }
     - { option: "repo1-type", value: "{{ pgbackrest_repo_type | lower }}" }
     - { option: "repo1-path", value: "/repo" }
-    - { option: "repo1-s3-endpoint", value: "https://YOUR_MINIO_ADDRESS" }
-    - { option: "repo1-s3-uri-style", value: "path" }
-    - { option: "repo1-s3-bucket", value: "pgbackrest" }  # change this value
-    - { option: "repo1-s3-verify-tls", value: "n" }
+    - { option: "repo1-s3-endpoint", value: "https://YOUR_MINIO_ADDRESS" }  # change this value
     - { option: "repo1-s3-key", value: "YOUR_MINIO_S3_KEY" }  # change this value
     - { option: "repo1-s3-key-secret", value: "YOUR_MINIO_S3_KEY_SECRET" }  # change this value
+    - { option: "repo1-s3-bucket", value: "pgbackrest" }  # change this value
+    - { option: "repo1-s3-uri-style", value: "path" }
+    - { option: "repo1-s3-verify-tls", value: "n" }
     - { option: "repo1-s3-region", value: "eu-west-3" }
     - { option: "repo1-retention-full", value: "4" }
     - { option: "repo1-retention-archive", value: "4" }
