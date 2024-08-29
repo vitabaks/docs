@@ -11,7 +11,7 @@ Restore and Cloning
 Restoring a cluster from backup (PITR) through the UI is not yet implemented.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](../sponsor.md).
+If you're interested in this feature, please consider becoming a [sponsor](/sponsor).
 :::
 
 ### Command line

@@ -13,7 +13,7 @@ This section guides you through the process of performing minor and major upgrad
 Minor upgrade the cluster through the UI is not yet implemented.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](../sponsor.md).
+If you're interested in this feature, please consider becoming a [sponsor](/sponsor).
 :::
 
 ### Command line
@@ -160,7 +160,7 @@ The variable file is located on the path: `roles/update/vars/main.yml`
 Major upgrade the cluster through the UI is not yet implemented.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](../sponsor.md).
+If you're interested in this feature, please consider becoming a [sponsor](/sponsor).
 :::
 
 ### Command line

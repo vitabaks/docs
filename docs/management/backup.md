@@ -26,7 +26,7 @@ This is not yet implemented for [DigitalOcean](../deployment/digitalocean.md) an
 Changing the backup configuration through the UI is not yet implemented.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](../sponsor.md).
+If you're interested in this feature, please consider becoming a [sponsor](/sponsor).
 :::
 
 ### Command line
