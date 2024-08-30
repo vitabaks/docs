@@ -39,7 +39,11 @@ The following backup tools are supported:
 - [pgBackRest](https://pgbackrest.org)
 - [WAL-G](https://github.com/wal-g/wal-g)
 
-#### pgBackRest:
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="pgBackRest" label="pgBackRest" default>
 
 :::tip
 pgBackRest documentation: [Configuration Reference](https://pgbackrest.org/configuration.html)
@@ -342,8 +346,8 @@ pgbackrest_cron_jobs:
 
 </details>
 
-
-#### WAL-G:
+  </TabItem>
+  <TabItem value="WAL-G" label="WAL-G">
 
 :::tip
 WAL-G [documentation](https://github.com/wal-g/wal-g/blob/master/docs/PostgreSQL.md)
@@ -502,3 +506,6 @@ wal_g_cron_jobs:
 ```
 
 </details>
+
+  </TabItem>
+</Tabs>
