@@ -155,8 +155,6 @@ pgbackrest_conf:
     - { option: "recovery-option", value: "recovery_target_action=promote" }
     - { option: "pg1-socket-path", value: "{{ postgresql_unix_socket_dir }}" }
     - { option: "pg1-path", value: "{{ postgresql_data_dir }}" }
-pgbackrest_server_conf:
-  global: []
 
 pgbackrest_archive_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive-push %p"
 ```
@@ -181,7 +179,7 @@ pgbackrest_conf:
     - { option: "log-level-file", value: "detail" }
     - { option: "log-path", value: "/var/log/pgbackrest" }
     - { option: "repo1-type", value: "s3" }
-    - { option: "repo1-path", value: "/pgbackrest" }  # Logical path in S3 bucket
+    - { option: "repo1-path", value: "/pgbackrest" }  # logical path in bucket
     - { option: "repo1-s3-key", value: "YOUR_AWS_S3_ACCESS_KEY" }  # change this value
     - { option: "repo1-s3-key-secret", value: "YOUR_AWS_S3_SECRET_KEY" }  # change this value
     - { option: "repo1-s3-bucket", value: "YOUR_BUCKET_NAME" }  # change this value
@@ -209,8 +207,55 @@ pgbackrest_conf:
     - { option: "recovery-option", value: "recovery_target_action=promote" }
     - { option: "pg1-socket-path", value: "/var/run/postgresql" }
     - { option: "pg1-path", value: "/var/lib/postgresql/data" }
-pgbackrest_server_conf:
-  global: []
+
+pgbackrest_archive_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive-push %p"
+```
+
+</details>
+
+<details>
+<summary>pgbackrest config (GCS)</summary>
+
+```yaml
+# An example of a configuration using GCS
+
+pgbackrest_install: true
+pgbackrest_install_from_pgdg_repo: true
+pgbackrest_stanza: "{{ patroni_cluster_name }}"  # stanza name
+pgbackrest_repo_type: "s3"
+pgbackrest_repo_host: ""
+pgbackrest_repo_user: ""
+pgbackrest_conf_file: "/etc/pgbackrest/pgbackrest.conf"
+pgbackrest_conf:
+  global:  # [global] section
+    - { option: "log-level-file", value: "detail" }
+    - { option: "log-path", value: "/var/log/pgbackrest" }
+    - { option: "repo1-type", value: "gcs" }
+    - { option: "repo1-path", value: "/pgbackrest" }  # logical path in bucket
+    - { option: "repo1-gcs-key", value: "{{ postgresql_home_dir }}/gcs-key.json" }  # change this value (path to GCS service account key file)
+    - { option: "repo1-gcs-bucket", value: "YOUR_BUCKET_NAME" }  # change this value
+    - { option: "repo1-retention-full", value: "4" }
+    - { option: "repo1-retention-archive", value: "4" }
+    - { option: "archive-check", value: "y" }
+    - { option: "archive-copy", value: "n" }
+    - { option: "archive-async", value: "y" }
+    - { option: "archive-get-queue-max", value: "1GiB" }
+#    - { option: "archive-push-queue-max", value: "100GiB" }
+    - { option: "spool-path", value: "/var/spool/pgbackrest" }
+    - { option: "repo1-bundle", value: "y" }
+    - { option: "repo1-block", value: "y" }
+    - { option: "start-fast", value: "y" }
+    - { option: "stop-auto", value: "y" }
+    - { option: "link-all", value: "y" }
+    - { option: "resume", value: "n" }
+    - { option: "backup-standby", value: "y" }  # when set to 'y', standby servers will be automatically added to the stanza section.
+    - { option: "process-max", value: "2" }
+  stanza:  # [stanza_name] section
+    - { option: "process-max", value: "4" }
+    - { option: "log-level-console", value: "info" }
+    - { option: "recovery-option", value: "recovery_target_action=promote" }
+    - { option: "pg1-socket-path", value: "/var/run/postgresql" }
+    - { option: "pg1-path", value: "/var/lib/postgresql/data" }
 
 pgbackrest_archive_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive-push %p"
 ```
