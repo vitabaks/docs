@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Backup
 
-Configure database backups for your PostgreSQL cluster.
+Configure database backups
 
 ### Console (UI)
 
