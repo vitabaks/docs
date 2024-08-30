@@ -36,7 +36,7 @@ When deploying to cloud providers (`cloud_provider` variable) such as AWS, GCP, 
 :::
 
 The following backup tools are supported:
-- [pgBackRest](https://pgbackrest.org)
+- [pgBackRest](https://github.com/pgbackrest/pgbackrest)
 - [WAL-G](https://github.com/wal-g/wal-g)
 
 import Tabs from '@theme/Tabs';
