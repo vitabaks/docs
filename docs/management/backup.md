@@ -354,31 +354,6 @@ To use WAL-G, specify the `wal_g_install: true` variable.
 Examples of configuration variables:
 
 <details>
-<summary>wal-g config (AWS S3)</summary>
-
-```yaml
-# An example of a configuration using AWS S3
-
-wal_g_install: true
-wal_g_version: "3.0.3"
-wal_g_path: "/usr/local/bin/wal-g --config {{ postgresql_home_dir }}/.walg.json"
-wal_g_json:
-  - { option: "AWS_ACCESS_KEY_ID", value: "YOUR_AWS_ACCESS_KEY_ID" }  # change this value
-  - { option: "AWS_SECRET_ACCESS_KEY", value: "YOUR_AWS_SECRET_ACCESS_KEY" }  # change this value
-  - { option: "WALG_S3_PREFIX", value: "{{ WALG_S3_PREFIX | default('s3://' + patroni_cluster_name) }}" }
-  - { option: "WALG_COMPRESSION_METHOD", value: "brotli" }  # or "lz4", "lzma", "zstd"
-  - { option: "WALG_DELTA_MAX_STEPS", value: "6" }  # determines how many delta backups can be between full backups
-  - { option: "PGDATA", value: "{{ postgresql_data_dir }}" }
-  - { option: "PGHOST", value: "{{ postgresql_unix_socket_dir }}" }
-  - { option: "PGPORT", value: "{{ postgresql_port }}" }
-  - { option: "PGUSER", value: "{{ patroni_superuser_username }}" }
-
-wal_g_archive_command: "{{ wal_g_path }} wal-push %p"
-```
-
-</details>
-
-<details>
 <summary>wal-g config (Minio S3)</summary>
 
 ```yaml
@@ -392,9 +367,41 @@ wal_g_json:
   - { option: "AWS_SECRET_ACCESS_KEY", value: "YOUR_AWS_SECRET_ACCESS_KEY" }  # change this value
   - { option: "AWS_ENDPOINT", value: "http://YOUR_MINIO_ADDRESS:9000" }  # change this value
   - { option: "AWS_S3_FORCE_PATH_STYLE", value: "true" }
-  - { option: "WALG_S3_PREFIX", value: "{{ WALG_S3_PREFIX | default('s3://' + patroni_cluster_name) }}" }
+  - { option: "WALG_S3_PREFIX", value: "s3://YOUR_MINIO_BUCKET" }  # change this value
   - { option: "WALG_COMPRESSION_METHOD", value: "brotli" }  # or "lz4", "lzma", "zstd"
   - { option: "WALG_DELTA_MAX_STEPS", value: "6" }  # determines how many delta backups can be between full backups
+  - { option: "WALG_UPLOAD_CONCURRENCY", value: "2" }
+  - { option: "WALG_UPLOAD_DISK_CONCURRENCY", value: "2" }
+  - { option: "WALG_DOWNLOAD_CONCURRENCY", value: "4" }
+  - { option: "PGDATA", value: "{{ postgresql_data_dir }}" }
+  - { option: "PGHOST", value: "{{ postgresql_unix_socket_dir }}" }
+  - { option: "PGPORT", value: "{{ postgresql_port }}" }
+  - { option: "PGUSER", value: "{{ patroni_superuser_username }}" }
+
+wal_g_archive_command: "{{ wal_g_path }} wal-push %p"
+```
+
+</details>
+
+<details>
+<summary>wal-g config (AWS S3)</summary>
+
+```yaml
+# An example of a configuration using AWS S3
+
+wal_g_install: true
+wal_g_version: "3.0.3"
+wal_g_path: "/usr/local/bin/wal-g --config {{ postgresql_home_dir }}/.walg.json"
+wal_g_json:
+  - { option: "AWS_ACCESS_KEY_ID", value: "YOUR_AWS_ACCESS_KEY_ID" }  # change this value
+  - { option: "AWS_SECRET_ACCESS_KEY", value: "YOUR_AWS_SECRET_ACCESS_KEY" }  # change this value
+  - { option: "AWS_REGION", value: "YOUR_AWS_REGION" }  # change this value (e.g., us-east-1)
+  - { option: "WALG_S3_PREFIX", value: "s3://YOUR_AWS_BUCKET" }  # change this value
+  - { option: "WALG_COMPRESSION_METHOD", value: "brotli" }  # or "lz4", "lzma", "zstd"
+  - { option: "WALG_DELTA_MAX_STEPS", value: "6" }  # determines how many delta backups can be between full backups
+  - { option: "WALG_UPLOAD_CONCURRENCY", value: "2" }
+  - { option: "WALG_UPLOAD_DISK_CONCURRENCY", value: "2" }
+  - { option: "WALG_DOWNLOAD_CONCURRENCY", value: "4" }
   - { option: "PGDATA", value: "{{ postgresql_data_dir }}" }
   - { option: "PGHOST", value: "{{ postgresql_unix_socket_dir }}" }
   - { option: "PGPORT", value: "{{ postgresql_port }}" }
