@@ -73,7 +73,7 @@ pgbackrest_conf:
     - { option: "repo1-type", value: "{{ pgbackrest_repo_type | lower }}" }
     - { option: "repo1-host", value: "{{ pgbackrest_repo_host }}" }
     - { option: "repo1-host-user", value: "{{ pgbackrest_repo_user }}" }
-    - { option: "repo1-path", value: "/var/lib/pgbackrest" }
+    - { option: "repo1-path", value: "/var/lib/pgbackrest" }  # the path to the backup directory on the backup server
     - { option: "spool-path", value: "/var/spool/pgbackrest" }
     - { option: "archive-async", value: "y" }
     - { option: "archive-get-queue-max", value: "1GiB" }
@@ -90,7 +90,7 @@ pgbackrest_server_conf:
     - { option: "log-level-file", value: "detail" }
     - { option: "log-level-console", value: "info" }
     - { option: "log-path", value: "/var/log/pgbackrest" }
-    - { option: "repo1-path", value: "/var/lib/pgbackrest" }
+    - { option: "repo1-path", value: "/var/lib/pgbackrest" }  # the path to the backup directory
     - { option: "repo1-retention-full", value: "4" }
     - { option: "repo1-retention-archive", value: "4" }
     - { option: "archive-check", value: "y" }
@@ -129,7 +129,7 @@ pgbackrest_conf:
     - { option: "log-level-file", value: "detail" }
     - { option: "log-path", value: "/var/log/pgbackrest" }
     - { option: "repo1-type", value: "{{ pgbackrest_repo_type | lower }}" }
-    - { option: "repo1-path", value: "/repo" }
+    - { option: "repo1-path", value: "/pgbackrest" }  # logical path in bucket
     - { option: "repo1-s3-endpoint", value: "https://YOUR_MINIO_ADDRESS" }  # change this value
     - { option: "repo1-s3-key", value: "YOUR_MINIO_S3_KEY" }  # change this value
     - { option: "repo1-s3-key-secret", value: "YOUR_MINIO_S3_KEY_SECRET" }  # change this value
