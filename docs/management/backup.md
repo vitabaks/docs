@@ -73,6 +73,7 @@ pgbackrest_conf:
     - { option: "spool-path", value: "/var/spool/pgbackrest" }
     - { option: "archive-async", value: "y" }
     - { option: "archive-get-queue-max", value: "1GiB" }
+#    - { option: "archive-push-queue-max", value: "100GiB" }
   stanza:  # [stanza_name] section
     - { option: "process-max", value: "4" }
     - { option: "log-level-console", value: "info" }
