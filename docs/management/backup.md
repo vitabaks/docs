@@ -133,10 +133,10 @@ pgbackrest_conf:
     - { option: "repo1-s3-endpoint", value: "https://YOUR_MINIO_ADDRESS" }  # change this value
     - { option: "repo1-s3-key", value: "YOUR_MINIO_S3_KEY" }  # change this value
     - { option: "repo1-s3-key-secret", value: "YOUR_MINIO_S3_KEY_SECRET" }  # change this value
-    - { option: "repo1-s3-bucket", value: "pgbackrest" }  # change this value
+    - { option: "repo1-s3-bucket", value: "YOUR_MINIO_BUCKET" }  # change this value
+    - { option: "repo1-s3-region", value: "eu-west-3" }  # change this value
     - { option: "repo1-s3-uri-style", value: "path" }
     - { option: "repo1-s3-verify-tls", value: "n" }
-    - { option: "repo1-s3-region", value: "eu-west-3" }
     - { option: "repo1-retention-full", value: "4" }
     - { option: "repo1-retention-archive", value: "4" }
     - { option: "archive-check", value: "y" }
@@ -182,7 +182,7 @@ pgbackrest_conf:
   global:  # [global] section
     - { option: "log-level-file", value: "detail" }
     - { option: "log-path", value: "/var/log/pgbackrest" }
-    - { option: "repo1-type", value: "s3" }
+    - { option: "repo1-type", value: "{{ pgbackrest_repo_type | lower }}" }
     - { option: "repo1-path", value: "/pgbackrest" }  # logical path in bucket
     - { option: "repo1-s3-key", value: "YOUR_AWS_S3_ACCESS_KEY" }  # change this value
     - { option: "repo1-s3-key-secret", value: "YOUR_AWS_S3_SECRET_KEY" }  # change this value
@@ -226,7 +226,7 @@ pgbackrest_archive_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive
 pgbackrest_install: true
 pgbackrest_install_from_pgdg_repo: true
 pgbackrest_stanza: "{{ patroni_cluster_name }}"  # stanza name
-pgbackrest_repo_type: "s3"
+pgbackrest_repo_type: "gcs"
 pgbackrest_repo_host: ""
 pgbackrest_repo_user: ""
 pgbackrest_conf_file: "/etc/pgbackrest/pgbackrest.conf"
@@ -234,7 +234,7 @@ pgbackrest_conf:
   global:  # [global] section
     - { option: "log-level-file", value: "detail" }
     - { option: "log-path", value: "/var/log/pgbackrest" }
-    - { option: "repo1-type", value: "gcs" }
+    - { option: "repo1-type", value: "{{ pgbackrest_repo_type | lower }}" }
     - { option: "repo1-path", value: "/pgbackrest" }  # logical path in bucket
     - { option: "repo1-gcs-key", value: "{{ postgresql_home_dir }}/gcs-key.json" }  # change this value (path to GCS service account key file)
     - { option: "repo1-gcs-bucket", value: "YOUR_BUCKET_NAME" }  # change this value
@@ -275,7 +275,7 @@ pgbackrest_archive_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive
 pgbackrest_install: true
 pgbackrest_install_from_pgdg_repo: true
 pgbackrest_stanza: "{{ patroni_cluster_name }}"  # stanza name
-pgbackrest_repo_type: "s3"
+pgbackrest_repo_type: "azure"
 pgbackrest_repo_host: ""
 pgbackrest_repo_user: ""
 pgbackrest_conf_file: "/etc/pgbackrest/pgbackrest.conf"
@@ -283,7 +283,7 @@ pgbackrest_conf:
   global:  # [global] section
     - { option: "log-level-file", value: "detail" }
     - { option: "log-path", value: "/var/log/pgbackrest" }
-    - { option: "repo1-type", value: "azure" }
+    - { option: "repo1-type", value: "{{ pgbackrest_repo_type | lower }}" }
     - { option: "repo1-path", value: "/pgbackrest" }  # logical path in Azure Blob container
     - { option: "repo1-azure-key", value: "YOUR_AZURE_STORAGE_ACCOUNT_KEY" }  # change this value
     - { option: "repo1-azure-key-type", value: "shared" }  # key type: 'shared' or 'sas'
