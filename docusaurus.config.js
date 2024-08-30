@@ -154,6 +154,12 @@ const config = {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
+      algolia: {
+        appId: 'WOUWH5V3FC',
+        apiKey: 'ab353f5cc2b0bce47c98aaded805d8cd',
+        indexName: 'postgresql-cluster',
+        contextualSearch: true,
+      },
     }),
 };
 
