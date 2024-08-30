@@ -51,7 +51,7 @@ pgBackRest documentation: [Configuration Reference](https://pgbackrest.org/confi
 
 To use pgBackRest, specify the `pgbackrest_install: true` variable.
 
-Examples of configuration variables:
+**Examples of configuration variables:**
 
 <details>
 <summary>pgbackrest config ("posix" ssh mode)</summary>
@@ -355,7 +355,7 @@ WAL-G [documentation](https://github.com/wal-g/wal-g/blob/master/docs/PostgreSQL
 
 To use WAL-G, specify the `wal_g_install: true` variable.
 
-Examples of configuration variables:
+**Examples of configuration variables:**
 
 <details>
 <summary>wal-g config (Minio S3)</summary>
