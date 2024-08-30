@@ -147,7 +147,7 @@ ansible-playbook deploy_pgcluster.yml
 
 #### Deploy Cluster with TimescaleDB
 
-To deploy a PostgreSQL High-Availability Cluster with the TimescaleDB extension, add the `enable_timescale` variable:
+To deploy a PostgreSQL High-Availability Cluster with the [TimescaleDB](https://github.com/timescale/timescaledb) extension, add the `enable_timescale` variable:
 
 Example:
 ```
