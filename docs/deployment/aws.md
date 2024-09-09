@@ -9,8 +9,8 @@ Amazon Web Services
 **[postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)** will automatically set up the following in Amazon Web Services (AWS):
 
 1. Virtual machine (with a dedicated data disk), with all cluster components installed and configured.
-2. Elastic Load Balancer (ELB) to serve as the entry point for database connections.
-3. S3 Bucket, and configured backups using pgBackRest.
+2. AWS Elastic Load Balancer (ELB) to serve as the entry point for database connections.
+3. AWS S3 Bucket, and configured backups using pgBackRest.
 
 :::info
 All components are installed within your cloud account.
