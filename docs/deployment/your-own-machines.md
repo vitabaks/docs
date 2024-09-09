@@ -105,6 +105,11 @@ Example of a cluster page:
 
 ### Command line
 
+:::tip
+We also support converting your existing PostgreSQL installation into a high-availability cluster. If you want to upgrade your current PostgreSQL setup to a clustered configuration, simply set `postgresql_exists=true` in the inventory file.
+
+Please note that during the cluster setup process, your existing PostgreSQL service will be automatically restarted, leading to a brief period of database downtime. Plan this transition accordingly.
+:::
 
 1. Edit the `inventory` file
 
@@ -153,9 +158,3 @@ Example:
 ```
 ansible-playbook deploy_pgcluster.yml -e "enable_timescale=true"
 ```
-
-:::tip
-We also supports integrating with pre-existing PostgreSQL instances. If you intend to upgrade your existing PostgreSQL setup to a high-availability configuration, simply set `postgresql_exists=true` in the inventory file.
-:::note
-Please note that during the cluster setup process, your existing PostgreSQL service will be automatically restarted, leading to a brief period of database downtime. Plan this transition accordingly.
-:::
