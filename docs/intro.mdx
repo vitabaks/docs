@@ -19,7 +19,11 @@ For a detailed description of the cluster components, visit the [Architecture](.
 
 You have the option to easily deploy Postgres clusters using the Console (UI) or from the command line with the ansible-playbook command.
 
-### Console (UI)
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="console-ui" label="Console (UI)" default>
 
 The Console (UI) is the recommended method for most users. It is designed to be user-friendly, minimizing the risk of errors and making it easier than ever to set up your PostgreSQL clusters. This method is suitable for both beginners and those who prefer a visual interface for managing their PostgreSQL clusters.
 
@@ -48,22 +52,20 @@ It is recommended to run the console in the same network as your database server
 
 Go to http://localhost/ and use `secret_token` for authorization.
 
-![login](/img/pg-console-login.png)
-![home](/img/pg-console-home.png)
-
 :::note
 - If you have set up the console on a different server, replace 'localhost' with the server's address.
 - Use the value of your token if you have redefined it in the PG_CONSOLE_AUTHORIZATION_TOKEN variable.
 :::
 
+![Cluster creation demo](/img/pg_console_create_cluster_demo.gif)
+
 Refer to the [Deployment](./category/deployment) section to learn more about the different deployment methods.
 
----
-
-### Command line
+  </TabItem>
+  <TabItem value="command-line" label="Command line">
 
 The command line mode is suitable for advanced users who require greater flexibility and control over the deployment and management of their PostgreSQL clusters.
-While the [Console (UI)](#console-ui) is designed for ease of use and is suitable for most users, the command line provides powerful options for those experienced in automation and configuration.
+While the Console (UI) is designed for ease of use and is suitable for most users, the command line provides powerful options for those experienced in automation and configuration.
 
 1. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) on one control node (which could easily be a laptop)
 
@@ -99,3 +101,6 @@ While the [Console (UI)](#console-ui) is designed for ease of use and is suitabl
     :::
 
 Refer to the [Deployment](./category/deployment) section to learn more about the different deployment methods.
+
+  </TabItem>
+</Tabs>
