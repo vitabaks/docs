@@ -20,6 +20,10 @@ All components are installed within your cloud account.
 You will need the API token to deploy the cluster to your Hetzner Cloud provider account.
 See the [official documentation](https://docs.hetzner.com/cloud/api/getting-started/generating-api-token/) for instructions on creating an access token.
 
+:::note
+You can either add these credentials in advance on the **Settings** page under the **Secrets** tab, or you will be prompted to enter them during the cluster creation process.
+:::
+
 ### Console (UI)
 
 Select 'Hetzner' as the destination and choose the deployment region.

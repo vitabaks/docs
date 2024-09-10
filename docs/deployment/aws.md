@@ -21,6 +21,10 @@ All components are installed within your cloud account.
 You will need the access key (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY) to deploy the PostgreSQL cluster to your AWS account.
 See the [official documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for instructions on creating an access key.
 
+:::note
+You can either add these credentials in advance on the **Settings** page under the **Secrets** tab, or you will be prompted to enter them during the cluster creation process.
+:::
+
 ### Console (UI)
 
 Select 'AWS' as the destination and choose the deployment region.

@@ -20,6 +20,10 @@ All components are installed within your cloud account.
 You will need the Personal Access Token to deploy the cluster to your DigitalOcean account.
 See the [official documentation](https://docs.digitalocean.com/reference/api/create-personal-access-token/) for instructions on creating an access token.
 
+:::note
+You can either add these credentials in advance on the **Settings** page under the **Secrets** tab, or you will be prompted to enter them during the cluster creation process.
+:::
+
 ### Console (UI)
 
 Select 'DigitalOcean' as the destination and choose the deployment region.

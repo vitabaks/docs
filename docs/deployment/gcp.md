@@ -21,6 +21,10 @@ All components are installed within your cloud account.
 You will need the service account credentials (in JSON or base64 format) to deploy the PostgreSQL cluster to your Google Cloud account.
 See the [official documentation](https://cloud.google.com/iam/docs/keys-create-delete) for instructions on creating a service account key.
 
+:::note
+You can either add these credentials in advance on the **Settings** page under the **Secrets** tab, or you will be prompted to enter them during the cluster creation process.
+:::
+
 ### Console (UI)
 
 Select 'Google Cloud' as the destination and choose the deployment region.
