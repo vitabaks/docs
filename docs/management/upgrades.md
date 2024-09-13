@@ -200,22 +200,6 @@ Specify the current (old) version of PostgreSQL in the `pg_old_version` variable
 ansible-playbook pg_upgrade.yml -e "pg_old_version=15 pg_new_version=16"
 ```
 
-#### Rollback
-
-In some scenarios, if errors occur, the `pg_upgrade.yml` playbook may automatically initiate a rollback.
-Alternatively, if the automatic rollback does not occur, you can manually execute the `pg_upgrade_rollback.yml` playbook to revert the changes. 
-
-```
-ansible-playbook pg_upgrade_rollback.yml -e "pg_old_version=15 pg_new_version=16"
-```
-:::note
-It's designed to be used when a PostgreSQL upgrade hasn't been fully completed and the new version hasn't been started. \
-The rollback operation is performed by starting the Patroni cluster with the old version of PostgreSQL using the same PGDATA. \
-The playbook first checks the health of the current cluster, verifies the version of PostgreSQL, and ensures the new PostgreSQL is not running.
-If these checks pass, the playbook switches back to the old PostgreSQL paths and restarts the Patroni service.
-:::
-
-
 <details>
 <summary>Variables</summary>
 
@@ -494,3 +478,18 @@ The variable file is located on the path: `vars/upgrade.yml`
       - Upgrade completed
 
 </details>
+
+#### Rollback
+
+In some scenarios, if errors occur, the `pg_upgrade.yml` playbook may automatically initiate a rollback.
+Alternatively, if the automatic rollback does not occur, you can manually execute the `pg_upgrade_rollback.yml` playbook to revert the changes. 
+
+```
+ansible-playbook pg_upgrade_rollback.yml -e "pg_old_version=15 pg_new_version=16"
+```
+:::note
+It's designed to be used when a PostgreSQL upgrade hasn't been fully completed and the new version hasn't been started. \
+The rollback operation is performed by starting the Patroni cluster with the old version of PostgreSQL using the same PGDATA. \
+The playbook first checks the health of the current cluster, verifies the version of PostgreSQL, and ensures the new PostgreSQL is not running.
+If these checks pass, the playbook switches back to the old PostgreSQL paths and restarts the Patroni service.
+:::
