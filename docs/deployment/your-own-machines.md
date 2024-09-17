@@ -10,17 +10,19 @@ Deploy on existing servers
 This method is suitable for deployment on existing servers, whether with another cloud provider or in your own data center.
 :::
 
-### Prerequisites
+## Prerequisites
 
 You will need `root` access or a user with `sudo` privileges to access the servers via SSH. You can use your private SSH key (assuming the corresponding public key has already been added to the servers), or a username and password if password access is enabled on your servers.
 
-:::note
-You can either add these credentials in advance on the **Settings** page under the **Secrets** tab, or you will be prompted to enter them during the cluster creation process.
-:::
-
 See also the [Requirements](../overview/requirements.md) and [Compatibility](../overview/compatibility.md) pages.
 
-### Console (UI)
+## Deployment
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="console-ui" label="Console (UI)" default>
 
 Select 'Your Own Machines' in the deployment destination.
 
@@ -105,13 +107,12 @@ Example of a cluster page:
 
 ![cluster-overview](/img/cluster-overview.png)
 
----
-
-### Command line
+  </TabItem>
+  <TabItem value="command-line" label="Command line">
 
 :::tip
 We also support converting your existing PostgreSQL installation into a high-availability cluster. If you want to upgrade your current PostgreSQL setup to a clustered configuration, simply set `postgresql_exists=true` in the inventory file.
-
+:::note
 Please note that during the cluster setup process, your existing PostgreSQL service will be automatically restarted, leading to a brief period of database downtime. Plan this transition accordingly.
 :::
 
@@ -162,3 +163,6 @@ Example:
 ```
 ansible-playbook deploy_pgcluster.yml -e "enable_timescale=true"
 ```
+
+  </TabItem>
+</Tabs>
