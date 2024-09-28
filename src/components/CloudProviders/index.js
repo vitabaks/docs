@@ -4,29 +4,36 @@ const CloudProviders = [
   {
     name: 'AWS',
     image: '/img/aws.svg',
+    link: '/docs/deployment/aws'
   },
   {
     name: 'Google Cloud',
     image: '/img/gcp.svg',
+    link: '/docs/deployment/gcp'
   },
   {
     name: 'Azure',
     image: '/img/azure.svg',
+    link: '/docs/deployment/azure'
   },
   {
     name: 'Digital Ocean',
     image: '/img/digitalocean.svg',
+    link: '/docs/deployment/digitalocean'
   },
   {
     name: 'Hetzner Cloud',
     image: '/img/hetzner.svg',
+    link: '/docs/deployment/hetzner'
   },
 ];
 
-function CloudProvider({ name, image }) {
+function CloudProvider({ name, image, link }) {
   return (
     <div style={{ textAlign: 'center', margin: '10px' }}>
-      <img src={image} alt={name} style={{ maxWidth: '150px', marginBottom: '20px' }} />
+      <a href={link}>
+        <img src={image} alt={name} style={{ maxWidth: '150px', marginBottom: '20px' }} />
+      </a>
     </div>
   );
 }
