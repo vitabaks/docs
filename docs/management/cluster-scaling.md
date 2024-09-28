@@ -11,7 +11,7 @@ Once your PostgreSQL cluster is successfully deployed, you may find the need to 
 Scaling the cluster through the UI is not yet implemented.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](/sponsor).
+If you're interested in this feature, please consider becoming a [sponsor](/docs/sponsor).
 :::
 
 ## Command line

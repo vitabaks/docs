@@ -11,7 +11,7 @@ This section guides you through the process of changes your PostgreSQL cluster c
 Changing the cluster configuration through the UI is not yet implemented.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](/sponsor).
+If you're interested in this feature, please consider becoming a [sponsor](/docs/sponsor).
 :::
 
 ### Command line

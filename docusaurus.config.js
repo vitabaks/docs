@@ -8,8 +8,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'PostgreSQL Cluster documentation',
-  tagline: 'PostgreSQL Cluster',
+  title: 'PostgreSQL High-Availability Cluster',
+  tagline: 'Ensure 24/7 Uptime for Your PostgreSQL Database',
   favicon: 'img/postgres.svg',
 
   // Set the production url of your site here
@@ -40,9 +40,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/vitabaks/docs/tree/main/',
@@ -55,7 +53,6 @@ const config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/vitabaks/docs/tree/main/',
@@ -86,15 +83,15 @@ const config = {
           isCloseable: true,
       },
       navbar: {
-        title: 'PostgreSQL Cluster\ndocumentation',
+        title: 'PostgreSQL Cluster',
         logo: {
-          alt: 'PostgreSQL Cluster documentation',
+          alt: 'PostgreSQL Cluster',
           src: 'img/postgres.svg',
         },
         items: [
-          //{to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/docs', label: 'Docs', position: 'right'},
           {
-            href: '/support',
+            href: '/docs/support',
             label: 'Support',
             position: 'right',
           },
@@ -105,7 +102,6 @@ const config = {
           },
         ],
       },
-      /*
       footer: {
         style: 'light',
         links: [
@@ -113,13 +109,31 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Introduction',
+                to: '/docs',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Sponsor',
+            items: [
+              {
+                label: 'Sponsor this project',
+                to: 'docs/sponsor',
+              },
+            ],
+          },
+          {
+            title: 'Repository',
+            items: [
+              {
+                label: 'GitHub',
+                href: 'https://github.com/vitabaks/postgresql_cluster',
+              },
+            ],
+          },
+          {
+            title: 'Social',
             items: [
               {
                 label: 'Twitter',
@@ -128,22 +142,17 @@ const config = {
             ],
           },
           {
-            title: 'More',
+            title: 'Contact',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/vitabaks/postgresql_cluster',
+                label: 'vitabaks@gmail.com',
+                to: 'javascript:void(0)',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} postgresql_cluster Project. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} PostgreSQL Cluster Project.`,
       },
-      */
       docs: {
         sidebar: {
           hideable: true, // Enable the hideable sidebar feature

@@ -1,9 +1,9 @@
-// Disable the site page (TODO) to focus on the documentation
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import CloudProviderSection from '../components/CloudProviders';
 
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
@@ -17,11 +17,14 @@ function HomepageHeader() {
           {siteConfig.title}
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className="hero__subtitle" style={{ fontSize: '14px' }}>
+          This open-source project is provided for free and with full functionality under the MIT license.
+        </p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            to="/docs">
+            Get Started
           </Link>
         </div>
       </div>
@@ -33,11 +36,12 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title}`}
+      description="Ensure 24/7 Uptime for Your PostgreSQL Database.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+        <CloudProviderSection />
       </main>
     </Layout>
   );

@@ -4,15 +4,30 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  padding: 2rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background-color: transparent;
+}
+
+/* Text color for a light theme */
+[data-theme="light"] {
+  --hero-text-color: #091E42;
+}
+
+/* Text color for a dark theme */
+[data-theme="dark"] {
+  --hero-text-color: #FFFFFF;
+}
+
+.heroBanner {
+  color: var(--hero-text-color);
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 1rem;
   }
 }
 

@@ -1,11 +1,22 @@
+/* Background color for a light theme */
+[data-theme="light"] {
+  --features-background-color: #F6F8FA;
+}
+
+/* Background color for a dark theme */
+[data-theme="dark"] {
+  --features-background-color: #333333;
+}
+
 .features {
   display: flex;
   align-items: center;
   padding: 2rem 0;
   width: 100%;
+  background-color: var(--features-background-color);
 }
 
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 48px;
+  width: 48px;
 }

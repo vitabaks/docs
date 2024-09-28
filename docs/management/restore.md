@@ -11,7 +11,7 @@ Restore and Cloning
 Restoring a cluster from backup (PITR) through the UI is not yet implemented.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](/sponsor).
+If you're interested in this feature, please consider becoming a [sponsor](/docs/sponsor).
 :::
 
 ## Command line
@@ -31,7 +31,7 @@ import TabItem from '@theme/TabItem';
 Whether you want to restore the current cluster or perform cloning, you will need to configure the pgBackRest parameters to access the backups.
 
 :::tip
-You can find examples of `pgbackrest` configurations in the [Backup](/management/backup#command-line) section.
+You can find examples of `pgbackrest` configurations in the [Backup](/docs/management/backup) section.
 :::
 
 Additionally, define the following required variables for the restore process:
@@ -120,7 +120,7 @@ The recovery steps that automation will perform:
 Whether you want to restore the current cluster or perform cloning, you will need to configure the WAL-G parameters to access the backups.
 
 :::tip
-You can find examples of `wal-g` configurations in the [Backup](/management/backup#command-line) section.
+You can find examples of `wal-g` configurations in the [Backup](/docs/management/backup) section.
 :::
 
 Additionally, define the following required variables for the restore process:
