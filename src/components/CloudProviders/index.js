@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.module.css';
 
 const CloudProviders = [
   {
@@ -30,9 +31,9 @@ const CloudProviders = [
 
 function CloudProvider({ name, image, link }) {
   return (
-    <div style={{ textAlign: 'center', margin: '10px' }}>
+    <div className={styles.cloudProvider}>
       <a href={link}>
-        <img src={image} alt={name} style={{ maxWidth: '150px', marginBottom: '20px' }} />
+        <img src={image} alt={name} className={styles.cloudImage} />
       </a>
     </div>
   );
@@ -42,7 +43,7 @@ export default function CloudProviderSection() {
   return (
     <section>
       <h2 style={{ textAlign: 'center', marginTop: '25px', marginBottom: '20px' }}>Available on multiple cloud providers</h2>
-      <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', maxWidth: '65%', margin: '0 auto' }}>
+      <div className={styles.cloudProviders}>
         {CloudProviders.map((provider, idx) => (
           <CloudProvider key={idx} {...provider} />
         ))}

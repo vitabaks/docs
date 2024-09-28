@@ -1,0 +1,41 @@
+.cloudProviders {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.cloudProvider {
+  flex: 1 1 calc(20% - 40px);
+  max-width: 150px;
+  text-align: center;
+  margin: 10px;
+}
+
+.cloudImage {
+  width: 100%;
+  height: auto;
+}
+
+/* Adaptive style for mobile devices */
+@media (max-width: 768px) {
+  .cloudProviders {
+    gap: 20px;
+  }
+
+  .cloudProvider {
+    flex: 1 1 calc(30% - 20px);
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cloudProviders {
+    gap: 10px;
+  }
+
+  .cloudProvider {
+    flex: 1 1 calc(50% - 10px);
+    max-width: 100px;
+  }
+}
