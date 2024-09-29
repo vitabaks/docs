@@ -13,7 +13,7 @@
   position: relative;
   overflow: hidden;
   background-color: transparent;
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 /* Text color for a light theme */
@@ -42,6 +42,6 @@
   justify-content: center;
   opacity: 0;
   animation: fadeIn 0.3s ease-in-out;
-  animation-delay: 3s;
+  animation-delay: 2.5s;
   animation-fill-mode: forwards;
 }
