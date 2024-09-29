@@ -24,8 +24,8 @@
   width: 100%;
   background-color: var(--features-background-color);
   opacity: 0;
-  animation: fadeIn 0.4s ease-in-out;
-  animation-delay: 0.5s;
+  animation: fadeIn 0.3s ease-in-out;
+  animation-delay: 0.4s;
   animation-fill-mode: forwards;
 }
 
