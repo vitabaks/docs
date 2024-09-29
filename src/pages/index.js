@@ -1,3 +1,4 @@
+import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -32,6 +33,24 @@ function HomepageHeader() {
   );
 }
 
+function DemoEmbed() {
+  return (
+    <div style={{ position: 'relative', boxSizing: 'content-box', maxHeight: '80vh', width: '100%', aspectRatio: '1.643835616438356', padding: '40px 0', marginBottom: '40px' }}>
+      <iframe
+        src="https://app.supademo.com/embed/cm17ui80e035n13s2q3lkg5he?embed_v=2"
+        loading="lazy"
+        title="PostgreSQL Cluster Console (UI) demo"
+        allow="clipboard-write"
+        frameBorder="0"
+        webkitallowfullscreen="true"
+        mozallowfullscreen="true"
+        allowFullScreen
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+      ></iframe>
+    </div>
+  );
+}
+
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -42,6 +61,7 @@ export default function Home() {
       <main>
         <HomepageFeatures />
         <CloudProviderSection />
+        <DemoEmbed />
       </main>
     </Layout>
   );
