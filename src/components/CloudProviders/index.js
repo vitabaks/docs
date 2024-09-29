@@ -31,7 +31,7 @@ const CloudProviders = [
 
 function CloudProvider({ name, image, link }) {
   return (
-    <div className={styles.cloudProvider}>
+    <div className={styles.cloudProvider} style={{ marginBottom: '40px' }}>
       <a href={link}>
         <img src={image} alt={name} className={styles.cloudImage} />
       </a>
@@ -42,7 +42,7 @@ function CloudProvider({ name, image, link }) {
 export default function CloudProviderSection() {
   return (
     <section>
-      <h2 style={{ textAlign: 'center', marginTop: '25px', marginBottom: '20px' }}>Available on multiple cloud providers</h2>
+      <h2 className={styles.cloudProviders} style={{ marginTop: '30px', marginBottom: '30px' }}>Available on multiple cloud providers</h2>
       <div className={styles.cloudProviders}>
         {CloudProviders.map((provider, idx) => (
           <CloudProvider key={idx} {...provider} />
