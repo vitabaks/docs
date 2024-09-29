@@ -36,8 +36,8 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title}`}
-      description="Ensure 24/7 Uptime for Your PostgreSQL Database.">
+      title="postgresql_cluster"
+      description="PostgreSQL High-Availability Cluster">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
