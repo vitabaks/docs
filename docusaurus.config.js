@@ -145,7 +145,7 @@ const config = {
             title: 'Contact',
             items: [
               {
-                label: 'vitabaks@gmail.com',
+                label: 'info@postgresql-cluster.org',
                 to: 'javascript:void(0)',
               },
             ],
