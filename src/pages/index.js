@@ -4,7 +4,8 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import CloudProviderSection from '../components/CloudProviders';
+import CloudProviders from '../components/CloudProviders';
+import Sponsors from '../components/Sponsors';
 
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
@@ -60,8 +61,9 @@ export default function Home() {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
-        <CloudProviderSection />
+        <CloudProviders />
         <DemoEmbed />
+        <Sponsors />
       </main>
     </Layout>
   );

@@ -1,0 +1,44 @@
+.Sponsors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.Sponsor {
+  flex: 1 1 calc(20% - 40px);
+  max-width: 150px;
+  text-align: center;
+  margin: 10px;
+}
+
+.SponsorImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Adaptive style for mobile devices */
+@media (max-width: 768px) {
+  .Sponsors {
+    gap: 20px;
+  }
+
+  .Sponsor {
+    flex: 1 1 calc(30% - 20px);
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Sponsors {
+    gap: 10px;
+  }
+
+  .Sponsor {
+    flex: 1 1 calc(50% - 10px);
+    max-width: 100px;
+  }
+}
