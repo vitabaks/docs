@@ -20,7 +20,7 @@ function HomepageHeader() {
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <p className="hero__subtitle" style={{ fontSize: '14px' }}>
-          This open-source project is provided for free and with full functionality under the MIT license.
+          This <strong style={{ color: '#FF5722' }}>open-source</strong> project is provided for <strong style={{ color: '#FF5722' }}>free</strong> and with <strong style={{ color: '#FF5722' }}>full functionality</strong> under the MIT license.
         </p>
         <div className={styles.buttons}>
           <Link
