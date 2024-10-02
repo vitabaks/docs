@@ -1,0 +1,59 @@
+.plansContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Background color for a light theme */
+[data-theme="light"] {
+  --background-color: #F6F8FA;
+}
+
+/* Background color for a dark theme */
+[data-theme="dark"] {
+  --background-color: #333333;
+}
+
+.planCard {
+  background-color: var(--background-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  text-align: left;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.planCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.planTitle {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.planPrice {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.planDescription {
+  list-style: none;
+  padding: 0;
+}
+
+.planDescription li {
+  margin-bottom: 15px;
+}
+
+/* Adaptive style for mobile devices */
+@media (max-width: 768px) {
+  .planCard {
+    width: 80%;
+  }
+}
