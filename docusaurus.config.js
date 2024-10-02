@@ -146,7 +146,7 @@ const config = {
             items: [
               {
                 label: 'info@postgresql-cluster.org',
-                to: 'javascript:void(0)',
+                to: 'mailto:info@postgresql-cluster.org',
               },
             ],
           },
