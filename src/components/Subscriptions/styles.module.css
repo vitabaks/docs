@@ -62,7 +62,7 @@
 }
 
 .planButton {
-  background-color: #007bff;
+  background-color: #0366d6;
   color: #ffffff;
   padding: 10px 20px;
   text-decoration: none;
@@ -72,7 +72,9 @@
 }
 
 .planButton:hover {
-  background-color: #0056b3;
+  background-color: #023e8a;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 /* Adaptive style for mobile devices */
@@ -80,7 +82,6 @@
   .planCard {
     width: 90%;
     max-width: 350px;
-    margin: 0 auto;
   }
 }
 
