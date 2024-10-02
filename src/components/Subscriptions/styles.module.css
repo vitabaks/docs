@@ -23,7 +23,9 @@
   width: 300px;
   text-align: left;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .planCard:hover {
@@ -46,20 +48,31 @@
 .planDescription {
   list-style: none;
   padding: 0;
+  flex-grow: 1;
 }
 
 .planDescription li {
   margin-bottom: 15px;
 }
 
-.planLink {
-  text-decoration: none;
-  color: inherit;
+.planButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
 }
 
-.planLink:hover {
+.planButton {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px 20px;
   text-decoration: none;
-  color: inherit;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.planButton:hover {
+  background-color: #0056b3;
 }
 
 /* Adaptive style for mobile devices */
@@ -75,6 +88,5 @@
   .planCard {
     width: 90%;
     margin: 0 auto;
-    min-height: unset;
   }
 }

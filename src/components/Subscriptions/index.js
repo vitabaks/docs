@@ -10,7 +10,9 @@ const Plans = [
       'Community support',
       'Depends on the availability and goodwill of community members',
     ],
-    link: 'https://github.com/vitabaks/postgresql_cluster/issues',
+    link: 'https://github.com/vitabaks/postgresql_cluster/issues/new',
+    buttonText: 'Open issue',
+    isMail: false,
   },
   {
     title: 'Sponsor',
@@ -21,6 +23,8 @@ const Plans = [
       'For small businesses and startups looking to ensure continuous maintenance and support for their database clusters',
     ],
     link: '/docs/sponsor',
+    buttonText: 'Get Started',
+    isMail: false,
   },
   {
     title: 'Sponsor+',
@@ -31,6 +35,8 @@ const Plans = [
       'For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters',
     ],
     link: '/docs/sponsor',
+    buttonText: 'Get Started',
+    isMail: false,
   },
   {
     title: 'Enterprise',
@@ -39,23 +45,33 @@ const Plans = [
       'For large organizations, we offer personalized support packages for complex database infrastructures',
       'Ultra-fast response times and 24/7 support. Remote DBA, regular health checks, and database server management (available upon request)',
     ],
-    link: 'javascript:void(0)',
+    link: 'mailto:info@postgresql-cluster.org',
+    buttonText: 'Contact us',
+    isMail: true,
   },
 ];
 
-function Plan({ title, price, description, link }) {
+function Plan({ title, price, description, link, buttonText, isMail }) {
   return (
-    <a href={link} className={styles.planLink} target="_blank" rel="noopener noreferrer">
-      <div className={styles.planCard}>
-        <h3 className={styles.planTitle}>{title}</h3>
-        <p className={styles.planPrice}>{price}</p>
-        <ul className={styles.planDescription}>
-          {description.map((item, idx) => (
-            <li key={idx}>{item}</li>
-          ))}
-        </ul>
+    <div className={styles.planCard}>
+      <h3 className={styles.planTitle}>{title}</h3>
+      <p className={styles.planPrice}>{price}</p>
+      <ul className={styles.planDescription}>
+        {description.map((item, idx) => (
+          <li key={idx}>{item}</li>
+        ))}
+      </ul>
+      <div className={styles.planButtonContainer}>
+        <a
+          href={link}
+          target={isMail ? '' : '_blank'}
+          rel={isMail ? '' : 'noopener noreferrer'}
+          className={styles.planButton}
+        >
+          {buttonText}
+        </a>
       </div>
-    </a>
+    </div>
   );
 }
 
