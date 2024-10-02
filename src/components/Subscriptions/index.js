@@ -10,6 +10,7 @@ const Plans = [
       'Community support',
       'Depends on the availability and goodwill of community members',
     ],
+    link: 'https://github.com/vitabaks/postgresql_cluster/issues',
   },
   {
     title: 'Sponsor',
@@ -19,6 +20,7 @@ const Plans = [
       'Personalized support (PostgreSQL Expert Consulting)',
       'For small businesses and startups looking to ensure continuous maintenance and support for their database clusters',
     ],
+    link: '/docs/sponsor',
   },
   {
     title: 'Sponsor+',
@@ -28,6 +30,7 @@ const Plans = [
       'Extended Personalized support (PostgreSQL Expert Consulting)',
       'For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters',
     ],
+    link: '/docs/sponsor',
   },
   {
     title: 'Enterprise',
@@ -36,20 +39,23 @@ const Plans = [
       'For large organizations, we offer personalized support packages for complex database infrastructures',
       'Ultra-fast response times and 24/7 support. Remote DBA, regular health checks, and database server management (available upon request)',
     ],
+    link: 'javascript:void(0)',
   },
 ];
 
-function Plan({ title, price, description }) {
+function Plan({ title, price, description, link }) {
   return (
-    <div className={styles.planCard}>
-      <h3 className={styles.planTitle}>{title}</h3>
-      <p className={styles.planPrice}>{price}</p>
-      <ul className={styles.planDescription}>
-        {description.map((item, idx) => (
-          <li key={idx}>{item}</li>
-        ))}
-      </ul>
-    </div>
+    <a href={link} className={styles.planLink} target="_blank" rel="noopener noreferrer">
+      <div className={styles.planCard}>
+        <h3 className={styles.planTitle}>{title}</h3>
+        <p className={styles.planPrice}>{price}</p>
+        <ul className={styles.planDescription}>
+          {description.map((item, idx) => (
+            <li key={idx}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </a>
   );
 }
 

@@ -23,6 +23,7 @@
   width: 300px;
   text-align: left;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  min-height: 380px;
 }
 
 .planCard:hover {
@@ -51,9 +52,21 @@
   margin-bottom: 15px;
 }
 
+.planLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.planLink:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Adaptive style for mobile devices */
 @media (max-width: 768px) {
   .planCard {
-    width: 80%;
+    width: 90%;
+    margin: 0 auto;
+    min-height: unset;
   }
 }
