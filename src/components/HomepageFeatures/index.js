@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 const FeatureList = [
   {
     title: 'High-Availability (24/7 Uptime)',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    borderColor: '#f39c12',
     description: (
       <>
         Ensure uninterrupted operation of your PostgreSQL databases with built-in replication and automated failover.
@@ -15,7 +15,7 @@ const FeatureList = [
   },
   {
     title: 'Automated Self-Managed Database',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    borderColor: '#a3a1fb',
     description: (
       <>
         Powerful alternative to cloud-managed databases like RDS, Cloud SQL, and Heroku with a fully automated, self-managed database.
@@ -25,7 +25,7 @@ const FeatureList = [
   },
   {
     title: 'Enterprise-ready, Cloud and On-Premises',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    borderColor: '#58a6ff',
     description: (
       <>
         Deploy and manage production-ready PostgreSQL clusters across any infrastructure — physical servers, VMs, on-premises, or cloud.
@@ -35,14 +35,12 @@ const FeatureList = [
   },
 ];
 
-function Feature({title, description}) {
+function Feature({ title, description, borderColor }) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--left">
-        <div className="feature-text">
-          <Heading as="h3">{title}</Heading>
-          <p>{description}</p>
-        </div>
+    <div className={clsx('col col--4', styles.featureItem)}>
+      <div className={styles.featureContent} style={{ '--border-color': borderColor }}>
+        <Heading as="h3">{title}</Heading>
+        <p>{description}</p>
       </div>
     </div>
   );

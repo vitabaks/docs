@@ -7,29 +7,35 @@
   }
 }
 
-/* Background color for a light theme */
-[data-theme="light"] {
-  --features-background-color: #F6F8FA;
-}
-
-/* Background color for a dark theme */
-[data-theme="dark"] {
-  --features-background-color: #242526;
-}
-
 .features {
   display: flex;
   align-items: center;
   padding: 2rem 0;
   width: 100%;
-  background-color: var(--features-background-color);
   opacity: 0;
   animation: fadeIn 0.5s ease-in-out;
   animation-delay: 0.4s;
   animation-fill-mode: forwards;
 }
 
-.featureSvg {
-  height: 48px;
-  width: 48px;
+.featureItem {
+  display: flex;
+  padding: 2rem;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.featureContent {
+  padding-left: 20px;
+  position: relative;
+}
+
+.featureContent::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--border-color);
 }
