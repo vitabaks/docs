@@ -23,7 +23,7 @@ const Plans = [
       'For small businesses and startups looking to ensure continuous maintenance and support for their database clusters',
     ],
     link: '/docs/sponsor',
-    buttonText: 'Get Started',
+    buttonText: 'Start now',
     isMail: false,
   },
   {
@@ -35,7 +35,7 @@ const Plans = [
       'For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters',
     ],
     link: '/docs/sponsor',
-    buttonText: 'Get Started',
+    buttonText: 'Start now',
     isMail: false,
   },
   {
