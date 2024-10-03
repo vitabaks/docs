@@ -169,6 +169,11 @@ const config = {
         indexName: 'postgresql-cluster',
         contextualSearch: true,
       },
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
+      },
     }),
 };
 
