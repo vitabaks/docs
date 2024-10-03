@@ -39,3 +39,8 @@
   width: 4px;
   background-color: var(--border-color);
 }
+
+.featureContent p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
