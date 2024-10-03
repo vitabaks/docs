@@ -14,7 +14,7 @@
 
 /* Background color for a dark theme */
 [data-theme="dark"] {
-  --features-background-color: #333333;
+  --features-background-color: #242526;
 }
 
 .features {
