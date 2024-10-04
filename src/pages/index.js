@@ -5,6 +5,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import CloudProviders from '@site/src/components/CloudProviders';
+import About from '@site/src/components/About';
 import Sponsors from '@site/src/components/Sponsors';
 import Subscriptions from '@site/src/components/Subscriptions';
 
@@ -37,7 +38,7 @@ function HomepageHeader() {
 
 function DemoEmbed() {
   return (
-    <div style={{ position: 'relative', boxSizing: 'content-box', maxHeight: '80vh', width: '100%', aspectRatio: '1.643835616438356', padding: '40px 0', marginBottom: '40px' }}>
+    <div style={{ position: 'relative', boxSizing: 'content-box', maxHeight: '80vh', width: '100%', aspectRatio: '1.643835616438356', padding: '40px 0', marginTop: '40px', marginBottom: '40px' }}>
       <iframe
         src="https://app.supademo.com/embed/cm17ui80e035n13s2q3lkg5he?embed_v=2"
         loading="lazy"
@@ -63,6 +64,7 @@ export default function Home() {
       <main>
         <HomepageFeatures />
         <CloudProviders />
+        <About />
         <DemoEmbed />
         <Subscriptions />
         <Sponsors />
