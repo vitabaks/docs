@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import ScrollReveal from 'scrollreveal';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
@@ -50,18 +49,22 @@ function Feature({ title, description, borderColor, idx }) {
 
 export default function HomepageFeatures() {
   useEffect(() => {
-    // Iterate over each feature and apply ScrollReveal
-    FeatureList.forEach((_, idx) => {
-      ScrollReveal().reveal(`.scroll-reveal-${idx}`, {
-        distance: '20px',
-        origin: 'bottom',
-        opacity: 0,
-        duration: 500,
-        delay: 300 * idx, // delay for each feature
-        easing: 'ease-in-out',
-        reset: false,
+    if (typeof window !== 'undefined') {
+      import('scrollreveal').then(({ default: ScrollReveal }) => {
+        // Iterate over each feature and apply ScrollReveal
+        FeatureList.forEach((_, idx) => {
+          ScrollReveal().reveal(`.scroll-reveal-${idx}`, {
+            distance: '20px',
+            origin: 'bottom',
+            opacity: 0,
+            duration: 500,
+            delay: 300 * idx, // delay for each feature
+            easing: 'ease-in-out',
+            reset: false,
+          });
+        });
       });
-    });
+    }
   }, []);
 
   return (
