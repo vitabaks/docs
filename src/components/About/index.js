@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ScrollReveal from 'scrollreveal';
 import styles from './styles.module.css';
 
 export default function About() {
@@ -18,14 +17,16 @@ export default function About() {
   // Use ScrollReveal for animations
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      ScrollReveal().reveal('.scroll-reveal', {
-        distance: '20px',
-        origin: 'bottom',
-        opacity: 0,
-        duration: 500,
-        delay: 300,
-        easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
-        reset: true,
+      import('scrollreveal').then(({ default: ScrollReveal }) => {
+        ScrollReveal().reveal('.scroll-reveal', {
+          distance: '20px',
+          origin: 'bottom',
+          opacity: 0,
+          duration: 500,
+          delay: 300,
+          easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+          reset: true,
+        });
       });
     }
   }, []);
