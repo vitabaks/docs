@@ -8,7 +8,7 @@
 
 .Sponsor {
   flex: 1 1 calc(20% - 40px);
-  max-width: 150px;
+  max-width: 140px;
   text-align: center;
   margin: 10px;
 }

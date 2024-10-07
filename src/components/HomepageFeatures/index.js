@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+import ScrollReveal from 'scrollreveal';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
@@ -35,9 +37,9 @@ const FeatureList = [
   },
 ];
 
-function Feature({ title, description, borderColor }) {
+function Feature({ title, description, borderColor, idx }) {
   return (
-    <div className={clsx('col col--4', styles.featureItem)}>
+    <div className={clsx('col col--4', `scroll-reveal-${idx}`, styles.featureItem)}>
       <div className={styles.featureContent} style={{ '--border-color': borderColor }}>
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
@@ -47,12 +49,27 @@ function Feature({ title, description, borderColor }) {
 }
 
 export default function HomepageFeatures() {
+  useEffect(() => {
+    // Iterate over each feature and apply ScrollReveal
+    FeatureList.forEach((_, idx) => {
+      ScrollReveal().reveal(`.scroll-reveal-${idx}`, {
+        distance: '20px',
+        origin: 'bottom',
+        opacity: 0,
+        duration: 500,
+        delay: 300 * idx, // delay for each feature
+        easing: 'ease-in-out',
+        reset: false,
+      });
+    });
+  }, []);
+
   return (
     <section className={styles.features}>
-      <div className="container" >
+      <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+            <Feature key={idx} {...props} idx={idx} />
           ))}
         </div>
       </div>

@@ -1,21 +1,8 @@
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
   width: 100%;
-  opacity: 0;
-  animation: fadeIn 0.5s ease-in-out;
-  animation-delay: 0.4s;
-  animation-fill-mode: forwards;
 }
 
 .featureItem {
