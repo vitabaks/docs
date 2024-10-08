@@ -30,12 +30,6 @@
   color: var(--hero-text-color);
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 1rem;
-  }
-}
-
 .buttons {
   display: flex;
   align-items: center;
@@ -44,4 +38,19 @@
   animation: fadeIn 0.3s ease-in-out;
   animation-delay: 2.5s;
   animation-fill-mode: forwards;
+}
+
+.platform {
+  display: inline-block;
+  width: 220px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Adaptive style for mobile devices */
+@media screen and (max-width: 768px) {
+  .heroBanner {
+    text-align: left;
+    padding: 1rem;
+  }
 }

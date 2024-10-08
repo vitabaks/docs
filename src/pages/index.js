@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -13,14 +13,29 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const [currentPlatform, setCurrentPlatform] = useState('Anywhere');
+  const [platformIndex, setPlatformIndex] = useState(0);
+
+  const platforms = ['AWS', 'GCP', 'Azure', 'DigitalOcean', 'Hetzner', 'Bare Metal', 'VMs', 'Anywhere'];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlatformIndex((prevIndex) => (prevIndex + 1) % platforms.length);
+      setCurrentPlatform(platforms[platformIndex]);
+    }, 3000); // Changes the platform every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [platformIndex]);
+
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          {siteConfig.title}
+          Deploy HA Postgres on: <span className={styles.platform}>{currentPlatform}</span>
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <Heading as="h2" className="hero__subtitle">
+          PostgreSQL High-Availability Cluster
+        </Heading>
         <p className="hero__subtitle" style={{ fontSize: '14px' }}>
           This <strong style={{ color: '#FF5722' }}>open-source</strong> project is provided for <strong style={{ color: '#FF5722' }}>free</strong> and with <strong style={{ color: '#FF5722' }}>full functionality</strong> under the MIT license.
         </p>
