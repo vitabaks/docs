@@ -19,30 +19,15 @@ Official [documentation](https://patroni.readthedocs.io/en/latest/)
 
 **Service**
 
-Check Patroni service status:
+To check the `patroni` service status:
 
 ```
 sudo systemctl status patroni
 ```
 
-Stop Patroni service:
+Other actions: start, stop, restart, reload:
 ```
-sudo systemctl stop patroni
-```
-
-Start Patroni service:
-```
-sudo systemctl start patroni
-```
-
-Restart Patroni service:
-```
-sudo systemctl restart patroni
-```
-
-Reload Patroni service:
-```
-sudo systemctl reload patroni
+sudo systemctl [start|stop|restart|reload] patroni
 ```
 
 :::info
@@ -217,29 +202,15 @@ Official [documentation](https://www.pgbouncer.org)
 
 **Service**
 
-Check pgbouncer service status:
+To check the `pgbouncer` service status:
+
 ```
 sudo systemctl status pgbouncer
 ```
 
-Stop pgbouncer service:
+Other actions: start, stop, restart, reload:
 ```
-sudo systemctl stop pgbouncer
-```
-
-Start pgbouncer service:
-```
-sudo systemctl start pgbouncer
-```
-
-Restart pgbouncer service:
-```
-sudo systemctl restart pgbouncer
-```
-
-Reload pgbouncer service:
-```
-sudo systemctl reload pgbouncer
+sudo systemctl [start|stop|restart|reload] pgbouncer
 ```
 
 **logs**
@@ -283,29 +254,15 @@ Official [documentation](http://docs.haproxy.org)
 
 **Service**
 
-Check haproxy service status:
+To check the `haproxy` service status:
+
 ```
 sudo systemctl status haproxy
 ```
 
-Stop haproxy service:
+Other actions: start, stop, restart, reload:
 ```
-sudo systemctl stop haproxy
-```
-
-Start haproxy service:
-```
-sudo systemctl start haproxy
-```
-
-Restart haproxy service:
-```
-sudo systemctl restart haproxy
-```
-
-Reload haproxy service:
-```
-sudo systemctl reload haproxy
+sudo systemctl [start|stop|restart|reload] haproxy
 ```
 
 **logs**
@@ -346,29 +303,15 @@ Then reload the `confd` service. Changes will be applied automatically during th
 
 **Service**
 
-Check confd service status:
+To check the `confd` service status:
+
 ```
 sudo systemctl status confd
 ```
 
-Stop confd service:
+Other actions: start, stop, restart, reload:
 ```
-sudo systemctl stop confd
-```
-
-Start confd service:
-```
-sudo systemctl start confd
-```
-
-Restart confd service:
-```
-sudo systemctl restart confd
-```
-
-Reload confd service:
-```
-sudo systemctl reload confd
+sudo systemctl [start|stop|restart|reload] confd
 ```
 
 **logs**
@@ -387,29 +330,15 @@ Official [documentation](https://www.keepalived.org/manpage.html)
 
 **Service**
 
-Check pgbouncer keepalived status:
+To check the `keepalived` service status:
+
 ```
 sudo systemctl status keepalived
 ```
 
-Stop keepalived service:
+Other actions: start, stop, restart, reload:
 ```
-sudo systemctl stop keepalived
-```
-
-Start keepalived service:
-```
-sudo systemctl start keepalived
-```
-
-Restart keepalived service:
-```
-sudo systemctl restart keepalived
-```
-
-Reload keepalived service:
-```
-sudo systemctl reload keepalived
+sudo systemctl [start|stop|restart|reload] keepalived
 ```
 
 **logs**
@@ -435,29 +364,15 @@ Official [documentation](https://www.keepalived.org/manpage.html)
 
 **Service**
 
-Check vip-manager service status:
+To check the `vip-manager` service status:
+
 ```
 sudo systemctl status vip-manager
 ```
 
-Stop vip-manager service:
+Other actions: start, stop, restart, reload:
 ```
-sudo systemctl stop vip-manager
-```
-
-Start vip-manager service:
-```
-sudo systemctl start vip-manager
-```
-
-Restart vip-manager service:
-```
-sudo systemctl restart vip-manager
-```
-
-Reload vip-manager service:
-```
-sudo systemctl reload vip-manager
+sudo systemctl [start|stop|restart|reload] vip-manager
 ```
 
 :::warning
@@ -487,29 +402,15 @@ Official documentation: [Operations guide](https://etcd.io/docs/v3.5/op-guide/)
 
 **Service**
 
-Check etcd service status:
+To check the `etcd` service status:
+
 ```
 sudo systemctl status etcd
 ```
 
-Stop etcd service:
+Other actions: start, stop, restart, reload:
 ```
-sudo systemctl stop etcd
-```
-
-Start etcd service:
-```
-sudo systemctl start etcd
-```
-
-Restart etcd service:
-```
-sudo systemctl restart etcd
-```
-
-Reload etcd service:
-```
-sudo systemctl reload etcd
+sudo systemctl [start|stop|restart|reload] etcd
 ```
 
 **logs**
@@ -544,29 +445,15 @@ etcdctl endpoint status --cluster -w table
 
 **Service**
 
-Check consul service status:
+To check the `consul` service status:
+
 ```
 sudo systemctl status consul
 ```
 
-Stop consul service:
+Other actions: start, stop, restart, reload:
 ```
-sudo systemctl stop consul
-```
-
-Start consul service:
-```
-sudo systemctl start consul
-```
-
-Restart consul service:
-```
-sudo systemctl restart consul
-```
-
-Reload consul service:
-```
-sudo systemctl reload consul
+sudo systemctl [start|stop|restart|reload] consul
 ```
 
 **logs**
