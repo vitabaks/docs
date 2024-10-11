@@ -6,7 +6,7 @@ sidebar_position: 1
 
 Basic cluster management commands using the command line.
 
-This guide covers the basic commands for managing various services in your PostgreSQL cluster. It includes instructions for working with Patroni, PostgreSQL, PgBouncer, etcd, and other essential services.
+This guide covers the basic commands for managing various services in your PostgreSQL Cluster. It includes instructions for working with Patroni, PostgreSQL, PgBouncer, etcd, and other essential services.
 
 For more detailed information about the cluster's architecture and components, please refer to the [Architecture](../overview/architecture.md) page.
 

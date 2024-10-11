@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Upgrades
 
-This section guides you through the process of performing minor and major upgrades for your PostgreSQL cluster.
+This section guides you through the process of performing minor and major upgrades for your PostgreSQL Cluster.
 
 ## Minor Upgrade
 

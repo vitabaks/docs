@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Requirements
 
-This page outlines the essential requirements for deploying and managing your PostgreSQL cluster.
+This page outlines the essential requirements for deploying and managing your PostgreSQL Cluster.
 
 ### Console (UI)
 
