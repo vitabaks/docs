@@ -327,7 +327,21 @@ To view HAProxy statistics, navigate to the following URL in your web browser: \
 ## confd
 
 :::info
+Used to automate HAProxy configuration file management.
+
 Official [documentation](https://github.com/kelseyhightower/confd/tree/master/docs)
+:::
+
+**Configuration files**
+```
+/etc/confd/confd.toml
+/etc/confd/conf.d/haproxy.toml
+/etc/confd/templates/haproxy.tmpl
+```
+
+:::tip
+To update HAProxy configuration, edit the template located at: `/etc/confd/templates/haproxy.tmpl` \
+Then reload the `confd` service. Changes will be applied automatically during the next update.
 :::
 
 **Service**
