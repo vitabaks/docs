@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
 <Tabs>
   <TabItem value="GitLab" label="GitLab" default>
 
-#### Simple CI Pipeline Example
+### Simple CI Pipeline Example
 
 ```yaml
 stages:
@@ -82,12 +82,17 @@ The CI pipeline:
 :::
 
 
-#### Extended CI Pipeline Example
+### Extended CI Pipeline Example
 
 This extended CI pipeline adds more variable files and a "files" directory, where various files are placed for later copying by Ansible to the managed hosts (if defined in the `copy_files_to_all_server` variable). \
 An additional step, "run-check-diff", is introduced to preview the changes that will be applied to the target servers. The "run-playbook" step is triggered manually for better control.
 
 This setup also integrates [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html) for encrypting sensitive data in the secrets.yml file, which is decrypted using the `--vault-password-file` option, with the vault password provided by the `ANSIBLE_VAULT_PASS_FILE` variable. This variable can be defined at the repository level in the CI/CD settings for secure handling of sensitive information.
+
+Additionally, the pipeline includes two important variables:
+
+- `PLAYBOOK`: Allows you to specify the playbook to be used when manually triggering the pipeline. For example, you can set this variable to update_pgcluster.yml to run the update playbook or to any other available playbooks depending on your needs.
+- `TAG`: Provides the option to specify tags to run only specific parts of the playbook, improving execution speed by limiting the automation to the necessary sections. For example, you can set this variable to patroni, pgbouncer, or all to control which portion of the playbook gets executed. See the [tags.md](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/tags.md) file for a list of available tags.
 
 <details>
 <summary>Click here to expand...</summary>
