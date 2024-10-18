@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 import styles from './styles.module.css';
+
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 export default function About() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -12,7 +16,53 @@ export default function About() {
   const postgresqlLink = "https://www.postgresql.org";
   const dbmsOfYearLink = "https://db-engines.com/en/blog_post/106";
   const dbEnginesTrendLink = "https://db-engines.com/en/ranking_trend";
+  const stackoverflowTrendLink = "https://survey.stackoverflow.co/2024/technology#1-databases";
   const postgresqlClusterLink = "https://github.com/vitabaks/postgresql_cluster";
+
+  // Data for the top 10 databases chart
+  const data = {
+    labels: ['PostgreSQL', 'MySQL', 'SQLite', 'Microsoft SQL Server', 'MongoDB', 'Redis', 'MariaDB', 'Elasticsearch', 'Oracle', 'Dynamodb'],
+    datasets: [
+      {
+        label: 'Usage (%)',
+        data: [48.7, 40.3, 33.1, 25.3, 24.8, 20, 17.2, 12.5, 10.1, 7.9],
+        backgroundColor: '#336791',
+        borderRadius: 5,
+        borderSkipped: false,
+      },
+    ],
+  };
+
+  const options = {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        callbacks: {
+          label: (context) => `${context.raw}%`,
+        },
+      },
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        title: {
+          display: false,
+        },
+      },
+      y: {
+        ticks: {
+          padding: 10,
+          font: {
+            size: 14,
+          },
+        },
+      },
+    },
+  };
 
   // Use ScrollReveal for animations
   useEffect(() => {
@@ -50,6 +100,13 @@ export default function About() {
           </div>
         </div>
       )}
+      <p className={`${styles.description} scroll-reveal`}>
+      PostgreSQL is used by 49% of developers and is the most popular database for the second year in a row. Source: <a href={stackoverflowTrendLink} target="_blank" rel="noopener noreferrer">Stack Overflow - Most popular technologies</a>.
+      </p>
+      {/* Bar chart for top 10 databases */}
+      <div className="scroll-reveal" style={{ maxWidth: '700px', margin: '0 auto', paddingBottom: '2rem' }}>
+        <Bar data={data} options={options} />
+      </div>
       <p className={`${styles.description} scroll-reveal`}>
       PostgreSQL is an outstanding database, but unlike commercial solutions, it lacks built-in tools for high availability, monitoring dashboards, or graphical management consoles.
       While this may seem like a limitation, the open-source ecosystem provides flexible ways to address these needs.

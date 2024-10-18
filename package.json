@@ -17,10 +17,13 @@
     "@docusaurus/core": "3.5.2",
     "@docusaurus/preset-classic": "3.5.2",
     "@mdx-js/react": "^3.0.0",
+    "chart.js": "^4.4.5",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.0.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.0.0",
+    "recharts": "^2.13.0",
     "scrollreveal": "^4.0.9"
   },
   "devDependencies": {
