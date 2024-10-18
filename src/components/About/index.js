@@ -104,7 +104,7 @@ export default function About() {
       PostgreSQL is used by 49% of developers and is the most popular database for the second year in a row. Source: <a href={stackoverflowTrendLink} target="_blank" rel="noopener noreferrer">Stack Overflow - Most popular technologies</a>.
       </p>
       {/* Bar chart for top 10 databases */}
-      <div className="scroll-reveal" style={{ maxWidth: '700px', margin: '0 auto', paddingBottom: '2rem' }}>
+      <div className="scroll-reveal" style={{ maxWidth: '650px', margin: '0 auto', paddingBottom: '2rem' }}>
         <Bar data={data} options={options} />
       </div>
       <p className={`${styles.description} scroll-reveal`}>
