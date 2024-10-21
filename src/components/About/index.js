@@ -16,7 +16,7 @@ export default function About() {
   const postgresqlLink = "https://www.postgresql.org";
   const dbmsOfYearLink = "https://db-engines.com/en/blog_post/106";
   const dbEnginesTrendLink = "https://db-engines.com/en/ranking_trend";
-  const stackoverflowTrendLink = "https://survey.stackoverflow.co/2024/technology#1-databases";
+  const stackoverflowTrendLink = "https://survey.stackoverflow.co/2024/technology#most-popular-technologies-database-prof";
   const postgresqlClusterLink = "https://github.com/vitabaks/postgresql_cluster";
 
   // Data for the top 10 databases chart
@@ -25,7 +25,7 @@ export default function About() {
     datasets: [
       {
         label: 'Usage (%)',
-        data: [48.7, 40.3, 33.1, 25.3, 24.8, 20, 17.2, 12.5, 10.1, 7.9],
+        data: [51.9, 39.4, 32.1, 27.1, 25.2, 22.8, 17.1, 14.3, 10.3, 9.2],
         backgroundColor: '#336791',
         borderRadius: 5,
         borderSkipped: false,
@@ -101,7 +101,7 @@ export default function About() {
         </div>
       )}
       <p className={`${styles.description} scroll-reveal`}>
-      PostgreSQL is used by 49% of developers and is the most popular database for the second year in a row. Source: <a href={stackoverflowTrendLink} target="_blank" rel="noopener noreferrer">Stack Overflow - Most popular technologies</a>.
+      PostgreSQL is used by 52% of professional developers and is the most popular database for the second year in a row. Source: <a href={stackoverflowTrendLink} target="_blank" rel="noopener noreferrer">Stack Overflow - Most popular technologies</a>.
       </p>
       {/* Bar chart for top 10 databases */}
       <div className="scroll-reveal" style={{ maxWidth: '650px', margin: '0 auto', paddingBottom: '2rem' }}>
