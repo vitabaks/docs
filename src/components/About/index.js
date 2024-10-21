@@ -108,9 +108,9 @@ export default function About() {
         <Bar data={data} options={options} />
       </div>
       <p className={`${styles.description} scroll-reveal`}>
-      PostgreSQL is an outstanding database, but unlike commercial solutions, it lacks built-in tools for high availability, monitoring dashboards, or graphical management consoles.
-      While this may seem like a limitation, the open-source ecosystem provides flexible ways to address these needs.
-      However, integrating these tools into a robust enterprise cluster requires strong PostgreSQL expertise to create a reliable, production-ready solution.
+      PostgreSQL is an outstanding database, but unlike commercial solutions, it lacks built-in tools for high availability (auto-failover), monitoring dashboards, and a graphical management console.
+      While this may seem like a limitation, the open-source ecosystem offers flexible solutions to meet these needs.
+      However, integrating these tools into a robust enterprise cluster requires significant PostgreSQL expertise to ensure a reliable, production-ready solution.
       </p>
       <p className={`${styles.description} scroll-reveal`}>
         To bridge this gap, the <a href={postgresqlClusterLink} target="_blank" rel="noopener noreferrer">postgresql_cluster</a> automation toolkit was developed in 2019 for personal use, and later shared with the community.
