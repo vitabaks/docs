@@ -6,7 +6,7 @@ const Sponsors = [
   {
     name: 'edclub',
     lightImage: '/img/sponsors/edclub.png',
-    darkImage: '/img/sponsors/edclub.png',
+    darkImage: '/img/sponsors/edclub.dark.png',
     link: 'https://www.edclub.com'
   },
   {
