@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useColorMode } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
@@ -61,8 +61,13 @@ const blocks = [
   },
 ];
 
-export default function Extensibility({ titleFontSize = '1.8rem', descriptionFontSize = '1.2rem' }) {
+export default function Extensibility() {
   const { colorMode } = useColorMode();
+  const [currentMode, setCurrentMode] = useState(colorMode);
+
+  useEffect(() => {
+    setCurrentMode(colorMode);
+  }, [colorMode]);
 
   return (
     <section className={styles.extensibilitySection}>
@@ -76,13 +81,13 @@ export default function Extensibility({ titleFontSize = '1.8rem', descriptionFon
           >
             <div className={styles.extensibilityImage}>
               <img
-                src={colorMode === 'dark' ? block.darkImage : block.lightImage}
+                src={currentMode === 'dark' ? block.darkImage : block.lightImage}
                 alt={block.title}
               />
             </div>
             <div className={styles.extensibilityContent}>
               <h3 className={styles.blockTitle}>{block.title}</h3>
-              <p className={styles.description} style={{ fontSize: descriptionFontSize }}>{block.description}</p>
+              <p className={styles.description}>{block.description}</p>
             </div>
           </div>
         ))}
