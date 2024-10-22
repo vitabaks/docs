@@ -6,6 +6,7 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import CloudProviders from '@site/src/components/CloudProviders';
 import About from '@site/src/components/About';
+import Extensibility from '@site/src/components/Extensibility';
 import Sponsors from '@site/src/components/Sponsors';
 import Subscriptions from '@site/src/components/Subscriptions';
 
@@ -79,6 +80,7 @@ export default function Home() {
         <HomepageFeatures />
         <CloudProviders />
         <About />
+        <Extensibility />
         <DemoEmbed />
         <Subscriptions />
         <Sponsors />
