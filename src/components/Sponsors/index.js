@@ -12,6 +12,11 @@ const Sponsors = [
     image: '/img/sponsors/gs-labs.png',
     link: 'https://gs-labs.ru'
   },
+  {
+    name: 'Postgres.AI',
+    image: '/img/sponsors/postgresai.png',
+    link: 'https://postgres.ai'
+  },
 ];
 
 function Sponsor({ name, image, link }) {
