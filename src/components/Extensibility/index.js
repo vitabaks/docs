@@ -19,7 +19,7 @@ const blocks = [
     title: 'Postgres for Search and Analytics',
     description: (
       <>
-        <a href="https://paradedb.com" target="_blank" rel="noopener noreferrer">ParadeDB</a>, a modern alternative to Elasticsearch, is built on PostgreSQL to handle real-time, update-heavy workloads. Optimize your search and analytics processes with PostgreSQL’s reliability and flexibility.
+        <a href="https://paradedb.com" target="_blank" rel="noopener noreferrer">ParadeDB</a> is a modern Elasticsearch alternative built on Postgres. Transform PostgreSQL into a performance search and analytics engine. Supercharge search capabilities with BM25 scoring, custom tokenizers, hybrid search. Effortlessly directly query and ingest data from S3, GCS, and Azure Blob Storage, and more.
       </>
     ),
     lightImage: '/img/paradedb.png',
