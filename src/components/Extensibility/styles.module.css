@@ -44,7 +44,7 @@
 }
 
 .extensibilityImage img {
-  max-width: 120px;
+  max-width: 110px;
   border-radius: 10px;
   transition: transform 0.3s ease;
 }
