@@ -12,7 +12,7 @@ const Sponsors = [
   {
     name: 'gs-labs',
     lightImage: '/img/sponsors/gs-labs.png',
-    darkImage: '/img/sponsors/gs-labs.png',
+    darkImage: '/img/sponsors/gs-labs.dark.png',
     link: 'https://gs-labs.ru'
   },
   {
