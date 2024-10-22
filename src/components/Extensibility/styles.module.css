@@ -1,7 +1,7 @@
 .extensibilitySection {
   text-align: center;
   padding: 2rem 0;
-  max-width: 70%;
+  max-width: 60%;
   margin: 0 auto;
 }
 
@@ -44,13 +44,13 @@
 }
 
 .extensibilityImage img {
-  max-width: 80%;
+  max-width: 120px;
   border-radius: 10px;
   transition: transform 0.3s ease;
 }
 
 .extensibilityImage img:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .extensibilityContent {
@@ -83,6 +83,6 @@
   }
   
   .extensibilityImage img {
-    max-width: 100%;
+    max-width: 70px;
   }
 }

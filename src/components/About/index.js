@@ -84,7 +84,7 @@ export default function About() {
   return (
     <section className={`${styles.aboutSection}`}>
       <h3 className={`${styles.subTitle}`}>HOW IT WORKS</h3>
-      <h2 className={`${styles.sectionTitle}`}>Open Source Relational Database</h2>
+      <h2 className={`${styles.sectionTitle}`}>Open Source Database</h2>
       <p className={`${styles.description} scroll-reveal`}>
         <a href={postgresqlLink} target="_blank" rel="noopener noreferrer">PostgreSQL</a> is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
         More and more companies around the world are choosing it for their new products, or migrating from other database systems to PostgreSQL. 
