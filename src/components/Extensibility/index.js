@@ -87,6 +87,9 @@ export default function Extensibility({ titleFontSize = '1.8rem', descriptionFon
           </div>
         ))}
       </div>
+      <p className={`scroll-reveal`}>
+        PostgreSQL is highly extensible, and our solution enables automatic deployment of clusters with the necessary extensions.
+      </p>
     </section>
   );
 }
