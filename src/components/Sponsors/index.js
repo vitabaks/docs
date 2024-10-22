@@ -1,25 +1,32 @@
 import React from 'react';
+import { useColorMode } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
 const Sponsors = [
   {
     name: 'edclub',
-    image: '/img/sponsors/edclub.png',
+    lightImage: '/img/sponsors/edclub.png',
+    darkImage: '/img/sponsors/edclub.png',
     link: 'https://www.edclub.com'
   },
   {
     name: 'gs-labs',
-    image: '/img/sponsors/gs-labs.png',
+    lightImage: '/img/sponsors/gs-labs.png',
+    darkImage: '/img/sponsors/gs-labs.png',
     link: 'https://gs-labs.ru'
   },
   {
     name: 'Postgres.AI',
-    image: '/img/sponsors/postgresai.png',
+    lightImage: '/img/sponsors/postgresai.png',
+    darkImage: '/img/sponsors/postgresai.dark.png',
     link: 'https://postgres.ai'
   },
 ];
 
-function Sponsor({ name, image, link }) {
+function Sponsor({ name, lightImage, darkImage, link }) {
+  const { colorMode } = useColorMode();
+  const image = colorMode === 'dark' ? darkImage : lightImage;
+
   return (
     <div className={styles.Sponsor} style={{ marginBottom: '30px' }}>
       <a href={link} target="_blank" rel="noopener noreferrer">
