@@ -74,6 +74,10 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .extensibilitySection {
+    max-width: 90%;
+  }
+
   .extensibilityBlock {
     flex-direction: column;
   }
@@ -83,6 +87,6 @@
   }
   
   .extensibilityImage img {
-    max-width: 70px;
+    max-width: 60px;
   }
 }
