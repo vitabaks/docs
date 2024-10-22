@@ -8,7 +8,7 @@ const blocks = [
     description: (
       <>
         Leverage <a href="https://github.com/pgvector/pgvector" target="_blank" rel="noopener noreferrer">pgvector</a> and 
-        <a href="https://github.com/pgvector/pgvectorscale" target="_blank" rel="noopener noreferrer">pgvectorscale</a> to build and deploy Retrieval Augmented Generation (RAG) applications directly within PostgreSQL. Achieve high-performance embedding search and cost-efficient storage, making PostgreSQL the ideal platform for your AI applications.
+        <a href="https://github.com/timescale/pgvectorscale" target="_blank" rel="noopener noreferrer">pgvectorscale</a> to build and deploy Retrieval Augmented Generation (RAG) applications directly within PostgreSQL. Achieve high-performance embedding search and cost-efficient storage, making PostgreSQL the ideal platform for your AI applications.
       </>
     ),
     lightImage: '/img/vector-search.png',
