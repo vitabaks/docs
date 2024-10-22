@@ -62,7 +62,7 @@ const blocks = [
 ];
 
 export default function Extensibility({ titleFontSize = '1.8rem', descriptionFontSize = '1.2rem' }) {
-  const { colorMode } = useColorMode(); // Использование хука для определения темы
+  const { colorMode } = useColorMode();
 
   return (
     <section className={styles.extensibilitySection}>
