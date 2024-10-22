@@ -56,7 +56,7 @@ const blocks = [
       </>
     ),
     lightImage: '/img/citus.png',
-    darkImage: '/img/citus.dark2.png',
+    darkImage: '/img/citus.dark.png',
     reverse: false,
   },
 ];
