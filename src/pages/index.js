@@ -37,8 +37,8 @@ function HomepageHeader() {
         <Heading as="h2" className="hero__subtitle">
           High-Availability Cluster for PostgreSQL®
         </Heading>
-        <p className="hero__subtitle" style={{ fontSize: '14px' }}>
-          This <strong style={{ color: '#FF5722' }}>open-source</strong> project is provided for <strong style={{ color: '#FF5722' }}>free</strong> and with <strong style={{ color: '#FF5722' }}>full functionality</strong> under the MIT license.
+        <p>
+          A modern, open-source alternative to cloud-managed databases.
         </p>
         <div className={styles.buttons}>
           <Link
