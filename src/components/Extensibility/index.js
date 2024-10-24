@@ -53,7 +53,7 @@ const blocks = [
     title: 'Distributed Postgres',
     description: (
       <>
-        Transform PostgreSQL into a distributed database with the <a href="https://www.citusdata.com/" target="_blank" rel="noopener noreferrer">Citus</a>.
+        Transform PostgreSQL into a distributed database with <a href="https://www.citusdata.com/" target="_blank" rel="noopener noreferrer">Citus</a>.
         Effortlessly scale from a single cluster to a distributed one, making it the ideal solution when a single cluster is no longer sufficient. Achieve seamless sharding and handle larger workloads while retaining the full power of PostgreSQL at any scale.
       </>
     ),
