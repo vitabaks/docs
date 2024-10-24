@@ -19,8 +19,8 @@ const FeatureList = [
     borderColor: '#a3a1fb',
     description: (
       <>
-        Powerful alternative to cloud-managed databases like RDS, Cloud SQL, and Heroku with a fully automated, self-managed database.
-        Optimize performance, save costs, and gain complete control over your infrastructure and data.
+        A powerful alternative to cloud-managed databases like Amazon RDS, Google Cloud SQL, Azure Database, and others — with a fully automated, self-managed database.
+        Optimize performance, reduce costs, and gain full control over your infrastructure and data.
       </>
     ),
   },
