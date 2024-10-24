@@ -19,7 +19,7 @@ const blocks = [
     title: 'Postgres for Search and Analytics',
     description: (
       <>
-        <a href="https://paradedb.com" target="_blank" rel="noopener noreferrer">ParadeDB</a> is a modern Elasticsearch alternative built on Postgres. Transform PostgreSQL into a performance search and analytics engine. Supercharge search capabilities with BM25 scoring, custom tokenizers, hybrid search. Effortlessly directly query and ingest data from S3, GCS, Azure Blob Storage, and more.
+        Transform PostgreSQL into a high-performance search and analytics engine with <a href="https://paradedb.com" target="_blank" rel="noopener noreferrer">ParadeDB</a>. Enhance search capabilities with BM25 scoring, custom tokenizers, and hybrid search. Effortlessly query and ingest data directly from S3, GCS, Azure Blob Storage, and more.
       </>
     ),
     lightImage: '/img/paradedb.png',
@@ -30,7 +30,8 @@ const blocks = [
     title: 'Postgres for Time-Series Data',
     description: (
       <>
-        Harness the power of <a href="https://www.timescale.com/" target="_blank" rel="noopener noreferrer">TimescaleDB</a>, a leading time-series extension for PostgreSQL. Store, query, and analyze time-series data efficiently, all within your PostgreSQL database.
+        Harness the power of <a href="https://www.timescale.com/" target="_blank" rel="noopener noreferrer">TimescaleDB</a>, a leading time-series extension for PostgreSQL, to achieve up to 1000x faster queries, 90% data compression, and efficient storage.
+        Store and query data quickly and efficiently with automatic partitioning, columnar compression, and real-time aggregation.
       </>
     ),
     lightImage: '/img/timescaledb.png',
@@ -41,7 +42,7 @@ const blocks = [
     title: 'Postgres for Geospatial Data',
     description: (
       <>
-        <a href="https://postgis.net/" target="_blank" rel="noopener noreferrer">PostGIS</a> enhances PostgreSQL with advanced geospatial capabilities, enabling you to store, index, and query geographic data seamlessly. Ideal for geospatial analysis and mapping applications.
+       Enhance PostgreSQL with <a href="https://postgis.net/" target="_blank" rel="noopener noreferrer">PostGIS</a> to unlock advanced geospatial capabilities. Seamlessly store, index, and query geographic data, making it ideal for geospatial analysis and mapping applications.
       </>
     ),
     lightImage: '/img/postgis.png',
@@ -52,7 +53,8 @@ const blocks = [
     title: 'Distributed Postgres',
     description: (
       <>
-        Transform PostgreSQL into a distributed database with the <a href="https://www.citusdata.com/" target="_blank" rel="noopener noreferrer">Citus</a> extension. Scale from a single cluster to a distributed one, delivering the full power of PostgreSQL at any scale.
+        Transform PostgreSQL into a distributed database with the <a href="https://www.citusdata.com/" target="_blank" rel="noopener noreferrer">Citus</a>.
+        Effortlessly scale from a single cluster to a distributed one, making it the ideal solution when a single cluster is no longer sufficient. Achieve seamless sharding and handle larger workloads while retaining the full power of PostgreSQL at any scale.
       </>
     ),
     lightImage: '/img/citus.png',
@@ -93,7 +95,7 @@ export default function Extensibility() {
         ))}
       </div>
       <p className={`scroll-reveal`}>
-        PostgreSQL is highly extensible, and our solution enables automatic deployment of clusters with the necessary extensions.
+        PostgreSQL is highly extensible, and our solution takes care of the automatic installation and configuration of the necessary extensions for your PostgreSQL cluster.
       </p>
     </section>
   );
