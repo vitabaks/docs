@@ -15,7 +15,7 @@ Learn more about:
 - [What is Infrastructure as Code (IaC)](https://www.redhat.com/en/topics/automation/what-is-infrastructure-as-code-iac)?
 :::
 
-After deploying your cluster, you can use the `config_pgcluster.yml` playbook to integrate Git for managing cluster configurations.
+After [deploying](/docs/category/deployment) your cluster, you can use the `config_pgcluster.yml` playbook to integrate Git for managing cluster configurations. The automation code and all dependencies are packaged in the Docker image `vitabaks/postgresql_cluster`, making it easy to integrate into your CI/CD pipelines.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -23,7 +23,9 @@ import TabItem from '@theme/TabItem';
 <Tabs>
   <TabItem value="GitLab" label="GitLab" default>
 
-### Simple CI Pipeline Example
+Examples of GitLab CI/CD configuration files:
+
+### Simple CI Pipeline
 
 ```yaml
 stages:
@@ -82,7 +84,7 @@ The CI pipeline:
 :::
 
 
-### Extended CI Pipeline Example
+### Extended CI Pipeline
 
 This extended CI pipeline adds more variable files and a "files" directory, where various files are placed for later copying by Ansible to the managed hosts (if defined in the `copy_files_to_all_server` variable). \
 An additional step, "run-check-diff", is introduced to preview the changes that will be applied to the target servers. The "run-playbook" step is triggered manually for better control.
