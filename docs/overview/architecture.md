@@ -35,14 +35,12 @@ When deploying to cloud providers such as AWS, GCP, Azure, DigitalOcean, and Het
 For non-cloud environments, such as when deploying on Your Own Machines, the HAProxy load balancer is available for use. To enable it, set `with_haproxy_load_balancing: true` in the vars/main.yml file.
 :::
 
-:::warning For Your Information
+:::note
 Your application must have support sending read requests to a custom address/port.
 
 List of ports when using HAProxy:
 - port 5000 (read / write) master
 - port 5001 (read only) all replicas
-
-if variable "synchronous_mode" is 'true':
 - port 5002 (read only) synchronous replica only
 - port 5003 (read only) asynchronous replicas only
 :::
@@ -58,11 +56,11 @@ Implementing VRRP (Virtual Router Redundancy Protocol) for Linux. In our configu
 
 ### 3. PostgreSQL High-Availability with Consul Service Discovery
 
-To use this scheme, specify `dcs_type: consul` in variable file vars/main.yml
-
-:::note
-The selection of this scheme is currently not available in the Console UI and can be made in command line mode.
+:::tip
+Consul DCS selection is currently unavailable in the Console UI (if you’re interested in this feature, please consider becoming a [sponsor](/docs/sponsor)), but it can be configured via the command line.
 :::
+
+To use this scheme, specify `dcs_type: consul` in variable file vars/main.yml
 
 This scheme is suitable for master-only access and for load balancing (using DNS) for reading across replicas. Consul [Service Discovery](https://developer.hashicorp.com/consul/docs/concepts/service-discovery) with [DNS resolving ](https://developer.hashicorp.com/consul/docs/discovery/dns) is used as a client access point to the database.
 
