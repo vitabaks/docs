@@ -119,7 +119,7 @@ const ExtensionsTable = () => {
               <tr key={index}>
                 <td>{row.name}</td>
                 <td>{row.en_desc}</td>
-                <td>{typeFilter === 'DEB' ? row.deb_pkg : row.rpm_pkg}</td>
+                <td>{typeFilter === 'DEB' ? row.deb_pkg.replace('$v', versionFilter) : row.rpm_pkg.replace('$v', versionFilter)}</td>
                 <td>{row.repo}</td>
               </tr>
             ))}
