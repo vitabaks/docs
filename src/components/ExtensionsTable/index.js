@@ -147,9 +147,21 @@ const ExtensionsTable = () => {
           <tbody>
             {filteredData.map((row, index) => (
               <tr key={index}>
-                <td>{row.name}</td>
+                <td>
+                  {row.url ? (
+                    <a href={row.url} target="_blank" rel="noopener noreferrer">
+                      {row.name}
+                    </a>
+                  ) : (
+                    row.name
+                  )}
+                </td>
                 <td>{row.en_desc}</td>
-                <td>{typeFilter === 'DEB' ? row.deb_pkg.replace('$v', versionFilter) : row.rpm_pkg.replace('$v', versionFilter)}</td>
+                <td>
+                  {typeFilter === 'DEB'
+                    ? row.deb_pkg.replace('$v', versionFilter)
+                    : row.rpm_pkg.replace('$v', versionFilter)}
+                </td>
                 <td>{row.repo}</td>
               </tr>
             ))}
