@@ -187,8 +187,8 @@ const ExtensionsTable = () => {
                 <td>{row.en_desc}</td>
                 <td>
                   {typeFilter === 'DEB'
-                    ? row.deb_pkg.replace('$v', versionFilter)
-                    : row.rpm_pkg.replace('$v', versionFilter)}
+                    ? row.deb_pkg.replace('$v', versionFilter).replace('*', '')
+                    : row.rpm_pkg.replace('$v', versionFilter).replace('*', '')}
                 </td>
                 <td>{row.repo}</td>
               </tr>
