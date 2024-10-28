@@ -12,7 +12,7 @@ const ExtensionsTable = () => {
   const csvFilePath = '/extensions.csv';
 
   useEffect(() => {
-    // Загрузка данных из CSV
+    // Uploading data from CSV
     Papa.parse(csvFilePath, {
       download: true,
       header: true,
@@ -28,17 +28,19 @@ const ExtensionsTable = () => {
     });
   }, []);
 
-  // Функция для получения уникальных категорий
+  // A function for getting unique categories
   const getUniqueCategories = (data) => {
     const categories = data.map((row) => row.category).filter(Boolean);
     return ['ALL', ...new Set(categories)];
   };
 
-  // Функция для применения фильтров по категории, версии и типу пакета
+  // A function for applying filters
   const applyFilters = (data, category, version, type) => {
     const filtered = data.filter((row) => {
       const matchesCategory = category === 'ALL' || row.category === category;
-      const matchesVersion = row.pg_ver?.split(',').includes(version);
+      // Remove the curly brackets and separate the versions
+      const pgVersions = row.pg_ver?.replace(/[{}]/g, '').split(',');
+      const matchesVersion = pgVersions?.includes(version);
       const matchesType = (type === 'DEB' && row.deb_pkg) || (type === 'RPM' && row.rpm_pkg);
       return matchesCategory && matchesVersion && matchesType;
     });
@@ -46,21 +48,21 @@ const ExtensionsTable = () => {
     setFilteredData(filtered);
   };
 
-  // Обработчик изменения фильтра категории
+  // Handler for changing the category filter
   const handleCategoryChange = (e) => {
     const newCategory = e.target.value;
     setCategoryFilter(newCategory);
     applyFilters(data, newCategory, versionFilter, typeFilter);
   };
 
-  // Обработчик изменения фильтра версии
+  // Handler for changing the version filter
   const handleVersionChange = (e) => {
     const newVersion = e.target.value;
     setVersionFilter(newVersion);
     applyFilters(data, categoryFilter, newVersion, typeFilter);
   };
 
-  // Обработчик изменения фильтра типа пакета
+  // Handler for changing the package type filter
   const handleTypeChange = (e) => {
     const newType = e.target.value;
     setTypeFilter(newType);
