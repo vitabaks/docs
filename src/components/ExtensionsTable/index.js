@@ -6,9 +6,11 @@ const ExtensionsTable = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [repos, setRepos] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState('ALL');
   const [versionFilter, setVersionFilter] = useState('16');
   const [typeFilter, setTypeFilter] = useState('DEB');
+  const [repoFilter, setRepoFilter] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
 
   const csvFilePath = '/extensions.csv';
@@ -22,7 +24,8 @@ const ExtensionsTable = () => {
         const data = result.data;
         setData(data);
         setCategories(getUniqueCategories(data));
-        applyFilters(data, 'ALL', '16', 'DEB', '');
+        setRepos(getUniqueRepos(data));
+        applyFilters(data, 'ALL', '16', 'DEB', 'ALL', '');
       },
       error: (error) => {
         console.error('Error loading CSV:', error);
@@ -36,13 +39,20 @@ const ExtensionsTable = () => {
     return ['ALL', ...new Set(categories)];
   };
 
+  // A function for getting unique repositories
+  const getUniqueRepos = (data) => {
+    const repos = data.map((row) => row.repo).filter(Boolean);
+    return ['ALL', ...new Set(repos)];
+  };
+
   // A function for applying filters
-  const applyFilters = (data, category, version, type, query) => {
+  const applyFilters = (data, category, version, type, repo, query) => {
     const filtered = data.filter((row) => {
       const matchesCategory = category === 'ALL' || row.category === category;
       const pgVersions = row.pg_ver?.replace(/[{}]/g, '').split(',');
       const matchesVersion = pgVersions?.includes(version);
       const matchesType = (type === 'DEB' && row.deb_pkg) || (type === 'RPM' && row.rpm_pkg);
+      const matchesRepo = repo === 'ALL' || row.repo === repo;
 
       // Search for matches in name, description, and package name
       const packageName = type === 'DEB' ? row.deb_pkg : row.rpm_pkg;
@@ -51,7 +61,7 @@ const ExtensionsTable = () => {
         row.en_desc?.toLowerCase().includes(query.toLowerCase()) ||
         packageName?.toLowerCase().includes(query.toLowerCase());
 
-      return matchesCategory && matchesVersion && matchesType && matchesSearch;
+      return matchesCategory && matchesVersion && matchesType && matchesRepo && matchesSearch;
     });
 
     setFilteredData(filtered);
@@ -61,28 +71,35 @@ const ExtensionsTable = () => {
   const handleCategoryChange = (e) => {
     const newCategory = e.target.value;
     setCategoryFilter(newCategory);
-    applyFilters(data, newCategory, versionFilter, typeFilter, searchQuery);
+    applyFilters(data, newCategory, versionFilter, typeFilter, repoFilter, searchQuery);
   };
 
   // Handler for changing the version filter
   const handleVersionChange = (e) => {
     const newVersion = e.target.value;
     setVersionFilter(newVersion);
-    applyFilters(data, categoryFilter, newVersion, typeFilter, searchQuery);
+    applyFilters(data, categoryFilter, newVersion, typeFilter, repoFilter, searchQuery);
   };
 
   // Handler for changing the package type filter
   const handleTypeChange = (e) => {
     const newType = e.target.value;
     setTypeFilter(newType);
-    applyFilters(data, categoryFilter, versionFilter, newType, searchQuery);
+    applyFilters(data, categoryFilter, versionFilter, newType, repoFilter, searchQuery);
+  };
+
+  // Handler for changing the repo filter
+  const handleRepoChange = (e) => {
+    const newRepo = e.target.value;
+    setRepoFilter(newRepo);
+    applyFilters(data, categoryFilter, versionFilter, typeFilter, newRepo, searchQuery);
   };
 
   // Handler for changing the search query
   const handleSearchChange = (e) => {
     const newQuery = e.target.value;
     setSearchQuery(newQuery);
-    applyFilters(data, categoryFilter, versionFilter, typeFilter, newQuery);
+    applyFilters(data, categoryFilter, versionFilter, typeFilter, repoFilter, newQuery);
   };
 
   return (
@@ -116,6 +133,17 @@ const ExtensionsTable = () => {
           <select value={typeFilter} onChange={handleTypeChange}>
             <option value="DEB">DEB</option>
             <option value="RPM">RPM</option>
+          </select>
+        </label>
+
+        <label style={{ marginLeft: '10px' }}>
+          Repository:{' '}
+          <select value={repoFilter} onChange={handleRepoChange}>
+            {repos.map((repo, index) => (
+              <option key={index} value={repo}>
+                {repo}
+              </option>
+            ))}
           </select>
         </label>
       </div>
