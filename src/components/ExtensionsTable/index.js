@@ -48,6 +48,9 @@ const ExtensionsTable = () => {
   // A function for applying filters
   const applyFilters = (data, category, version, type, repo, query) => {
     const filtered = data.filter((row) => {
+      // Exclude rows where 'utility' field is 't'
+      if (row.utility === 't') return false;
+
       const matchesCategory = category === 'ALL' || row.category === category;
       const pgVersions = row.pg_ver?.replace(/[{}]/g, '').split(',');
       const matchesVersion = pgVersions?.includes(version);
