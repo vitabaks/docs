@@ -95,7 +95,7 @@ export default function Extensibility() {
         ))}
       </div>
       <p className={`scroll-reveal`}>
-        PostgreSQL is highly extensible, and our solution takes care of the automatic installation and configuration of the any extensions.
+        PostgreSQL is highly extensible, and our solution takes care of the automatic installation and configuration of the any <a href="/docs/extensions/list" target="_blank" rel="noopener noreferrer">extensions</a>.
       </p>
     </section>
   );
