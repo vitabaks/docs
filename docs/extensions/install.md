@@ -7,8 +7,7 @@ sidebar_position: 2
 This section of the guide describes how to install extensions.
 
 :::info
-Here is a list of over 300 [extensions](/docs/extensions/list) available for installation.
-However, you are not limited to this list, as you can install any required extension through various methods, including building from source code.
+See the [list of 300+ extensions](/docs/extensions/list) available for installation, but you’re not limited to it—you can install any extension through various methods, including building from source.
 :::
 
 ## Console (UI)
@@ -23,9 +22,8 @@ If you're interested in this feature, please consider becoming a [sponsor](/docs
 
 ### Auto-Setup
 
-This feature is designed to simplify the installation of popular PostgreSQL extensions. It streamlines the integration and configuration process by automating the setup, eliminating the need to manually set variables.
-
-If required, the feature will automatically add the necessary repository, install required packages, and configure parameters such as shared_preload_libraries and others, to ensure seamless integration.
+This feature simplifies the installation of popular PostgreSQL extensions by automating setup and configuration. \
+It adds repositories, installs packages, and sets parameters like shared_preload_libraries as needed for seamless integration.
 
 **List of extensions supported in “Auto-Setup” mode:**
 
@@ -54,6 +52,8 @@ ansible-playbook deploy_pgcluster.yml -e "enable_timescaledb=true"
 
 
 ### Packages
+
+You can define any repositories and [extension packages](/docs/extensions/list) for installation.
 
 1. Define the necessary repositories in `apt_repository` (or `yum_repository`) variable.
 
@@ -127,11 +127,9 @@ postgresql_extensions:
 
 ### Source code
 
-If necessary, use `pre_deploy_command` or `post_deploy_command` to define a script or command to build an extension from source code.
+If needed, use `pre_deploy_command` or `post_deploy_command` to run a command, bash script, or script path on the host to build an extension from source.
 
-You can use a command, bash script content, or script path on the host.
-
-Variables:
+Available variables:
 
 ```yaml
 # Execute custom commands or scripts
