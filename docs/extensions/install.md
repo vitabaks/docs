@@ -20,7 +20,7 @@ If you're interested in this feature, please consider becoming a [sponsor](/docs
 
 ## Command line
 
-### Auto-Setup
+### Method 1: Auto-Setup
 
 This feature simplifies the installation of popular PostgreSQL extensions by automating setup and configuration. \
 It adds repositories, installs packages, and sets parameters like shared_preload_libraries as needed for seamless integration.
@@ -51,7 +51,7 @@ ansible-playbook deploy_pgcluster.yml -e "enable_timescaledb=true"
 ```
 
 
-### Packages
+### Method 2: Packages
 
 You can define any repositories and [extension packages](/docs/extensions/list) for installation.
 
@@ -125,7 +125,7 @@ postgresql_extensions:
 ```
 
 
-### Source code
+### Method 3: Source code
 
 If needed, use `pre_deploy_command` or `post_deploy_command` to run a command, bash script, or script path on the host to build an extension from source.
 
