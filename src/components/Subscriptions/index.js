@@ -15,11 +15,23 @@ const Plans = [
     isMail: false,
   },
   {
+    title: 'Small Sponsor',
+    price: '$300/month',
+    description: [
+      'Response time: 12-48 hours',
+      'Basic Personalized support',
+      'For individuals and hobby projects that require infrequent but reliable personal support.',
+    ],
+    link: '/docs/sponsor',
+    buttonText: 'Start now',
+    isMail: false,
+  },
+  {
     title: 'Sponsor',
     price: '$1000/month',
     description: [
       'Response time: 4-12 hours',
-      'Personalized support (PostgreSQL Expert Consulting)',
+      'Personalized support (PostgreSQL Consulting)',
       'For small businesses and startups looking to ensure continuous maintenance and support for their database clusters',
     ],
     link: '/docs/sponsor',
@@ -38,22 +50,23 @@ const Plans = [
     buttonText: 'Start now',
     isMail: false,
   },
-  {
-    title: 'Enterprise',
-    price: 'Custom Pricing',
-    description: [
-      'For large organizations, we offer personalized support packages for complex database infrastructures',
-      'Ultra-fast response times and 24/7 support. Remote DBA, regular health checks, and database server management (available upon request)',
-    ],
-    link: 'mailto:info@postgresql-cluster.org',
-    buttonText: 'Contact us',
-    isMail: true,
-  },
 ];
 
-function Plan({ title, price, description, link, buttonText, isMail }) {
+const EnterprisePlan = {
+  title: 'Enterprise',
+  price: 'Custom Pricing',
+  description: [
+    'For large organizations, we offer personalized support packages for complex database infrastructures',
+    'Ultra-fast response times and 24/7 support. Remote DBA, regular health checks, and database server management (available upon request)',
+  ],
+  link: 'mailto:info@postgresql-cluster.org',
+  buttonText: 'Contact us',
+  isMail: true,
+};
+
+function Plan({ title, price, description, link, buttonText, isMail, isEnterprise }) {
   return (
-    <div className={styles.planCard}>
+    <div className={`${styles.planCard} ${isEnterprise ? styles.enterprisePlanCard : ''}`}>
       <h3 className={styles.planTitle}>{title}</h3>
       <p className={styles.planPrice}>{price}</p>
       <ul className={styles.planDescription}>
@@ -61,7 +74,7 @@ function Plan({ title, price, description, link, buttonText, isMail }) {
           <li key={idx}>{item}</li>
         ))}
       </ul>
-      <div className={styles.planButtonContainer}>
+      <div className={`${styles.planButtonContainer} ${isEnterprise ? styles.enterpriseButtonContainer : ''}`}>
         <a
           href={link}
           target={isMail ? '' : '_blank'}
@@ -86,6 +99,9 @@ export default function SubscriptionPlans() {
         {Plans.map((plan, idx) => (
           <Plan key={idx} {...plan} />
         ))}
+      </div>
+      <div className={styles.enterprisePlanContainer}>
+        <Plan {...EnterprisePlan} isEnterprise />
       </div>
     </section>
   );

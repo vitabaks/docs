@@ -5,6 +5,12 @@
   gap: 20px;
 }
 
+.enterprisePlanContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 /* Background color for a light theme */
 [data-theme="light"] {
   --background-color: #F6F8FA;
@@ -26,6 +32,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.enterprisePlanCard {
+  width: 1260px;
+  max-width: 80%;
+}
+
+.enterpriseButtonContainer {
+  display: flex;
+  justify-content: flex-end; /* Align the button to the right */
+  margin-top: auto;
 }
 
 .planCard:hover {
