@@ -5,10 +5,44 @@
   gap: 20px;
 }
 
-.enterprisePlanContainer {
+.enterprisePlanCard {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  min-width: 1260px;
+  margin: 0 auto;
+  align-items: center;
   margin-top: 20px;
+}
+
+.enterpriseContent {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+
+.enterpriseHeader {
+  flex: 1;
+}
+
+.enterpriseDescription {
+  flex: 2;
+  padding: 0 20px;
+}
+
+.enterpriseFeatures {
+  list-style: none;
+  padding: 0;
+}
+
+.enterpriseButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 /* Background color for a light theme */
@@ -34,19 +68,8 @@
   justify-content: space-between;
 }
 
-.enterprisePlanCard {
-  width: 1260px;
-  max-width: 80%;
-}
-
-.enterpriseButtonContainer {
-  display: flex;
-  justify-content: flex-end; /* Align the button to the right */
-  margin-top: auto;
-}
-
 .planCard:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -81,7 +104,7 @@
 .planButton {
   background-color: transparent;
   color: #0366d6;
-  padding: 10px 20px;
+  padding: 8px 16px; /* Reduce padding for smaller button */
   text-decoration: none;
   text-align: center;
   border-radius: 8px;
@@ -89,7 +112,7 @@
   font-weight: bold;
   border: 1px solid #0366d6;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  width: 100%;
+  width: auto; /* Change width to auto */
 }
 
 .planButton:hover {
@@ -100,15 +123,21 @@
 
 /* Adaptive style for mobile devices */
 @media (max-width: 768px) {
-  .planCard {
+  .planCard,
+  .enterprisePlanCard {
     width: 90%;
     max-width: 350px;
+    min-width: 300px;
+    flex-direction: column;
   }
-}
 
-@media (max-width: 480px) {
-  .planCard {
-    width: 90%;
-    margin: 0 auto;
+  .enterpriseContent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .enterpriseHeader {
+    align-items: center;
+    width: 100%;
   }
 }

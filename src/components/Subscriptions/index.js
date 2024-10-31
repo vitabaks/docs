@@ -56,8 +56,12 @@ const EnterprisePlan = {
   title: 'Enterprise',
   price: 'Custom Pricing',
   description: [
-    'For large organizations, we offer personalized support packages for complex database infrastructures',
-    'Ultra-fast response times and 24/7 support. Remote DBA, regular health checks, and database server management (available upon request)',
+    'For large organizations, we offer personalized support packages for complex database infrastructures.',
+    'Ultra-fast response times',
+    '24/7 support',
+    'Remote DBA',
+    'Regular health checks',
+    'Database server management (available upon request)',
   ],
   link: 'mailto:info@postgresql-cluster.org',
   buttonText: 'Contact us',
@@ -67,23 +71,52 @@ const EnterprisePlan = {
 function Plan({ title, price, description, link, buttonText, isMail, isEnterprise }) {
   return (
     <div className={`${styles.planCard} ${isEnterprise ? styles.enterprisePlanCard : ''}`}>
-      <h3 className={styles.planTitle}>{title}</h3>
-      <p className={styles.planPrice}>{price}</p>
-      <ul className={styles.planDescription}>
-        {description.map((item, idx) => (
-          <li key={idx}>{item}</li>
-        ))}
-      </ul>
-      <div className={`${styles.planButtonContainer} ${isEnterprise ? styles.enterpriseButtonContainer : ''}`}>
-        <a
-          href={link}
-          target={isMail ? '' : '_blank'}
-          rel={isMail ? '' : 'noopener noreferrer'}
-          className={styles.planButton}
-        >
-          {buttonText}
-        </a>
-      </div>
+      {isEnterprise ? (
+        <div className={styles.enterpriseContent}>
+          <div className={styles.enterpriseHeader}>
+            <h3 className={styles.planTitle}>{title}</h3>
+            <p className={styles.planPrice}>{price}</p>
+          </div>
+          <div className={styles.enterpriseDescription}>
+            <p>{description[0]}</p>
+            <ul className={styles.enterpriseFeatures}>
+              {description.slice(1).map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.enterpriseButtonContainer}>
+            <a
+              href={link}
+              target={isMail ? '' : '_blank'}
+              rel={isMail ? '' : 'noopener noreferrer'}
+              className={styles.planButton}
+            >
+              {buttonText}
+            </a>
+          </div>
+        </div>
+      ) : (
+        <>
+          <h3 className={styles.planTitle}>{title}</h3>
+          <p className={styles.planPrice}>{price}</p>
+          <ul className={styles.planDescription}>
+            {description.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+          <div className={styles.planButtonContainer}>
+            <a
+              href={link}
+              target={isMail ? '' : '_blank'}
+              rel={isMail ? '' : 'noopener noreferrer'}
+              className={styles.planButton}
+            >
+              {buttonText}
+            </a>
+          </div>
+        </>
+      )}
     </div>
   );
 }
