@@ -12,37 +12,30 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  min-width: 1260px;
-  margin: 0 auto;
-  align-items: center;
-  margin-top: 20px;
+  min-width: 900px;
+  margin: 20px auto;
+  align-items: flex-start;
 }
 
-.enterpriseContent {
+.enterpriseHeaderContainer {
+  flex: 1.2;
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  gap: 20px;
-}
-
-.enterpriseHeader {
-  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-right: 20px; /* Создает отступ для разделения */
 }
 
 .enterpriseDescription {
-  flex: 2;
+  flex: 2.5;
   padding: 0 20px;
-}
-
-.enterpriseFeatures {
-  list-style: none;
-  padding: 0;
+  text-align: left;
 }
 
 .enterpriseButtonContainer {
+  margin-top: 10px;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: flex-start;
 }
 
 /* Background color for a light theme */
@@ -104,7 +97,7 @@
 .planButton {
   background-color: transparent;
   color: #0366d6;
-  padding: 8px 16px; /* Reduce padding for smaller button */
+  padding: 8px 16px;
   text-decoration: none;
   text-align: center;
   border-radius: 8px;
@@ -112,7 +105,7 @@
   font-weight: bold;
   border: 1px solid #0366d6;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  width: auto; /* Change width to auto */
+  width: auto;
 }
 
 .planButton:hover {
