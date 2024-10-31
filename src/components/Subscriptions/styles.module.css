@@ -8,7 +8,6 @@
 .enterprisePlanCard {
   display: flex;
   flex-direction: row;
-  background-color: var(--background-color);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -18,24 +17,31 @@
 }
 
 .enterpriseHeaderContainer {
-  flex: 1.2;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-right: 20px; /* Создает отступ для разделения */
+  padding: 15px 20px;
+  margin-left: 20px;
 }
 
 .enterpriseDescription {
-  flex: 2.5;
+  flex: 2;
   padding: 0 20px;
+  margin-top: 10px;
   text-align: left;
 }
 
 .enterpriseButtonContainer {
-  margin-top: 10px;
   display: flex;
   justify-content: flex-start;
+}
+
+.enterpriseContent {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 /* Background color for a light theme */
@@ -105,7 +111,7 @@
   font-weight: bold;
   border: 1px solid #0366d6;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  width: auto;
+  width: 100%;
 }
 
 .planButton:hover {
@@ -119,18 +125,31 @@
   .planCard,
   .enterprisePlanCard {
     width: 90%;
-    max-width: 350px;
     min-width: 300px;
-    flex-direction: column;
+    max-width: 350px;
+    text-align: left;
+  }
+
+  .enterpriseHeaderContainer {
+    align-items: center;
+  }
+
+  .enterpriseButtonContainer {
+    justify-content: center;
   }
 
   .enterpriseContent {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
-  .enterpriseHeader {
-    align-items: center;
+  .enterpriseHeaderContainer {
+    margin-left: 0px;
+  }
+
+  .enterpriseDescription {
     width: 100%;
+    padding: 10px;
+    margin-top: 0px;
   }
 }

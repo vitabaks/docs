@@ -61,7 +61,7 @@ const EnterprisePlan = {
     '24/7 support',
     'Remote DBA',
     'Regular health checks',
-    'Database server management (available upon request)',
+    'Database server management (upon request)',
   ],
   link: 'mailto:info@postgresql-cluster.org',
   buttonText: 'Contact us',
@@ -74,19 +74,17 @@ function Plan({ title, price, description, link, buttonText, isMail, isEnterpris
       {isEnterprise ? (
         <div className={styles.enterpriseContent}>
           <div className={styles.enterpriseHeaderContainer}>
-            <div className={styles.enterpriseHeader}>
-              <h3 className={styles.planTitle}>{title}</h3>
-              <p className={styles.planPrice}>{price}</p>
-              <div className={styles.enterpriseButtonContainer}>
-                <a
-                  href={link}
-                  target={isMail ? '' : '_blank'}
-                  rel={isMail ? '' : 'noopener noreferrer'}
-                  className={styles.planButton}
-                >
-                  {buttonText}
-                </a>
-              </div>
+            <h3 className={styles.planTitle}>{title}</h3>
+            <p className={styles.planPrice}>{price}</p>
+            <div className={styles.enterpriseButtonContainer}>
+              <a
+                href={link}
+                target={isMail ? '' : '_blank'}
+                rel={isMail ? '' : 'noopener noreferrer'}
+                className={styles.planButton}
+              >
+                {buttonText}
+              </a>
             </div>
           </div>
           <div className={styles.enterpriseDescription}>
