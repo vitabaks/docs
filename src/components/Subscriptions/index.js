@@ -73,9 +73,21 @@ function Plan({ title, price, description, link, buttonText, isMail, isEnterpris
     <div className={`${styles.planCard} ${isEnterprise ? styles.enterprisePlanCard : ''}`}>
       {isEnterprise ? (
         <div className={styles.enterpriseContent}>
-          <div className={styles.enterpriseHeader}>
-            <h3 className={styles.planTitle}>{title}</h3>
-            <p className={styles.planPrice}>{price}</p>
+          <div className={styles.enterpriseHeaderContainer}>
+            <div className={styles.enterpriseHeader}>
+              <h3 className={styles.planTitle}>{title}</h3>
+              <p className={styles.planPrice}>{price}</p>
+              <div className={styles.enterpriseButtonContainer}>
+                <a
+                  href={link}
+                  target={isMail ? '' : '_blank'}
+                  rel={isMail ? '' : 'noopener noreferrer'}
+                  className={styles.planButton}
+                >
+                  {buttonText}
+                </a>
+              </div>
+            </div>
           </div>
           <div className={styles.enterpriseDescription}>
             <p>{description[0]}</p>
@@ -84,16 +96,6 @@ function Plan({ title, price, description, link, buttonText, isMail, isEnterpris
                 <li key={idx}>{item}</li>
               ))}
             </ul>
-          </div>
-          <div className={styles.enterpriseButtonContainer}>
-            <a
-              href={link}
-              target={isMail ? '' : '_blank'}
-              rel={isMail ? '' : 'noopener noreferrer'}
-              className={styles.planButton}
-            >
-              {buttonText}
-            </a>
           </div>
         </div>
       ) : (
