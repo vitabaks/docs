@@ -52,71 +52,26 @@ const Plans = [
   },
 ];
 
-const EnterprisePlan = {
-  title: 'Enterprise',
-  price: 'Custom Pricing',
-  description: [
-    'For large organizations, we offer personalized support packages for complex database infrastructures.',
-    'Ultra-fast response times',
-    '24/7 support',
-    'Remote DBA',
-    'Regular health checks',
-    'Database server management (upon request)',
-  ],
-  link: 'mailto:info@postgresql-cluster.org',
-  buttonText: 'Contact us',
-  isMail: true,
-};
-
-function Plan({ title, price, description, link, buttonText, isMail, isEnterprise }) {
+function Plan({ title, price, description, link, buttonText, isMail }) {
   return (
-    <div className={`${styles.planCard} ${isEnterprise ? styles.enterprisePlanCard : ''}`}>
-      {isEnterprise ? (
-        <div className={styles.enterpriseContent}>
-          <div className={styles.enterpriseHeaderContainer}>
-            <h3 className={styles.planTitle}>{title}</h3>
-            <p className={styles.planPrice}>{price}</p>
-            <div className={styles.enterpriseButtonContainer}>
-              <a
-                href={link}
-                target={isMail ? '' : '_blank'}
-                rel={isMail ? '' : 'noopener noreferrer'}
-                className={styles.planButton}
-              >
-                {buttonText}
-              </a>
-            </div>
-          </div>
-          <div className={styles.enterpriseDescription}>
-            <p>{description[0]}</p>
-            <ul className={styles.enterpriseFeatures}>
-              {description.slice(1).map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ) : (
-        <>
-          <h3 className={styles.planTitle}>{title}</h3>
-          <p className={styles.planPrice}>{price}</p>
-          <ul className={styles.planDescription}>
-            {description.map((item, idx) => (
-              <li key={idx}>{item}</li>
-            ))}
-          </ul>
-          <div className={styles.planButtonContainer}>
-            <a
-              href={link}
-              target={isMail ? '' : '_blank'}
-              rel={isMail ? '' : 'noopener noreferrer'}
-              className={styles.planButton}
-            >
-              {buttonText}
-            </a>
-          </div>
-        </>
-      )}
+    <div className={styles.planCard}>
+      <h3 className={styles.planTitle}>{title}</h3>
+      <p className={styles.planPrice}>{price}</p>
+      <ul className={styles.planDescription}>
+        {description.map((item, idx) => (
+          <li key={idx}>{item}</li>
+        ))}
+      </ul>
+      <div className={styles.planButtonContainer}>
+        <a
+          href={link}
+          target={isMail ? '' : '_blank'}
+          rel={isMail ? '' : 'noopener noreferrer'}
+          className={styles.planButton}
+        >
+          {buttonText}
+        </a>
+      </div>
     </div>
   );
 }
@@ -125,7 +80,7 @@ export default function SubscriptionPlans() {
   return (
     <section>
       <h2 style={{ textAlign: 'center', marginTop: '30px', marginBottom: '20px' }}>Support Subscription Plans</h2>
-      <p style={{ textAlign: 'center', fontSize: '14px' }}>
+      <p style={{ textAlign: 'center', fontSize: '16px' }}>
         Support is available by subscription for project sponsors, with access to a private Slack channel for direct assistance.
       </p>
       <div className={styles.plansContainer}>
@@ -133,8 +88,12 @@ export default function SubscriptionPlans() {
           <Plan key={idx} {...plan} />
         ))}
       </div>
-      <div className={styles.enterprisePlanContainer}>
-        <Plan {...EnterprisePlan} isEnterprise />
+      <div className={styles.enterpriseTextContainer}>
+      <p className={styles.enterpriseFooterText}>
+        Need <strong>Enterprise</strong> support? For large organizations, we offer personalized support packages for complex database infrastructures, 
+        including ultra-fast response times, 24/7 support, remote DBA, regular health checks, and database cluster management (upon request). 
+        Please <a href="mailto:info@postgresql-cluster.org">contact us</a> for more details.
+      </p>
       </div>
     </section>
   );
