@@ -63,8 +63,8 @@ Example:
 apt_repository:
   - repo: "deb https://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"  # postgresql apt repository
     key: "https://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc"  # postgresql apt repository key
-#  - repo: "deb https://repo.pigsty.io/apt/pgsql/{{ ansible_distribution_release }} {{ ansible_distribution_release }} main"  # Pigsty apt repository
-#    key: "https://repo.pigsty.io/key"  # Pigsty apt repository key
+  - repo: "deb https://repo.pigsty.io/apt/pgsql/{{ ansible_distribution_release }} {{ ansible_distribution_release }} main"  # Pigsty apt repository
+    key: "https://repo.pigsty.io/key"  # Pigsty apt repository key
 ```
 
 2. Define the necessary packages in `postgresql_packages` variable.
