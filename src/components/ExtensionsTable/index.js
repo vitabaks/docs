@@ -24,7 +24,7 @@ const ExtensionsTable = () => {
         const data = result.data;
         setData(data);
         setCategories(getUniqueCategories(data));
-        setRepos(getUniqueRepos(data));
+        setRepos(getUniqueRepos(data, 'DEB'));
         applyFilters(data, 'ALL', '16', 'DEB', 'ALL', '');
       },
       error: (error) => {
@@ -40,8 +40,11 @@ const ExtensionsTable = () => {
   };
 
   // A function for getting unique repositories
-  const getUniqueRepos = (data) => {
-    const repos = data.map((row) => row.repo).filter(Boolean);
+  const getUniqueRepos = (data, type) => {
+    const repos =
+      type === 'DEB'
+        ? data.map((row) => row.deb_repo).filter(Boolean)
+        : data.map((row) => row.rpm_repo).filter(Boolean);
     return ['ALL', ...new Set(repos)];
   };
 
@@ -55,7 +58,9 @@ const ExtensionsTable = () => {
       const pgVersions = row.pg_ver?.replace(/[{}]/g, '').split(',');
       const matchesVersion = pgVersions?.includes(version);
       const matchesType = (type === 'DEB' && row.deb_pkg) || (type === 'RPM' && row.rpm_pkg);
-      const matchesRepo = repo === 'ALL' || row.repo === repo;
+      const matchesRepo =
+        repo === 'ALL' ||
+        (type === 'DEB' ? row.deb_repo === repo : row.rpm_repo === repo);
 
       // Search for matches in name, description, and package name
       const packageName = type === 'DEB' ? row.deb_pkg : row.rpm_pkg;
@@ -88,7 +93,9 @@ const ExtensionsTable = () => {
   const handleTypeChange = (e) => {
     const newType = e.target.value;
     setTypeFilter(newType);
-    applyFilters(data, categoryFilter, versionFilter, newType, repoFilter, searchQuery);
+    setRepos(getUniqueRepos(data, newType)); // Update repos based on type
+    setRepoFilter('ALL'); // Reset repo filter when type changes
+    applyFilters(data, categoryFilter, versionFilter, newType, 'ALL', searchQuery);
   };
 
   // Handler for changing the repo filter
@@ -193,7 +200,7 @@ const ExtensionsTable = () => {
                     ? row.deb_pkg.replace('$v', versionFilter).replace('*', '')
                     : row.rpm_pkg.replace('$v', versionFilter).replace('*', '')}
                 </td>
-                <td>{row.repo}</td>
+                <td>{typeFilter === 'DEB' ? row.deb_repo : row.rpm_repo}</td>
               </tr>
             ))}
           </tbody>
