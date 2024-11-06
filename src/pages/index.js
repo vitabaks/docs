@@ -35,7 +35,7 @@ function HomepageHeader() {
           Deploy HA Postgres on: <span className={styles.platform}>{currentPlatform}</span>
         </Heading>
         <Heading as="h2" className="hero__subtitle">
-          High-Availability Cluster for PostgreSQL®
+          Automated database platform for PostgreSQL®
         </Heading>
         <p>
           A modern, open-source alternative to cloud-managed databases.
