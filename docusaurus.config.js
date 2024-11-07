@@ -91,7 +91,17 @@ const config = {
           src: 'img/postgres.svg',
         },
         items: [
-          {to: '/docs', label: 'Docs', position: 'right'},
+          {
+            // Product Hunt Badge
+            type: 'html',
+            position: 'left',
+            value: `<a href="https://www.producthunt.com/posts/postgresql-cluster-org?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-postgresql&#0045;cluster&#0045;org" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=583645&theme=light" alt="postgresql&#0045;cluster&#0046;org - The&#0032;open&#0045;source&#0032;alternative&#0032;to&#0032;cloud&#0045;managed&#0032;databases | Product Hunt" style="width: 180px;" /></a>`,
+          },
+          {
+            to: '/docs',
+            label: 'Docs',
+            position: 'right'
+          },
           {
             href: '/docs/support',
             label: 'Support',
