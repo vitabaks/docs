@@ -62,6 +62,19 @@ const blocks = [
     darkImage: '/img/citus.dark.png',
     reverse: false,
   },
+  {
+    title: 'Extensible Postgres',
+    description: (
+      <>
+        PostgreSQL is highly extensible.
+        With our automated database platform, you can easily install any of the 300+ available <a href="/docs/extensions/list" target="_blank" rel="noopener noreferrer">extensions </a>
+        to equip your database with powerful capabilities tailored to your project’s unique requirements.
+      </>
+    ),
+    lightImage: '/img/extension.png',
+    darkImage: '/img/extension.png',
+    reverse: true,
+  },
 ];
 
 export default function Extensibility() {
@@ -95,9 +108,6 @@ export default function Extensibility() {
           </div>
         ))}
       </div>
-      <p className={`scroll-reveal`}>
-        PostgreSQL is highly extensible. With our automated database platform, you can easily install any of the 300+ <a href="/docs/extensions/list" target="_blank" rel="noopener noreferrer">extensions</a>
-      </p>
     </section>
   );
 }

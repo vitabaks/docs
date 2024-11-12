@@ -45,7 +45,7 @@ function Sponsor({ name, lightImage, darkImage, link }) {
 export default function SponsorSection() {
   return (
     <section>
-      <h3 style={{ textAlign: 'center', marginTop: '40px' }}>Sponsored by</h3>
+      <h2 style={{ textAlign: 'center', marginTop: '40px' }}>Sponsored by</h2>
       <div className={styles.Sponsors}>
         {Sponsors.map((sponsor, idx) => (
           <Sponsor key={idx} {...sponsor} />
