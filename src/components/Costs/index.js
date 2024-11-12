@@ -129,7 +129,7 @@ const CostComparison = () => {
         order: 1,
       },
       {
-        label: "Cloud-managed PostgreSQL",
+        label: "Cloud-managed Postgres",
         data: cloudManagedCosts,
         backgroundColor: "#FFA726",
         stack: 'stack1',
@@ -146,19 +146,20 @@ const CostComparison = () => {
         callbacks: {
           label: (context) => {
             const index = context.dataIndex;
-            if (context.dataset.label === "Cloud-managed PostgreSQL") {
+            if (context.dataset.label === "Cloud-managed Postgres") {
               return [
                 `Service: ${cloudManagedDetails[index]}`,
                 `Setup: ${setupsManaged[index]}`,
                 `Cost: $${cloudManagedCosts[index]}/month`
               ];
             } else if (context.dataset.label === "PostgreSQL Cluster") {
+              const savingsText = differences[index] !== "0" ? `Savings: ${differences[index]}%` : null;
               return [
                 `Service: ${clusterDetails[index]}`,
                 `Setup: ${setupsCluster[index]}`,
                 `Cost: $${clusterCosts[index]}/month`,
-                `Savings: ${differences[index]}%`
-              ];
+                savingsText
+              ].filter(Boolean); // Filter out null values
             }
             return `$${context.raw}/month`;
           }
@@ -191,7 +192,7 @@ const CostComparison = () => {
       </div>
       <div className={styles.chartAndTextContainer}>
         <div className={styles.chartContainer}>
-          <h4>PostgreSQL Cluster vs Cloud-managed database</h4>
+          <h4>PostgreSQL Cluster vs Cloud-managed Postgres</h4>
           <div className={styles.dropdown}>
             <select onChange={(e) => setSelectedSize(e.target.value)} value={selectedSize}>
               {Object.entries(dataConfig).map(([key, { label }]) => (
@@ -205,11 +206,14 @@ const CostComparison = () => {
           </p>
         </div>
         <div className={styles.textContainer}>
+          <h3>RDS-Level service, no extra costs</h3>
           <p>
-            You gain the reliability of RDS-level service without additional costs, as our product is completely free.
+            Unlike managed cloud databases, our open-source solution is provided at no cost.
+            Gain the benefits of reliability, automation, and simplified management—without the high cloud service fees.
           </p>
           <p>
-            This means you only pay for the server resources you use, avoiding the overhead of managed database service fees.
+            You pay only for server resources, avoiding managed database overheads.
+            Just compare the savings between managed database fees and basic VM costs.
           </p>
         </div>
       </div>
