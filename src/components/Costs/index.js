@@ -13,20 +13,23 @@ const CostComparison = () => {
       labels: ["AWS", "GCP", "Azure", "DigitalOcean", "Hetzner"],
       cloudManagedCosts: [2083, 1956, 1610, 1536, 0],
       clusterCosts: [949, 1105, 953, 906, 251],
+      label: "8 vCPU, 32GB RAM, 500GB storage"
     },
     medium: {
       labels: ["AWS", "GCP", "Azure", "DigitalOcean", "Hetzner"],
       cloudManagedCosts: [8095, 7154, 6217, 5586, 0],
       clusterCosts: [3557, 3913, 3588, 3324, 843],
+      label: "32 vCPU, 128GB RAM, 1TB storage"
     },
     large: {
       labels: ["AWS", "GCP", "Azure", "DigitalOcean", "Hetzner"],
       cloudManagedCosts: [33748, 31127, 28530, 0, 0],
       clusterCosts: [15463, 18872, 15495, 0, 0],
+      label: "96 vCPU, 768GB RAM, 10TB storage"
     },
   };
 
-  const { labels, cloudManagedCosts, clusterCosts } = dataConfig[selectedSize];
+  const { labels, cloudManagedCosts, clusterCosts, label } = dataConfig[selectedSize];
 
   const chartData = {
     labels,
@@ -68,17 +71,17 @@ const CostComparison = () => {
       <div className={styles.textBlock}>
         <h1>Cost comparison</h1>
         <p>
-          The open-source alternative to cloud-managed databases with maximum cost-efficience infrastructure.
+          The open-source alternative to cloud-managed databases with maximum cost-efficiency infrastructure.
         </p>
       </div>
       <div className={styles.chartAndTextContainer}>
         <div className={styles.chartContainer}>
-        <h3>PostgreSQL Cluster vs Cloud-managed database</h3>
+          <h4>PostgreSQL Cluster vs Cloud-managed database</h4>
           <div className={styles.dropdown}>
             <select onChange={(e) => setSelectedSize(e.target.value)} value={selectedSize}>
-              <option value="small">8 vCPU, 32GB RAM, 500GB storage</option>
-              <option value="medium">32 vCPU, 128GB RAM, 1TB storage</option>
-              <option value="large">96 vCPU, 768GB RAM, 10TB storage</option>
+              {Object.entries(dataConfig).map(([key, { label }]) => (
+                <option key={key} value={key}>{label}</option>
+              ))}
             </select>
           </div>
           <Bar data={chartData} options={options} />
@@ -87,12 +90,12 @@ const CostComparison = () => {
           </p>
         </div>
         <div className={styles.textContainer}>
-        <p>
-          You gain the reliability of RDS-level service without additional costs, as our product is completely free.
-        </p>
-        <p>
-          This means you only pay for the server resources you use, avoiding the overhead of managed database service fees.
-        </p>
+          <p>
+            You gain the reliability of RDS-level service without additional costs, as our product is completely free.
+          </p>
+          <p>
+            This means you only pay for the server resources you use, avoiding the overhead of managed database service fees.
+          </p>
         </div>
       </div>
     </div>
