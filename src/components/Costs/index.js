@@ -38,13 +38,15 @@ const CostComparison = () => {
         label: "Cloud-managed PostgreSQL",
         data: cloudManagedCosts,
         backgroundColor: "#FFA726",
-        barThickness: 60,
+        stack: 'stack1',
+        order: 1,
       },
       {
         label: "PostgreSQL Cluster",
         data: clusterCosts,
         backgroundColor: "#42A5F5",
-        barThickness: 40,
+        stack: 'stack1',
+        order: 2,
       },
     ],
   };
@@ -58,9 +60,16 @@ const CostComparison = () => {
       },
     },
     scales: {
-      x: { display: true, grid: { display: false } },
+      x: { 
+        stacked: true, 
+        display: true, 
+        grid: { display: false },
+        barPercentage: 1.0,
+        categoryPercentage: 0.2,
+      },
       y: {
         beginAtZero: true,
+        stacked: true,
         title: { display: true, text: "Cost (USD/month)" },
       },
     },

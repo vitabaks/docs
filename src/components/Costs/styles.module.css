@@ -17,12 +17,12 @@
   justify-content: space-between;
   gap: 2rem;
   max-width: 1200px;
-  width: 90%;
+  width: 70%;
 }
 
 .chartContainer {
   flex: 1;
-  max-width: 800px;
+  max-width: 700px;
 }
 
 .textContainer {
@@ -30,6 +30,7 @@
   padding-left: 1rem;
   font-size: 1.1rem;
   line-height: 1.4;
+  margin-top: 6rem;
 }
 
 .smallText {
