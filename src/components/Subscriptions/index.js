@@ -79,7 +79,7 @@ function Plan({ title, price, description, link, buttonText, isMail }) {
 export default function SubscriptionPlans() {
   return (
     <section>
-      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Support Subscription Plans</h1>
+      <h1 style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>Support Subscription Plans</h1>
       <p style={{ textAlign: 'center' }}>
         Support is available by subscription for project sponsors, with access to a private Slack channel for direct assistance.
       </p>

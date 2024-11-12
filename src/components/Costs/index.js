@@ -35,16 +35,16 @@ const CostComparison = () => {
     labels,
     datasets: [
       {
-        label: "Cloud-managed PostgreSQL",
-        data: cloudManagedCosts,
-        backgroundColor: "#FFA726",
+        label: "PostgreSQL Cluster",
+        data: clusterCosts,
+        backgroundColor: "#42A5F5",
         stack: 'stack1',
         order: 1,
       },
       {
-        label: "PostgreSQL Cluster",
-        data: clusterCosts,
-        backgroundColor: "#42A5F5",
+        label: "Cloud-managed Postgres",
+        data: cloudManagedCosts,
+        backgroundColor: "#FFA726",
         stack: 'stack1',
         order: 2,
       },
@@ -54,14 +54,14 @@ const CostComparison = () => {
   const options = {
     responsive: true,
     plugins: {
-      legend: { display: false },
+      legend: { display: true },
       tooltip: {
         callbacks: { label: (context) => `$${context.raw}/month` },
       },
     },
     scales: {
       x: { 
-        stacked: true, 
+        stacked: true,
         display: true, 
         grid: { display: false },
         barPercentage: 1.0,
