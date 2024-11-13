@@ -18,11 +18,9 @@ const CostComparisonComponent = () => {
       setAspectRatio(window.innerWidth > 480 ? 1.7 : 1.2);
     };
 
+    handleResize(); // Set initial aspect ratio based on window size
     window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const dataConfig = {
