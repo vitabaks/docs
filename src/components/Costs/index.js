@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import { useColorMode } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
@@ -9,15 +10,19 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 const CostComparisonComponent = () => {
   const [selectedSize, setSelectedSize] = useState("small");
   const [aspectRatio, setAspectRatio] = useState(1.7);
+  const { colorMode } = useColorMode();
+  const isDarkTheme = colorMode === 'dark';
 
   useEffect(() => {
     const handleResize = () => {
       setAspectRatio(window.innerWidth > 480 ? 1.7 : 1.2);
     };
 
-    handleResize(); // Set initial aspect ratio based on window size
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const dataConfig = {
@@ -193,6 +198,7 @@ const CostComparisonComponent = () => {
           font: {
             size: 14,
           },
+          color: isDarkTheme ? '#FFFFFF' : '#000000',
         },
         barPercentage: 1.0,
         categoryPercentage: 0.2,
@@ -206,6 +212,7 @@ const CostComparisonComponent = () => {
           font: {
             size: 14,
           },
+          color: isDarkTheme ? '#FFFFFF' : '#000000',
         },
       },
     },
