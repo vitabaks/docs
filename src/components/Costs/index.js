@@ -187,12 +187,12 @@ const CostComparison = () => {
       <div className={styles.textBlock}>
         <h1>Cost comparison</h1>
         <p>
-          The open-source alternative to cloud-managed databases with maximum cost-efficiency infrastructure.
+          An open-source alternative to cloud-managed databases with cost-efficient infrastructure.
         </p>
       </div>
       <div className={styles.chartAndTextContainer}>
         <div className={styles.chartContainer}>
-          <h4>PostgreSQL Cluster vs Cloud-managed Postgres</h4>
+          <h4>PostgreSQL Cluster vs Cloud-managed databases</h4>
           <div className={styles.dropdown}>
             <select onChange={(e) => setSelectedSize(e.target.value)} value={selectedSize}>
               {Object.entries(dataConfig).map(([key, { label }]) => (
@@ -202,17 +202,17 @@ const CostComparison = () => {
           </div>
           <Bar data={chartData} options={options} />
           <p className={styles.smallText}>
-            Note: Prices for a DB cluster with a primary DB instance and two readable standby DB instances (compute and storage).
+            Estimated monthly price (compute and storage) for a DB cluster with a primary and two standby replicas.
           </p>
         </div>
         <div className={styles.textContainer}>
-          <h3>RDS-Level service, no extra costs</h3>
+          <h3>RDS-level service, no extra costs</h3>
           <p>
-            Unlike managed cloud databases, our open-source solution is provided at no cost.
-            Gain the benefits of reliability, automation, and simplified management—without the high cloud service fees.
+            Unlike cloud DBaaS, our open-source solution is provided at no cost.
+            Enjoy reliability, automation, and simplified management—without the high fees of cloud-managed databases.
           </p>
           <p>
-            You pay only for server resources, avoiding managed database overheads.
+            Pay only for the server resources you use, avoiding DBaaS overhead.
             Just compare the savings between managed database fees and basic VM costs.
           </p>
         </div>
