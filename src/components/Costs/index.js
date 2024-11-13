@@ -163,7 +163,13 @@ const CostComparison = () => {
             }
             return `$${context.raw}/month`;
           }
-        }
+        },
+        bodyFont: {
+          size: 14
+        },
+        titleFont: {
+          size: 16
+        },
       }
     },
     scales: {
