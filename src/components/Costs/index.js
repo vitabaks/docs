@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import styles from './styles.module.css';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const CostComparison = () => {
+const CostComparisonComponent = () => {
   const [selectedSize, setSelectedSize] = useState("small");
-  const [aspectRatio, setAspectRatio] = useState(window.innerWidth > 480 ? 1.7 : 1.2);
+  const [aspectRatio, setAspectRatio] = useState(1.7);
 
   useEffect(() => {
     const handleResize = () => {
       setAspectRatio(window.innerWidth > 480 ? 1.7 : 1.2);
     };
 
+    handleResize(); // Set initial aspect ratio based on window size
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -249,5 +251,11 @@ const CostComparison = () => {
     </div>
   );
 };
+
+const CostComparison = () => (
+  <BrowserOnly>
+    {() => <CostComparisonComponent />}
+  </BrowserOnly>
+);
 
 export default CostComparison;
