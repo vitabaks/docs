@@ -12,7 +12,7 @@ const CostComparison = () => {
     small: {
       labels: ["AWS", "GCP", "Azure", "DigitalOcean", "Hetzner"],
       cloudManagedCosts: [2083, 1956, 1610, 1536, 0],
-      clusterCosts: [949, 1105, 953, 906, 251],
+      clusterCosts: [949, 1105, 953, 906, 267],
       cloudManagedDetails: [
         "Amazon RDS for PostgreSQL",
         "Google Cloud SQL for PostgreSQL",
@@ -47,7 +47,7 @@ const CostComparison = () => {
     medium: {
       labels: ["AWS", "GCP", "Azure", "DigitalOcean", "Hetzner"],
       cloudManagedCosts: [8095, 7154, 6217, 5586, 0],
-      clusterCosts: [3557, 3913, 3588, 3324, 843],
+      clusterCosts: [3557, 3913, 3588, 3324, 896],
       cloudManagedDetails: [
         "Amazon RDS for PostgreSQL",
         "Google Cloud SQL for PostgreSQL",
@@ -60,13 +60,13 @@ const CostComparison = () => {
         "PostgreSQL Cluster",
         "PostgreSQL Cluster",
         "PostgreSQL Cluster",
-        "PostgreSQL Cluster"
+        "PostgreSQL Cluster (€843/month)"
       ],
       setupsManaged: [
         "db.m6id.8xlarge with 1TB EBS gp3",
-        "Enterprise edition",
+        "Enterprise edition: 32 vCPU, 128GB RAM, 1TB storage",
         "D32s v5 with 1TB Standard SSD (LRS)",
-        "g-32vcpu-128gb with 1TB SSD",
+        "32 vCPU, 128GB RAM, 1TB storage",
         "-"
       ],
       setupsCluster: [
@@ -87,8 +87,8 @@ const CostComparison = () => {
         "Amazon RDS for PostgreSQL",
         "Google Cloud SQL for PostgreSQL",
         "Azure Database for PostgreSQL",
-        "DigitalOcean PostgreSQL (Not Available)",
-        "Hetzner Cloud PostgreSQL (Not Available)"
+        "-",
+        "-"
       ],
       clusterDetails: [
         "PostgreSQL Cluster",
@@ -99,7 +99,7 @@ const CostComparison = () => {
       ],
       setupsManaged: [
         "db.r6id.24xlarge with 10TB EBS gp3",
-        "Enterprise edition with 624 GB RAM",
+        "Enterprise edition: 96 vCPU, 624GB RAM, 10TB storage",
         "E96ds v5 with 10TB Standard SSD (LRS)",
         "-",
         "-"
