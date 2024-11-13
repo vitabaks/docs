@@ -208,8 +208,8 @@ const CostComparison = () => {
         <div className={styles.textContainer}>
           <h3>RDS-level service, no extra costs</h3>
           <p>
-            Unlike cloud DBaaS, our open-source solution is provided at no cost.
-            Enjoy reliability, automation, and simplified management—without the high fees of cloud-managed databases.
+            Unlike cloud DBaaS, our solution is open-source and provided without extra costs.
+            Enjoy an automated self-managed database without the high fees of cloud-managed databases.
           </p>
           <p>
             Pay only for the server resources you use, avoiding DBaaS overhead.
