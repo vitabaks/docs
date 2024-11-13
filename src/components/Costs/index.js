@@ -159,7 +159,7 @@ const CostComparison = () => {
                 `Setup: ${setupsCluster[index]}`,
                 `Cost: $${clusterCosts[index]}/month`,
                 savingsText
-              ].filter(Boolean); // Filter out null values
+              ].filter(Boolean);
             }
             return `$${context.raw}/month`;
           }
@@ -171,6 +171,12 @@ const CostComparison = () => {
         stacked: true,
         display: true, 
         grid: { display: false },
+        ticks: {
+          font: {
+            size: 14,
+          },
+          color: '#333',
+        },
         barPercentage: 1.0,
         categoryPercentage: 0.2,
       },
@@ -178,6 +184,13 @@ const CostComparison = () => {
         beginAtZero: true,
         stacked: true,
         title: { display: true, text: "Cost (USD/month)" },
+        ticks: {
+          callback: (value) => `$${value}`,
+          font: {
+            size: 14,
+          },
+          color: '#333',
+        },
       },
     },
   };
