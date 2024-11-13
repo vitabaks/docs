@@ -193,7 +193,6 @@ const CostComparisonComponent = () => {
           font: {
             size: 14,
           },
-          color: '#333',
         },
         barPercentage: 1.0,
         categoryPercentage: 0.2,
@@ -207,7 +206,6 @@ const CostComparisonComponent = () => {
           font: {
             size: 14,
           },
-          color: '#333',
         },
       },
     },
