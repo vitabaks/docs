@@ -8,7 +8,7 @@
 .textBlock {
   text-align: center;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .chartAndTextContainer {
@@ -24,6 +24,7 @@
 .chartContainer {
   flex: 1;
   max-width: 700px;
+  overflow-x: auto;
 }
 
 .textContainer {
@@ -41,4 +42,42 @@
 .dropdown {
   margin-bottom: 1rem;
   text-align: left;
+}
+
+/* Adaptive style for mobile devices */
+@media (max-width: 1280px) {
+  .chartAndTextContainer {
+    flex-direction: column;
+    width: 70%;
+    align-items: center;
+  }
+
+  .chartContainer {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .textContainer {
+    max-width: 100%;
+    padding-left: 0;
+    margin-top: 0rem;
+    text-align: center;
+  }
+
+  .smallText {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chartAndTextContainer {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .chartAndTextContainer {
+    width: 100%;
+  }
 }

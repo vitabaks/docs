@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 import styles from './styles.module.css';
@@ -7,6 +7,16 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const CostComparison = () => {
   const [selectedSize, setSelectedSize] = useState("small");
+  const [aspectRatio, setAspectRatio] = useState(window.innerWidth > 480 ? 1.7 : 1.2);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setAspectRatio(window.innerWidth > 480 ? 1.7 : 1.2);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const dataConfig = {
     small: {
@@ -199,6 +209,7 @@ const CostComparison = () => {
         },
       },
     },
+    aspectRatio: aspectRatio,
   };
 
   return (
@@ -211,7 +222,6 @@ const CostComparison = () => {
       </div>
       <div className={styles.chartAndTextContainer}>
         <div className={styles.chartContainer}>
-          <h4>PostgreSQL Cluster vs Cloud-managed databases</h4>
           <div className={styles.dropdown}>
             <select onChange={(e) => setSelectedSize(e.target.value)} value={selectedSize}>
               {Object.entries(dataConfig).map(([key, { label }]) => (
