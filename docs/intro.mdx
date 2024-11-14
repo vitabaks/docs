@@ -27,7 +27,7 @@ import TabItem from '@theme/TabItem';
 
 The Console (UI) is the recommended method for most users. It is designed to be user-friendly, minimizing the risk of errors and making it easier than ever to set up your PostgreSQL clusters. This method is suitable for both beginners and those who prefer a visual interface for managing their PostgreSQL clusters.
 
-#### Run the Console container
+#### 1. Run the Console container
 
 To run the PostgreSQL Cluster Console, execute the following command:
 
@@ -45,22 +45,27 @@ docker run -d --name pg-console \
   vitabaks/postgresql_cluster_console:2.0.0
 ```
 
+:::info
+If you are running the console on a dedicated server (rather than on your laptop), replace `localhost` with the server’s IP address in the `PG_CONSOLE_API_URL` variable.
+:::
+
 :::tip
-It is recommended to run the console in the same network as your database servers to enable monitoring of the cluster status. In this case, replace `localhost` with your server's IP address in the PG_CONSOLE_API_URL variable.
+It is recommended to run the console in the same network as your database servers to enable monitoring of the cluster status.
 :::
 
-#### Open the Console UI
+#### 2. Open the Console UI
 
-Go to http://localhost/ and use `secret_token` for authorization.
-
-:::note
-- If you have set up the console on a different server, replace 'localhost' with the server's address.
-- Use the value of your token if you have redefined it in the PG_CONSOLE_AUTHORIZATION_TOKEN variable.
-:::
+Go to http://localhost:80 (or the address of your server) and use `secret_token` for authorization.
 
 ![Cluster creation demo](/img/pg_console_create_cluster_demo.gif)
 
 Refer to the [Deployment](./docs/category/deployment) section to learn more about the different deployment methods.
+
+
+#### 3.  Purchase a Support Package
+
+We recommend considering one of the available support packages for PostgreSQL Cluster to ensure timely assistance and PostgreSQL consultations. You can find more details on the [support page](/docs/support).
+
 
   </TabItem>
   <TabItem value="command-line" label="Command line">
@@ -101,7 +106,11 @@ While the Console (UI) is designed for ease of use and is suitable for most user
     ```
     :::
 
-Refer to the [Deployment](./docs/category/deployment) section to learn more about the different deployment methods.
+    Refer to the [Deployment](./docs/category/deployment) section to learn more about the different deployment methods.
+
+5.  Purchase a Support Package
+
+    We recommend considering one of the available support packages for PostgreSQL Cluster to ensure timely assistance and PostgreSQL consultations. You can find more details on the [support page](/docs/support).
 
   </TabItem>
 </Tabs>
