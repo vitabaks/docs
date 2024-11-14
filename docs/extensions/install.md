@@ -29,7 +29,7 @@ It adds repositories, installs packages, and sets parameters like shared_preload
 
 | Extension       | Description                   | Variable                     |
 |-----------------|-------------------------------|------------------------------|
-| [timescaledb](https://github.com/timescale/timescaledb)   | Enables scalable inserts and complex queries for time-series data | `enable_timescaledb` |
+| [timescaledb](https://github.com/timescale/timescaledb)   | Enables scalable inserts and complex queries for time-series data. Provided by [Timescale](https://www.timescale.com) | `enable_timescaledb` |
 | [citus](https://github.com/citusdata/citus)   | Distributed PostgreSQL as an extension         | `enable_citus`       |
 | [pg_search](https://github.com/paradedb/paradedb/tree/dev/pg_search) | Full text search for PostgreSQL using BM25. Provided by [ParadeDB](https://www.paradedb.com) | `enable_pg_search` or `enable_paradedb` |
 | [pg_analytics](https://github.com/paradedb/pg_analytics) | Postgres for analytics, powered by DuckDB. Provided by [ParadeDB](https://www.paradedb.com) | `enable_pg_analytics` or `enable_paradedb` |
