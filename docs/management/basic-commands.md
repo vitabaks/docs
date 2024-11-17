@@ -17,6 +17,12 @@ For more detailed information about the cluster's architecture and components, p
 Official [documentation](https://patroni.readthedocs.io/en/latest/)
 :::
 
+**Configuration file**
+
+```
+/etc/patroni/patroni.yml
+```
+
 **Service**
 
 To check the `patroni` service status:
@@ -158,6 +164,17 @@ This command is used when you need to reinitialize the database data files on a 
 Official [documentation](https://www.postgresql.org/docs/current/index.html)
 :::
 
+**Configuration file**
+
+For Debian-based distributions:
+```
+/etc/postgresql/<version>/main/postgresql.conf
+```
+For Red Hat-based distributions, the configuration files are located within the data directory, which is usually:
+```
+/var/lib/pgsql/<version>/data/postgresql.conf
+```
+
 **Service**
 
 :::note
@@ -199,6 +216,12 @@ psql -h 127.0.0.1 -p 5432 -U postgres -d postgres -c "select version()"
 :::info
 Official [documentation](https://www.pgbouncer.org)
 :::
+
+**Configuration file**
+
+```
+/etc/pgbouncer/pgbouncer.ini
+```
 
 **Service**
 
@@ -252,6 +275,17 @@ SHOW STATS;
 Official [documentation](http://docs.haproxy.org)
 :::
 
+**Configuration file**
+
+```
+/etc/haproxy/haproxy.cfg
+```
+
+:::tip
+To update HAProxy configuration, edit the confd template located at: `/etc/confd/templates/haproxy.tmpl` \
+Then reload the `confd` service. Changes will be applied automatically.
+:::
+
 **Service**
 
 To check the `haproxy` service status:
@@ -296,11 +330,6 @@ Official [documentation](https://github.com/kelseyhightower/confd/tree/master/do
 /etc/confd/templates/haproxy.tmpl
 ```
 
-:::tip
-To update HAProxy configuration, edit the template located at: `/etc/confd/templates/haproxy.tmpl` \
-Then reload the `confd` service. Changes will be applied automatically during the next update.
-:::
-
 **Service**
 
 To check the `confd` service status:
@@ -327,6 +356,12 @@ sudo journalctl -u confd -n 50 -f
 :::info
 Official [documentation](https://www.keepalived.org/manpage.html)
 :::
+
+**Configuration file**
+
+```
+/etc/keepalived/keepalived.conf
+```
 
 **Service**
 
@@ -361,6 +396,12 @@ ip a
 :::info
 Official [documentation](https://www.keepalived.org/manpage.html)
 :::
+
+**Configuration file**
+
+```
+/etc/patroni/vip-manager.yml
+```
 
 **Service**
 
@@ -399,6 +440,11 @@ ip a
 :::info
 Official documentation: [Operations guide](https://etcd.io/docs/v3.5/op-guide/)
 :::
+
+**Configuration file**
+```
+/etc/etcd/etcd.conf
+```
 
 **Service**
 
@@ -442,6 +488,16 @@ etcdctl endpoint status --cluster -w table
 ```
 
 ## Consul
+
+:::info
+Official [documentation](https://developer.hashicorp.com/consul/docs)
+:::
+
+**Configuration file**
+
+```
+/etc/consul/config.json
+```
 
 **Service**
 
