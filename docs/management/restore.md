@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 40
 ---
 
 # Restore
@@ -8,10 +8,10 @@ Restore and Cloning
 
 ## Console (UI)
 
-Restoring a cluster from backup (PITR) through the UI is not yet implemented.
+Restoring a cluster from backup (PITR) is currently supported only through the command line.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](/docs/sponsor).
+If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
 :::
 
 ## Command line

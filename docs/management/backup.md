@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 30
 ---
 
 # Backup
@@ -23,10 +23,10 @@ This is not yet implemented for [DigitalOcean](../deployment/digitalocean.md) an
 - Log path: `/var/log/pgbackrest`
 - Cron job path: `/etc/cron.d/pgbackrest-<cluster_name>`
 
-Changing the backup configuration through the UI is not yet implemented.
+Backup configuration changes are currently supported only through the command line.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](/docs/sponsor).
+If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
 :::
 
 ### Command line

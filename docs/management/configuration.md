@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 20
 ---
 
 # Configuration
@@ -8,10 +8,10 @@ This section guides you through the process of changes your PostgreSQL Cluster c
 
 ### Console (UI)
 
-Changing the cluster configuration through the UI is not yet implemented.
+Cluster configuration changes are currently supported only through the command line.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](/docs/sponsor).
+If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
 :::
 
 ### Command line

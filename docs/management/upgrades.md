@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 50
 ---
 
 # Upgrades
@@ -10,10 +10,10 @@ This section guides you through the process of performing minor and major upgrad
 
 ### Console (UI)
 
-Minor upgrade the cluster through the UI is not yet implemented.
+Minor cluster upgrades are currently supported only through the command line.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](/docs/sponsor).
+If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
 :::
 
 ### Command line
@@ -157,10 +157,10 @@ The variable file is located on the path: `roles/update/vars/main.yml`
 
 ### Console (UI)
 
-Major upgrade the cluster through the UI is not yet implemented.
+Major cluster upgrades are currently supported only through the command line.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](/docs/sponsor).
+If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
 :::
 
 ### Command line

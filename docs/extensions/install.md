@@ -12,10 +12,10 @@ See the [list of 300+ extensions](/docs/extensions/list) available for installat
 
 ## Console (UI)
 
-Installing extensions via the UI is not available yet.
+Extension installation is currently supported only through the command line.
 
 :::tip
-If you're interested in this feature, please consider becoming a [sponsor](/docs/sponsor).
+If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
 :::
 
 ## Command line
