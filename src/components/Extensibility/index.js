@@ -20,8 +20,8 @@ const blocks = [
     title: 'Postgres for Search and Analytics',
     description: (
       <>
-        Transform PostgreSQL into a high-performance search and analytics engine with ParadeDB’s <a href="https://github.com/paradedb/paradedb/tree/dev/pg_search" target="_blank" rel="noopener noreferrer">pg_search </a> and <a href="https://github.com/paradedb/pg_analytics" target="_blank" rel="noopener noreferrer">pg_analytics</a>, or with <a href="https://github.com/duckdb/pg_duckdb" target="_blank" rel="noopener noreferrer">pg_duckdb</a>.
-        Enhance search capabilities with BM25 scoring, custom tokenizers, and hybrid search. Effortlessly query and ingest data directly from S3, GCS, Azure Blob Storage, and more.
+        Transform PostgreSQL into a high-performance search and analytics engine using ParadeDB’s <a href="https://github.com/paradedb/paradedb/tree/dev/pg_search" target="_blank" rel="noopener noreferrer">pg_search</a>, <a href="https://github.com/paradedb/pg_analytics" target="_blank" rel="noopener noreferrer">pg_analytics</a>, or <a href="https://github.com/duckdb/pg_duckdb" target="_blank" rel="noopener noreferrer">pg_duckdb</a>. 
+        Boost search capabilities with BM25 scoring, custom tokenizers, and hybrid search. Seamlessly query and ingest data directly from S3, GCS, Azure Blob Storage, and more.
       </>
     ),
     lightImage: '/img/paradedb.png',
