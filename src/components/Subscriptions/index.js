@@ -10,7 +10,7 @@ const Plans = [
       'Community support',
       'Depends on the availability and goodwill of community members',
     ],
-    link: 'https://github.com/vitabaks/postgresql_cluster/issues/new',
+    link: 'https://github.com/vitabaks/autobase/issues/new',
     buttonText: 'Open issue',
     isMail: false,
   },

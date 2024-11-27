@@ -247,7 +247,7 @@ const CostComparisonComponent = () => {
           </p>
           <p>
             Pay only for the server resources you use, avoiding extra margins.
-            Just compare the savings between managed database fees and basic VM costs.
+            Just compare the savings between cloud-managed database fees and basic VM costs.
           </p>
         </div>
       </div>

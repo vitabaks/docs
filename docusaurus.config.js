@@ -77,8 +77,8 @@ const config = {
       /*
       announcementBar: {
         content:
-          //'🎉️ <a target="_blank" href="https://github.com/vitabaks/postgresql_cluster/releases/tag/2.0.0">postgresql_cluster v2.0</a> is out! 🥳️',
-          // '⭐️ If you like <b>postgresql_cluster</b>, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/vitabaks/postgresql_cluster">GitHub</a>! ⭐️',
+          //'🎉️ <a target="_blank" href="https://github.com/vitabaks/autobase/releases/tag/2.0.0">autobase v2.0</a> is out! 🥳️',
+          // '⭐️ If you like <b>autobase</b>, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/vitabaks/autobase">GitHub</a>! ⭐️',
           backgroundColor: '#F6F8FA',
           textColor: '#091E42',
           isCloseable: true,
@@ -108,7 +108,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/vitabaks/postgresql_cluster',
+            href: 'https://github.com/vitabaks/autobase',
             label: 'GitHub',
             position: 'right',
           },
@@ -140,7 +140,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/vitabaks/postgresql_cluster',
+                href: 'https://github.com/vitabaks/autobase',
               },
             ],
           },

@@ -17,7 +17,7 @@ export default function About() {
   const dbmsOfYearLink = "https://db-engines.com/en/blog_post/106";
   const dbEnginesTrendLink = "https://db-engines.com/en/ranking_trend";
   const stackoverflowTrendLink = "https://survey.stackoverflow.co/2024/technology#most-popular-technologies-database-prof";
-  const postgresqlClusterLink = "https://github.com/vitabaks/postgresql_cluster";
+  const autobaseLink = "https://github.com/vitabaks/autobase";
 
   // Data for the top 10 databases chart
   const data = {
@@ -113,7 +113,7 @@ export default function About() {
       However, integrating these tools into a robust enterprise cluster requires significant PostgreSQL expertise to ensure a reliable, production-ready solution.
       </p>
       <p className={`${styles.description} scroll-reveal`}>
-        To bridge this gap, the <a href={postgresqlClusterLink} target="_blank" rel="noopener noreferrer">automation toolkit</a>  was developed in 2019 for personal use, and later shared with the community.
+        To bridge this gap, the <a href={autobaseLink} target="_blank" rel="noopener noreferrer">automation toolkit</a>  was developed in 2019 for personal use, and later shared with the community.
         It handles the deployment of high-availability clusters (using Patroni) and addresses management tasks such as minor and major upgrades, backup configuration with support for automated restore a database to a point in time (PITR), and cluster scaling with horizontal read load distribution across replicas, among many other features.
         The project has been around for over 5 years and is used by companies worldwide. It continues to actively evolve and improve, leveraging the practical experience of PostgreSQL experts (DBA) who use our product to manage database clusters in production environments for mission-critical, high-load databases.
       </p>
