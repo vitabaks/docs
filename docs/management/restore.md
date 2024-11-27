@@ -16,7 +16,7 @@ If you’re interested in having this functionality available through the UI, pl
 
 ## Command line
 
-You can restore your PostgreSQL Cluster in place (Point-In-Time Recovery), which is useful for recovering an existing cluster, or create a new cluster from a backup (Cloning), which involves creating a new cluster based on an existing backup.
+You can restore your PostgreSQL cluster in place (Point-In-Time Recovery), which is useful for recovering an existing cluster, or create a new cluster from a backup (Cloning), which involves creating a new cluster based on an existing backup.
 
 The following backup tools are supported:
 - [pgBackRest](https://github.com/pgbackrest/pgbackrest)
@@ -110,7 +110,7 @@ The recovery steps that automation will perform:
 15. Start patroni service on Replica servers;
 16. Check that the patroni is healthy on the replica server;
     - Note: timeout 10 hours.
-17. Check PostgreSQL Cluster health (finish).
+17. Check PostgreSQL cluster health (finish).
 
 </details>
 

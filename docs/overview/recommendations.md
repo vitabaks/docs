@@ -4,11 +4,11 @@ sidebar_position: 4
 
 # Recommendations
 
-This section provides essential recommendations to ensure the optimal performance, stability, and reliability of your PostgreSQL Cluster. Following these guidelines will help you avoid common pitfalls and make the most of your deployment.
+This section provides essential recommendations to ensure the optimal performance, stability, and reliability of your PostgreSQL cluster. Following these guidelines will help you avoid common pitfalls and make the most of your deployment.
 
 ### Linux (Operating System)
 
-Before deploying your PostgreSQL Cluster, make sure your target servers are running an up-to-date operating system. Proper system maintenance is crucial for security and performance.
+Before deploying your PostgreSQL cluster, make sure your target servers are running an up-to-date operating system. Proper system maintenance is crucial for security and performance.
 
 Additionally, ensure that time synchronization is correctly configured (NTP). For automated setup, specify `ntp_enabled: true` and set `ntp_servers` to install and configure the NTP service.
 

@@ -36,7 +36,7 @@ Select the type of server with the required amount of CPU and RAM.
 
 ![instance-type](/img/instance-type-do.png)
 
-Select the number of servers to be created for the PostgreSQL Cluster.
+Select the number of servers to be created for the PostgreSQL cluster.
 
 :::warning
 Please note that at least 3 servers are required to ensure high availability.

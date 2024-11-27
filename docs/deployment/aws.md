@@ -18,7 +18,7 @@ All components are installed within your cloud account.
 
 ### Prerequisites
 
-You will need the access key (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY) to deploy the PostgreSQL Cluster to your AWS account.
+You will need the access key (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY) to deploy the PostgreSQL cluster to your AWS account.
 See the [official documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for instructions on creating an access key.
 
 :::note
@@ -37,7 +37,7 @@ Select the type of server with the required amount of CPU and RAM.
 
 ![instance-type](/img/instance-type-aws.png)
 
-Select the number of servers to be created for the PostgreSQL Cluster.
+Select the number of servers to be created for the PostgreSQL cluster.
 
 :::warning
 Please note that at least 3 servers are required to ensure high availability.
