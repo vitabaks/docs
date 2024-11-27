@@ -246,7 +246,7 @@ const CostComparisonComponent = () => {
             Enjoy an automated self-managed database without the high fees of cloud-managed databases.
           </p>
           <p>
-            Pay only for the server resources you use, avoiding DBaaS overhead.
+            Pay only for the server resources you use, avoiding extra margins.
             Just compare the savings between managed database fees and basic VM costs.
           </p>
         </div>

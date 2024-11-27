@@ -8,12 +8,12 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'PostgreSQL High-Availability Cluster',
-  tagline: 'Ensure 24/7 Uptime for Your PostgreSQL Database',
-  favicon: 'img/postgres.svg',
+  title: 'Automated database platform for PostgreSQL',
+  tagline: 'Automate failover, backups, restore, upgrades, scaling, and more with ease',
+  favicon: 'img/autobase.svg',
 
   // Set the production url of your site here
-  url: 'https://postgresql-cluster.org',
+  url: 'https://autobase.tech',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -73,7 +73,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/pg-console.png',
+      image: 'img/autobase-logo.png',
       /*
       announcementBar: {
         content:
@@ -85,17 +85,17 @@ const config = {
       },
       */
       navbar: {
-        title: 'PostgreSQL Cluster',
+        title: 'autobase',
         logo: {
-          alt: 'PostgreSQL Cluster',
-          src: 'img/postgres.svg',
+          alt: 'autobase',
+          src: 'img/autobase.svg',
         },
         items: [
           {
             // Product Hunt Badge
             type: 'html',
             position: 'left',
-            value: `<a href="https://www.producthunt.com/posts/postgresql-cluster-org?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-postgresql&#0045;cluster&#0045;org" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=583645&theme=light" alt="postgresql&#0045;cluster&#0046;org - The&#0032;open&#0045;source&#0032;alternative&#0032;to&#0032;cloud&#0045;managed&#0032;databases | Product Hunt" style="width: 180px;" /></a>`,
+            value: `<a href="https://www.producthunt.com/products/postgresql_cluster" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=583645&theme=light" alt="postgresql&#0045;cluster&#0046;org - The&#0032;open&#0045;source&#0032;alternative&#0032;to&#0032;cloud&#0045;managed&#0032;databases | Product Hunt" style="width: 180px;" /></a>`,
           },
           {
             to: '/docs',
@@ -157,13 +157,13 @@ const config = {
             title: 'Contact',
             items: [
               {
-                label: 'info@postgresql-cluster.org',
-                to: 'mailto:info@postgresql-cluster.org',
+                label: 'info@autobase.tech',
+                to: 'mailto:info@autobase.tech',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} PostgreSQL Cluster Project.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Autobase. All rights reserved.`,
       },
       docs: {
         sidebar: {

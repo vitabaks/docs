@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Introduction
 
-**[postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)** automates the deployment and management of highly available PostgreSQL clusters in production environments. This solution is tailored for use on dedicated physical servers, virtual machines, and within both on-premises and cloud-based infrastructures.
+**[Autobase for PostgreSQL®](https://github.com/vitabaks/autobase)** automates the deployment and management of highly available PostgreSQL clusters in production environments. This solution is tailored for use on dedicated physical servers, virtual machines, and within both on-premises and cloud-based infrastructures.
 
 ### Supported setups of Postgres Cluster
 
@@ -32,17 +32,17 @@ The Console (UI) is the recommended method for most users. It is designed to be 
 To run the PostgreSQL Cluster Console, execute the following command:
 
 ```bash
-docker run -d --name pg-console \
+docker run -d --name autobase-console \
   --publish 80:80 \
   --publish 8080:8080 \
   --env PG_CONSOLE_API_URL=http://localhost:8080/api/v1 \
   --env PG_CONSOLE_AUTHORIZATION_TOKEN=secret_token \
-  --env PG_CONSOLE_DOCKER_IMAGE=vitabaks/postgresql_cluster:latest \
+  --env PG_CONSOLE_DOCKER_IMAGE=autobase/automation:latest \
   --volume console_postgres:/var/lib/postgresql \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   --volume /tmp/ansible:/tmp/ansible \
   --restart=unless-stopped \
-  vitabaks/postgresql_cluster_console:2.0.0
+  autobase/console:2.0.0
 ```
 
 :::info
@@ -81,16 +81,16 @@ While the Console (UI) is designed for ease of use and is suitable for most user
     pip3 install ansible
     ```
 
-2. Download the postgresql_cluster repository
+2. Download the autobase repository
 
     ```shell
-    git clone https://github.com/vitabaks/postgresql_cluster.git
+    git clone https://github.com/vitabaks/autobase.git
     ```
 
 3. Go to the automation directory
 
     ```shell
-    cd postgresql_cluster/automation
+    cd autobase/automation
     ```
 
 4. Install requirements on the control node

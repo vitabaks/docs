@@ -6,7 +6,7 @@ sidebar_position: 2
 
 Microsoft Azure
 
-**[postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)** will automatically set up the following in Azure:
+**[autobase](https://github.com/vitabaks/autobase)** will automatically set up the following in Azure:
 
 1. Virtual machine (with a dedicated data disk), with all cluster components installed and configured.
 2. Azure Load Balancer to serve as the entry point for database connections.

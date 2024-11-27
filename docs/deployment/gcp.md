@@ -6,7 +6,7 @@ sidebar_position: 4
 
 Google Cloud Platform
 
-**[postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)** will automatically set up the following in Google Cloud:
+**[autobase](https://github.com/vitabaks/autobase)** will automatically set up the following in Google Cloud:
 
 1. Virtual machine (with a dedicated data disk), with all cluster components installed and configured.
 2. GCP Proxy Network Load Balancer to serve as the entry point for database connections.
