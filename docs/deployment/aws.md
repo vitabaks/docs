@@ -8,7 +8,7 @@ Amazon Web Services
 
 **[autobase](https://github.com/vitabaks/autobase)** will automatically set up the following in Amazon Web Services (AWS):
 
-1. Virtual machine (with a dedicated data disk), with all cluster components installed and configured.
+1. AWS EC2 - a virtual machine (with a dedicated data disk), with all cluster components installed and configured.
 2. AWS Elastic Load Balancer (ELB) to serve as the entry point for database connections.
 3. AWS S3 Bucket, and configured backups using pgBackRest.
 

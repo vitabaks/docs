@@ -8,7 +8,7 @@ Microsoft Azure
 
 **[autobase](https://github.com/vitabaks/autobase)** will automatically set up the following in Azure:
 
-1. Virtual machine (with a dedicated data disk), with all cluster components installed and configured.
+1. Azure Virtual Machines (with a dedicated data disk), with all cluster components installed and configured.
 2. Azure Load Balancer to serve as the entry point for database connections.
 3. Azure Blob Storage, and configured backups using pgBackRest.
 

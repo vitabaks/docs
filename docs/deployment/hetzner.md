@@ -8,7 +8,7 @@ Hetzner Cloud
 
 **[autobase](https://github.com/vitabaks/autobase)** will automatically set up the following in Hetzner Cloud:
 
-1. Virtual machine (with a dedicated data disk), with all cluster components installed and configured.
+1. Hetzner Servers - a virtual machine (with a dedicated data disk), with all cluster components installed and configured.
 2. Hetzner Load Balancer to serve as the entry point for database connections.
 
 :::info

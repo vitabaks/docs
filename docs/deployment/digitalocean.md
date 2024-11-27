@@ -8,7 +8,7 @@ DigitalOcean Cloud
 
 **[autobase](https://github.com/vitabaks/autobase)** will automatically set up the following in DigitalOcean:
 
-1. Virtual machine (with a dedicated data disk), with all cluster components installed and configured.
+1. DigitalOcean Droplets - a virtual machine (with a dedicated data disk), with all cluster components installed and configured.
 2. DigitalOcean Load Balancer to serve as the entry point for database connections.
 
 :::info
