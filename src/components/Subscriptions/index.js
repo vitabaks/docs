@@ -92,7 +92,7 @@ export default function SubscriptionPlans() {
       <p className={styles.enterpriseFooterText}>
         Need <strong>Enterprise</strong> support? For large organizations, we offer personalized support packages for complex database infrastructures, 
         including ultra-fast response times, 24/7 support, remote DBA, regular health checks, and database cluster management (upon request). 
-        Please <a href="mailto:info@postgresql-cluster.org">contact us</a> for more details.
+        Please <a href="mailto:info@autobase.tech">contact us</a> for more details.
       </p>
       </div>
     </section>
