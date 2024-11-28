@@ -8,7 +8,7 @@
 }
 
 .heroBanner {
-  padding: 2rem 0;
+  padding: 3rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -38,13 +38,6 @@
   animation: fadeIn 0.3s ease-in-out;
   animation-delay: 2.5s;
   animation-fill-mode: forwards;
-}
-
-.platform {
-  display: inline-block;
-  width: 200px;
-  text-align: left;
-  white-space: nowrap;
 }
 
 /* Adaptive style for mobile devices */

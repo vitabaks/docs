@@ -4,7 +4,7 @@ sidebar_position: 60
 
 # Cluster Scaling
 
-Once your PostgreSQL Cluster is successfully deployed, you may find the need to scale it by adding additional nodes or balancers to handle increased load or redundancy.
+Once your PostgreSQL cluster is successfully deployed, you may find the need to scale it by adding additional nodes or balancers to handle increased load or redundancy.
 
 ## Console (UI)
 

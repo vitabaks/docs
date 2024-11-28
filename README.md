@@ -1,6 +1,6 @@
 # Documentation
 
-Documentation for [postgresql_cluster](https://github.com/vitabaks/postgresql_cluster) - https://postgresql-cluster.org
+[autobase.tech](https://autobase.tech) documentation website.
 
 ### Local Development
 

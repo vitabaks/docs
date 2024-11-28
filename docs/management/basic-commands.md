@@ -6,7 +6,7 @@ sidebar_position: 10
 
 Basic cluster management commands using the command line.
 
-This guide covers the basic commands for managing various services in your PostgreSQL Cluster. It includes instructions for working with Patroni, PostgreSQL, PgBouncer, etcd, and other essential services.
+This guide covers the basic commands for managing various services in your PostgreSQL cluster. It includes instructions for working with Patroni, PostgreSQL, PgBouncer, etcd, and other essential services.
 
 For more detailed information about the cluster's architecture and components, please refer to the [Architecture](../overview/architecture.md) page.
 
@@ -417,7 +417,7 @@ sudo systemctl [start|stop|restart|reload] vip-manager
 ```
 
 :::warning
-When the vip-manager service is stopped, the VIP address is [removed](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/roles/vip-manager/templates/vip-manager.service.j2#L12). It will be re-added when the service starts again, provided that the current server is the leader.
+When the vip-manager service is stopped, the VIP address is [removed](https://github.com/vitabaks/autobase/blob/master/automation/roles/vip-manager/templates/vip-manager.service.j2#L12). It will be re-added when the service starts again, provided that the current server is the leader.
 :::
 
 **logs**

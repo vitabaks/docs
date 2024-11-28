@@ -6,9 +6,9 @@ sidebar_position: 2
 
 Microsoft Azure
 
-**[postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)** will automatically set up the following in Azure:
+**[autobase](https://github.com/vitabaks/autobase)** will automatically set up the following in Azure:
 
-1. Virtual machine (with a dedicated data disk), with all cluster components installed and configured.
+1. Azure Virtual Machines (with a dedicated data disk), with all cluster components installed and configured.
 2. Azure Load Balancer to serve as the entry point for database connections.
 3. Azure Blob Storage, and configured backups using pgBackRest.
 
@@ -37,7 +37,7 @@ Select the type of server with the required amount of CPU and RAM.
 
 ![instance-type](/img/instance-type-azure.png)
 
-Select the number of servers to be created for the PostgreSQL Cluster.
+Select the number of servers to be created for the PostgreSQL cluster.
 
 :::warning
 Please note that at least 3 servers are required to ensure high availability.

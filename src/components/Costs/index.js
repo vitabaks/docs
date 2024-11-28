@@ -36,11 +36,11 @@ const CostComparisonComponent = () => {
         "Hetzner Cloud PostgreSQL (Not Available)"
       ],
       clusterDetails: [
-        "PostgreSQL Cluster",
-        "PostgreSQL Cluster",
-        "PostgreSQL Cluster",
-        "PostgreSQL Cluster",
-        "PostgreSQL Cluster (€251/month)"
+        "Autobase for PostgreSQL",
+        "Autobase for PostgreSQL",
+        "Autobase for PostgreSQL",
+        "Autobase for PostgreSQL",
+        "Autobase for PostgreSQL (€251/month)"
       ],
       setupsManaged: [
         "db.m6id.2xlarge with 500GB EBS gp3",
@@ -71,11 +71,11 @@ const CostComparisonComponent = () => {
         "Hetzner Cloud PostgreSQL (Not Available)"
       ],
       clusterDetails: [
-        "PostgreSQL Cluster",
-        "PostgreSQL Cluster",
-        "PostgreSQL Cluster",
-        "PostgreSQL Cluster",
-        "PostgreSQL Cluster (€843/month)"
+        "Autobase for PostgreSQL",
+        "Autobase for PostgreSQL",
+        "Autobase for PostgreSQL",
+        "Autobase for PostgreSQL",
+        "Autobase for PostgreSQL (€843/month)"
       ],
       setupsManaged: [
         "db.m6id.8xlarge with 1TB EBS gp3",
@@ -106,9 +106,9 @@ const CostComparisonComponent = () => {
         "-"
       ],
       clusterDetails: [
-        "PostgreSQL Cluster",
-        "PostgreSQL Cluster",
-        "PostgreSQL Cluster",
+        "Autobase for PostgreSQL",
+        "Autobase for PostgreSQL",
+        "Autobase for PostgreSQL",
         "-",
         "-"
       ],
@@ -137,7 +137,7 @@ const CostComparisonComponent = () => {
     labels,
     datasets: [
       {
-        label: "PostgreSQL Cluster",
+        label: "Autobase for PostgreSQL",
         data: clusterCosts,
         backgroundColor: "#42A5F5",
         stack: 'stack1',
@@ -167,7 +167,7 @@ const CostComparisonComponent = () => {
                 `Setup: ${setupsManaged[index]}`,
                 `Cost: $${cloudManagedCosts[index]}/month`
               ];
-            } else if (context.dataset.label === "PostgreSQL Cluster") {
+            } else if (context.dataset.label === "Autobase for PostgreSQL") {
               const savingsText = differences[index] !== "0" ? `Savings: ${differences[index]}%` : null;
               return [
                 `Service: ${clusterDetails[index]}`,
@@ -246,8 +246,8 @@ const CostComparisonComponent = () => {
             Enjoy an automated self-managed database without the high fees of cloud-managed databases.
           </p>
           <p>
-            Pay only for the server resources you use, avoiding DBaaS overhead.
-            Just compare the savings between managed database fees and basic VM costs.
+            Pay only for the server resources you use, avoiding extra margins.
+            Just compare the savings between cloud-managed database fees and basic VM costs.
           </p>
         </div>
       </div>

@@ -15,7 +15,7 @@ Learn more about:
 - [What is Infrastructure as Code (IaC)](https://www.redhat.com/en/topics/automation/what-is-infrastructure-as-code-iac)?
 :::
 
-After [deploying](/docs/category/deployment) your cluster, you can use the `config_pgcluster.yml` playbook to integrate Git for managing cluster configurations. The automation code and all dependencies are packaged in the Docker image `vitabaks/postgresql_cluster`, making it easy to integrate into your CI/CD pipelines.
+After [deploying](/docs/category/deployment) your cluster, you can use the `config_pgcluster.yml` playbook to integrate Git for managing cluster configurations. The automation code and all dependencies are packaged in the Docker image `autobase/automation`, making it easy to integrate into your CI/CD pipelines.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -32,13 +32,13 @@ stages:
   - test-connect
   - run-playbook
 
-image: vitabaks/postgresql_cluster:2.0.0
+image: autobase/automation:2.0.0
 
 variables:
     ANSIBLE_FORCE_COLOR: 'true'
 
 before_script:
-  - cd /postgresql_cluster/automation
+  - cd /autobase/automation
 
 test-connect:
   stage: test-connect
@@ -94,7 +94,7 @@ This setup also integrates [Ansible Vault](https://docs.ansible.com/ansible/late
 Additionally, the pipeline includes two important variables:
 
 - `PLAYBOOK`: Allows you to specify the playbook to be used when manually triggering the pipeline. For example, you can set this variable to update_pgcluster.yml to run the update playbook or to any other available playbooks depending on your needs.
-- `TAG`: Provides the option to specify tags to run only specific parts of the playbook, improving execution speed by limiting the automation to the necessary sections. For example, you can set this variable to patroni, pgbouncer, or all to control which portion of the playbook gets executed. See the [tags.md](https://github.com/vitabaks/postgresql_cluster/blob/master/automation/tags.md) file for a list of available tags.
+- `TAG`: Provides the option to specify tags to run only specific parts of the playbook, improving execution speed by limiting the automation to the necessary sections. For example, you can set this variable to patroni, pgbouncer, or all to control which portion of the playbook gets executed. See the [tags.md](https://github.com/vitabaks/autobase/blob/master/automation/tags.md) file for a list of available tags.
 
 <details>
 <summary>Click here to expand...</summary>
@@ -105,7 +105,7 @@ stages:
   - run-check-diff
   - run-playbook
 
-image: vitabaks/postgresql_cluster:2.0.0
+image: autobase/automation:2.0.0
 
 variables:
     ANSIBLE_FORCE_COLOR: 'true'
@@ -117,8 +117,8 @@ variables:
       description: "tags for ansible-playbook, e.g. patroni or pgbouncer or all"
 
 before_script:
-  - cp -r files/* /postgresql_cluster/automation/files
-  - cd /postgresql_cluster/automation
+  - cp -r files/* /autobase/automation/files
+  - cd /autobase/automation
 
 test-connect:
   stage: test-connect

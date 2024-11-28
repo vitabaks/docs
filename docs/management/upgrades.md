@@ -4,7 +4,7 @@ sidebar_position: 50
 
 # Upgrades
 
-This section guides you through the process of performing minor and major upgrades for your PostgreSQL Cluster.
+This section guides you through the process of performing minor and major upgrades for your PostgreSQL cluster.
 
 ## Minor Upgrade
 
@@ -365,7 +365,7 @@ The variable file is located on the path: `vars/upgrade.yml`
   - Notes: max wait time: 2 minutes
   - Stop, if replication lag is high
   - Perform rollback
-    - Print error message: "There's a replication lag in the PostgreSQL Cluster. Please try again later"
+    - Print error message: "There's a replication lag in the PostgreSQL cluster. Please try again later"
 - **Perform PAUSE on all pgbouncers servers**
   - Notes: if 'pgbouncer_install' is 'true' and 'pgbouncer_pool_pause' is 'true'
   - Notes: pgbouncer pause script performs the following actions:

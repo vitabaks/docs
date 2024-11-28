@@ -15,32 +15,15 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const [currentPlatform, setCurrentPlatform] = useState('Anywhere');
-  const [platformIndex, setPlatformIndex] = useState(0);
-
-  const platforms = ['AWS', 'GCP', 'Azure', 'DigitalOcean', 'Hetzner', 'Bare Metal', 'VMs', 'Anywhere'];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPlatformIndex((prevIndex) => (prevIndex + 1) % platforms.length);
-      setCurrentPlatform(platforms[platformIndex]);
-    }, 3000); // Changes the platform every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [platformIndex]);
-
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <Heading as="h1" className="hero__title">
-          Deploy HA Postgres on: <span className={styles.platform}>{currentPlatform}</span>
-        </Heading>
-        <Heading as="h2" className="hero__subtitle">
+        <Heading as="h2" style={{ fontSize: '2.7rem', fontWeight: '400' }}>
           Automated database platform for PostgreSQL®
         </Heading>
-        <p>
-          A modern, open-source alternative to cloud-managed databases.
-        </p>
+        <Heading as="h3" style={{ fontSize: '1.2rem', fontWeight: '400', marginBottom: '40px' }}>
+          Open source alternative to cloud-managed databases (your own DBaaS)
+        </Heading>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
@@ -58,7 +41,7 @@ function DemoEmbed() {
     <div style={{ position: 'relative', boxSizing: 'content-box', maxHeight: '80vh', width: '100%', aspectRatio: '1.643835616438356', padding: '40px 0', marginBottom: '20px' }}>
       <iframe
         src="https://app.supademo.com/embed/cm17ui80e035n13s2q3lkg5he?embed_v=2"
-        title="PostgreSQL Cluster Console (UI) demo"
+        title="Autobase Console (UI) demo"
         allow="clipboard-write"
         frameBorder="0"
         webkitallowfullscreen="true"
@@ -74,8 +57,8 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title="postgresql_cluster"
-      description="PostgreSQL High-Availability Cluster">
+      title="autobase"
+      description="Automated database platform for PostgreSQL">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

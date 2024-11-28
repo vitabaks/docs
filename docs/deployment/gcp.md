@@ -6,9 +6,9 @@ sidebar_position: 4
 
 Google Cloud Platform
 
-**[postgresql_cluster](https://github.com/vitabaks/postgresql_cluster)** will automatically set up the following in Google Cloud:
+**[autobase](https://github.com/vitabaks/autobase)** will automatically set up the following in Google Cloud:
 
-1. Virtual machine (with a dedicated data disk), with all cluster components installed and configured.
+1. GCP VM instances - a virtual machine (with a dedicated data disk), with all cluster components installed and configured.
 2. GCP Proxy Network Load Balancer to serve as the entry point for database connections.
 3. GCP Bucket, and configured backups using pgBackRest.
 
@@ -18,7 +18,7 @@ All components are installed within your cloud account.
 
 ### Prerequisites
 
-You will need the service account credentials (in JSON or base64 format) to deploy the PostgreSQL Cluster to your Google Cloud account.
+You will need the service account credentials (in JSON or base64 format) to deploy the PostgreSQL cluster to your Google Cloud account.
 See the [official documentation](https://cloud.google.com/iam/docs/keys-create-delete) for instructions on creating a service account key.
 
 :::note
@@ -37,7 +37,7 @@ Select the type of server with the required amount of CPU and RAM.
 
 ![instance-type](/img/instance-type-gcp.png)
 
-Select the number of servers to be created for the PostgreSQL Cluster.
+Select the number of servers to be created for the PostgreSQL cluster.
 
 :::warning
 Please note that at least 3 servers are required to ensure high availability.

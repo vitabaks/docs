@@ -32,8 +32,21 @@
 
 /* Logo text styles */
 .navbar__title {
-  font-weight: 700;
-  font-size: 1.1rem;
-  line-height: 1.1;
-  white-space: pre-wrap;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.navbar {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
