@@ -73,7 +73,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/autobase-logo.png',
+      image: 'img/autobase-social-card.png',
       /*
       announcementBar: {
         content:
