@@ -8,7 +8,7 @@ const Plans = [
     description: [
       '* Response time: 12-48 hours',
       '* Basic Personalized support',
-      'For individuals and hobby projects that require infrequent but reliable personal support.',
+      'For individual developers and hobby projects that require infrequent but reliable personal support.',
     ],
     link: '/docs/sponsor',
     buttonText: 'Get Started',
@@ -20,7 +20,7 @@ const Plans = [
     description: [
       '* Response time: 4-12 hours',
       '* Personalized support (PostgreSQL Consulting)',
-      'For small businesses and startups looking to ensure continuous maintenance and support for their database clusters',
+      'For small businesses and startups looking to ensure continuous maintenance and support for their database clusters.',
     ],
     link: '/docs/sponsor',
     buttonText: 'Get Started',
@@ -32,7 +32,7 @@ const Plans = [
     description: [
       '* Response time: 1-4 hours',
       '* Extended Personalized support (PostgreSQL Expert Consulting)',
-      'For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters',
+      'For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters.',
     ],
     link: '/docs/sponsor',
     buttonText: 'Get Started',
@@ -67,12 +67,10 @@ function Plan({ title, price, description, link, buttonText, isMail }) {
 export default function SubscriptionPlans() {
   return (
     <section>
-      <h1 style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>Pricing</h1>
-      <p style={{ textAlign: 'center', marginTop: '1px', marginBottom: '1px'}}>
-        We offer support packages that include <strong> DBA as a Service (DBAaaS)</strong>, providing your database cluster with a dedicated PostgreSQL expert.
-      </p>
-      <p style={{ textAlign: 'center', marginTop: '1px', marginBottom: '20px'}}>
-      Each support package includes access to a private Slack channel, where you can directly communicate with our DBA for timely assistance.
+      <h1 className={styles.pricingHeader}>Pricing</h1>
+      <p className={styles.pricingIntro}>
+        Each subscription package includes a <strong>DBA as a Service (DBAaaS)</strong>, providing your database cluster with a dedicated PostgreSQL expert (DBA).
+        You will get direct access to a private Slack channel for direct communication and support.
       </p>
       <div className={styles.plansContainer}>
         {Plans.map((plan, idx) => (
