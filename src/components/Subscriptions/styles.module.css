@@ -7,16 +7,14 @@
 
 /* Background color for a light theme */
 [data-theme="light"] {
-  --background-color: #F6F8FA;
+  --background-color: transparent;
   --text-color: #242526;
-  --button-hover-color: #ffffff;
 }
 
 /* Background color for a dark theme */
 [data-theme="dark"] {
   --background-color: #242526;
   --text-color: #ffffff;
-  --button-hover-color: #0366d6;
 }
 
 .planCard {
@@ -28,6 +26,7 @@
   width: 340px;
   text-align: left;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -95,22 +94,21 @@
 }
 
 .planButton {
-  background-color: transparent;
-  color: #0366d6;
+  background-color: #0366d6;
+  color: #ffffff;
   padding: 8px 16px;
   text-decoration: none;
   text-align: center;
   border-radius: 8px;
   font-size: 14px;
   font-weight: bold;
-  border: 1px solid #0366d6;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  width: 100%;
+  width: 90%;
 }
 
 .planButton:hover {
-  background-color: #0366d6;
-  color: var(--button-hover-color);
+  background-color: #227ce3;
+  color: #ffffff;
   text-decoration: none;
 }
 
