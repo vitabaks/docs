@@ -3,51 +3,39 @@ import styles from './styles.module.css';
 
 const Plans = [
   {
-    title: 'FREE',
-    price: '$0/month',
-    description: [
-      'Response time: not guarantee',
-      'Community support',
-      'Depends on the availability and goodwill of community members',
-    ],
-    link: 'https://github.com/vitabaks/autobase/issues/new',
-    buttonText: 'Open issue',
-    isMail: false,
-  },
-  {
-    title: 'Small Sponsor',
+    title: 'Basic',
     price: '$300/month',
     description: [
-      'Response time: 12-48 hours',
-      'Basic Personalized support',
+      '* Response time: 12-48 hours',
+      '* Basic Personalized support',
       'For individuals and hobby projects that require infrequent but reliable personal support.',
     ],
     link: '/docs/sponsor',
-    buttonText: 'Start now',
+    buttonText: 'Get Started',
     isMail: false,
   },
   {
-    title: 'Sponsor',
+    title: 'Standard',
     price: '$1000/month',
     description: [
-      'Response time: 4-12 hours',
-      'Personalized support (PostgreSQL Consulting)',
+      '* Response time: 4-12 hours',
+      '* Personalized support (PostgreSQL Consulting)',
       'For small businesses and startups looking to ensure continuous maintenance and support for their database clusters',
     ],
     link: '/docs/sponsor',
-    buttonText: 'Start now',
+    buttonText: 'Get Started',
     isMail: false,
   },
   {
-    title: 'Sponsor+',
+    title: 'Professional',
     price: '$2500/month',
     description: [
-      'Response time: 1-4 hours',
-      'Extended Personalized support (PostgreSQL Expert Consulting)',
+      '* Response time: 1-4 hours',
+      '* Extended Personalized support (PostgreSQL Expert Consulting)',
       'For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters',
     ],
     link: '/docs/sponsor',
-    buttonText: 'Start now',
+    buttonText: 'Get Started',
     isMail: false,
   },
 ];
@@ -79,9 +67,12 @@ function Plan({ title, price, description, link, buttonText, isMail }) {
 export default function SubscriptionPlans() {
   return (
     <section>
-      <h1 style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>Support Subscription Plans</h1>
-      <p style={{ textAlign: 'center' }}>
-        Support is available by subscription for project sponsors, with access to a private Slack channel for direct assistance.
+      <h1 style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>Pricing</h1>
+      <p style={{ textAlign: 'center', marginTop: '1px', marginBottom: '1px'}}>
+        We offer support packages that include <strong> DBA as a Service (DBAaaS)</strong>, providing your database cluster with a dedicated PostgreSQL expert.
+      </p>
+      <p style={{ textAlign: 'center', marginTop: '1px', marginBottom: '20px'}}>
+      Each support package includes access to a private Slack channel, where you can directly communicate with our DBA for timely assistance.
       </p>
       <div className={styles.plansContainer}>
         {Plans.map((plan, idx) => (
