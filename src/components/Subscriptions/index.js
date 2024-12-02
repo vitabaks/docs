@@ -70,7 +70,7 @@ export default function SubscriptionPlans() {
       <h1 className={styles.pricingHeader}>Pricing</h1>
       <p className={styles.pricingIntro}>
         Each subscription package includes a <strong>DBA as a Service (DBAaaS)</strong>, providing your database cluster with a dedicated PostgreSQL expert (DBA).
-        You will get direct access to a private Slack channel for direct communication and support.
+        You will get access to a private Slack channel for direct communication and support.
       </p>
       <div className={styles.plansContainer}>
         {Plans.map((plan, idx) => (
