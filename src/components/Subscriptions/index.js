@@ -5,11 +5,13 @@ const Plans = [
   {
     title: 'Basic',
     price: '$300/month',
-    description: [
-      '* Response time: 12-48 hours',
-      '* Basic Personalized support',
-      'For individual developers and hobby projects that require infrequent but reliable personal support.',
+    features: [
+      'Response time: 12-48 hours',
+      'Up to 2 clusters',
+      'Basic Personalized support',
     ],
+    description:
+      'For individual developers and hobby projects that require infrequent but reliable personal support.',
     link: '/docs/sponsor',
     buttonText: 'Get Started',
     isMail: false,
@@ -17,11 +19,13 @@ const Plans = [
   {
     title: 'Standard',
     price: '$1000/month',
-    description: [
-      '* Response time: 4-12 hours',
-      '* Personalized support (PostgreSQL Consulting)',
-      'For small businesses and startups looking to ensure continuous maintenance and support for their database clusters.',
+    features: [
+      'Response time: 4-12 hours',
+      'Up to 10 clusters',
+      'Personalized support (PostgreSQL Consulting)',
     ],
+    description:
+      'For small businesses and startups looking to ensure continuous maintenance and support for their database clusters.',
     link: '/docs/sponsor',
     buttonText: 'Get Started',
     isMail: false,
@@ -29,27 +33,32 @@ const Plans = [
   {
     title: 'Professional',
     price: '$2500/month',
-    description: [
-      '* Response time: 1-4 hours',
-      '* Extended Personalized support (PostgreSQL Expert Consulting)',
-      'For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters.',
+    features: [
+      'Response time: 1-4 hours',
+      'Up to 100 clusters',
+      'Extended Personalized support (PostgreSQL Expert Consulting)',
     ],
+    description:
+      'For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters.',
     link: '/docs/sponsor',
     buttonText: 'Get Started',
     isMail: false,
   },
 ];
 
-function Plan({ title, price, description, link, buttonText, isMail }) {
+function Plan({ title, price, features, description, link, buttonText, isMail }) {
   return (
     <div className={styles.planCard}>
       <h3 className={styles.planTitle}>{title}</h3>
       <p className={styles.planPrice}>{price}</p>
-      <ul className={styles.planDescription}>
-        {description.map((item, idx) => (
-          <li key={idx}>{item}</li>
+      <ul className={styles.planFeatures}>
+        {features.map((feature, idx) => (
+          <li key={idx}>
+            <span className={styles.checkIcon}>✔</span> {feature}
+          </li>
         ))}
       </ul>
+      <p className={styles.planDescription}>{description}</p>
       <div className={styles.planButtonContainer}>
         <a
           href={link}
@@ -80,7 +89,7 @@ export default function SubscriptionPlans() {
       <div className={styles.enterpriseTextContainer}>
       <p className={styles.enterpriseFooterText}>
         Need <strong>Enterprise</strong> support? For large organizations, we offer personalized support packages for complex database infrastructures, 
-        including ultra-fast response times, 24/7 support, remote DBA, regular health checks, and database cluster management (upon request). 
+        including ultra-fast response times, 24/7 support, remote DBA, regular health checks, performance optimization, and database cluster management (upon request). 
         Please <a href="mailto:info@autobase.tech">contact us</a> for more details.
       </p>
       </div>

@@ -76,6 +76,25 @@
   color: var(--text-color);
 }
 
+.planFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.planFeatures li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.checkIcon {
+  color: #28a745;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
 .planDescription {
   list-style: none;
   padding: 0;
