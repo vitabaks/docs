@@ -5,22 +5,22 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'High-Availability (24/7 Uptime)',
+    title: 'Automated Self-Managed Database',
     borderColor: '#f39c12',
     description: (
       <>
-        Ensure uninterrupted operation of your PostgreSQL databases with built-in replication and automated failover.
-        Our solution guarantees minimal downtime, protecting your data from unexpected failures and ensuring continuous service availability.
+        A powerful alternative to cloud-managed databases like Amazon RDS, Google Cloud SQL, Azure Database, and more — offering a fully automated, self-managed database experience.
+        Automate failover, backups, restores, upgrades, scaling, and more with ease.
       </>
     ),
   },
   {
-    title: 'Automated Self-Managed Database',
+    title: 'High-Availability Postgres Cluster',
     borderColor: '#a3a1fb',
     description: (
       <>
-        A powerful alternative to cloud-managed databases like Amazon RDS, Google Cloud SQL, Azure Database, and others — with a fully automated, self-managed database.
-        Optimize performance, reduce costs, and gain full control over your infrastructure and data.
+        Ensure uninterrupted operation of your PostgreSQL databases with built-in replication and automated failover.
+        Our solution guarantees minimal downtime, protecting your data from unexpected failures and ensuring continuous service availability.
       </>
     ),
   },
