@@ -54,6 +54,7 @@ run-playbook:
         --extra-vars "@$CI_PROJECT_DIR/vars/main.yml" \
         --extra-vars "@$CI_PROJECT_DIR/vars/Debian.yml" \
         --extra-vars "@$CI_PROJECT_DIR/vars/system.yml" \
+        --extra-vars "mask_password=true" \
         --tags $TAG
 ```
 
@@ -142,6 +143,7 @@ run-check-diff:
         --extra-vars "@$CI_PROJECT_DIR/vars/update.yml" \
         --extra-vars "@$CI_PROJECT_DIR/vars/upgrade.yml" \
         --extra-vars "@$CI_PROJECT_DIR/vars/secrets.yml" \
+        --extra-vars "mask_password=true" \
         --vault-password-file $ANSIBLE_VAULT_PASS_FILE \
         --tags $TAG \
         --diff --check
@@ -159,6 +161,7 @@ run-playbook:
         --extra-vars "@$CI_PROJECT_DIR/vars/update.yml" \
         --extra-vars "@$CI_PROJECT_DIR/vars/upgrade.yml" \
         --extra-vars "@$CI_PROJECT_DIR/vars/secrets.yml" \
+        --extra-vars "mask_password=true" \
         --vault-password-file $ANSIBLE_VAULT_PASS_FILE \
         --tags $TAG
   timeout: 10h
