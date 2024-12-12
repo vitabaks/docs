@@ -377,6 +377,7 @@ wal_g_json:
   - { option: "WALG_UPLOAD_CONCURRENCY", value: "2" }
   - { option: "WALG_UPLOAD_DISK_CONCURRENCY", value: "2" }
   - { option: "WALG_DOWNLOAD_CONCURRENCY", value: "4" }
+  - { option: "WALG_ALIVE_CHECK_INTERVAL", value: "1m" }
   - { option: "PGDATA", value: "{{ postgresql_data_dir }}" }
   - { option: "PGHOST", value: "{{ postgresql_unix_socket_dir }}" }
   - { option: "PGPORT", value: "{{ postgresql_port }}" }
@@ -406,6 +407,7 @@ wal_g_json:
   - { option: "WALG_UPLOAD_CONCURRENCY", value: "2" }
   - { option: "WALG_UPLOAD_DISK_CONCURRENCY", value: "2" }
   - { option: "WALG_DOWNLOAD_CONCURRENCY", value: "4" }
+  - { option: "WALG_ALIVE_CHECK_INTERVAL", value: "1m" }
   - { option: "PGDATA", value: "{{ postgresql_data_dir }}" }
   - { option: "PGHOST", value: "{{ postgresql_unix_socket_dir }}" }
   - { option: "PGPORT", value: "{{ postgresql_port }}" }
@@ -433,6 +435,7 @@ wal_g_json:
   - { option: "WALG_UPLOAD_CONCURRENCY", value: "2" }
   - { option: "WALG_UPLOAD_DISK_CONCURRENCY", value: "2" }
   - { option: "WALG_DOWNLOAD_CONCURRENCY", value: "4" }
+  - { option: "WALG_ALIVE_CHECK_INTERVAL", value: "1m" }
   - { option: "PGDATA", value: "{{ postgresql_data_dir }}" }
   - { option: "PGHOST", value: "{{ postgresql_unix_socket_dir }}" }
   - { option: "PGPORT", value: "{{ postgresql_port }}" }
@@ -461,6 +464,7 @@ wal_g_json:
   - { option: "WALG_UPLOAD_CONCURRENCY", value: "2" }
   - { option: "WALG_UPLOAD_DISK_CONCURRENCY", value: "2" }
   - { option: "WALG_DOWNLOAD_CONCURRENCY", value: "4" }
+  - { option: "WALG_ALIVE_CHECK_INTERVAL", value: "1m" }
   - { option: "PGDATA", value: "{{ postgresql_data_dir }}" }
   - { option: "PGHOST", value: "{{ postgresql_unix_socket_dir }}" }
   - { option: "PGPORT", value: "{{ postgresql_port }}" }
