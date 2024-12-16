@@ -37,12 +37,11 @@ docker run -d --name autobase-console \
   --publish 8080:8080 \
   --env PG_CONSOLE_API_URL=http://localhost:8080/api/v1 \
   --env PG_CONSOLE_AUTHORIZATION_TOKEN=secret_token \
-  --env PG_CONSOLE_DOCKER_IMAGE=autobase/automation:latest \
   --volume console_postgres:/var/lib/postgresql \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   --volume /tmp/ansible:/tmp/ansible \
   --restart=unless-stopped \
-  autobase/console:latest
+  autobase/console:2.1.0
 ```
 
 :::info
