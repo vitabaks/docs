@@ -32,7 +32,7 @@ stages:
   - test-connect
   - run-playbook
 
-image: autobase/automation:2.0.0
+image: autobase/automation:2.1.0
 
 variables:
     ANSIBLE_FORCE_COLOR: 'true'
@@ -106,7 +106,7 @@ stages:
   - run-check-diff
   - run-playbook
 
-image: autobase/automation:2.0.0
+image: autobase/automation:2.1.0
 
 variables:
     ANSIBLE_FORCE_COLOR: 'true'
