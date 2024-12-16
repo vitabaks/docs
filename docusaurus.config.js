@@ -78,8 +78,7 @@ const config = {
         content:
           '🎉️ <b><a target="_blank" href="https://github.com/vitabaks/autobase/releases/tag/2.1.0">autobase version 2.1.0 is out!</a></b> 🥳️',
           // '⭐️ If you like <b>autobase</b>, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/vitabaks/autobase">GitHub</a>! ⭐️',
-          backgroundColor: '#F6F8FA',
-          textColor: '#091E42',
+          backgroundColor: '#f39c12',
           isCloseable: true,
       },
       navbar: {
