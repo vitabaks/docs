@@ -38,7 +38,7 @@ function HomepageHeader() {
 
 function DemoEmbed() {
   return (
-    <div style={{ position: 'relative', boxSizing: 'content-box', maxHeight: '80vh', width: '100%', aspectRatio: '1.643835616438356', padding: '40px 0', marginBottom: '20px' }}>
+    <div style={{ position: 'relative', boxSizing: 'content-box', maxHeight: '80vh', width: '100%', aspectRatio: '1.643835616438356', padding: '40px 0' }}>
       <iframe
         src="https://app.supademo.com/embed/cm17ui80e035n13s2q3lkg5he?embed_v=2"
         title="Autobase Console (UI) demo"

@@ -75,7 +75,7 @@ function Plan({ title, price, features, description, link, buttonText, isMail })
 
 export default function SubscriptionPlans() {
   return (
-    <section>
+    <section style={{ marginTop: '60px' }}>
       <h1 className={styles.pricingHeader}>Pricing</h1>
       <p className={styles.pricingIntro}>
         Each subscription package includes a <strong>DBA as a Service (DBAaaS)</strong>, providing your database cluster with a dedicated PostgreSQL expert (DBA).
