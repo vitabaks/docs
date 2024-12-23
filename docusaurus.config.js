@@ -145,8 +145,8 @@ const config = {
             title: 'Social',
             items: [
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/VKukharik',
+                label: 'X (Twitter)',
+                href: 'https://twitter.com/autobase_tech',
               },
             ],
           },
