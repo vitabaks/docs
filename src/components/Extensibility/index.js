@@ -12,8 +12,8 @@ const blocks = [
         to build and deploy Retrieval Augmented Generation (RAG) applications directly within PostgreSQL. Achieve high-performance embedding search and cost-efficient storage, making PostgreSQL the ideal platform for your AI applications.
       </>
     ),
-    lightImage: '/img/vector-search.png',
-    darkImage: '/img/vector-search.png',
+    lightImage: require('@site/static/img/vector-search.png').default,
+    darkImage: require('@site/static/img/vector-search.png').default,
     reverse: false,
   },
   {
@@ -24,8 +24,8 @@ const blocks = [
         Boost search capabilities with BM25 scoring, custom tokenizers, and hybrid search. Seamlessly query and ingest data directly from S3, GCS, Azure Blob Storage, and more.
       </>
     ),
-    lightImage: '/img/paradedb.png',
-    darkImage: '/img/paradedb.png',
+    lightImage: require('@site/static/img/paradedb.png').default,
+    darkImage: require('@site/static/img/paradedb.png').default,
     reverse: true,
   },
   {
@@ -36,8 +36,8 @@ const blocks = [
         Store and query data quickly and efficiently with automatic partitioning, columnar compression, and real-time aggregation.
       </>
     ),
-    lightImage: '/img/timescaledb.png',
-    darkImage: '/img/timescaledb.dark.png',
+    lightImage: require('@site/static/img/timescaledb.png').default,
+    darkImage: require('@site/static/img/timescaledb.dark.png').default,
     reverse: false,
   },
   {
@@ -47,8 +47,8 @@ const blocks = [
        Enhance PostgreSQL with <a href="https://postgis.net/" target="_blank" rel="noopener noreferrer">PostGIS</a> to unlock advanced geospatial capabilities. Seamlessly store, index, and query geographic data, making it ideal for geospatial analysis and mapping applications.
       </>
     ),
-    lightImage: '/img/postgis.png',
-    darkImage: '/img/postgis.png',
+    lightImage: require('@site/static/img/postgis.png').default,
+    darkImage: require('@site/static/img/postgis.png').default,
     reverse: true,
   },
   {
@@ -59,8 +59,8 @@ const blocks = [
         Effortlessly scale from a single cluster to a distributed one, making it the ideal solution when a single cluster is no longer sufficient. Achieve seamless sharding and handle larger workloads while retaining the full power of PostgreSQL at any scale.
       </>
     ),
-    lightImage: '/img/citus.png',
-    darkImage: '/img/citus.dark.png',
+    lightImage: require('@site/static/img/citus.png').default,
+    darkImage: require('@site/static/img/citus.dark.png').default,
     reverse: false,
   },
   {
@@ -72,8 +72,8 @@ const blocks = [
         to equip your database with powerful capabilities tailored to your project’s unique requirements.
       </>
     ),
-    lightImage: '/img/extension.png',
-    darkImage: '/img/extension.png',
+    lightImage: require('@site/static/img/extension.png').default,
+    darkImage: require('@site/static/img/extension.png').default,
     reverse: true,
   },
 ];

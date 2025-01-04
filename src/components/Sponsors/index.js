@@ -5,20 +5,20 @@ import styles from './styles.module.css';
 const Sponsors = [
   {
     name: 'edclub',
-    lightImage: '/img/sponsors/edclub.png',
-    darkImage: '/img/sponsors/edclub.dark.png',
+    lightImage: require('@site/static/img/sponsors/edclub.png').default,
+    darkImage: require('@site/static/img/sponsors/edclub.dark.png').default,
     link: 'https://www.edclub.com',
   },
   {
     name: 'gs-labs',
-    lightImage: '/img/sponsors/gs-labs.png',
-    darkImage: '/img/sponsors/gs-labs.dark.png',
+    lightImage: require('@site/static/img/sponsors/gs-labs.png').default,
+    darkImage: require('@site/static/img/sponsors/gs-labs.dark.png').default,
     link: 'https://gs-labs.ru',
   },
   {
     name: 'Postgres.AI',
-    lightImage: '/img/sponsors/postgresai.png',
-    darkImage: '/img/sponsors/postgresai.dark.png',
+    lightImage: require('@site/static/img/sponsors/postgresai.png').default,
+    darkImage: require('@site/static/img/sponsors/postgresai.dark.png').default,
     link: 'https://postgres.ai',
   },
 ];
