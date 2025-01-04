@@ -8,7 +8,7 @@ const ExtensionsTable = () => {
   const [categories, setCategories] = useState([]);
   const [repos, setRepos] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState('ALL');
-  const [versionFilter, setVersionFilter] = useState('16');
+  const [versionFilter, setVersionFilter] = useState('17');
   const [typeFilter, setTypeFilter] = useState('DEB');
   const [repoFilter, setRepoFilter] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,7 +25,7 @@ const ExtensionsTable = () => {
         setData(data);
         setCategories(getUniqueCategories(data));
         setRepos(getUniqueRepos(data, 'DEB'));
-        applyFilters(data, 'ALL', '16', 'DEB', 'ALL', '');
+        applyFilters(data, 'ALL', '17', 'DEB', 'ALL', '');
       },
       error: (error) => {
         console.error('Error loading CSV:', error);
