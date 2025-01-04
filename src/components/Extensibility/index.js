@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useColorMode } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
@@ -80,11 +80,6 @@ const blocks = [
 
 export default function Extensibility() {
   const { colorMode } = useColorMode();
-  const [currentMode, setCurrentMode] = useState(colorMode);
-
-  useEffect(() => {
-    setCurrentMode(colorMode);
-  }, [colorMode]);
 
   return (
     <section className={styles.extensibilitySection}>
@@ -98,7 +93,7 @@ export default function Extensibility() {
           >
             <div className={styles.extensibilityImage}>
               <img
-                src={currentMode === 'dark' ? block.darkImage : block.lightImage}
+                src={colorMode === 'dark' ? block.darkImage : block.lightImage}
                 alt={block.title}
               />
             </div>

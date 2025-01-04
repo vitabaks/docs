@@ -11,7 +11,6 @@ const CostComparisonComponent = () => {
   const [selectedSize, setSelectedSize] = useState("small");
   const [aspectRatio, setAspectRatio] = useState(1.7);
   const { colorMode } = useColorMode();
-  const isDarkTheme = colorMode === 'dark';
 
   useEffect(() => {
     const handleResize = () => {
@@ -179,24 +178,18 @@ const CostComparisonComponent = () => {
             return `$${context.raw}/month`;
           }
         },
-        bodyFont: {
-          size: 14
-        },
-        titleFont: {
-          size: 16
-        },
+        bodyFont: { size: 14 },
+        titleFont: { size: 16 },
       }
     },
     scales: {
-      x: { 
+      x: {
         stacked: true,
-        display: true, 
+        display: true,
         grid: { display: false },
         ticks: {
-          font: {
-            size: 14,
-          },
-          color: isDarkTheme ? '#FFFFFF' : '#000000',
+          font: { size: 14 },
+          color: colorMode === 'dark' ? '#FFFFFF' : '#000000',
         },
         barPercentage: 1.0,
         categoryPercentage: 0.2,
@@ -207,10 +200,8 @@ const CostComparisonComponent = () => {
         title: { display: true, text: "Cost (USD/month)" },
         ticks: {
           callback: (value) => `$${value}`,
-          font: {
-            size: 14,
-          },
-          color: isDarkTheme ? '#FFFFFF' : '#000000',
+          font: { size: 14 },
+          color: colorMode === 'dark' ? '#FFFFFF' : '#000000',
         },
       },
     },

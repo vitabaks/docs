@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useColorMode } from '@docusaurus/theme-common';
 
 export default function SchemeSwitcher() {
   const { colorMode } = useColorMode();
-  const [isDarkTheme, setIsDarkTheme] = useState(colorMode === 'dark');
-
-  useEffect(() => {
-    setIsDarkTheme(colorMode === 'dark');
-  }, [colorMode]);
 
   return (
     <img
       src={
-        isDarkTheme
+        colorMode === 'dark'
           ? require('@site/static/img/postgresql_cluster.dark_mode.png').default
           : require('@site/static/img/postgresql_cluster.png').default
       }
