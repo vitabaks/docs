@@ -71,7 +71,7 @@
 
 .planPrice {
   font-size: 1.2rem;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
   color: var(--text-color);
 }
@@ -86,7 +86,7 @@
 .planFeatures li {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .checkIcon {

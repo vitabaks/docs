@@ -8,10 +8,11 @@ const Plans = [
     features: [
       'Response time: 12-48 hours',
       'Up to 2 clusters',
-      'Basic Personalized support',
+      'Up to 5 hours of DBA',
+      'PostgreSQL Consulting (live chat)',
     ],
     description:
-      'For individual developers and hobby projects that require infrequent but reliable personal support.',
+      'Basic Personalized support. For individual developers and hobby projects that require infrequent but reliable personal support.',
     link: '/docs/sponsor',
     buttonText: 'Get Started',
     isMail: false,
@@ -21,11 +22,13 @@ const Plans = [
     price: '$1000/month',
     features: [
       'Response time: 4-12 hours',
-      'Up to 10 clusters',
-      'Personalized support (PostgreSQL Consulting)',
+      'Up to 20 clusters',
+      'Up to 10 hours of DBA',
+      'PostgreSQL Consulting (live chat)',
+      'Database Cluster Management (upon request)',
     ],
     description:
-      'For small businesses and startups looking to ensure continuous maintenance and support for their database clusters.',
+      'Personalized support (PostgreSQL Consulting). For small businesses and startups looking to ensure continuous maintenance and support for their database clusters.',
     link: '/docs/sponsor',
     buttonText: 'Get Started',
     isMail: false,
@@ -36,10 +39,14 @@ const Plans = [
     features: [
       'Response time: 1-4 hours',
       'Up to 100 clusters',
-      'Extended Personalized support (PostgreSQL Expert Consulting)',
+      'Up to 20 hours of DBA',
+      'PostgreSQL Consulting (live chat)',
+      'Database Cluster Management',
+      'Monitoring (health checks)',
+      'Performance Optimization',
     ],
     description:
-      'For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters.',
+      'Extended Personalized support (PostgreSQL Expert Consulting). For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters.',
     link: '/docs/sponsor',
     buttonText: 'Get Started',
     isMail: false,
