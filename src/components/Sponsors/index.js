@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useColorMode } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
@@ -25,9 +25,17 @@ const Sponsors = [
 
 function Sponsor({ name, lightImage, darkImage, link }) {
   const { colorMode } = useColorMode();
+  const [currentMode, setCurrentMode] = useState(null);
 
-  // Determine the image depending on the current theme
-  const image = colorMode === 'dark' ? darkImage : lightImage;
+  useEffect(() => {
+    setCurrentMode(colorMode);
+  }, [colorMode]);
+
+  if (currentMode === null) {
+    return null;
+  }
+
+  const image = currentMode === 'dark' ? darkImage : lightImage;
 
   return (
     <div className={styles.Sponsor} style={{ marginBottom: '30px' }}>
