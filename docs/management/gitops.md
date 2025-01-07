@@ -171,6 +171,171 @@ run-playbook:
 
 </details>
 
+Here’s another example of a CI configuration that manages multiple clusters within a single repository, separated by environments.
+
+<details>
+<summary>Click here to expand...</summary>
+
+```yaml
+stages:
+  - test-connect
+  - run-check-diff
+  - run-playbook
+
+image: autobase/automation:2.1.0
+
+variables:
+  ANSIBLE_FORCE_COLOR: 'true'
+  PLAYBOOK:
+    value: "config_pgcluster.yml"
+    description: "name of playbook, e.g. config_pgcluster.yml or update_pgcluster.yml"
+  TAG:
+    value: "all"
+    description: "tags for ansible-playbook, e.g. patroni or pgbouncer or all"
+  ENV:
+    value: "staging"
+    description: "Target environment (staging or production) for playbook execution."
+
+before_script:
+  - cd /autobase/automation
+  - echo "$ANSIBLE_SSH_PRIVATE_KEY" > ./ansible_ssh_key
+  - chmod 600 ./ansible_ssh_key
+  - echo "$ANSIBLE_VAULT_PASS" > ./vault_pass
+  - chmod 600 ./vault_pass
+
+# Job templates
+.test_connect_template: &test_connect_template
+  stage: test-connect
+  script:
+    - |
+      ansible all \
+        --private-key ./ansible_ssh_key \
+        --inventory $CI_PROJECT_DIR/$ENV/inventory \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/secrets.yml" \
+        --vault-password-file ./vault_pass \
+        -m ping
+
+.run_check_diff_template: &run_check_diff_template
+  stage: run-check-diff
+  script:
+    - |
+      ansible-playbook $PLAYBOOK \
+        --private-key ./ansible_ssh_key \
+        --inventory $CI_PROJECT_DIR/$ENV/inventory \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/main.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/Debian.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/system.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/update.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/upgrade.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/secrets.yml" \
+        --extra-vars "mask_password=true" \
+        --vault-password-file ./vault_pass \
+        --tags $TAG \
+        --diff --check
+  allow_failure: true
+
+.run_playbook_template: &run_playbook_template
+  stage: run-playbook
+  needs:
+    - run-check-diff-staging
+    - run-check-diff-production
+  script:
+    - |
+      ansible-playbook $PLAYBOOK \
+        --private-key ./ansible_ssh_key \
+        --inventory $CI_PROJECT_DIR/$ENV/inventory \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/main.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/Debian.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/system.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/update.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/upgrade.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/secrets.yml" \
+        --extra-vars "mask_password=true" \
+        --vault-password-file ./vault_pass \
+        --tags $TAG
+  timeout: 10h
+
+# Staging jobs
+test-connect-staging:
+  <<: *test_connect_template
+  variables:
+    ENV: staging
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      changes:
+        - staging/*
+        - staging/vars/*
+    - if: '$ENV == "staging"'
+      when: manual
+
+run-check-diff-staging:
+  <<: *run_check_diff_template
+  variables:
+    ENV: staging
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      changes:
+        - staging/*
+        - staging/vars/*
+    - if: '$ENV == "staging"'
+      when: manual
+
+run-playbook-staging:
+  <<: *run_playbook_template
+  variables:
+    ENV: staging
+  needs:
+    - run-check-diff-staging
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      changes:
+        - staging/*
+        - staging/vars/*
+    - if: '$ENV == "staging"'
+      when: manual
+
+# Production jobs
+test-connect-production:
+  <<: *test_connect_template
+  variables:
+    ENV: production
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v(\d+\.)?(\d+\.)?(\d+)$/'
+      changes:
+        - production/*
+        - production/vars/*
+    - if: '$ENV == "production"'
+      when: manual
+
+run-check-diff-production:
+  <<: *run_check_diff_template
+  variables:
+    ENV: production
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v(\d+\.)?(\d+\.)?(\d+)$/'
+      changes:
+        - production/*
+        - production/vars/*
+    - if: '$ENV == "production"'
+      when: manual
+
+run-playbook-production:
+  <<: *run_playbook_template
+  variables:
+    ENV: production
+  needs:
+    - run-check-diff-production
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v(\d+\.)?(\d+\.)?(\d+)$/'
+      changes:
+        - production/*
+        - production/vars/*
+    - if: '$ENV == "production"'
+      when: manual
+```
+
+</details>
+
   </TabItem>
   <TabItem value="GitHub" label="GitHub" default>
 
