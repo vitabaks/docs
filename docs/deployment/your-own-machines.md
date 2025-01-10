@@ -116,9 +116,11 @@ We also support converting your existing PostgreSQL installation into a high-ava
 Please note that during the cluster setup process, your existing PostgreSQL service will be automatically restarted, leading to a brief period of database downtime. Plan this transition accordingly.
 :::
 
-1. Edit the `inventory` file
+1. Edit the inventory file
 
-Specify IP addresses and connection settings (`ansible_user`, `ansible_ssh_pass`, or `ansible_ssh_private_key_file`) for your environment:
+Specify IP addresses and connection settings for your environment:
+- `ansible_user`
+- `ansible_ssh_pass` or `ansible_ssh_private_key_file`
 
 ```
 nano inventory
@@ -155,14 +157,42 @@ ansible all -m ping
 ansible-playbook deploy_pgcluster.yml
 ```
 
-#### Deploy Cluster with TimescaleDB
+#### Deploy Cluster with TimescaleDB:
 
-To deploy a PostgreSQL High-Availability Cluster with the [TimescaleDB](https://github.com/timescale/timescaledb) extension, add the `enable_timescale` variable:
+<details>
+<summary>Click here to expand...</summary>
 
-Example:
+To deploy a [TimescaleDB](https://github.com/timescale/timescaledb) HA cluster, set the `enable_timescale` variable:
+
 ```
 ansible-playbook deploy_pgcluster.yml -e "enable_timescale=true"
 ```
+
+</details>
+
+#### How to start from scratch:
+
+<details>
+<summary>Click here to expand...</summary>
+
+If you need to start from scratch, you can use the `remove_cluster.yml` playbook. Run the following command to remove the specified components:
+
+```
+ansible-playbook remove_cluster.yml -e "remove_postgres=true remove_etcd=true"
+```
+
+This command will delete the specified components, allowing you to start a new installation.
+
+Available variables:
+- `remove_postgres`: stop the PostgreSQL service and remove data.
+- `remove_etcd`: stop the ETCD service and remove data.
+- `remove_consul`: stop the Consul service and remove data.
+
+:::warning
+**Caution:** be careful when running this command in a production environment.
+:::
+
+</details>
 
   </TabItem>
 </Tabs>
