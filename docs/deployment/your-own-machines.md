@@ -10,13 +10,11 @@ Deploy on existing servers
 This method is suitable for deployment on existing servers, whether with another cloud provider or in your own data center.
 :::
 
-## Prerequisites
+#### Prerequisites
 
 You will need `root` access or a user with `sudo` privileges to access the servers via SSH. You can use your private SSH key (assuming the corresponding public key has already been added to the servers), or a username and password if password access is enabled on your servers.
 
 See also the [Requirements](../overview/requirements.md) and [Compatibility](../overview/compatibility.md) pages.
-
-## Deployment
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
