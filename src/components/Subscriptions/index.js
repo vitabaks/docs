@@ -6,13 +6,14 @@ const Plans = [
     title: 'Basic',
     price: '$300/month',
     features: [
-      'Response time: 12-48 hours',
-      'Up to 2 clusters',
-      'Up to 5 hours of DBA',
-      'PostgreSQL Consulting (live chat)',
+      'Autobase automated tools',
+      'Up to 2 PostgreSQL clusters',
+      'PostgreSQL Consulting',
+      '1 hour of DBA per month',
+      'Support response time: 12-48 hours',
     ],
     description:
-      'Basic Personalized support. For individual developers and hobby projects that require infrequent but reliable personal support.',
+      'The basic Autobase package includes assistance with initial deployment and seamless integration into your infrastructure.',
     link: '/docs/sponsor',
     buttonText: 'Get Started',
     isMail: false,
@@ -21,14 +22,15 @@ const Plans = [
     title: 'Standard',
     price: '$1000/month',
     features: [
-      'Response time: 4-12 hours',
-      'Up to 20 clusters',
-      'Up to 10 hours of DBA',
-      'PostgreSQL Consulting (live chat)',
+      'Autobase automated tools',
+      'Up to 20 PostgreSQL clusters',
+      'PostgreSQL Consulting',
+      'Up to 5 hours of DBA per month',
       'Database Cluster Management (upon request)',
+      'Support response time: 4-12 hours',
     ],
     description:
-      'Personalized support (PostgreSQL Consulting). For small businesses and startups looking to ensure continuous maintenance and support for their database clusters.',
+      'For small businesses and startups looking to ensure continuous maintenance and support for their database clusters.',
     link: '/docs/sponsor',
     buttonText: 'Get Started',
     isMail: false,
@@ -37,16 +39,17 @@ const Plans = [
     title: 'Professional',
     price: '$2500/month',
     features: [
-      'Response time: 1-4 hours',
-      'Up to 100 clusters',
-      'Up to 20 hours of DBA',
-      'PostgreSQL Consulting (live chat)',
+      'Autobase automated tools',
+      'Up to 100 PostgreSQL clusters',
+      'PostgreSQL Consulting',
+      'Up to 10 hours of DBA per month',
       'Database Cluster Management',
       'Monitoring (health checks)',
       'Performance Optimization',
+      'Support response time: 1-4 hours',
     ],
     description:
-      'Extended Personalized support (PostgreSQL Expert Consulting). For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters.',
+      'For organizations, that face unique challenges in managing large-scale, high-load databases or numerous database clusters.',
     link: '/docs/sponsor',
     buttonText: 'Get Started',
     isMail: false,
@@ -85,7 +88,7 @@ export default function SubscriptionPlans() {
     <section style={{ marginTop: '60px' }}>
       <h1 className={styles.pricingHeader}>Pricing</h1>
       <p className={styles.pricingIntro}>
-        Each subscription package includes a <strong>DBA as a Service (DBAaaS)</strong>, providing your database cluster with a dedicated PostgreSQL expert (DBA).
+        Each <strong>Autobase</strong> package includes a <strong>DBA as a Service (DBAaaS)</strong>, providing your database cluster with a dedicated PostgreSQL expert (DBA).
         You will get access to a private Slack channel for direct communication and support.
       </p>
       <div className={styles.plansContainer}>
