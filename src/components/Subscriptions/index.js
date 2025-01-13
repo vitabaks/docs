@@ -6,7 +6,7 @@ const Plans = [
     title: 'Basic',
     price: '$300/month',
     features: [
-      'Autobase automated tools',
+      'Autobase automation tools',
       'Up to 2 PostgreSQL clusters',
       'PostgreSQL Consulting',
       '1 hour of DBA per month',
@@ -22,7 +22,7 @@ const Plans = [
     title: 'Standard',
     price: '$1000/month',
     features: [
-      'Autobase automated tools',
+      'Autobase automation tools',
       'Up to 20 PostgreSQL clusters',
       'PostgreSQL Consulting',
       'Up to 5 hours of DBA per month',
@@ -39,7 +39,7 @@ const Plans = [
     title: 'Professional',
     price: '$2500/month',
     features: [
-      'Autobase automated tools',
+      'Autobase automation tools',
       'Up to 100 PostgreSQL clusters',
       'PostgreSQL Consulting',
       'Up to 10 hours of DBA per month',
