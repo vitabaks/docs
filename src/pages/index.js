@@ -22,7 +22,7 @@ function HomepageHeader() {
           Automated database platform for PostgreSQL®
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.2rem', fontWeight: '400', marginBottom: '40px' }}>
-          Open source alternative to cloud-managed databases (your own DBaaS)
+          Open source alternative to cloud-managed databases (your own self-hosted DBaaS)
         </Heading>
         <div className={styles.buttons}>
           <Link
