@@ -26,7 +26,7 @@ const Plans = [
       'Up to 20 PostgreSQL clusters',
       'PostgreSQL Consulting',
       'Up to 5 hours of DBA per month',
-      'Database Cluster Management (upon request)',
+      'Database Management (upon request)',
       'Support response time: 4-12 hours',
     ],
     description:
@@ -43,7 +43,7 @@ const Plans = [
       'Up to 100 PostgreSQL clusters',
       'PostgreSQL Consulting',
       'Up to 10 hours of DBA per month',
-      'Database Cluster Management',
+      'Database Management',
       'Monitoring (health checks)',
       'Performance Optimization',
       'Support response time: 1-4 hours',
@@ -99,7 +99,7 @@ export default function SubscriptionPlans() {
       <div className={styles.enterpriseTextContainer}>
       <p className={styles.enterpriseFooterText}>
         Need <strong>Enterprise</strong> support? For large organizations, we offer personalized support packages for complex database infrastructures, 
-        including ultra-fast response times, 24/7 support, remote DBA, regular health checks, performance optimization, and database cluster management (upon request). 
+        including ultra-fast response times, 24/7 support, remote DBA, regular health checks, performance optimization, and database management (upon request). 
         Please <a href="mailto:info@autobase.tech">contact us</a> for more details.
       </p>
       </div>
