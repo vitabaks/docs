@@ -10,7 +10,7 @@ const FeatureList = [
     description: (
       <>
         A powerful alternative to cloud-managed databases like Amazon RDS, Google Cloud SQL, Azure Database, and more — offering a fully automated, self-managed database experience.
-        Automate failover, backups, restores, upgrades, scaling, and more with ease.
+        Automate deployment, failover, backups, restores, upgrades, scaling, and more with ease.
       </>
     ),
   },
