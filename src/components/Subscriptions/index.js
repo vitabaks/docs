@@ -7,7 +7,7 @@ const Plans = [
     price: '$300/month',
     features: [
       'Autobase automation tools',
-      'Up to 2 PostgreSQL clusters',
+      'Up to 5 PostgreSQL clusters',
       'PostgreSQL Consulting',
       '1 hour of DBA per month',
       'Support response time: 12-48 hours',
