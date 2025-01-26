@@ -1,4 +1,4 @@
-.extensibilitySection {
+.featuresSection {
   text-align: center;
   padding: 2rem 0;
   max-width: 60%;
@@ -27,33 +27,33 @@
   gap: 2rem;
 }
 
-.extensibilityBlock {
+.featuresBlock {
   display: flex;
   align-items: center;
   margin: 1.5rem 0;
   width: 100%;
 }
 
-.extensibilityBlock.reverse {
+.featuresBlock.reverse {
   flex-direction: row-reverse;
 }
 
-.extensibilityImage {
+.featuresImage {
   flex: 1;
   text-align: center;
 }
 
-.extensibilityImage img {
+.featuresImage img {
   max-width: 100px;
   border-radius: 10px;
   transition: transform 0.3s ease;
 }
 
-.extensibilityImage img:hover {
+.featuresImage img:hover {
   transform: scale(1.1);
 }
 
-.extensibilityContent {
+.featuresContent {
   flex: 1;
   padding: 1rem;
 }
@@ -74,19 +74,19 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .extensibilitySection {
+  .featuresSection {
     max-width: 90%;
   }
 
-  .extensibilityBlock {
+  .featuresBlock {
     flex-direction: column;
   }
   
-  .extensibilityBlock.reverse {
+  .featuresBlock.reverse {
     flex-direction: column;
   }
   
-  .extensibilityImage img {
+  .featuresImage img {
     max-width: 60px;
   }
 }

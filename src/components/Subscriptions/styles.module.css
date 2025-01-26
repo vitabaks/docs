@@ -86,12 +86,12 @@
 .planFeatures li {
   display: flex;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .checkIcon {
   color: #28a745;
-  margin-right: 8px;
+  margin-right: 5px;
   font-weight: bold;
 }
 
