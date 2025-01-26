@@ -18,7 +18,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <Heading as="h2" style={{ fontSize: '2.4rem', fontWeight: '400' }}>
+        <Heading as="h2" style={{ fontSize: '2.4rem', fontWeight: '500' }}>
           Autobase for PostgreSQL® - Your self-hosted DBaaS
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.4rem', fontWeight: '400', marginBottom: '40px' }}>
