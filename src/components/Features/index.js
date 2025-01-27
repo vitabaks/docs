@@ -20,7 +20,7 @@ const blocks = [
     description: (
       <>
         Autobase eliminates the need for manual database management by automating deployment, failover, backups, restores, upgrades, and scaling.
-        Focus on your business while Autobase handles the rest.
+        Reduces the burden on specialists, allowing them to focus on strategically important tasks.
       </>
     ),
     lightImage: require('@site/static/img/automate.png').default,

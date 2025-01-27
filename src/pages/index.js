@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useColorMode } from '@docusaurus/theme-common';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -14,15 +15,48 @@ import Sponsors from '@site/src/components/Sponsors';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
+function SectionWithBackground({ children }) {
+  const { colorMode } = useColorMode(); // Getting the current theme ('light' or 'dark')
+  const overlayOpacity = colorMode === 'dark' ? 0.85 : 0.75; // Adjust transparency depending on the theme
+
+  return (
+    <div
+      style={{
+        position: 'relative',
+        background: `url('/img/pg_console_create_cluster_demo.gif') no-repeat center center`,
+        backgroundSize: 'cover',
+        padding: '40px 0',
+      }}
+    >
+      <div style={{ position: 'relative', zIndex: 2 }}>{children}</div>
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: `rgba(0, 0, 0, ${overlayOpacity})`, // Setting dynamic transparency
+          zIndex: 1,
+        }}
+      ></div>
+    </div>
+  );
+}
+
 function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <Heading as="h2" style={{ fontSize: '2.4rem', fontWeight: '500' }}>
+        <Heading as="h2" style={{ fontSize: '2.6rem', fontWeight: '500' }}>
           Autobase for PostgreSQL® - Your self-hosted DBaaS
         </Heading>
-        <Heading as="h3" style={{ fontSize: '1.4rem', fontWeight: '400', marginBottom: '40px' }}>
-          Open source alternative to cloud-managed databases
+        <Heading as="h3" style={{ fontSize: '1.4rem', fontWeight: '400' }}>
+        Open Source DBaaS (Database as a Service) and DBA services.
+        </Heading>
+        <Heading as="h3" style={{ fontSize: '1.4rem', fontWeight: '400', marginTop: '40px', marginBottom: '40px' }}>
+        Autobase provides a comprehensive solution for deployment and database management,
+        designed specifically for database administrators (DBAs) and developers.
         </Heading>
         <div className={styles.buttons}>
           <Link
@@ -59,12 +93,13 @@ export default function Home() {
     <Layout
       title="autobase"
       description="Automated database platform for PostgreSQL">
-      <HomepageHeader />
+      <SectionWithBackground>
+        <HomepageHeader />
+      </SectionWithBackground>
       <main>
-        <HomepageFeatures />
+        <Features />
         <CloudProviders />
         <DemoEmbed />
-        <Features />
         <Costs />
         <Sponsors />
       </main>

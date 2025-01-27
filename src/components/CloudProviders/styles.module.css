@@ -16,6 +16,9 @@
   animation: fadeIn 0.3s ease-in-out;
   animation-delay: 1s;
   animation-fill-mode: forwards;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .cloudProvider {

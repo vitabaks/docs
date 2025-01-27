@@ -8,26 +8,20 @@
 }
 
 .heroBanner {
-  padding: 3rem 0;
-  text-align: center;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+  margin: 0 auto;
   overflow: hidden;
   background-color: transparent;
   animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Text color for a light theme */
-[data-theme="light"] {
-  --hero-text-color: #091E42;
-}
-
-/* Text color for a dark theme */
-[data-theme="dark"] {
-  --hero-text-color: #FFFFFF;
-}
-
-.heroBanner {
-  color: var(--hero-text-color);
+  color: #FFFFFF;
+  text-align: center;
+  max-width: 60%;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .buttons {
@@ -36,14 +30,23 @@
   justify-content: center;
   opacity: 0;
   animation: fadeIn 0.3s ease-in-out;
-  animation-delay: 2.5s;
+  animation-delay: 2.0s;
   animation-fill-mode: forwards;
 }
 
 /* Adaptive style for mobile devices */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
+  .heroBanner {
+    height: auto;
+    padding: 2rem 1rem;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
   .heroBanner {
     text-align: left;
     padding: 1rem;
+    max-width: 100%;
   }
 }
