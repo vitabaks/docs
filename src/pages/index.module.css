@@ -19,7 +19,7 @@
   animation: fadeIn 0.5s ease-in-out;
   color: #FFFFFF;
   text-align: center;
-  max-width: 60%;
+  max-width: 65%;
   padding: 0;
   box-sizing: border-box;
 }
@@ -32,6 +32,12 @@
   animation: fadeIn 0.3s ease-in-out;
   animation-delay: 2.0s;
   animation-fill-mode: forwards;
+}
+
+.gradientText {
+  background: linear-gradient(90deg, #ff6f61, #42a5f5); /* Adjust gradient colors */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Adaptive style for mobile devices */
