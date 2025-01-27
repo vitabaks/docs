@@ -17,7 +17,6 @@ import styles from './index.module.css';
 
 function SectionWithBackground({ children }) {
   const { colorMode } = useColorMode(); // Getting the current theme ('light' or 'dark')
-  const overlayOpacity = colorMode === 'dark' ? 0.85 : 0.75; // Adjust transparency depending on the theme
 
   return (
     <div
@@ -36,7 +35,7 @@ function SectionWithBackground({ children }) {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundColor: `rgba(0, 0, 0, ${overlayOpacity})`, // Setting dynamic transparency
+          backgroundColor: `rgba(0, 0, 0, ${colorMode === 'dark' ? 0.85 : 0.75})`, // Dynamic transparency based on theme
           zIndex: 1,
         }}
       ></div>
