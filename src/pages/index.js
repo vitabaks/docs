@@ -16,7 +16,18 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 function SectionWithBackground({ children }) {
-  const { colorMode } = useColorMode(); // Getting the current theme ('light' or 'dark')
+  const { colorMode } = useColorMode();
+  const [currentMode, setCurrentMode] = useState(null);
+
+  useEffect(() => {
+    setCurrentMode(colorMode);
+  }, [colorMode]);
+
+  if (currentMode === null) {
+    return null;
+  }
+
+  const overlayOpacity = currentMode === 'dark' ? 0.9 : 0.8; // Dynamic transparency based on theme
 
   return (
     <div
@@ -35,7 +46,7 @@ function SectionWithBackground({ children }) {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundColor: `rgba(0, 0, 0, ${colorMode === 'dark' ? 0.9 : 0.8})`, // Dynamic transparency based on theme
+          backgroundColor: `rgba(0, 0, 0, ${overlayOpacity})`,
           zIndex: 1,
         }}
       ></div>
