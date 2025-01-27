@@ -78,13 +78,30 @@ const blocks = [
   },
 ];
 
-export default function Extensibility() {
+export default function Features() {
   const { colorMode } = useColorMode();
   const [currentMode, setCurrentMode] = useState(null);
 
   useEffect(() => {
     setCurrentMode(colorMode);
   }, [colorMode]);
+
+    // Use ScrollReveal for animations
+    useEffect(() => {
+      if (typeof window !== 'undefined') {
+        import('scrollreveal').then(({ default: ScrollReveal }) => {
+          ScrollReveal().reveal('.scroll-reveal', {
+            distance: '20px',
+            origin: 'bottom',
+            opacity: 0,
+            duration: 500,
+            delay: 300,
+            easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+            reset: false,
+          });
+        });
+      }
+    }, []);
 
   if (currentMode === null) {
     return null;
