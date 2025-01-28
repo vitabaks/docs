@@ -27,13 +27,13 @@ function SectionWithBackground({ children }) {
     return null;
   }
 
-  const overlayOpacity = currentMode === 'dark' ? 0.9 : 0.8; // Dynamic transparency based on theme
+  const overlayOpacity = currentMode === 'dark' ? 0.85 : 0.8; // Dynamic transparency based on theme
 
   return (
     <div
       style={{
         position: 'relative',
-        background: `url('/img/pg_console_create_cluster_demo.gif') no-repeat center center`,
+        background: `url('/img/autobase_create_cluster_demo.gif') no-repeat center center`,
         backgroundSize: 'cover',
         padding: '40px 0',
       }}
