@@ -27,6 +27,18 @@ const blocks = [
     reverse: false,
   },
   {
+    title: 'Scalability and performance',
+    description: (
+      <>
+        Designed for businesses of all sizes, Autobase seamlessly adapts to evolving requirements.
+        Scale effortlessly with read replicas, ensuring high availability and optimal performance as your workload grows.
+      </>
+    ),
+    lightImage: require('@site/static/img/scalable.png').default,
+    darkImage: require('@site/static/img/scalable.png').default,
+    reverse: true,
+  },
+  {
     title: 'Full Automation, No manual actions',
     description: (
       <>
@@ -36,7 +48,7 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/automate.png').default,
     darkImage: require('@site/static/img/automate.png').default,
-    reverse: true,
+    reverse: false,
   },
   {
     title: 'Full control, No vendor lock-In',
@@ -48,7 +60,7 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/light-bulb.png').default,
     darkImage: require('@site/static/img/light-bulb.png').default,
-    reverse: false,
+    reverse: true,
   },
   {
     title: 'Cost Effective',
@@ -60,18 +72,6 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/cost.png').default,
     darkImage: require('@site/static/img/cost.png').default,
-    reverse: true,
-  },
-  {
-    title: 'Scalability & Flexibility',
-    description: (
-      <>
-        Designed for businesses of all sizes, Autobase seamlessly adapts to evolving requirements.
-        Scale effortlessly with read replicas, ensuring high availability and optimal performance as your workload grows.
-      </>
-    ),
-    lightImage: require('@site/static/img/scalable.png').default,
-    darkImage: require('@site/static/img/scalable.png').default,
     reverse: false,
   },
   {
