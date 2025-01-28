@@ -77,6 +77,18 @@ const blocks = [
     reverse: false,
   },
   {
+    title: 'Scalability & Flexibility',
+    description: (
+      <>
+        Designed for businesses of all sizes, Autobase seamlessly adapts to evolving requirements.
+        Scale effortlessly with read replicas, ensuring high availability and optimal performance as your workload grows.
+      </>
+    ),
+    lightImage: require('@site/static/img/scalable.png').default,
+    darkImage: require('@site/static/img/scalable.png').default,
+    reverse: true,
+  },
+  {
     title: 'DBA as a Service (DBAaaS)',
     description: (
       <>
@@ -86,7 +98,7 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/administrator.png').default,
     darkImage: require('@site/static/img/administrator.png').default,
-    reverse: true,
+    reverse: false,
   },
 ];
 
