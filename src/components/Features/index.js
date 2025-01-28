@@ -51,7 +51,7 @@ const blocks = [
     reverse: false,
   },
   {
-    title: 'Full control, No vendor lock-In',
+    title: 'Full control without vendor lock-In',
     description: (
       <>
         Autobase deploys High-Availability PostgreSQL clusters on your servers or the cloud provider of your choice, 
