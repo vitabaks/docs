@@ -39,7 +39,7 @@ const blocks = [
     reverse: true,
   },
   {
-    title: 'Full Automation, No manual actions',
+    title: 'Automation without manual actions',
     description: (
       <>
         Autobase eliminates the need for manual database management by automating deployment, failover, backups, restores, upgrades, and scaling.
