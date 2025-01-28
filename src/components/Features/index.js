@@ -79,7 +79,7 @@ const blocks = [
     description: (
       <>
         PostgreSQL is highly extensible.
-        With our automated database platform, you can easily install any of the 300+ available <a href="/docs/extensions/list" target="_blank" rel="noopener noreferrer">extensions </a>
+        You can easily install any of the 300+ available <a href="/docs/extensions/list" target="_blank" rel="noopener noreferrer">extensions </a>
         to equip your database with powerful capabilities tailored to your project’s unique requirements.
       </>
     ),
@@ -88,7 +88,7 @@ const blocks = [
     reverse: true,
   },
   {
-    title: 'Infrastructure as Code, GitOps',
+    title: 'Infrastructure as Code and GitOps',
     description: (
       <>
         Define your database infrastructure with repeatable and consistent configurations.
@@ -100,11 +100,11 @@ const blocks = [
     reverse: false,
   },
   {
-    title: 'DBA as a Service (DBAaaS)',
+    title: 'Professional support',
     description: (
       <>
-      In addition to automation tools, Autobase provides access to dedicated PostgreSQL experts.
-      Whether you need consultation, optimization, or full database management, our DBAs ensure your infrastructure runs smoothly and efficiently.
+      Autobase offers DBA as a Service (DBAaaS) with PostgreSQL experts.
+      Whether you need consultation, optimization, or full database management, our DBAs ensure smooth and efficient operation of your infrastructure.
       </>
     ),
     lightImage: require('@site/static/img/administrator.png').default,
