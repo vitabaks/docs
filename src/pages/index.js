@@ -27,7 +27,7 @@ function SectionWithBackground({ children }) {
     return null;
   }
 
-  const overlayOpacity = currentMode === 'dark' ? 0.8 : 0.75; // Dynamic transparency based on theme
+  const overlayOpacity = currentMode === 'dark' ? 0.9 : 0.85; // Dynamic transparency based on theme
 
   return (
     <div
