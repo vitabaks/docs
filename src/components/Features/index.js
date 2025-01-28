@@ -4,11 +4,11 @@ import styles from './styles.module.css';
 
 const blocks = [
   {
-    title: 'Intuitive User Interface (UI)',
+    title: 'Easy to manage',
     description: (
       <>
         A user-friendly web interface that simplifies complex database management tasks.
-        Reduce operational overhead, minimize human errors, and streamline workflows with an easy-to-navigate, visually intuitive dashboard.
+        Reduce operational overhead, minimize human errors, and streamline workflows.
       </>
     ),
     lightImage: require('@site/static/img/user-interface.png').default,
@@ -16,15 +16,14 @@ const blocks = [
     reverse: true,
   },
   {
-    title: 'Infrastructure as Code, GitOps',
+    title: 'Data security',
     description: (
       <>
-        Define your database infrastructure with repeatable and consistent configurations.
-        <a href="/docs/management/gitops" target="_blank" rel="noopener noreferrer"> GitOps</a> support ensures seamless integration with version control, simplifying management and ensuring full traceability.
+        Built-in encryption, access management, and automated backups (PITR) protect your data from leaks, unauthorized access, and data loss.
       </>
     ),
-    lightImage: require('@site/static/img/git.png').default,
-    darkImage: require('@site/static/img/git.png').default,
+    lightImage: require('@site/static/img/data-security.png').default,
+    darkImage: require('@site/static/img/data-security.png').default,
     reverse: false,
   },
   {
@@ -64,6 +63,18 @@ const blocks = [
     reverse: true,
   },
   {
+    title: 'Scalability & Flexibility',
+    description: (
+      <>
+        Designed for businesses of all sizes, Autobase seamlessly adapts to evolving requirements.
+        Scale effortlessly with read replicas, ensuring high availability and optimal performance as your workload grows.
+      </>
+    ),
+    lightImage: require('@site/static/img/scalable.png').default,
+    darkImage: require('@site/static/img/scalable.png').default,
+    reverse: false,
+  },
+  {
     title: 'Extensibility',
     description: (
       <>
@@ -74,19 +85,19 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/extension.png').default,
     darkImage: require('@site/static/img/extension.png').default,
-    reverse: false,
+    reverse: true,
   },
   {
-    title: 'Scalability & Flexibility',
+    title: 'Infrastructure as Code, GitOps',
     description: (
       <>
-        Designed for businesses of all sizes, Autobase seamlessly adapts to evolving requirements.
-        Scale effortlessly with read replicas, ensuring high availability and optimal performance as your workload grows.
+        Define your database infrastructure with repeatable and consistent configurations.
+        <a href="/docs/management/gitops" target="_blank" rel="noopener noreferrer"> GitOps</a> support ensures seamless integration with version control, simplifying management and ensuring full traceability.
       </>
     ),
-    lightImage: require('@site/static/img/scalable.png').default,
-    darkImage: require('@site/static/img/scalable.png').default,
-    reverse: true,
+    lightImage: require('@site/static/img/git.png').default,
+    darkImage: require('@site/static/img/git.png').default,
+    reverse: false,
   },
   {
     title: 'DBA as a Service (DBAaaS)',
@@ -98,7 +109,7 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/administrator.png').default,
     darkImage: require('@site/static/img/administrator.png').default,
-    reverse: false,
+    reverse: true,
   },
 ];
 
