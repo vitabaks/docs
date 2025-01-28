@@ -59,14 +59,14 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <Heading as="h2" style={{ fontSize: '2.6rem', fontWeight: '600' }} className={styles.gradientText}>
-          Autobase for PostgreSQL® - Your self-hosted DBaaS
+          Autobase for PostgreSQL® - Your Self-Hosted DBaaS
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.4rem', fontWeight: '400' }}>
-          Open source alternative to cloud-managed databases
+          Open-source alternative to cloud-managed databases
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.4rem', fontWeight: '400', marginTop: '40px', marginBottom: '40px' }} className={styles.heroBanner_description}>
-          Autobase provides a comprehensive solution (Database as a Service) for deployment and management of databases,
-          designed specifically for database administrators (DBAs) and developers.
+          Autobase is a comprehensive Database-as-a-Service (DBaaS) solution for deploying and managing PostgreSQL databases,
+          designed for database administrators (DBAs) and developers.
         </Heading>
         <div className={styles.buttons}>
           <Link
