@@ -4,27 +4,15 @@ import styles from './styles.module.css';
 
 const blocks = [
   {
-    title: 'Full control, No vendor lock-In',
+    title: 'Intuitive User Interface (UI)',
     description: (
       <>
-        Autobase deploys PostgreSQL clusters on your servers or the cloud provider of your choice, 
-        giving you complete control over your database infrastructure without vendor lock-in.
+        A user-friendly web interface that simplifies complex database management tasks.
+        Reduce operational overhead, minimize human errors, and streamline workflows with an easy-to-navigate, visually intuitive dashboard.
       </>
     ),
-    lightImage: require('@site/static/img/light-bulb.png').default,
-    darkImage: require('@site/static/img/light-bulb.png').default,
-    reverse: false,
-  },
-  {
-    title: 'Full Automation, No manual actions',
-    description: (
-      <>
-        Autobase eliminates the need for manual database management by automating deployment, failover, backups, restores, upgrades, and scaling.
-        Reduces the burden on specialists, allowing them to focus on strategically important tasks.
-      </>
-    ),
-    lightImage: require('@site/static/img/automate.png').default,
-    darkImage: require('@site/static/img/automate.png').default,
+    lightImage: require('@site/static/img/user-interface.png').default,
+    darkImage: require('@site/static/img/user-interface.png').default,
     reverse: true,
   },
   {
@@ -40,17 +28,28 @@ const blocks = [
     reverse: false,
   },
   {
-    title: 'Extensibility',
+    title: 'Full Automation, No manual actions',
     description: (
       <>
-        PostgreSQL is highly extensible.
-        With our automated database platform, you can easily install any of the 300+ available <a href="/docs/extensions/list" target="_blank" rel="noopener noreferrer">extensions </a>
-        to equip your database with powerful capabilities tailored to your project’s unique requirements.
+        Autobase eliminates the need for manual database management by automating deployment, failover, backups, restores, upgrades, and scaling.
+        Reduces the burden on specialists, allowing them to focus on strategically important tasks.
       </>
     ),
-    lightImage: require('@site/static/img/extension.png').default,
-    darkImage: require('@site/static/img/extension.png').default,
+    lightImage: require('@site/static/img/automate.png').default,
+    darkImage: require('@site/static/img/automate.png').default,
     reverse: true,
+  },
+  {
+    title: 'Full control, No vendor lock-In',
+    description: (
+      <>
+        Autobase deploys High-Availability PostgreSQL clusters on your servers or the cloud provider of your choice, 
+        giving you complete control over your database infrastructure without vendor lock-in.
+      </>
+    ),
+    lightImage: require('@site/static/img/light-bulb.png').default,
+    darkImage: require('@site/static/img/light-bulb.png').default,
+    reverse: false,
   },
   {
     title: 'Cost Effective',
@@ -62,6 +61,19 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/cost.png').default,
     darkImage: require('@site/static/img/cost.png').default,
+    reverse: true,
+  },
+  {
+    title: 'Extensibility',
+    description: (
+      <>
+        PostgreSQL is highly extensible.
+        With our automated database platform, you can easily install any of the 300+ available <a href="/docs/extensions/list" target="_blank" rel="noopener noreferrer">extensions </a>
+        to equip your database with powerful capabilities tailored to your project’s unique requirements.
+      </>
+    ),
+    lightImage: require('@site/static/img/extension.png').default,
+    darkImage: require('@site/static/img/extension.png').default,
     reverse: false,
   },
   {
