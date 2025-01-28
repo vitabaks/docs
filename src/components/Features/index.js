@@ -63,10 +63,10 @@ const blocks = [
     reverse: true,
   },
   {
-    title: 'Cost Effective',
+    title: 'Cost effective',
     description: (
       <>
-       Save up to 40% - 80% compared to cloud vendors.
+       Save up to 80% compared to cloud vendors.
        Autobase eliminates the overhead costs of managed database services while providing the same level of reliability and automation.
       </>
     ),
