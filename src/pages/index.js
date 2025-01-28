@@ -62,10 +62,10 @@ function HomepageHeader() {
           Autobase for PostgreSQL® - Your Self-Hosted DBaaS
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.4rem', fontWeight: '400', marginTop: '20px', marginBottom: '10px' }} className={styles.heroBanner_description}>
-          Autobase is a comprehensive Database-as-a-Service (DBaaS) solution for easy and efficient deployment and management of PostgreSQL databases.
+          Autobase is a service for deploying and managing PostgreSQL databases.
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.4rem', fontWeight: '400', marginBottom: '40px' }} className={styles.heroBanner_description}>
-          It is designed for IT specialists, including system administrators (SysAdmins), site reliability engineers (SREs), database reliability engineers (DBREs), DevOps engineers, database administrators (DBAs), and developers.
+          Designed for IT specialists: system administrators (SysAdmins), site reliability engineers (SREs), database reliability engineers (DBREs), DevOps engineers, database administrators (DBAs), and developers.
         </Heading>
         <div className={styles.buttons}>
           <Link
