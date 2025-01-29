@@ -59,7 +59,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <Heading as="h2" style={{ fontSize: '2.4rem', fontWeight: '600' }} className={styles.gradientText}>
-          Autobase for PostgreSQL® - Your Self-Hosted DBaaS
+          Autobase for PostgreSQL® - Your own DBaaS
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginTop: '20px', marginBottom: '10px' }} className={styles.heroBanner_description}>
           Autobase is a service for deploying and managing PostgreSQL databases.
