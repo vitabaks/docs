@@ -64,7 +64,7 @@ function HomepageHeader() {
         <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginTop: '20px', marginBottom: '10px' }} className={styles.heroBanner_description}>
           Autobase is a service for deploying and managing PostgreSQL databases.
         </Heading>
-        <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginBottom: '40px' }} className={styles.heroBanner_description}>
+        <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginBottom: '40px', color: '#c7c7c7' }} className={styles.heroBanner_description}>
           Designed for IT specialists: system administrators (SysAdmins), site reliability engineers (SREs), database reliability engineers (DBREs), DevOps engineers, database administrators (DBAs), and developers.
         </Heading>
         <div className={styles.buttons}>
