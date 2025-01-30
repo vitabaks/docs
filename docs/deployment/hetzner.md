@@ -107,7 +107,7 @@ Example of a cluster page:
 Export your Hetzner Cloud API token to an environment variable:
 
 ```
-export HCLOUD_API_TOKEN=<your_token>
+export HCLOUD_API_TOKEN=<value>
 ```
 
 #### 2. Run the Deployment Command
@@ -123,7 +123,7 @@ docker run --rm -it \
        cloud_provider='hetzner' \
        cloud_load_balancer=true \
        server_count=3 \
-       server_type='CCX33' \
+       server_type='CCX23' \
        server_image='ubuntu-24.04' \
        server_location='ash' \
        volume_size=100 \
@@ -136,9 +136,9 @@ Key Parameters:
 - `cloud_provider`: Specifies Hetzner Cloud as the provider.
 - `cloud_load_balancer`: Adds a Hetzner Load Balancer to the cluster.
 - `server_count`: Number of servers in the cluster (at least 3 servers are needed for high availability).
-- `server_type`: Type of servers (e.g., CCX33).
+- `server_type`: Type of servers (e.g., 'CCX23' for 4 vCPU 16 GB RAM).
 - `server_image`: Operating system image for the servers (e.g., ubuntu-24.04).
-- `server_location`: Server location (e.g., ash for Ashburn).
+- `server_location`: Server location (e.g., 'ash' for Ashburn).
 - `volume_size`: Disk size (in GB) for the database.
 - `postgresql_version`: PostgreSQL version.
 - `patroni_cluster_name`: PostgreSQL cluster name.

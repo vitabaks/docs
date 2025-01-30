@@ -16,7 +16,7 @@ Amazon Web Services
 All components are installed within your cloud account.
 :::
 
-### Prerequisites
+#### Prerequisites
 
 You will need the access key (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY) to deploy the PostgreSQL cluster to your AWS account.
 See the [official documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for instructions on creating an access key.
@@ -25,7 +25,11 @@ See the [official documentation](https://docs.aws.amazon.com/IAM/latest/UserGuid
 You can either add these credentials in advance on the **Settings** page under the **Secrets** tab, or you will be prompted to enter them during the cluster creation process.
 :::
 
-### Console (UI)
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="console-ui" label="Console (UI)" default>
 
 Select 'AWS' as the destination and choose the deployment region.
 
@@ -91,8 +95,69 @@ Example of a cluster page:
 
 ![cluster-overview](/img/cluster-overview.png)
 
----
 
-### Command line
+  </TabItem>
+  <TabItem value="command-line" label="Command line">
 
-It will be published soon.
+:::tip
+📩 Contact us at info@autobase.tech, and our team will provide you with deployment instructions tailored specifically to your infrastructure, including the most suitable parameters for optimal performance and reliability.
+:::
+
+#### 1. Set AWS credentials
+
+Export your AWS access key to an environment variable:
+
+```
+export AWS_ACCESS_KEY_ID=<value>
+export AWS_SECRET_ACCESS_KEY=<value>
+```
+
+#### 2. Run the Deployment Command
+
+Execute the following command to deploy a PostgreSQL cluster (example):
+
+```
+docker run --rm -it \
+  --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
+  --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
+  autobase/automation:2.1.0 \
+    ansible-playbook deploy_pgcluster.yml --extra-vars \
+      "ansible_user=ubuntu \
+       cloud_provider='aws' \
+       cloud_load_balancer=true \
+       server_count=3 \
+       server_type='m6i.xlarge' \
+       server_image='ami-063fb82b183efe67d' \
+       server_location='us-east-1' \
+       volume_size=100 \
+       postgresql_version=17 \
+       patroni_cluster_name='postgres-cluster-01' \
+       ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
+```
+
+Key Parameters:
+- `cloud_provider`: Specifies Amazon Web Services (AWS) as the provider.
+- `cloud_load_balancer`: Adds a AWS Elastic Load Balancer (ELB) to the cluster.
+- `server_count`: Number of servers in the cluster (at least 3 servers are needed for high availability).
+- `server_type`: Type of servers (e.g., 'm6i.xlarge' for 4 vCPU 16 GB RAM).
+- `server_image`: Operating system image for the servers (e.g., 'ami-063fb82b183efe67d' for Ubuntu 24.04).
+- `server_location`: Server location (e.g., 'us-east-1' for US East N. Virginia).
+- `volume_size`: Disk size (in GB) for the database.
+- `postgresql_version`: PostgreSQL version.
+- `patroni_cluster_name`: PostgreSQL cluster name.
+- `ssh_public_keys`: Your SSH public key to access the database servers after deployment.
+
+:::note
+See the vars/[main.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/main.yml), [system.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/system.yml) and ([Debian.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/Debian.yml) or [RedHat.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/RedHat.yml)) files for more details. As well as a list of available [variables](https://github.com/vitabaks/autobase/blob/master/automation/roles/cloud-resources/defaults/main.yml) for cloud resources.
+:::
+
+#### 3. Wait until deployment is complete
+
+This process takes about 10 to 15 minutes.
+
+:::info
+After a successful deployment, the connection information can be found in the Ansible log.
+:::
+
+  </TabItem>
+</Tabs>

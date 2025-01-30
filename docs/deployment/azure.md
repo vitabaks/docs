@@ -16,7 +16,7 @@ Microsoft Azure
 All components are installed within your cloud account.
 :::
 
-### Prerequisites
+#### Prerequisites
 
 You will need the necessary details (AZURE_SUBSCRIPTION_ID, AZURE_CLIENT_ID, AZURE_SECRET, AZURE_TENANT) to deploy the cluster to your Azure account.
 See the [official documentation](https://learn.microsoft.com/en-us/azure/developer/ansible/create-ansible-service-principal?tabs=azure-cli) for instructions on creating an service principal.
@@ -25,7 +25,11 @@ See the [official documentation](https://learn.microsoft.com/en-us/azure/develop
 You can either add these credentials in advance on the **Settings** page under the **Secrets** tab, or you will be prompted to enter them during the cluster creation process.
 :::
 
-### Console (UI)
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="console-ui" label="Console (UI)" default>
 
 Select 'Azure' as the destination and choose the deployment region.
 
@@ -91,8 +95,71 @@ Example of a cluster page:
 
 ![cluster-overview](/img/cluster-overview.png)
 
----
 
-### Command line
+  </TabItem>
+  <TabItem value="command-line" label="Command line">
 
-It will be published soon.
+:::tip
+📩 Contact us at info@autobase.tech, and our team will provide you with deployment instructions tailored specifically to your infrastructure, including the most suitable parameters for optimal performance and reliability.
+:::
+
+#### 1. Set Azure credentials
+
+Export your Azure service principal credentials to an environment variable:
+
+```
+export AZURE_SUBSCRIPTION_ID=<value>
+export AZURE_CLIENT_ID=<value>
+export AZURE_SECRET=<value>
+export AZURE_TENANT=<value>
+```
+
+#### 2. Run the Deployment Command
+
+Execute the following command to deploy a PostgreSQL cluster (example):
+
+```
+docker run --rm -it \
+  --env AZURE_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID} \
+  --env AZURE_CLIENT_ID=${AZURE_CLIENT_ID} \
+  --env AZURE_SECRET=${AZURE_SECRET} \
+  --env AZURE_TENANT=${AZURE_TENANT} \
+  autobase/automation:2.1.0 \
+    ansible-playbook deploy_pgcluster.yml --extra-vars \
+      "ansible_user=azureadmin \
+       cloud_provider='azure' \
+       cloud_load_balancer=true \
+       server_count=3 \
+       server_type='Standard_D4s_v5' \
+       server_location='eastus' \
+       volume_size=100 \
+       postgresql_version=17 \
+       patroni_cluster_name='postgres-cluster-01' \
+       ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
+```
+
+Key Parameters:
+- `cloud_provider`: Specifies Azure as the provider.
+- `cloud_load_balancer`: Adds a Azure Load Balancer to the cluster.
+- `server_count`: Number of servers in the cluster (at least 3 servers are needed for high availability).
+- `server_type`: Type of servers (e.g., 'Standard_D4s_v5' for 4 vCPU 16 GB RAM).
+- `server_location`: Server location (e.g., 'eastus' for East US Virginia).
+- `volume_size`: Disk size (in GB) for the database.
+- `postgresql_version`: PostgreSQL version.
+- `patroni_cluster_name`: PostgreSQL cluster name.
+- `ssh_public_keys`: Your SSH public key to access the database servers after deployment.
+
+:::note
+See the vars/[main.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/main.yml), [system.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/system.yml) and ([Debian.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/Debian.yml) or [RedHat.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/RedHat.yml)) files for more details. As well as a list of available [variables](https://github.com/vitabaks/autobase/blob/master/automation/roles/cloud-resources/defaults/main.yml) for cloud resources.
+:::
+
+#### 3. Wait until deployment is complete
+
+This process takes about 10 to 15 minutes.
+
+:::info
+After a successful deployment, the connection information can be found in the Ansible log.
+:::
+
+  </TabItem>
+</Tabs>
