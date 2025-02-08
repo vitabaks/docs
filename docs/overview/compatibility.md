@@ -21,9 +21,4 @@ When deploying to cloud providers (such as AWS, GCP, Azure, DigitalOcean, and He
 
 ### PostgreSQL versions
 
-All supported PostgreSQL versions.
-
-:white_check_mark: tested, works fine: PostgreSQL 10, 11, 12, 13, 14, 15, 16
-
-### Ansible version 
-Minimum supported Ansible version: 8.0.0 (ansible-core 2.15.0)
+All supported PostgreSQL versions. Tested, works fine: PostgreSQL 10, 11, 12, 13, 14, 15, 16, 17.
