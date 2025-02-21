@@ -81,7 +81,7 @@ function HomepageHeader() {
             Get Started
           </Link>
         </div>
-        <p style={{ fontSize: '0.9rem', color: '#c7c7c7', marginTop: '10px' }}>
+        <p style={{ textAlign: 'center', fontSize: '0.9rem', color: '#c7c7c7', marginTop: '10px' }}>
           (use the token <strong>demo</strong> to access)
         </p>
       </div>
