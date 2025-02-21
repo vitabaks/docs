@@ -21,6 +21,12 @@ const Sponsors = [
     darkImage: require('@site/static/img/sponsors/postgresai.dark.png').default,
     link: 'https://postgres.ai',
   },
+  {
+    name: 'WatchanAlytics',
+    lightImage: require('@site/static/img/sponsors/watchanalytics.png').default,
+    darkImage: require('@site/static/img/sponsors/watchanalytics.dark.png').default,
+    link: 'https://watchanalytics.io',
+  },
 ];
 
 function Sponsor({ name, lightImage, darkImage, link }) {
