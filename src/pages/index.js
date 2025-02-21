@@ -64,17 +64,26 @@ function HomepageHeader() {
         <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginTop: '20px', marginBottom: '10px' }} className={styles.heroBanner_description}>
           Open-source DBaaS (Database-as-a-Service) on your infrastructure.
         </Heading>
-        <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginBottom: '40px', color: '#c7c7c7' }} className={styles.heroBanner_description}>
+        <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginBottom: '30px', color: '#c7c7c7' }} className={styles.heroBanner_description}>
           Autobase automates PostgreSQL deployment and maintenance, ensuring high availability, scalability, and cost efficiency—even for teams without deep DBA expertise.
           Say goodbye to manual database management!
         </Heading>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
+            to="https://demo.autobase.tech">
+            Demo
+          </Link>
+          <Link
+            className="button button--primary button--lg"
+            style={{ marginLeft: '10px' }}
             to="/docs">
             Get Started
           </Link>
         </div>
+        <p style={{ fontSize: '0.9rem', color: '#c7c7c7', marginTop: '10px' }}>
+          (use the token <strong>demo</strong> to access)
+        </p>
       </div>
     </header>
   );

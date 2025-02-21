@@ -36,7 +36,7 @@
   justify-content: center;
   opacity: 0;
   animation: fadeIn 0.3s ease-in-out;
-  animation-delay: 2.0s;
+  animation-delay: 1.0s;
   animation-fill-mode: forwards;
 }
 
