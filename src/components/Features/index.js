@@ -4,6 +4,30 @@ import styles from './styles.module.css';
 
 const blocks = [
   {
+    title: 'Automation without manual actions',
+    description: (
+      <>
+        Autobase eliminates the need for manual database management by automating deployment, failover, backups, restores, upgrades, and scaling.
+        Reduces the burden on specialists, allowing them to focus on strategically important tasks.
+      </>
+    ),
+    lightImage: require('@site/static/img/automate.png').default,
+    darkImage: require('@site/static/img/automate.png').default,
+    reverse: true,
+  },
+  {
+    title: 'Full control without vendor lock-In',
+    description: (
+      <>
+        Autobase deploys High-Availability PostgreSQL clusters on your servers or the cloud provider of your choice, 
+        giving you complete control over your database infrastructure without vendor lock-in.
+      </>
+    ),
+    lightImage: require('@site/static/img/light-bulb.png').default,
+    darkImage: require('@site/static/img/light-bulb.png').default,
+    reverse: false,
+  },
+  {
     title: 'Easy to manage',
     description: (
       <>
@@ -39,27 +63,28 @@ const blocks = [
     reverse: true,
   },
   {
-    title: 'Automation without manual actions',
+    title: 'Extensibility',
     description: (
       <>
-        Autobase eliminates the need for manual database management by automating deployment, failover, backups, restores, upgrades, and scaling.
-        Reduces the burden on specialists, allowing them to focus on strategically important tasks.
+        PostgreSQL is highly extensible.
+        With Autobase, you can easily install any of the 300+ available <a href="/docs/extensions/list" target="_blank" rel="noopener noreferrer">extensions </a>
+        to equip your database with powerful capabilities tailored to your project’s unique requirements.
       </>
     ),
-    lightImage: require('@site/static/img/automate.png').default,
-    darkImage: require('@site/static/img/automate.png').default,
+    lightImage: require('@site/static/img/extension.png').default,
+    darkImage: require('@site/static/img/extension.png').default,
     reverse: false,
   },
   {
-    title: 'Full control without vendor lock-In',
+    title: 'Infrastructure as Code and GitOps',
     description: (
       <>
-        Autobase deploys High-Availability PostgreSQL clusters on your servers or the cloud provider of your choice, 
-        giving you complete control over your database infrastructure without vendor lock-in.
+        Define your database infrastructure with repeatable and consistent configurations.
+        <a href="/docs/management/gitops" target="_blank" rel="noopener noreferrer"> GitOps</a> support ensures seamless integration with version control, simplifying management and ensuring full traceability.
       </>
     ),
-    lightImage: require('@site/static/img/light-bulb.png').default,
-    darkImage: require('@site/static/img/light-bulb.png').default,
+    lightImage: require('@site/static/img/git.png').default,
+    darkImage: require('@site/static/img/git.png').default,
     reverse: true,
   },
   {
@@ -72,31 +97,6 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/cost.png').default,
     darkImage: require('@site/static/img/cost.png').default,
-    reverse: false,
-  },
-  {
-    title: 'Extensibility',
-    description: (
-      <>
-        PostgreSQL is highly extensible.
-        With Autobase, you can easily install any of the 300+ available <a href="/docs/extensions/list" target="_blank" rel="noopener noreferrer">extensions </a>
-        to equip your database with powerful capabilities tailored to your project’s unique requirements.
-      </>
-    ),
-    lightImage: require('@site/static/img/extension.png').default,
-    darkImage: require('@site/static/img/extension.png').default,
-    reverse: true,
-  },
-  {
-    title: 'Infrastructure as Code and GitOps',
-    description: (
-      <>
-        Define your database infrastructure with repeatable and consistent configurations.
-        <a href="/docs/management/gitops" target="_blank" rel="noopener noreferrer"> GitOps</a> support ensures seamless integration with version control, simplifying management and ensuring full traceability.
-      </>
-    ),
-    lightImage: require('@site/static/img/git.png').default,
-    darkImage: require('@site/static/img/git.png').default,
     reverse: false,
   },
   {
