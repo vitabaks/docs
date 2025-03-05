@@ -4,11 +4,11 @@ import styles from './styles.module.css';
 
 const blocks = [
   {
-    title: 'Automation without manual actions',
+    title: 'Automated self-managed database',
     description: (
       <>
-        Autobase eliminates the need for manual database management by automating deployment, failover, backups, restores, upgrades, and scaling.
-        Reduces the burden on specialists, allowing them to focus on strategically important tasks.
+        A powerful alternative to cloud-managed databases like Amazon RDS, Google Cloud SQL, and Azure Database—delivering a fully automated, self-managed PostgreSQL experience.
+        Autobase automates deployment, failover, backups, restores, upgrades, scaling, amd more, eliminating the need for manual database management.
       </>
     ),
     lightImage: require('@site/static/img/automate.png').default,
@@ -19,8 +19,8 @@ const blocks = [
     title: 'Full control without vendor lock-In',
     description: (
       <>
-        Autobase deploys High-Availability PostgreSQL clusters on your servers or the cloud provider of your choice, 
-        giving you complete control over your database infrastructure without vendor lock-in.
+        Your database environment remains fully under your control because both the Autobase and the PostgreSQL clusters it deploys
+        run on your own infrastructure—whether on your servers or a cloud provider of your choice—ensuring complete independence from vendor lock-in.
       </>
     ),
     lightImage: require('@site/static/img/light-bulb.png').default,
@@ -28,16 +28,29 @@ const blocks = [
     reverse: false,
   },
   {
+    title: 'Cost effective database',
+    description: (
+      <>
+       Save 40% and more vs. cloud-managed databases. Autobase, an open-source DBaaS on your own infrastructure,
+       removes extra costs while ensuring the same reliability and automation.
+       Pay only for the server resources you use—no vendor markups on your database.
+      </>
+    ),
+    lightImage: require('@site/static/img/cost.png').default,
+    darkImage: require('@site/static/img/cost.png').default,
+    reverse: true,
+  },
+  {
     title: 'Easy to manage',
     description: (
       <>
-        A user-friendly web interface that simplifies complex database management tasks.
-        Reduce operational overhead, minimize human errors, and streamline workflows.
+        A user-friendly web interface that simplifies complex database deployment and management.
+        Reduce operational overhead, minimize human errors, and streamline workflows effortlessly.
       </>
     ),
     lightImage: require('@site/static/img/user-interface.png').default,
     darkImage: require('@site/static/img/user-interface.png').default,
-    reverse: true,
+    reverse: false,
   },
   {
     title: 'Data security',
@@ -48,7 +61,7 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/data-security.png').default,
     darkImage: require('@site/static/img/data-security.png').default,
-    reverse: false,
+    reverse: true,
   },
   {
     title: 'Scalability and performance',
@@ -60,7 +73,7 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/scalable.png').default,
     darkImage: require('@site/static/img/scalable.png').default,
-    reverse: true,
+    reverse: false,
   },
   {
     title: 'Extensibility',
@@ -73,7 +86,7 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/extension.png').default,
     darkImage: require('@site/static/img/extension.png').default,
-    reverse: false,
+    reverse: true,
   },
   {
     title: 'Infrastructure as Code and GitOps',
@@ -85,18 +98,6 @@ const blocks = [
     ),
     lightImage: require('@site/static/img/git.png').default,
     darkImage: require('@site/static/img/git.png').default,
-    reverse: true,
-  },
-  {
-    title: 'Cost effective',
-    description: (
-      <>
-       Save up to 80% compared to cloud vendors.
-       Autobase eliminates the overhead costs of managed database services while providing the same level of reliability and automation.
-      </>
-    ),
-    lightImage: require('@site/static/img/cost.png').default,
-    darkImage: require('@site/static/img/cost.png').default,
     reverse: false,
   },
   {
