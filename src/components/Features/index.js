@@ -44,7 +44,7 @@ const blocks = [
     title: 'Easy to manage',
     description: (
       <>
-        A user-friendly web interface that simplifies complex database deployment and management.
+        A user-friendly web interface that simplifies complex database deployment and management tasks.
         Reduce operational overhead, minimize human errors, and streamline workflows effortlessly.
       </>
     ),
@@ -56,7 +56,8 @@ const blocks = [
     title: 'Data security',
     description: (
       <>
-        Built-in encryption, access management, and automated backups (PITR) protect your data from leaks, unauthorized access, and data loss.
+        Built-in encryption, access management, and automated backups (PITR) ensure data security and compliance,
+        protecting your database from leaks, unauthorized access, and data loss. Keep your data safe, recoverable, and always available.
       </>
     ),
     lightImage: require('@site/static/img/data-security.png').default,
