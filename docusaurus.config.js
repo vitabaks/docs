@@ -93,7 +93,7 @@ const config = {
             // Product Hunt Badge
             type: 'html',
             position: 'left',
-            value: `<a href="https://www.producthunt.com/products/postgresql_cluster" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=583645&theme=light" alt="postgresql&#0045;cluster&#0046;org - The&#0032;open&#0045;source&#0032;alternative&#0032;to&#0032;cloud&#0045;managed&#0032;databases | Product Hunt" style="width: 180px;" /></a>`,
+            value: `<a href="https://www.producthunt.com/products/postgresql_cluster" target="_blank" style="display: flex; align-items: center;"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=583645&theme=light" alt="postgresql&#0045;cluster&#0046;org - The&#0032;open&#0045;source&#0032;alternative&#0032;to&#0032;cloud&#0045;managed&#0032;databases | Product Hunt" style="width: 170px;" /></a>`,
           },
           {
             to: '/docs',
@@ -106,10 +106,10 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/vitabaks/autobase',
-            label: 'GitHub',
+            type: 'html',
             position: 'right',
-          },
+            value: `<a href="https://github.com/vitabaks/autobase" target="_blank" style="display: flex; align-items: center;"><img src="https://img.shields.io/github/stars/vitabaks/autobase?style=social" alt="GitHub stars" style="height: 22px;"></a>`,
+          }
         ],
       },
       footer: {
