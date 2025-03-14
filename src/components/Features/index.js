@@ -28,7 +28,7 @@ const blocks = [
     reverse: false,
   },
   {
-    title: 'Cost effective database',
+    title: 'Cost effective',
     description: (
       <>
        Save 40% and more vs. cloud-managed databases. Autobase, an open-source DBaaS on your own infrastructure,
