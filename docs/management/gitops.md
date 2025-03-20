@@ -25,7 +25,7 @@ import TabItem from '@theme/TabItem';
 
 Examples of GitLab CI/CD configuration files:
 
-### Simple CI Pipeline
+#### Simple CI Pipeline
 
 ```yaml
 stages:
@@ -85,7 +85,7 @@ The CI pipeline:
 :::
 
 
-### Extended CI Pipeline
+#### Extended CI Pipeline
 
 This extended CI pipeline adds more variable files and a "files" directory, where various files are placed for later copying by Ansible to the managed hosts (if defined in the `copy_files_to_all_server` variable). \
 An additional step, "run-check-diff", is introduced to preview the changes that will be applied to the target servers. The "run-playbook" step is triggered manually for better control.
@@ -339,11 +339,123 @@ run-playbook-production:
   </TabItem>
   <TabItem value="GitHub" label="GitHub" default>
 
-_Examples of GitHub CI/CD configuration files will be provided soon._
+Example of GitHub CI/CD configuration file:
 
-:::tip
-Refer to [Run Ansible playbook GitHub Action](https://github.com/marketplace/actions/run-ansible-playbook) for more details.
+```yaml
+name: Autobase
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: # Allows to run manually
+
+env:
+  ANSIBLE_FORCE_COLOR: 'true'
+
+jobs:
+  test-connect:
+    name: test-connect
+    runs-on: ubuntu-latest
+    container:
+      image: autobase/automation:2.1.0
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Key and vault pass
+        working-directory: /autobase/automation
+        run: |
+          echo "${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}" | base64 -d > ./ansible_ssh_key
+          chmod 600 ./ansible_ssh_key
+          echo "${{ secrets.ANSIBLE_VAULT_PASS }}" > ./vault_pass
+          chmod 600 ./vault_pass
+
+      - name: Test Connectivity
+        working-directory: /autobase/automation
+        run: |
+          ansible all \
+            --private-key ./ansible_ssh_key \
+            --inventory $GITHUB_WORKSPACE/inventory \
+            --extra-vars "@$GITHUB_WORKSPACE/vars/secrets.yml" \
+            --vault-password-file ./vault_pass \
+            -m ping
+
+  run-playbook:
+    name: run-playbook
+    needs: test-connect
+    runs-on: ubuntu-latest
+    container:
+      image: autobase/automation:2.1.0
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Key and vault pass
+        working-directory: /autobase/automation
+        run: |
+          echo "${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}" | base64 -d > ./ansible_ssh_key
+          chmod 600 ./ansible_ssh_key
+          echo "${{ secrets.ANSIBLE_VAULT_PASS }}" > ./vault_pass
+          chmod 600 ./vault_pass
+
+      - name: Run Playbook
+        working-directory: /autobase/automation
+        run: |
+          ansible-playbook config_pgcluster.yml \
+            --private-key ./ansible_ssh_key \
+            --inventory $GITHUB_WORKSPACE/inventory \
+            --extra-vars "@$GITHUB_WORKSPACE/vars/main.yml" \
+            --extra-vars "@$GITHUB_WORKSPACE/vars/Debian.yml" \
+            --extra-vars "@$GITHUB_WORKSPACE/vars/system.yml" \
+            --extra-vars "@$GITHUB_WORKSPACE/vars/secrets.yml" \
+            --vault-password-file ./vault_pass \
+            --extra-vars "mask_password=true"
+```
+
+This CI example assumes the following repository structure:
+
+```
+.github/workflows/autobase.yml
+/vars
+  ├── main.yml
+  ├── Debian.yml
+  └── system.yml
+  └── secrets.yml
+/README.md
+/inventory
+```
+
+:::info
+- **inventory**: Contains the list of hosts or servers for Ansible to manage. See the inventory example [here](https://github.com/vitabaks/autobase/blob/master/automation/inventory).
+- **vars**: Directory with variable files for Ansible. See the variables [here](https://github.com/vitabaks/autobase/tree/master/automation/vars).
+  - **main.yml**: Base configuration variables.
+  - **Debian.yml**: Debian-specific variables.
+  - **system.yml**: System-level variables.
+  - **secrets.yml**: (optional) It contains secret data such as passwords encrypted using [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
+
+The CI pipeline:
+
+	1. `test-connect`: Tests connectivity to all hosts using ansible ping.
+	2. `run-playbook`: Runs the config_pgcluster.yml playbook, loading variables from the vars folder.
 :::
+
+To ensure the correct operation of the CI/CD pipeline, you need to add the following GitHub [secrets](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions) to the epository settings:
+
+1. `ANSIBLE_SSH_PRIVATE_KEY`
+
+   - This is the private SSH key used for authentication on target servers.  
+     - The corresponding public key must be added to the target servers in `~/.ssh/authorized_keys`.  
+     - The private key should be base64-encoded.
+
+2. `ANSIBLE_VAULT_PASS`
+
+   - This is the password used to decrypt secret variables encrypted with [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
+
+These secrets will be automatically used in GitHub Actions to test server connectivity and execute Ansible playbook.
 
   </TabItem>
 </Tabs>
