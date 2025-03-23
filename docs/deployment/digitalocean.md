@@ -117,7 +117,7 @@ Execute the following command to deploy a PostgreSQL cluster (example):
 ```
 docker run --rm -it \
   --env DO_API_TOKEN=${DO_API_TOKEN} \
-  autobase/automation:2.1.0 \
+  autobase/automation:2.2.0 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "ansible_user=root \
        cloud_provider='digitalocean' \

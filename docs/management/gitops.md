@@ -32,7 +32,7 @@ stages:
   - test-connect
   - run-playbook
 
-image: autobase/automation:2.1.0
+image: autobase/automation:2.2.0
 
 variables:
     ANSIBLE_FORCE_COLOR: 'true'
@@ -106,7 +106,7 @@ stages:
   - run-check-diff
   - run-playbook
 
-image: autobase/automation:2.1.0
+image: autobase/automation:2.2.0
 
 variables:
     ANSIBLE_FORCE_COLOR: 'true'
@@ -182,7 +182,7 @@ stages:
   - run-check-diff
   - run-playbook
 
-image: autobase/automation:2.1.0
+image: autobase/automation:2.2.0
 
 variables:
   ANSIBLE_FORCE_COLOR: 'true'
@@ -361,7 +361,7 @@ jobs:
     name: test-connect
     runs-on: ubuntu-latest
     container:
-      image: autobase/automation:2.1.0
+      image: autobase/automation:2.2.0
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -389,7 +389,7 @@ jobs:
     needs: test-connect
     runs-on: ubuntu-latest
     container:
-      image: autobase/automation:2.1.0
+      image: autobase/automation:2.2.0
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
