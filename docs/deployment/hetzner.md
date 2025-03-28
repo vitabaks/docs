@@ -130,7 +130,7 @@ docker run --rm -it \
        server_location='fsn1' \
        volume_size=100 \
        hetzner_object_storage_access_key='YOUR_ACCESS_KEY' \
-       hetzner_object_storage_secret_key='YOUR_SECRET_KEY'"
+       hetzner_object_storage_secret_key='YOUR_SECRET_KEY' \
        pgbackrest_install=true \
        postgresql_version=17 \
        patroni_cluster_name='postgres-cluster-01' \
