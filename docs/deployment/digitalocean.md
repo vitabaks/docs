@@ -10,6 +10,7 @@ DigitalOcean Cloud
 
 1. DigitalOcean Droplets - a virtual machine (with a dedicated data disk), with all cluster components installed and configured.
 2. DigitalOcean Load Balancer to serve as the entry point for database connections.
+3. DigitalOcean Spaces Object Storage, and configured backups using pgBackRest (_available via command line for now_).
 
 :::info
 All components are installed within your cloud account.
@@ -17,11 +18,13 @@ All components are installed within your cloud account.
 
 #### Prerequisites
 
-You will need the Personal Access Token to deploy the cluster to your DigitalOcean account.
-See the [official documentation](https://docs.digitalocean.com/reference/api/create-personal-access-token/) for instructions on creating an access token.
+You will need the Personal Access Token to deploy the cluster to your DigitalOcean account, and S3 credentials to create Spaces Object Storage (S3 bucket) for backups.
+
+See the official documentation for instructions: [How to Create a Personal Access Token](https://docs.digitalocean.com/reference/api/create-personal-access-token/), [How to Manage Access Keys](https://docs.digitalocean.com/products/spaces/how-to/manage-access/).
+
 
 :::note
-You can either add these credentials in advance on the **Settings** page under the **Secrets** tab, or you will be prompted to enter them during the cluster creation process.
+You can either add access token in advance on the **Settings** page under the **Secrets** tab, or you will be prompted to enter them during the cluster creation process.
 :::
 
 import Tabs from '@theme/Tabs';
@@ -127,10 +130,18 @@ docker run --rm -it \
        server_image='ubuntu-24-04-x64' \
        server_location='nyc1' \
        volume_size=100 \
+       AWS_ACCESS_KEY_ID='YOUR_ACCESS_KEY' \
+       AWS_SECRET_ACCESS_KEY='YOUR_SECRET_KEY' \
+       pgbackrest_install=true \
        postgresql_version=17 \
        patroni_cluster_name='postgres-cluster-01' \
        ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
 ```
+
+:::note
+Replace `YOUR_ACCESS_KEY` and `YOUR_SECRET_KEY` with your actual S3 credentials. \
+Alternatively, you can remove the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `pgbackrest_install` variables if you don’t plan to configure backups for your cluster (not recommended for production use).
+:::
 
 Key Parameters:
 - `cloud_provider`: Specifies DigitalOcean as the provider.
@@ -144,7 +155,14 @@ Key Parameters:
 - `patroni_cluster_name`: PostgreSQL cluster name.
 - `ssh_public_keys`: Your SSH public key to access the database servers after deployment.
 
-:::note
+Backup Parameters:
+- `pgbackrest_install`: Enables backups using [pgBackRest](https://github.com/pgbackrest/pgbackrest). Use `wal_g_install` instead if you prefer [WAL-G](https://github.com/wal-g/wal-g).
+- `digital_ocean_spaces_name`: Name of the Spaces Object Storage (default: patroni_cluster_name-backup).
+- `digital_ocean_spaces_region`: Region for the S3 bucket (default: server_location). Recommended to use a different region than the database cluster.
+- `AWS_ACCESS_KEY_ID`: Spaces access key (required).
+- `AWS_SECRET_ACCESS_KEY`: Spaces secret keys (required).
+
+:::info
 See the vars/[main.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/main.yml), [system.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/system.yml) and ([Debian.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/Debian.yml) or [RedHat.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/RedHat.yml)) files for more details. As well as a list of available [variables](https://github.com/vitabaks/autobase/blob/master/automation/roles/cloud-resources/defaults/main.yml) for cloud resources.
 :::
 
@@ -152,7 +170,7 @@ See the vars/[main.yml](https://github.com/vitabaks/autobase/blob/master/automat
 
 This process takes about 10 to 15 minutes.
 
-:::info
+:::tip
 After a successful deployment, the connection information can be found in the Ansible log.
 :::
 
