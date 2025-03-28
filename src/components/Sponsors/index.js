@@ -27,6 +27,12 @@ const Sponsors = [
     darkImage: require('@site/static/img/sponsors/watchanalytics.dark.png').default,
     link: 'https://watchanalytics.io',
   },
+  {
+    name: 'Staffery',
+    lightImage: require('@site/static/img/sponsors/staffery.png').default,
+    darkImage: require('@site/static/img/sponsors/staffery.png').default,
+    link: 'https://www.staffery.com',
+  },
 ];
 
 function Sponsor({ name, lightImage, darkImage, link }) {
