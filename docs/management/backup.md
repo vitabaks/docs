@@ -11,10 +11,7 @@ Configure database backups
 When deploying to cloud providers (such as [AWS](../deployment/aws.md), [GCP](../deployment/gcp.md), [Azure](../deployment/azure.md)) using the Console UI, the storage bucket and backups with [pgBackRest](https://pgbackrest.org) are automatically configured.
 
 :::note
-This is not yet implemented for [DigitalOcean](../deployment/digitalocean.md) and [Hetzner Cloud](../deployment/hetzner.md) due to the following reasons:
-
-- DigitalOcean: Requires the [Spaces access keys](https://cloud.digitalocean.com/account/api/spaces) "AWS_ACCESS_KEY_ID" and "AWS_SECRET_ACCESS_KEY". The ability to specify these keys is planned for future UI releases.
-- Hetzner Cloud: Currently does not provide S3 storage. Therefore, manual configuration is required (e.g., connecting to a dedicated PgBackRest server).
+This feature is not yet available in the UI for [DigitalOcean](../deployment/digitalocean.md) and [Hetzner Cloud](../deployment/hetzner.md) as it requires providing access keys for the backup bucket. The ability to specify these keys is planned for future UI releases. It is already supported via the command line.
 :::
 
 - Backup schedule: Full backups every Sunday at 3:00 AM; differential backups Monday through Saturday at 3:00 AM.
@@ -217,6 +214,60 @@ pgbackrest_archive_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive
 
 </details>
 
+
+<details>
+<summary>pgbackrest config (Hetzner S3)</summary>
+
+```yaml
+# An example of a configuration using Hetzner Object Storage (S3 bucket)
+
+pgbackrest_install: true
+pgbackrest_install_from_pgdg_repo: true
+pgbackrest_stanza: "{{ patroni_cluster_name }}"  # stanza name
+pgbackrest_repo_type: "s3"
+pgbackrest_repo_host: ""
+pgbackrest_repo_user: ""
+pgbackrest_conf_file: "/etc/pgbackrest/pgbackrest.conf"
+pgbackrest_conf:
+  global:  # [global] section
+    - { option: "log-level-file", value: "detail" }
+    - { option: "log-path", value: "/var/log/pgbackrest" }
+    - { option: "repo1-type", value: "{{ pgbackrest_repo_type | lower }}" }
+    - { option: "repo1-path", value: "/pgbackrest" }  # logical path in bucket
+    - { option: "repo1-s3-key", value: "YOUR_ACCESS_KEY" }  # change this value
+    - { option: "repo1-s3-key-secret", value: "YOUR_SECRET_KEY" }  # change this value
+    - { option: "repo1-s3-bucket", value: "YOUR_BUCKET_NAME" }  # change this value
+    - { option: "repo1-s3-endpoint", value: "https://fsn1.your-objectstorage.com" }  # change this value (region)
+    - { option: "repo1-s3-region", value: "fsn1" }  # change this value
+    - { option: "repo1-s3-uri-style", value: "path" }
+    - { option: "repo1-retention-full", value: "4" }
+    - { option: "repo1-retention-archive", value: "4" }
+    - { option: "archive-check", value: "y" }
+    - { option: "archive-copy", value: "n" }
+    - { option: "archive-async", value: "y" }
+    - { option: "archive-get-queue-max", value: "1GiB" }
+#    - { option: "archive-push-queue-max", value: "100GiB" }
+    - { option: "spool-path", value: "/var/spool/pgbackrest" }
+    - { option: "repo1-bundle", value: "y" }
+    - { option: "repo1-block", value: "y" }
+    - { option: "start-fast", value: "y" }
+    - { option: "stop-auto", value: "y" }
+    - { option: "link-all", value: "y" }
+    - { option: "resume", value: "n" }
+    - { option: "backup-standby", value: "y" }  # when set to 'y', standby servers will be automatically added to the stanza section.
+    - { option: "process-max", value: "2" }
+  stanza:  # [stanza_name] section
+    - { option: "process-max", value: "4" }
+    - { option: "log-level-console", value: "info" }
+    - { option: "recovery-option", value: "recovery_target_action=promote" }
+    - { option: "pg1-socket-path", value: "/var/run/postgresql" }
+    - { option: "pg1-path", value: "/var/lib/postgresql/data" }
+
+pgbackrest_archive_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive-push %p"
+```
+
+</details>
+
 <details>
 <summary>pgbackrest config (GCS)</summary>
 
@@ -364,7 +415,7 @@ To use WAL-G, specify the `wal_g_install: true` variable.
 # An example of a configuration using S3 (Minio)
 
 wal_g_install: true
-wal_g_version: "3.0.3"
+wal_g_version: "3.0.5"
 wal_g_path: "/usr/local/bin/wal-g --config {{ postgresql_home_dir }}/.walg.json"
 wal_g_json:
   - { option: "AWS_ACCESS_KEY_ID", value: "YOUR_MINIO_ACCESS_KEY_ID" }  # change this value
@@ -395,7 +446,7 @@ wal_g_archive_command: "{{ wal_g_path }} wal-push %p"
 # An example of a configuration using AWS S3
 
 wal_g_install: true
-wal_g_version: "3.0.3"
+wal_g_version: "3.0.5"
 wal_g_path: "/usr/local/bin/wal-g --config {{ postgresql_home_dir }}/.walg.json"
 wal_g_json:
   - { option: "AWS_ACCESS_KEY_ID", value: "YOUR_AWS_ACCESS_KEY_ID" }  # change this value
@@ -419,13 +470,46 @@ wal_g_archive_command: "{{ wal_g_path }} wal-push %p"
 </details>
 
 <details>
+<summary>wal-g config (Hetzner S3)</summary>
+
+```yaml
+# An example of a configuration using Hetzner Object Storage (S3 bucket)
+
+wal_g_install: true
+wal_g_version: "3.0.5"
+wal_g_path: "/usr/local/bin/wal-g --config {{ postgresql_home_dir }}/.walg.json"
+wal_g_json:
+  - { option: "AWS_ACCESS_KEY_ID", value: "YOUR_ACCESS_KEY" }  # change this value
+  - { option: "AWS_SECRET_ACCESS_KEY", value: "YOUR_SECRET_KEY" }  # change this value
+  - { option: "AWS_ENDPOINT", value: "https://fsn1.your-objectstorage.com" }  # change this value (region)
+  - { option: "AWS_REGION", value: "fsn1" }  # change this value
+  - { option: "WALG_S3_PREFIX", value: "s3://YOUR_BUCKET_NAME" }  # change this value
+  - { option: "AWS_S3_FORCE_PATH_STYLE", value: "true" }
+  - { option: "WALG_COMPRESSION_METHOD", value: "brotli" }  # or "lz4", "lzma", "zstd"
+  - { option: "WALG_DELTA_MAX_STEPS", value: "6" }  # determines how many delta backups can be between full backups
+  - { option: "WALG_UPLOAD_CONCURRENCY", value: "2" }
+  - { option: "WALG_UPLOAD_DISK_CONCURRENCY", value: "2" }
+  - { option: "WALG_DOWNLOAD_CONCURRENCY", value: "4" }
+  - { option: "WALG_ALIVE_CHECK_INTERVAL", value: "1m" }
+  - { option: "PGDATA", value: "{{ postgresql_data_dir }}" }
+  - { option: "PGHOST", value: "{{ postgresql_unix_socket_dir }}" }
+  - { option: "PGPORT", value: "{{ postgresql_port }}" }
+  - { option: "PGUSER", value: "{{ patroni_superuser_username }}" }
+
+wal_g_archive_command: "{{ wal_g_path }} wal-push %p"
+
+```
+
+</details>
+
+<details>
 <summary>wal-g config (GCS)</summary>
 
 ```yaml
 # An example of a configuration using GCS
 
 wal_g_install: true
-wal_g_version: "3.0.3"
+wal_g_version: "3.0.5"
 wal_g_path: "/usr/local/bin/wal-g --config {{ postgresql_home_dir }}/.walg.json"
 wal_g_json:
   - { option: "GOOGLE_APPLICATION_CREDENTIALS", value: "{{ postgresql_home_dir }}/gcs-key.json" }  # change this value (path to GCS service account key file)
@@ -453,7 +537,7 @@ wal_g_archive_command: "{{ wal_g_path }} wal-push %p"
 # An example of a configuration using Azure Blob Storage
 
 wal_g_install: true
-wal_g_version: "3.0.3"
+wal_g_version: "3.0.5"
 wal_g_path: "/usr/local/bin/wal-g --config {{ postgresql_home_dir }}/.walg.json"
 wal_g_json:
   - { option: "AZURE_STORAGE_ACCOUNT", value: "YOUR_AZURE_STORAGE_ACCOUNT" }  # change this value
