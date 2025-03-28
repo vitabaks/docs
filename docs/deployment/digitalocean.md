@@ -132,6 +132,7 @@ docker run --rm -it \
        volume_size=100 \
        AWS_ACCESS_KEY_ID='YOUR_ACCESS_KEY' \
        AWS_SECRET_ACCESS_KEY='YOUR_SECRET_KEY' \
+       digital_ocean_spaces_region='nyc3' \
        pgbackrest_install=true \
        postgresql_version=17 \
        patroni_cluster_name='postgres-cluster-01' \
@@ -139,8 +140,9 @@ docker run --rm -it \
 ```
 
 :::note
-Replace `YOUR_ACCESS_KEY` and `YOUR_SECRET_KEY` with your actual S3 credentials. \
-Alternatively, you can remove the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `pgbackrest_install` variables if you don’t plan to configure backups for your cluster (not recommended for production use).
+Replace `YOUR_ACCESS_KEY` and `YOUR_SECRET_KEY` with your actual S3 credentials.
+
+Alternatively, you can remove the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `digital_ocean_spaces_*`, and `pgbackrest_install` variables if you don’t plan to configure backups for your cluster (not recommended for production use).
 :::
 
 Key Parameters:
