@@ -131,11 +131,13 @@ docker run --rm -it \
        volume_size=100 \
        hetzner_object_storage_access_key='YOUR_ACCESS_KEY' \
        hetzner_object_storage_secret_key='YOUR_SECRET_KEY' \
+       hetzner_object_storage_region='nbg1' \
        pgbackrest_install=true \
        postgresql_version=17 \
        patroni_cluster_name='postgres-cluster-01' \
        ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
 ```
+
 :::note
 Replace `YOUR_ACCESS_KEY` and `YOUR_SECRET_KEY` with your actual S3 credentials. \
 Alternatively, you can remove the `hetzner_object_storage_*` and `pgbackrest_install` variables if you don’t plan to configure backups for your cluster (not recommended for production use).
