@@ -76,8 +76,9 @@ const config = {
       image: 'img/autobase-social-card.png',
       announcementBar: {
         content:
-          '🎉️ <b><a target="_blank" href="https://github.com/vitabaks/autobase/releases/tag/2.2.0">Autobase version 2.2.0 is out!</a></b> 🥳️',
+          //'🎉️ <b><a target="_blank" href="https://github.com/vitabaks/autobase/releases/tag/2.2.0">Autobase version 2.2.0 is out!</a></b> 🥳️',
           // '⭐️ If you like <b>autobase</b>, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/vitabaks/autobase">GitHub</a>! ⭐️',
+          '<b>Spread the word!</b> Help others discover <b>Autobase</b> — star us on <a target="_blank" rel="noopener noreferrer" href="https://github.com/vitabaks/autobase">GitHub</a>! ⭐',
           // '🌟 New Basic Autobase package! Subscribe before April for a lifetime <b>50% discount</b>. 👉 <a href="/docs/support">Learn more!</a>',
           backgroundColor: '#f39c12',
           isCloseable: true,
