@@ -126,16 +126,16 @@ const config = {
             ],
           },
           {
-            title: 'Sponsor',
+            title: 'Support',
             items: [
               {
-                label: 'Sponsor this project',
-                to: 'docs/sponsor',
+                label: 'Support Packages',
+                to: 'docs/support',
               },
             ],
           },
           {
-            title: 'Repository',
+            title: 'Open source',
             items: [
               {
                 label: 'GitHub',
