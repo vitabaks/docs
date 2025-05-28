@@ -133,7 +133,7 @@ pgbackrest_conf:
     - { option: "repo1-s3-bucket", value: "YOUR_MINIO_BUCKET" }  # change this value
     - { option: "repo1-s3-region", value: "eu-west-3" }  # change this value
     - { option: "repo1-s3-uri-style", value: "path" }
-    - { option: "repo1-s3-verify-tls", value: "n" }
+    - { option: "repo1-storage-verify-tls", value: "n" }
     - { option: "repo1-retention-full", value: "4" }
     - { option: "repo1-retention-archive", value: "4" }
     - { option: "archive-check", value: "y" }
