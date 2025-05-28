@@ -393,6 +393,15 @@ pgbackrest_cron_jobs:
     month: "*"
     weekday: "1-6"
     job: "if [ $(psql -tAXc 'select pg_is_in_recovery()') = 'f' ]; then pgbackrest --stanza={{ pgbackrest_stanza }} --type=diff backup; fi"
+  - name: "pgBackRest: Incr Backup"
+    file: "/etc/cron.d/pgbackrest-{{ patroni_cluster_name }}"
+    user: "postgres"
+    minute: "00"
+    hour: "*/4"
+    day: "*"
+    month: "*"
+    weekday: "1-6"
+    job: "if [ $(psql -tAXc 'select pg_is_in_recovery()') = 'f' ]; then pgbackrest --stanza={{ pgbackrest_stanza }} --type=incr backup; fi"
 ```
 
 </details>
