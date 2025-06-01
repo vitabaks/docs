@@ -394,7 +394,7 @@ ip a
 ## vip-manager
 
 :::info
-Official [documentation](https://www.keepalived.org/manpage.html)
+Official [documentation](https://github.com/cybertec-postgresql/vip-manager/blob/master/README.md)
 :::
 
 **Configuration file**
