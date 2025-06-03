@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ### Supported Linux Distributions
 
-RedHat and Debian based distros (x86_64).
+RedHat and Debian based distros.
 
 - **Debian**: 11, 12
 - **Ubuntu**: 22.04, 24.04
@@ -14,6 +14,8 @@ RedHat and Debian based distros (x86_64).
 - **Oracle Linux**: 8, 9
 - **Rocky Linux**: 8, 9
 - **AlmaLinux**: 8, 9
+
+Architecture: x86_64/amd64, arm64/aarch64
 
 :::info
 When deploying to cloud providers (such as AWS, GCP, Azure, DigitalOcean, and Hetzner Cloud) using the Console UI, virtual machines running Ubuntu 24.04 LTS are created.
