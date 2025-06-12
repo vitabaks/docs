@@ -109,39 +109,59 @@ Example of a cluster page:
   <TabItem value="command-line" label="Command line">
 
 :::tip
-We also support converting your existing PostgreSQL installation into a high-availability cluster. If you want to upgrade your current PostgreSQL setup to a clustered configuration, simply set `postgresql_exists=true` in the inventory file.
-:::note
-Please note that during the cluster setup process, your existing PostgreSQL service will be automatically restarted, leading to a brief period of database downtime. Plan this transition accordingly.
+📩 Contact us at info@autobase.tech, and our team will provide you with deployment instructions tailored specifically to your infrastructure, including the most suitable parameters for optimal performance and reliability.
 :::
 
-1. Edit the inventory file
+#### 1. Prepare the inventory file
 
-Specify IP addresses and connection settings for your environment:
-- `ansible_user`
-- `ansible_ssh_pass` or `ansible_ssh_private_key_file`
+```
+curl -fsSL https://raw.githubusercontent.com/vitabaks/autobase/refs/tags/2.2.0/automation/inventory \
+  --output ./inventory
+```
+
+Specify private IP addresses (not hostnames) and appropriate connection settings for your environment, such as ansible_user, ansible_ssh_pass, or ansible_ssh_private_key_file.
+
+```
+nano ./inventory
+```
+
+#### 2. Prepare the variables file
+
+Refer to the default [variables](https://github.com/vitabaks/autobase/tree/2.2.0/automation/vars) for all configurable options. You can override them in your vars.yml file.
+
+```
+nano ./vars.yml
+```
+
+#### 3. Run the deployment command
+
+```
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/autobase/inventory \
+  -v $PWD/inventory:/autobase/inventory \
+  -v $PWD/vars.yml:/vars.yml \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.2.0 \
+    ansible-playbook deploy_pgcluster.yml -e "@/vars.yml"
+```
+
+Alternatively:
+
+<details>
+<summary>Use the source code</summary>
+
+1. Edit the inventory file
 
 ```
 nano inventory
 ```
 
-2. Edit the variable file `vars/main.yml`
+2. Edit the variable files
 
 ```
 nano vars/main.yml
 ```
-
-Minimum set of variables: 
-- `proxy_env` to download packages in environments without direct internet access (optional)
-- `patroni_cluster_name`
-- `postgresql_version`
-- `postgresql_data_dir`
-- `cluster_vip` to provide a single entry point for client access to databases in the cluster (optional)
-- `with_haproxy_load_balancing` to enable load balancing (optional)
-- `dcs_type` "etcd" (default) or "consul"
-
-:::info
-See the vars/[main.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/main.yml), [system.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/system.yml) and ([Debian.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/Debian.yml) or [RedHat.yml](https://github.com/vitabaks/autobase/blob/master/automation/vars/RedHat.yml)) files for more details.
-:::
 
 3. Try to connect to hosts
 
@@ -155,23 +175,13 @@ ansible all -m ping
 ansible-playbook deploy_pgcluster.yml
 ```
 
-#### Deploy Cluster with TimescaleDB:
-
-<details>
-<summary>Click here to expand...</summary>
-
-To deploy a [TimescaleDB](https://github.com/timescale/timescaledb) HA cluster, set the `enable_timescale` variable:
-
-```
-ansible-playbook deploy_pgcluster.yml -e "enable_timescale=true"
-```
-
 </details>
 
-#### How to start from scratch:
+:::tip
+After a successful deployment, the connection information can be found in the Ansible log.
+:::
 
-<details>
-<summary>Click here to expand...</summary>
+#### How to start from scratch:
 
 If you need to start from scratch, you can use the `remove_cluster.yml` playbook. Run the following command to remove the specified components:
 
@@ -186,11 +196,13 @@ Available variables:
 - `remove_etcd`: stop the ETCD service and remove data.
 - `remove_consul`: stop the Consul service and remove data.
 
-:::warning
 **Caution:** be careful when running this command in a production environment.
-:::
 
-</details>
+:::info
+We also support converting your existing PostgreSQL installation into a high-availability cluster. If you want to upgrade your current PostgreSQL setup to a clustered configuration, simply set `postgresql_exists=true` in the inventory file.
+:::note
+Please note that during the cluster setup process, your existing PostgreSQL service will be automatically restarted, leading to a brief period of database downtime. Plan this transition accordingly.
+:::
 
   </TabItem>
 </Tabs>
