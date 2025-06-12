@@ -31,7 +31,7 @@ import TabItem from '@theme/TabItem';
 
 The Console (UI) is the recommended method for most users. It is designed to be user-friendly, minimizing the risk of errors and making it easier than ever to set up your PostgreSQL clusters. This method is suitable for both beginners and those who prefer a visual interface for managing their PostgreSQL clusters.
 
-#### 1. Run the Console container
+#### Run the Autobase console
 
 To run the autobase console, execute the following command:
 
@@ -56,7 +56,7 @@ If you are running the console on a dedicated server (rather than on your laptop
 It is recommended to run the console in the same network as your database servers to enable monitoring of the cluster status.
 :::
 
-#### 2. Open the Console UI
+#### Open the Console UI
 
 Go to http://localhost:80 (or the address of your server) and use `secret_token` for authorization.
 
@@ -64,20 +64,33 @@ Go to http://localhost:80 (or the address of your server) and use `secret_token`
 
 Refer to the [Deployment](./docs/category/deployment) section to learn more about the different deployment methods.
 
-
-#### 3.  Purchase a Support Package
-
-Deploying and managing PostgreSQL clusters can be challenging, especially without a dedicated database administrator (DBA).
-With **Autobase**, it becomes simpler: alongside powerful automation tools, you get **DBA as a Service (DBAaaS)**.
-This means access to PostgreSQL experts who will assist with deployment, maintenance, and optimization, ensuring your clusters run smoothly.
-
-Explore our [support packages](/docs/support) to find a plan that fits your needs.
-
   </TabItem>
   <TabItem value="command-line" label="Command line">
 
 The command line mode is suitable for advanced users who require greater flexibility and control over the deployment and management of their PostgreSQL clusters.
 While the Console (UI) is designed for ease of use and is suitable for most users, the command line provides powerful options for those experienced in automation and configuration.
+
+#### Run the Autobase automation
+
+All dependencies and source code are bundled into the `autobase/automation` docker image.
+This means the deployment process comes down to simply launching a container with a few variable overrides. For example:
+
+```bash
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/autobase/inventory \
+  -v ~/inventory:/autobase/inventory \
+  -v ~/.ssh:/root/.ssh \
+  autobase/automation:2.2.0 \
+    ansible-playbook deploy_pgcluster.yml --extra-vars \
+      "postgresql_version=17 \
+       patroni_cluster_name=postgres-cluster"
+```
+
+Alternatively:
+
+<details>
+<summary>Use the source code</summary>
 
 1. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) on one control node (which could easily be a laptop)
 
@@ -90,7 +103,7 @@ While the Console (UI) is designed for ease of use and is suitable for most user
 2. Download the autobase repository
 
     ```shell
-    git clone https://github.com/vitabaks/autobase.git
+    git clone --branch 2.2.0 --single-branch https://github.com/vitabaks/autobase.git
     ```
 
 3. Go to the automation directory
@@ -105,22 +118,17 @@ While the Console (UI) is designed for ease of use and is suitable for most user
     ansible-galaxy install --force -r requirements.yml 
     ```
 
-    :::note
-    If you plan to use Consul (`dcs_type: consul`), install the consul role requirements
-    ```
-    ansible-galaxy install -r roles/consul/requirements.yml
-    ```
-    :::
+</details>
 
-    Refer to the [Deployment](./docs/category/deployment) section to learn more about the different deployment methods.
-
-5.  Purchase a Support Package
-
-    Deploying and managing PostgreSQL clusters can be challenging, especially without a dedicated database administrator (DBA).
-    With **Autobase**, it becomes simpler: alongside powerful automation tools, you get **DBA as a Service (DBAaaS)**.
-    This means access to PostgreSQL experts who will assist with deployment, maintenance, and optimization, ensuring your clusters run smoothly.
-
-    Explore our [support packages](/docs/support) to find a plan that fits your needs.
+Refer to the [Deployment](./docs/category/deployment) section to learn more about the different deployment methods.
 
   </TabItem>
 </Tabs>
+
+#### Purchase a Support Package
+
+Deploying and managing PostgreSQL clusters can be challenging, especially without a dedicated database administrator (DBA).
+With **Autobase**, it becomes simpler: alongside powerful automation tools, you get **DBA as a Service (DBAaaS)**.
+This means access to PostgreSQL experts who will assist with deployment, maintenance, and optimization, ensuring your clusters run smoothly.
+
+Explore our [support packages](/docs/support) to find a plan that fits your needs.
