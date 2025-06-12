@@ -26,15 +26,13 @@ Select 'Your Own Machines' in the deployment destination.
 
 ![deployment-destination](/img/deployment-destination-server.png)
 
-Specify the name and IP addresses of your servers.
+Specify the name and IP addresses of your servers. Example:
+
+![database-servers](/img/database-servers.png)
 
 :::note
 Use **private** IP addresses so that the cluster does not listen a public IP.
 :::
-
-Example:
-
-![database-servers](/img/database-servers.png)
 
 :::warning
 Please note that at least 3 servers are required to ensure high availability.
@@ -44,9 +42,7 @@ Select authentication method.
 
 ![authentication-method](/img/authentication-method.png)
 
-Optionally, specify an IP address to provide a single entry point for client access to databases in the cluster.
-
-Example:
+Optionally, specify an IP address to provide a single entry point for client access to databases in the cluster. Example:
 
 ![cluster-vip](/img/cluster-vip.png)
 
@@ -112,7 +108,7 @@ Example of a cluster page:
 📩 Contact us at info@autobase.tech, and our team will provide you with deployment instructions tailored specifically to your infrastructure, including the most suitable parameters for optimal performance and reliability.
 :::
 
-#### 1. Prepare the inventory file
+#### 1. Prepare your inventory file
 
 ```
 curl -fsSL https://raw.githubusercontent.com/vitabaks/autobase/refs/tags/2.2.0/automation/inventory \
@@ -125,9 +121,9 @@ Specify private IP addresses (not hostnames) and appropriate connection settings
 nano ./inventory
 ```
 
-#### 2. Prepare the variables file
+#### 2. Prepare your variables file
 
-Refer to the default [variables](https://github.com/vitabaks/autobase/tree/2.2.0/automation/vars) for all configurable options. You can override them in your vars.yml file.
+Refer to the default [variables](https://github.com/vitabaks/autobase/tree/2.2.0/automation/vars) for all configurable options. To override defaults, copy the relevant variables into your vars file.
 
 ```
 nano ./vars.yml
@@ -177,13 +173,22 @@ ansible-playbook deploy_pgcluster.yml
 
 </details>
 
+#### 4. Wait until deployment is complete
+
+This process takes about 10 to 15 minutes.
+
 :::tip
 After a successful deployment, the connection information can be found in the Ansible log.
 :::
 
 #### How to start from scratch:
 
-If you need to start from scratch, you can use the `remove_cluster.yml` playbook. Run the following command to remove the specified components:
+If you need to start from scratch, you can use the `remove_cluster.yml` playbook.
+
+<details>
+<summary>Click here to expand...</summary>
+
+Run the following command to remove the specified components:
 
 ```
 ansible-playbook remove_cluster.yml -e "remove_postgres=true remove_etcd=true"
@@ -196,7 +201,11 @@ Available variables:
 - `remove_etcd`: stop the ETCD service and remove data.
 - `remove_consul`: stop the Consul service and remove data.
 
+:::warning
 **Caution:** be careful when running this command in a production environment.
+:::
+
+</details>
 
 :::info
 We also support converting your existing PostgreSQL installation into a high-availability cluster. If you want to upgrade your current PostgreSQL setup to a clustered configuration, simply set `postgresql_exists=true` in the inventory file.
