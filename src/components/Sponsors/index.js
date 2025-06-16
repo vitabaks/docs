@@ -33,6 +33,12 @@ const Sponsors = [
     darkImage: require('@site/static/img/sponsors/staffery.png').default,
     link: 'https://www.staffery.com',
   },
+  {
+    name: 'Antistock',
+    lightImage: require('@site/static/img/sponsors/antistock.png').default,
+    darkImage: require('@site/static/img/sponsors/antistock.dark.png').default,
+    link: 'https://antistock.io',
+  },
 ];
 
 function Sponsor({ name, lightImage, darkImage, link }) {
