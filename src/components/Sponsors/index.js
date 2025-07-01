@@ -22,12 +22,6 @@ const Sponsors = [
     link: 'https://postgres.ai',
   },
   {
-    name: 'WatchanAlytics',
-    lightImage: require('@site/static/img/sponsors/watchanalytics.png').default,
-    darkImage: require('@site/static/img/sponsors/watchanalytics.dark.png').default,
-    link: 'https://watchanalytics.io',
-  },
-  {
     name: 'Staffery',
     lightImage: require('@site/static/img/sponsors/staffery.png').default,
     darkImage: require('@site/static/img/sponsors/staffery.png').default,
@@ -38,6 +32,12 @@ const Sponsors = [
     lightImage: require('@site/static/img/sponsors/antistock.png').default,
     darkImage: require('@site/static/img/sponsors/antistock.dark.png').default,
     link: 'https://antistock.io',
+  },
+  {
+    name: 'AwareBuildings',
+    lightImage: require('@site/static/img/sponsors/awarebuildings.png').default,
+    darkImage: require('@site/static/img/sponsors/awarebuildings.dark.png').default,
+    link: 'https://www.awarebuildings.com',
   },
 ];
 
