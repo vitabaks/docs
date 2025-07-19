@@ -45,7 +45,7 @@ docker run -d --name autobase-console \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   --volume /tmp/ansible:/tmp/ansible \
   --restart=unless-stopped \
-  autobase/console:2.2.0
+  autobase/console:2.3.0
 ```
 
 :::info
@@ -81,46 +81,17 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/autobase/inventory \
   -v $PWD/inventory:/autobase/inventory \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.2.0 \
+  autobase/automation:2.3.0 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "postgresql_version=17 \
        patroni_cluster_name=postgres-cluster"
 ```
 
-Alternatively:
-
-<details>
-<summary>Use the source code</summary>
-
-1. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) on one control node (which could easily be a laptop)
-
-    Example:
-    ```shell
-    sudo apt update && sudo apt install -y python3-pip sshpass git
-    pip3 install ansible
-    ```
-
-2. Download the autobase repository
-
-    ```shell
-    git clone --branch 2.2.0 --single-branch https://github.com/vitabaks/autobase.git
-    ```
-
-3. Go to the automation directory
-
-    ```shell
-    cd autobase/automation
-    ```
-
-4. Install requirements on the control node
-
-    ```shell
-    ansible-galaxy install --force -r requirements.yml 
-    ```
-
-</details>
-
 Refer to the [Deployment](./docs/category/deployment) section to learn more about the different deployment methods.
+
+:::info
+Alternatively, you can use [Ansible Collection](https://github.com/vitabaks/autobase/blob/master/automation/README.md)
+:::
 
   </TabItem>
 </Tabs>

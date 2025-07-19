@@ -111,7 +111,7 @@ Example of a cluster page:
 #### 1. Prepare your inventory file
 
 ```
-curl -fsSL https://raw.githubusercontent.com/vitabaks/autobase/refs/tags/2.2.0/automation/inventory \
+curl -fsSL https://raw.githubusercontent.com/vitabaks/autobase/refs/tags/2.3.0/automation/inventory \
   --output ./inventory
 ```
 
@@ -123,7 +123,7 @@ nano ./inventory
 
 #### 2. Prepare your variables file
 
-Refer to the default [variables](https://github.com/vitabaks/autobase/tree/2.2.0/automation/vars) for all configurable options. To override defaults, copy the relevant variables into your vars file.
+Refer to the default [variables](https://github.com/vitabaks/autobase/tree/2.3.0/automation/vars) for all configurable options. To override defaults, copy the relevant variables into your vars file.
 
 ```
 nano ./vars.yml
@@ -138,40 +138,11 @@ docker run --rm -it \
   -v $PWD/inventory:/autobase/inventory \
   -v $PWD/vars.yml:/vars.yml \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.2.0 \
+  autobase/automation:2.3.0 \
     ansible-playbook deploy_pgcluster.yml -e "@/vars.yml"
 ```
 
-Alternatively:
-
-<details>
-<summary>Use the source code</summary>
-
-1. Edit the inventory file
-
-```
-nano inventory
-```
-
-2. Edit the variable files
-
-```
-nano vars/main.yml
-```
-
-3. Try to connect to hosts
-
-```
-ansible all -m ping
-```
-
-4. Run playbook:
-
-```
-ansible-playbook deploy_pgcluster.yml
-```
-
-</details>
+Alternatively, you can use [Ansible Collection](https://github.com/vitabaks/autobase/blob/master/automation/README.md)
 
 #### 4. Wait until deployment is complete
 

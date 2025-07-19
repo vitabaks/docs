@@ -124,7 +124,7 @@ docker run --rm -it \
   --env AZURE_CLIENT_ID=${AZURE_CLIENT_ID} \
   --env AZURE_SECRET=${AZURE_SECRET} \
   --env AZURE_TENANT=${AZURE_TENANT} \
-  autobase/automation:2.2.0 \
+  autobase/automation:2.3.0 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "ansible_user=azureadmin \
        cloud_provider='azure' \
