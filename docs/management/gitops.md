@@ -38,7 +38,7 @@ variables:
     ANSIBLE_FORCE_COLOR: 'true'
 
 before_script:
-  - cd /autobase/automation
+  - cd /autobase/automation/playbooks
 
 test-connect:
   stage: test-connect
@@ -52,8 +52,6 @@ run-playbook:
       ansible-playbook config_pgcluster.yml \
         --inventory $CI_PROJECT_DIR/inventory \
         --extra-vars "@$CI_PROJECT_DIR/vars/main.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/Debian.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/system.yml" \
         --extra-vars "mask_password=true" \
         --tags $TAG
 ```
@@ -62,21 +60,15 @@ run-playbook:
 This CI example assumes the following repository structure:
 
 ```
-/vars
-  ├── main.yml
-  ├── Debian.yml
-  └── system.yml
+/vars/main.yml
 /.gitlab-ci.yml
 /README.md
 /inventory
 ```
 
 :::info
-- **inventory**: Contains the list of hosts or servers for Ansible to manage.
-- **vars**: Directory with variable files for Ansible.
-  - **main.yml**: Base configuration variables.
-  - **Debian.yml**: Debian-specific variables.
-  - **system.yml**: System-level variables.
+- **inventory**: Contains the list of hosts or servers for Ansible to manage. See the inventory [example](https://github.com/vitabaks/autobase/blob/master/automation/inventory.example).
+- **vars/main.yml**: Configuration variables.
 
 The CI pipeline:
 
@@ -118,8 +110,8 @@ variables:
       description: "tags for ansible-playbook, e.g. patroni or pgbouncer or all"
 
 before_script:
-  - cp -r files/* /autobase/automation/files
-  - cd /autobase/automation
+  - cp -r files/* /autobase/automation/playbooks/files
+  - cd /autobase/automation/playbooks
 
 test-connect:
   stage: test-connect
@@ -138,10 +130,6 @@ run-check-diff:
       ansible-playbook $PLAYBOOK \
         --inventory $CI_PROJECT_DIR/inventory \
         --extra-vars "@$CI_PROJECT_DIR/vars/main.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/Debian.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/system.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/update.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/upgrade.yml" \
         --extra-vars "@$CI_PROJECT_DIR/vars/secrets.yml" \
         --extra-vars "mask_password=true" \
         --vault-password-file $ANSIBLE_VAULT_PASS_FILE \
@@ -156,10 +144,6 @@ run-playbook:
       ansible-playbook $PLAYBOOK \
         --inventory $CI_PROJECT_DIR/inventory \
         --extra-vars "@$CI_PROJECT_DIR/vars/main.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/Debian.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/system.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/update.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/upgrade.yml" \
         --extra-vars "@$CI_PROJECT_DIR/vars/secrets.yml" \
         --extra-vars "mask_password=true" \
         --vault-password-file $ANSIBLE_VAULT_PASS_FILE \
@@ -197,7 +181,7 @@ variables:
     description: "Target environment (staging or production) for playbook execution."
 
 before_script:
-  - cd /autobase/automation
+  - cd /autobase/automation/playbooks
   - echo "$ANSIBLE_SSH_PRIVATE_KEY" > ./ansible_ssh_key
   - chmod 600 ./ansible_ssh_key
   - echo "$ANSIBLE_VAULT_PASS" > ./vault_pass
@@ -223,10 +207,6 @@ before_script:
         --private-key ./ansible_ssh_key \
         --inventory $CI_PROJECT_DIR/$ENV/inventory \
         --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/main.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/Debian.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/system.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/update.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/upgrade.yml" \
         --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/secrets.yml" \
         --extra-vars "mask_password=true" \
         --vault-password-file ./vault_pass \
@@ -245,10 +225,6 @@ before_script:
         --private-key ./ansible_ssh_key \
         --inventory $CI_PROJECT_DIR/$ENV/inventory \
         --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/main.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/Debian.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/system.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/update.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/upgrade.yml" \
         --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/secrets.yml" \
         --extra-vars "mask_password=true" \
         --vault-password-file ./vault_pass \
@@ -367,7 +343,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup SSH Key and vault pass
-        working-directory: /autobase/automation
+        working-directory: /autobase/automation/playbooks
         run: |
           echo "${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}" | base64 -d > ./ansible_ssh_key
           chmod 600 ./ansible_ssh_key
@@ -375,7 +351,7 @@ jobs:
           chmod 600 ./vault_pass
 
       - name: Test Connectivity
-        working-directory: /autobase/automation
+        working-directory: /autobase/automation/playbooks
         run: |
           ansible all \
             --private-key ./ansible_ssh_key \
@@ -395,7 +371,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup SSH Key and vault pass
-        working-directory: /autobase/automation
+        working-directory: /autobase/automation/playbooks
         run: |
           echo "${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }}" | base64 -d > ./ansible_ssh_key
           chmod 600 ./ansible_ssh_key
@@ -403,14 +379,12 @@ jobs:
           chmod 600 ./vault_pass
 
       - name: Run Playbook
-        working-directory: /autobase/automation
+        working-directory: /autobase/automation/playbooks
         run: |
           ansible-playbook config_pgcluster.yml \
             --private-key ./ansible_ssh_key \
             --inventory $GITHUB_WORKSPACE/inventory \
             --extra-vars "@$GITHUB_WORKSPACE/vars/main.yml" \
-            --extra-vars "@$GITHUB_WORKSPACE/vars/Debian.yml" \
-            --extra-vars "@$GITHUB_WORKSPACE/vars/system.yml" \
             --extra-vars "@$GITHUB_WORKSPACE/vars/secrets.yml" \
             --vault-password-file ./vault_pass \
             --extra-vars "mask_password=true"
@@ -422,19 +396,15 @@ This CI example assumes the following repository structure:
 .github/workflows/autobase.yml
 /vars
   ├── main.yml
-  ├── Debian.yml
-  └── system.yml
   └── secrets.yml
 /README.md
 /inventory
 ```
 
 :::info
-- **inventory**: Contains the list of hosts or servers for Ansible to manage. See the inventory example [here](https://github.com/vitabaks/autobase/blob/master/automation/inventory).
+- **inventory**: Contains the list of hosts or servers for Ansible to manage. See the inventory [example](https://github.com/vitabaks/autobase/blob/master/automation/inventory.example).
 - **vars**: Directory with variable files for Ansible. See the variables [here](https://github.com/vitabaks/autobase/tree/master/automation/vars).
-  - **main.yml**: Base configuration variables.
-  - **Debian.yml**: Debian-specific variables.
-  - **system.yml**: System-level variables.
+  - **main.yml**: Сonfiguration variables.
   - **secrets.yml**: (optional) It contains secret data such as passwords encrypted using [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
 
 The CI pipeline:
