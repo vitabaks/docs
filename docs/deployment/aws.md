@@ -9,7 +9,7 @@ Amazon Web Services
 **[Autobase](https://github.com/vitabaks/autobase)** will automatically set up the following in Amazon Web Services (AWS):
 
 1. AWS EC2 Instances - a virtual machine (with a dedicated data disk), with all cluster components installed and configured.
-2. AWS Elastic Load Balancer (ELB) to serve as the entry point for database connections.
+2. AWS Network Load Balancer (NLB) to serve as the entry point for database connections.
 3. AWS S3 Bucket, and configured backups using pgBackRest.
 
 :::info
@@ -214,7 +214,7 @@ docker run --rm -it \
 
 Key Parameters:
 - `cloud_provider`: Specifies Amazon Web Services (AWS) as the provider.
-- `cloud_load_balancer`: Adds a AWS Elastic Load Balancer (ELB) to the cluster.
+- `cloud_load_balancer`: Adds a AWS Network Load Balancer (NLB) to the cluster.
 - `server_count`: Number of servers in the cluster (at least 3 servers are needed for high availability).
 - `server_type`: Type of servers (e.g., 'm6i.xlarge' for 4 vCPU 16 GB RAM).
 - `server_image`: Operating system image for the servers (e.g., 'ami-063fb82b183efe67d' for Ubuntu 24.04).
