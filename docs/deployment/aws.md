@@ -27,19 +27,38 @@ You can either add these credentials in advance on the **Settings** page under t
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import ThemedImage from '@theme/ThemedImage';
 
 <Tabs>
   <TabItem value="console-ui" label="Console (UI)" default>
 
 Select 'AWS' as the destination and choose the deployment region.
 
-![deployment-destination](/img/deployment-destination-aws.png)
+<ThemedImage
+  alt="deployment-destination"
+  sources={{
+    light: '/img/deployment-destination-aws.png',
+    dark: '/img/deployment-destination-aws.dark.png',
+  }}
+/>
 
-![cloud-region](/img/cloud-region-aws.png)
+<ThemedImage
+  alt="cloud-region"
+  sources={{
+    light: '/img/cloud-region-aws.png',
+    dark: '/img/cloud-region-aws.dark.png',
+  }}
+/>
 
 Select the type of server with the required amount of CPU and RAM.
 
-![instance-type](/img/instance-type-aws.png)
+<ThemedImage
+  alt="instance-type"
+  sources={{
+    light: '/img/instance-type-aws.png',
+    dark: '/img/instance-type-aws.dark.png',
+  }}
+/>
 
 Select the number of servers to be created for the PostgreSQL cluster.
 
@@ -47,37 +66,84 @@ Select the number of servers to be created for the PostgreSQL cluster.
 Please note that at least 3 servers are required to ensure high availability.
 :::
 
-![number-of-instances](/img/number-of-instances.png)
+<ThemedImage
+  alt="number-of-instances"
+  sources={{
+    light: '/img/number-of-instances.png',
+    dark: '/img/number-of-instances.dark.png',
+  }}
+/>
 
 Specify the desired disk size for the database.
 
-![data-disk-storage](/img/data-disk-storage-aws.png)
+<ThemedImage
+  alt="data-disk-storage"
+  sources={{
+    light: '/img/data-disk-storage-aws.png',
+    dark: '/img/data-disk-storage-aws.dark.png',
+  }}
+/>
 
 Specify your SSH public key to be able to access the database servers via SSH after deployment.
 
-![ssh-public-key](/img/ssh-public-key.png)
+<ThemedImage
+  alt="ssh-public-key"
+  sources={{
+    light: '/img/ssh-public-key.png',
+    dark: '/img/ssh-public-key.dark.png',
+  }}
+/>
 
 Choose which environment your database cluster belongs to.
 
-![environment](/img/environment.png)
+<ThemedImage
+  alt="environment"
+  sources={{
+    light: '/img/environment.png',
+    dark: '/img/environment.dark.png',
+  }}
+/>
 
 Specify a name for your cluster.
 
-![cluster-name](/img/cluster-name.png)
+<ThemedImage
+  alt="cluster-name"
+  sources={{
+    light: '/img/cluster-name.png',
+    dark: '/img/cluster-name.dark.png',
+  }}
+/>
 
 Optionally, specify a description.
 
-![description](/img/description.png)
+<ThemedImage
+  alt="description"
+  sources={{
+    light: '/img/description.png',
+    dark: '/img/description.dark.png',
+  }}
+/>
 
 Select the PostgreSQL version to install.
 
-![postgres-version](/img/postgres-version.png)
+<ThemedImage
+  alt="postgres-version"
+  sources={{
+    light: '/img/postgres-version.png',
+    dark: '/img/postgres-version.dark.png',
+  }}
+/>
 
-Review the summary and click the "CREATE CLUSTER" button.
+Review the summary and click the "Create Cluster" button.
 
-<p align="left">
-  <img src={require('@site/static/img/summary-aws.png').default} alt="summary" width="45%"/>
-</p>
+<ThemedImage
+  alt="summary"
+  sources={{
+    light: '/img/summary-aws.png',
+    dark: '/img/summary-aws.dark.png',
+  }}
+  style={{ width: '40%' }}
+/>
 
 Wait until deployment is complete. This process takes about 10 to 15 minutes.
 
@@ -89,12 +155,23 @@ You can see the deployment log in the "Operations" section. To do this, select t
 After a successful deployment, you can obtain the connection info on the cluster page. To do this, click on the name of your cluster on the "Clusters" page.
 :::
 
-![сluster](/img/сluster.png)
+<ThemedImage
+  alt="сluster"
+  sources={{
+    light: '/img/сluster.png',
+    dark: '/img/сluster.dark.png',
+  }}
+/>
 
 Example of a cluster page:
 
-![cluster-overview](/img/cluster-overview.png)
-
+<ThemedImage
+  alt="cluster-overview"
+  sources={{
+    light: '/img/cluster-overview.png',
+    dark: '/img/cluster-overview.dark.png',
+  }}
+/>
 
   </TabItem>
   <TabItem value="command-line" label="Command line">

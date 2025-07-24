@@ -18,17 +18,30 @@ See also the [Requirements](../overview/requirements.md) and [Compatibility](../
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import ThemedImage from '@theme/ThemedImage';
 
 <Tabs>
   <TabItem value="console-ui" label="Console (UI)" default>
 
 Select 'Your Own Machines' in the deployment destination.
 
-![deployment-destination](/img/deployment-destination-server.png)
+<ThemedImage
+  alt="deployment-destination"
+  sources={{
+    light: '/img/deployment-destination-server.png',
+    dark: '/img/deployment-destination-server.dark.png',
+  }}
+/>
 
 Specify the name and IP addresses of your servers. Example:
 
-![database-servers](/img/database-servers.png)
+<ThemedImage
+  alt="database-servers"
+  sources={{
+    light: '/img/database-servers.png',
+    dark: '/img/database-servers.dark.png',
+  }}
+/>
 
 :::note
 Use **private** IP addresses so that the cluster does not listen a public IP.
@@ -40,11 +53,23 @@ Please note that at least 3 servers are required to ensure high availability.
 
 Select authentication method.
 
-![authentication-method](/img/authentication-method.png)
+<ThemedImage
+  alt="authentication-method"
+  sources={{
+    light: '/img/authentication-method.png',
+    dark: '/img/authentication-method.dark.png',
+  }}
+/>
 
 Optionally, specify an IP address to provide a single entry point for client access to databases in the cluster. Example:
 
-![cluster-vip](/img/cluster-vip.png)
+<ThemedImage
+  alt="cluster-vip"
+  sources={{
+    light: '/img/cluster-vip.png',
+    dark: '/img/cluster-vip.dark.png',
+  }}
+/>
 
 :::info
 This must be an IP address that is currently unused on your network. The address will be assigned to the cluster after deployment.
@@ -56,7 +81,13 @@ Not for cloud environments. Because VIP-based solutions like `keepalived` or `vi
 
 Optionally, check the box for "HAProxy load balancer".
 
-![haproxy-load-balancer](/img/haproxy-load-balancer.png)
+<ThemedImage
+  alt="haproxy-load-balancer"
+  sources={{
+    light: '/img/haproxy-load-balancer.png',
+    dark: '/img/haproxy-load-balancer.dark.png',
+  }}
+/>
 
 :::tip
 This feature supports load balancing for read operations, facilitating effective scale-out strategies through the use of read-only replicas.
@@ -65,25 +96,54 @@ See the details on the [Architecture](https://postgresql-cluster.org/overview/ar
 
 Choose which environment your database cluster belongs to.
 
-![environment](/img/environment.png)
+<ThemedImage
+  alt="environment"
+  sources={{
+    light: '/img/environment.png',
+    dark: '/img/environment.dark.png',
+  }}
+/>
 
 Specify a name for your cluster.
 
-![cluster-name](/img/cluster-name.png)
+<ThemedImage
+  alt="cluster-name"
+  sources={{
+    light: '/img/cluster-name.png',
+    dark: '/img/cluster-name.dark.png',
+  }}
+/>
 
 Optionally, specify a description.
 
-![description](/img/description.png)
+<ThemedImage
+  alt="description"
+  sources={{
+    light: '/img/description.png',
+    dark: '/img/description.dark.png',
+  }}
+/>
 
 Select the PostgreSQL version to install.
 
-![postgres-version](/img/postgres-version.png)
+<ThemedImage
+  alt="postgres-version"
+  sources={{
+    light: '/img/postgres-version.png',
+    dark: '/img/postgres-version.dark.png',
+  }}
+/>
 
-Review the summary and click the "CREATE CLUSTER" button.
+Review the summary and click the "Create Cluster" button.
 
-<p align="left">
-  <img src={require('@site/static/img/summary-server.png').default} alt="summary" width="45%"/>
-</p>
+<ThemedImage
+  alt="summary"
+  sources={{
+    light: '/img/summary-server.png',
+    dark: '/img/summary-server.dark.png',
+  }}
+  style={{ width: '40%' }}
+/>
 
 Wait until deployment is complete. This process takes about 10 minutes.
 
@@ -95,11 +155,23 @@ You can see the deployment log in the "Operations" section. To do this, select t
 After a successful deployment, you can obtain the connection info on the cluster page. To do this, click on the name of your cluster on the "Clusters" page.
 :::
 
-![сluster](/img/сluster.png)
+<ThemedImage
+  alt="сluster"
+  sources={{
+    light: '/img/сluster.png',
+    dark: '/img/сluster.dark.png',
+  }}
+/>
 
 Example of a cluster page:
 
-![cluster-overview](/img/cluster-overview.png)
+<ThemedImage
+  alt="cluster-overview"
+  sources={{
+    light: '/img/cluster-overview.png',
+    dark: '/img/cluster-overview.dark.png',
+  }}
+/>
 
   </TabItem>
   <TabItem value="command-line" label="Command line">
