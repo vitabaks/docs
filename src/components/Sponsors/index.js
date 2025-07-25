@@ -39,6 +39,12 @@ const Sponsors = [
     darkImage: require('@site/static/img/sponsors/awarebuildings.dark.png').default,
     link: 'https://www.awarebuildings.com',
   },
+  {
+    name: 'Codefloe',
+    lightImage: require('@site/static/img/sponsors/codefloe.png').default,
+    darkImage: require('@site/static/img/sponsors/codefloe.png').default,
+    link: 'https://codefloe.com',
+  },
 ];
 
 function Sponsor({ name, lightImage, darkImage, link }) {

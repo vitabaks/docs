@@ -10,7 +10,7 @@
   flex: 1 1 calc(20% - 40px);
   max-width: 140px;
   text-align: center;
-  margin: 10px;
+  margin: 5px;
 }
 
 .SponsorImage {
@@ -23,7 +23,7 @@
 /* Adaptive style for mobile devices */
 @media (max-width: 768px) {
   .Sponsors {
-    gap: 20px;
+    gap: 10px;
   }
 
   .Sponsor {
@@ -34,7 +34,7 @@
 
 @media (max-width: 480px) {
   .Sponsors {
-    gap: 10px;
+    gap: 5px;
   }
 
   .Sponsor {
