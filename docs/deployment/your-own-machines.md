@@ -43,10 +43,6 @@ Specify the name and IP addresses of your servers. Example:
   }}
 />
 
-:::note
-Use **private** IP addresses so that the cluster does not listen a public IP.
-:::
-
 :::warning
 Please note that at least 3 servers are required to ensure high availability.
 :::
