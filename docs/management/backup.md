@@ -206,8 +206,8 @@ pgbackrest_conf:
     - { option: "process-max", value: "4" }
     - { option: "log-level-console", value: "info" }
     - { option: "recovery-option", value: "recovery_target_action=promote" }
-    - { option: "pg1-socket-path", value: "/var/run/postgresql" }
-    - { option: "pg1-path", value: "/var/lib/postgresql/data" }
+    - { option: "pg1-socket-path", value: "{{ postgresql_unix_socket_dir }}" }
+    - { option: "pg1-path", value: "{{ postgresql_data_dir }}" }
 
 pgbackrest_archive_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive-push %p"
 ```
@@ -260,8 +260,8 @@ pgbackrest_conf:
     - { option: "process-max", value: "4" }
     - { option: "log-level-console", value: "info" }
     - { option: "recovery-option", value: "recovery_target_action=promote" }
-    - { option: "pg1-socket-path", value: "/var/run/postgresql" }
-    - { option: "pg1-path", value: "/var/lib/postgresql/data" }
+    - { option: "pg1-socket-path", value: "{{ postgresql_unix_socket_dir }}" }
+    - { option: "pg1-path", value: "{{ postgresql_data_dir }}" }
 
 pgbackrest_archive_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive-push %p"
 ```
@@ -309,8 +309,8 @@ pgbackrest_conf:
     - { option: "process-max", value: "4" }
     - { option: "log-level-console", value: "info" }
     - { option: "recovery-option", value: "recovery_target_action=promote" }
-    - { option: "pg1-socket-path", value: "/var/run/postgresql" }
-    - { option: "pg1-path", value: "/var/lib/postgresql/data" }
+    - { option: "pg1-socket-path", value: "{{ postgresql_unix_socket_dir }}" }
+    - { option: "pg1-path", value: "{{ postgresql_data_dir }}" }
 
 pgbackrest_archive_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive-push %p"
 ```
@@ -360,8 +360,8 @@ pgbackrest_conf:
     - { option: "process-max", value: "4" }
     - { option: "log-level-console", value: "info" }
     - { option: "recovery-option", value: "recovery_target_action=promote" }
-    - { option: "pg1-socket-path", value: "/var/run/postgresql" }
-    - { option: "pg1-path", value: "/var/lib/postgresql/data" }
+    - { option: "pg1-socket-path", value: "{{ postgresql_unix_socket_dir }}" }
+    - { option: "pg1-path", value: "{{ postgresql_data_dir }}" }
 
 pgbackrest_archive_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive-push %p"
 ```
