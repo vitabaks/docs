@@ -42,7 +42,7 @@ const Sponsors = [
   {
     name: 'Codefloe',
     lightImage: require('@site/static/img/sponsors/codefloe.png').default,
-    darkImage: require('@site/static/img/sponsors/codefloe.png').default,
+    darkImage: require('@site/static/img/sponsors/codefloe.dark.png').default,
     link: 'https://codefloe.com',
   },
 ];
