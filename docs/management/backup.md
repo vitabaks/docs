@@ -118,8 +118,6 @@ pgbackrest_install: true
 pgbackrest_install_from_pgdg_repo: true
 pgbackrest_stanza: "{{ patroni_cluster_name }}"  # stanza name
 pgbackrest_repo_type: "s3"
-pgbackrest_repo_host: ""
-pgbackrest_repo_user: ""
 pgbackrest_conf_file: "/etc/pgbackrest/pgbackrest.conf"
 pgbackrest_conf:
   global:  # [global] section
@@ -172,8 +170,6 @@ pgbackrest_install: true
 pgbackrest_install_from_pgdg_repo: true
 pgbackrest_stanza: "{{ patroni_cluster_name }}"  # stanza name
 pgbackrest_repo_type: "s3"
-pgbackrest_repo_host: ""
-pgbackrest_repo_user: ""
 pgbackrest_conf_file: "/etc/pgbackrest/pgbackrest.conf"
 pgbackrest_conf:
   global:  # [global] section
@@ -225,8 +221,6 @@ pgbackrest_install: true
 pgbackrest_install_from_pgdg_repo: true
 pgbackrest_stanza: "{{ patroni_cluster_name }}"  # stanza name
 pgbackrest_repo_type: "s3"
-pgbackrest_repo_host: ""
-pgbackrest_repo_user: ""
 pgbackrest_conf_file: "/etc/pgbackrest/pgbackrest.conf"
 pgbackrest_conf:
   global:  # [global] section
@@ -278,8 +272,6 @@ pgbackrest_install: true
 pgbackrest_install_from_pgdg_repo: true
 pgbackrest_stanza: "{{ patroni_cluster_name }}"  # stanza name
 pgbackrest_repo_type: "gcs"
-pgbackrest_repo_host: ""
-pgbackrest_repo_user: ""
 pgbackrest_conf_file: "/etc/pgbackrest/pgbackrest.conf"
 pgbackrest_conf:
   global:  # [global] section
@@ -327,8 +319,6 @@ pgbackrest_install: true
 pgbackrest_install_from_pgdg_repo: true
 pgbackrest_stanza: "{{ patroni_cluster_name }}"  # stanza name
 pgbackrest_repo_type: "azure"
-pgbackrest_repo_host: ""
-pgbackrest_repo_user: ""
 pgbackrest_conf_file: "/etc/pgbackrest/pgbackrest.conf"
 pgbackrest_conf:
   global:  # [global] section
