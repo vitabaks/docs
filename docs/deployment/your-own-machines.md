@@ -191,7 +191,7 @@ nano ./inventory
 
 #### 2. Prepare your variables file
 
-Refer to the default [variables](https://github.com/vitabaks/autobase/tree/2.3.0/automation/vars) for all configurable options. To override defaults, copy the relevant variables into your vars file.
+Refer to the default [variables](https://github.com/vitabaks/autobase/blob/2.3.0/automation/roles/common/defaults/main.yml) for all configurable options. To override defaults, copy the relevant variables into your vars file.
 
 ```
 nano ./vars.yml
