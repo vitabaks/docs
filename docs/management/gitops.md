@@ -129,8 +129,8 @@ run-check-diff:
     - |
       ansible-playbook $PLAYBOOK \
         --inventory $CI_PROJECT_DIR/inventory \
-        --extra-vars "@$CI_PROJECT_DIR/vars/main.yml" \
         --extra-vars "@$CI_PROJECT_DIR/vars/secrets.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/vars/main.yml" \
         --extra-vars "mask_password=true" \
         --vault-password-file $ANSIBLE_VAULT_PASS_FILE \
         --tags $TAG \
@@ -143,8 +143,8 @@ run-playbook:
     - |
       ansible-playbook $PLAYBOOK \
         --inventory $CI_PROJECT_DIR/inventory \
-        --extra-vars "@$CI_PROJECT_DIR/vars/main.yml" \
         --extra-vars "@$CI_PROJECT_DIR/vars/secrets.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/vars/main.yml" \
         --extra-vars "mask_password=true" \
         --vault-password-file $ANSIBLE_VAULT_PASS_FILE \
         --tags $TAG
@@ -206,8 +206,8 @@ before_script:
       ansible-playbook $PLAYBOOK \
         --private-key ./ansible_ssh_key \
         --inventory $CI_PROJECT_DIR/$ENV/inventory \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/main.yml" \
         --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/secrets.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/main.yml" \
         --extra-vars "mask_password=true" \
         --vault-password-file ./vault_pass \
         --tags $TAG \
@@ -224,8 +224,8 @@ before_script:
       ansible-playbook $PLAYBOOK \
         --private-key ./ansible_ssh_key \
         --inventory $CI_PROJECT_DIR/$ENV/inventory \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/main.yml" \
         --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/secrets.yml" \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/main.yml" \
         --extra-vars "mask_password=true" \
         --vault-password-file ./vault_pass \
         --tags $TAG
@@ -384,8 +384,8 @@ jobs:
           ansible-playbook config_pgcluster.yml \
             --private-key ./ansible_ssh_key \
             --inventory $GITHUB_WORKSPACE/inventory \
-            --extra-vars "@$GITHUB_WORKSPACE/vars/main.yml" \
             --extra-vars "@$GITHUB_WORKSPACE/vars/secrets.yml" \
+            --extra-vars "@$GITHUB_WORKSPACE/vars/main.yml" \
             --vault-password-file ./vault_pass \
             --extra-vars "mask_password=true"
 ```
