@@ -68,7 +68,7 @@ This CI example assumes the following repository structure:
 
 :::info
 - **inventory**: Contains a list of servers to manage. See the inventory [example](https://github.com/vitabaks/autobase/blob/master/automation/inventory.example).
-- **vars/main.yml**: Configuration variables.
+- **vars/main.yml**: Сonfiguration variables. See the default [variables](https://github.com/vitabaks/autobase/blob/2.3.0/automation/roles/common/defaults/main.yml).
 
 The CI pipeline:
 
@@ -404,7 +404,7 @@ This CI example assumes the following repository structure:
 :::info
 - **inventory**: Contains a list of servers to manage. See the inventory [example](https://github.com/vitabaks/autobase/blob/master/automation/inventory.example).
 - **vars**: Directory with variable files for Ansible.
-  - **main.yml**: Сonfiguration variables. See the default variables [here](https://github.com/vitabaks/autobase/blob/2.3.0/automation/roles/common/defaults/main.yml).
+  - **main.yml**: Сonfiguration variables. See the default [variables](https://github.com/vitabaks/autobase/blob/2.3.0/automation/roles/common/defaults/main.yml).
   - **secrets.yml**: (optional) It contains secret data such as passwords encrypted using [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
 
 The CI pipeline:
