@@ -227,7 +227,7 @@ ansible-playbook pg_upgrade.yml -e "pg_old_version=15 pg_new_version=16"
 | `update_extensions` | Automatically update all PostgreSQL extensions. | `true` |
 | `max_replication_lag_bytes` | Maximum allowed replication lag in bytes. | `10485760` |
 | `max_transaction_sec` | Maximum allowed duration for a transaction in seconds. | `15` |
-| `copy_files_to_all_server` | Copy files located in the "files" directory to all servers. (optional) | `[]` |
+| `upgrade_copy_files_to_all_server` | Copy files located in the "files" directory to all servers. (optional) | `[]` |
 | `pgbouncer_pool_pause` | Pause pgbouncer pools during upgrade. | `true` |
 | `pgbouncer_pool_pause_timeout` | The maximum waiting time (in seconds) for the pool to be paused. For each iteration of the loop when trying to pause all pools. | `2` |
 | `pgbouncer_pool_pause_terminate_after` | Time in seconds after which script terminates slow active queries. | `30` |
@@ -306,7 +306,7 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
   - Initialize new PostgreSQL data directory
     - for Debain based: on all database servers to create default config files
     - for RedHat based: on the Primary only
-- **Copy files specified in the `copy_files_to_all_server` variable** (optional)
+- **Copy files specified in the `upgrade_copy_files_to_all_server` variable** (optional)
     - Notes: for example, it may be necessary for Postgres Full-Text Search (FTS) files 
 - **Schema compatibility check**
   - Get the current `shared_preload_libraries` settings
