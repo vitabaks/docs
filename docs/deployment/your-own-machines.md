@@ -179,7 +179,7 @@ Example of a cluster page:
 #### 1. Prepare your inventory file
 
 ```
-curl -fsSL https://raw.githubusercontent.com/vitabaks/autobase/refs/tags/2.3.0/automation/inventory \
+curl -fsSL https://raw.githubusercontent.com/vitabaks/autobase/refs/tags/2.3.1/automation/inventory \
   --output ./inventory
 ```
 
@@ -191,7 +191,7 @@ nano ./inventory
 
 #### 2. Prepare your variables file
 
-Refer to the default [variables](https://github.com/vitabaks/autobase/blob/2.3.0/automation/roles/common/defaults/main.yml) for all configurable options. To override defaults, copy the relevant variables into your vars file.
+Refer to the default [variables](https://github.com/vitabaks/autobase/blob/2.3.1/automation/roles/common/defaults/main.yml) for all configurable options. To override defaults, copy the relevant variables into your vars file.
 
 ```
 nano ./vars.yml
@@ -206,7 +206,7 @@ docker run --rm -it \
   -v $PWD/inventory:/autobase/inventory \
   -v $PWD/vars.yml:/vars.yml \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.3.0 \
+  autobase/automation:2.3.1 \
     ansible-playbook deploy_pgcluster.yml -e "@/vars.yml"
 ```
 

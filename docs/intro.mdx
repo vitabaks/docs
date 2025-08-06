@@ -45,7 +45,7 @@ docker run -d --name autobase-console \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   --volume /tmp/ansible:/tmp/ansible \
   --restart=unless-stopped \
-  autobase/console:2.3.0
+  autobase/console:2.3.1
 ```
 
 :::info
@@ -81,7 +81,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/autobase/inventory \
   -v $PWD/inventory:/autobase/inventory \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.3.0 \
+  autobase/automation:2.3.1 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "postgresql_version=17 \
        patroni_cluster_name=postgres-cluster"

@@ -56,7 +56,7 @@ ansible-playbook update_pgcluster.yml -e target=system
 | `reboot_host_timeout`          | Maximum time to wait for the server to reboot and respond to a test command.                                                                                | `1800` seconds (30 minutes) |
 | `reboot_host_post_delay`       | Waiting time after the server reboot (in minutes) before updating the next server. Note: Relevant when there are multiple replicas.                   | `5` minutes              |
 
-The variable file is located on the path: `roles/update/vars/main.yml`
+The variable file is located on the path: [roles/update/defaults/main.yml](https://github.com/vitabaks/autobase/blob/2.3.1/automation/roles/update/defaults/main.yml)
 
 </details>
 
@@ -238,7 +238,7 @@ ansible-playbook pg_upgrade.yml -e "pg_old_version=15 pg_new_version=16"
 
 Note: For variables marked as "Derived value", the default value is determined based on other variables.
 
-The variable file is located on the path: `vars/upgrade.yml`
+The variable file is located on the path: [roles/upgrade/defaults/main.yml](https://github.com/vitabaks/autobase/blob/2.3.1/automation/roles/upgrade/defaults/main.yml)
 
 </details>
 

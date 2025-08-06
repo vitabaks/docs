@@ -76,7 +76,7 @@ const config = {
       image: 'img/autobase-social-card.png',
       announcementBar: {
         content:
-          '🎉️ Introducing <b><a target="_blank" href="https://github.com/vitabaks/autobase/releases/tag/2.3.0">Autobase 2.3.0</a></b> — the most reliable and flexible self-hosted DBaaS for PostgreSQL 🥳️',
+          '🎉️ Introducing <b><a target="_blank" href="https://github.com/vitabaks/autobase/releases/tag/2.3.0">Autobase 2.3</a></b> — the most reliable and flexible self-hosted DBaaS for PostgreSQL 🥳️',
           // '<b>Spread the word!</b> Help others discover <b>Autobase</b> — star us on <a target="_blank" rel="noopener noreferrer" href="https://github.com/vitabaks/autobase">GitHub</a>! ⭐',
           backgroundColor: '#f39c12',
           isCloseable: true,

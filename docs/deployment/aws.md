@@ -197,7 +197,7 @@ Execute the following command to deploy a PostgreSQL cluster (example):
 docker run --rm -it \
   --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
   --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
-  autobase/automation:2.3.0 \
+  autobase/automation:2.3.1 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "ansible_user=ubuntu \
        cloud_provider='aws' \

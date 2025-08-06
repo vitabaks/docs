@@ -16,13 +16,9 @@ Ensure that ports 80 (for the UI) and 8080 (for the API) are open to allow acces
 
 ### Command line
 
-When deploying via the command line, ensure that you have the necessary `root` privileges or `sudo` access to manage the servers. \
-Additionally, you'll need [Ansible](https://www.ansible.com/how-ansible-works/), a powerful automation tool, to execute the playbook.
+All dependencies and source code are bundled into the `autobase/automation` docker image.
 
-If you're using Consul as your DCS (`dcs_type: "consul"`), make sure to install the Consul role requirements on your control node:
-```shell
-ansible-galaxy install -r roles/consul/requirements.yml
-```
+You will need `root` access or a user with `sudo` privileges to access the servers via SSH. You can use your private SSH key (assuming the corresponding public key has already been added to the servers), or a username and password if password access is enabled on your servers.
 
 ### Port requirements
 

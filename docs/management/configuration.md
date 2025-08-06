@@ -29,7 +29,7 @@ docker run --rm -it \
   -v $PWD/inventory:/autobase/inventory \
   -v $PWD/vars.yml:/vars.yml \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.3.0 \
+  autobase/automation:2.3.1 \
     ansible-playbook config_pgcluster.yml -e "@/vars.yml"
 ```
 

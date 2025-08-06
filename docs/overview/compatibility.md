@@ -10,10 +10,10 @@ RedHat and Debian based distros.
 
 - **Debian**: 11, 12
 - **Ubuntu**: 22.04, 24.04
-- **CentOS Stream**: 9
-- **Oracle Linux**: 8, 9
-- **Rocky Linux**: 8, 9
-- **AlmaLinux**: 8, 9
+- **CentOS Stream**: 9, 10
+- **Oracle Linux**: 8, 9, 10
+- **Rocky Linux**: 8, 9, 10
+- **AlmaLinux**: 8, 9, 10
 
 Architecture: x86_64/amd64, arm64/aarch64
 

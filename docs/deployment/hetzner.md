@@ -196,7 +196,7 @@ Execute the following command to deploy a PostgreSQL cluster (example):
 ```
 docker run --rm -it \
   --env HCLOUD_API_TOKEN=${HCLOUD_API_TOKEN} \
-  autobase/automation:2.3.0 \
+  autobase/automation:2.3.1 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "ansible_user=root \
        cloud_provider='hetzner' \
