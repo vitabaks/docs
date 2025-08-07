@@ -80,7 +80,7 @@ Or, to restore the cluster to specific time (PITR):
 ```yaml
 # Restore to 2024-08-19 03:02:07.322658+00
 pgbackrest_patroni_cluster_restore_command:
-  '/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} --type=time "--target=2024-08-19 03:02:07.322658+00" --delta restore'
+  '/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} --type=time --target="2024-08-19 03:02:07.322658+00" --delta restore'
 ```
 
 The recovery steps that automation will perform:
