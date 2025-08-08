@@ -27,29 +27,36 @@ function SectionWithBackground({ children }) {
     return null;
   }
 
-  const overlayOpacity = currentMode === 'dark' ? 0.9 : 0.85; // Dynamic transparency based on theme
+  const overlayOpacity = currentMode === 'dark' ? 0.7 : 0.55; // Dynamic transparency based on theme
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        background: `url('/img/autobase_create_cluster_demo.gif') no-repeat center center`,
-        backgroundSize: 'cover',
-        padding: '40px 0',
-      }}
-    >
-      <div style={{ position: 'relative', zIndex: 2 }}>{children}</div>
-      <div
+    <div style={{ position: 'relative', padding: '40px 0', overflow: 'hidden' }}>
+      <video
+        src="/img/background.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
+            objectFit: 'cover',
+          zIndex: 0,
+        }}
+      />
+      <div style={{ position: 'relative', zIndex: 2 }}>{children}</div>
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
           backgroundColor: `rgba(0, 0, 0, ${overlayOpacity})`,
           zIndex: 1,
         }}
-      ></div>
+      />
     </div>
   );
 }
@@ -61,8 +68,8 @@ function HomepageHeader() {
         <Heading as="h2" style={{ fontSize: '2.4rem', fontWeight: '600' }} className={styles.gradientText}>
           Autobase for PostgreSQL® - Your own DBaaS
         </Heading>
-        <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginTop: '20px', marginBottom: '10px' }} className={styles.heroBanner_description}>
-          Open-source DBaaS (Database-as-a-Service) on your infrastructure.
+        <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '500', marginTop: '20px', marginBottom: '10px' }} className={styles.heroBanner_description}>
+          Open Source, self-hosted DBaaS / Automation platform for PostgreSQL
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginBottom: '30px', color: '#c7c7c7' }} className={styles.heroBanner_description}>
           Autobase automates PostgreSQL deployment and maintenance, ensuring high availability, scalability, and cost efficiency—even for teams without deep DBA expertise.
@@ -108,6 +115,18 @@ function DemoEmbed() {
 
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
+
+  useEffect(() => {
+    const nav = document.querySelector('.navbar');
+    if (!nav) return;
+    nav.classList.add('navbar--transparent');
+    const onScroll = () => {
+      if (window.scrollY > 40) nav.classList.add('navbar--scrolled');
+      else nav.classList.remove('navbar--scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   return (
     <Layout
       title="autobase"
