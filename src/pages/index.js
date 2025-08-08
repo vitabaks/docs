@@ -27,7 +27,7 @@ function SectionWithBackground({ children }) {
     return null;
   }
 
-  const overlayOpacity = currentMode === 'dark' ? 0.7 : 0.55; // Dynamic transparency based on theme
+  const overlayOpacity = currentMode === 'dark' ? 0.7 : 0.5; // Dynamic transparency based on theme
 
   return (
     <div style={{ position: 'relative', padding: '40px 0', overflow: 'hidden' }}>
@@ -72,7 +72,7 @@ function HomepageHeader() {
           Open Source, self-hosted DBaaS / Automation platform for PostgreSQL
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginBottom: '30px', color: '#c7c7c7' }} className={styles.heroBanner_description}>
-          Autobase automates PostgreSQL deployment and maintenance, ensuring high availability, scalability, and cost efficiency—even for teams without deep DBA expertise.
+          Autobase automates deployment and maintenance, ensuring high availability, scalability, and cost efficiency—even for teams without deep DBA expertise.
           Say goodbye to manual database management!
         </Heading>
         <div className={styles.buttons}>
