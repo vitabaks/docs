@@ -51,24 +51,22 @@ run-playbook:
     - |
       ansible-playbook config_pgcluster.yml \
         --inventory $CI_PROJECT_DIR/inventory \
-        --extra-vars "@$CI_PROJECT_DIR/vars/main.yml" \
-        --extra-vars "mask_password=true" \
-        --tags $TAG
+        --extra-vars "mask_password=true"
 ```
 
 
 This CI example assumes the following repository structure:
 
 ```
-/vars/main.yml
 /.gitlab-ci.yml
-/README.md
+/group_vars/all.yml
 /inventory
+/README.md
 ```
 
 :::info
+- **group_vars/all.yml**: Configuration variables — refer to the [default](https://github.com/vitabaks/autobase/blob/2.3.1/automation/roles/common/defaults/main.yml) values. Override them as needed using group_vars, host_vars, or directly in the inventory file.
 - **inventory**: Contains a list of servers to manage. See the inventory [example](https://github.com/vitabaks/autobase/blob/master/automation/inventory.example).
-- **vars/main.yml**: Сonfiguration variables. See the default [variables](https://github.com/vitabaks/autobase/blob/2.3.1/automation/roles/common/defaults/main.yml).
 
 The CI pipeline:
 
@@ -119,8 +117,8 @@ test-connect:
     - |
       ansible all \
         --inventory $CI_PROJECT_DIR/inventory \
-        --extra-vars "@$CI_PROJECT_DIR/vars/secrets.yml" \
         --vault-password-file $ANSIBLE_VAULT_PASS_FILE \
+        --extra-vars "@$CI_PROJECT_DIR/secrets.yml" \
         -m ping
 
 run-check-diff:
@@ -129,10 +127,9 @@ run-check-diff:
     - |
       ansible-playbook $PLAYBOOK \
         --inventory $CI_PROJECT_DIR/inventory \
-        --extra-vars "@$CI_PROJECT_DIR/vars/secrets.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/main.yml" \
-        --extra-vars "mask_password=true" \
         --vault-password-file $ANSIBLE_VAULT_PASS_FILE \
+        --extra-vars "@$CI_PROJECT_DIR/secrets.yml" \
+        --extra-vars "mask_password=true" \
         --tags $TAG \
         --diff --check
   allow_failure: true
@@ -143,10 +140,9 @@ run-playbook:
     - |
       ansible-playbook $PLAYBOOK \
         --inventory $CI_PROJECT_DIR/inventory \
-        --extra-vars "@$CI_PROJECT_DIR/vars/secrets.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/vars/main.yml" \
-        --extra-vars "mask_password=true" \
         --vault-password-file $ANSIBLE_VAULT_PASS_FILE \
+        --extra-vars "@$CI_PROJECT_DIR/secrets.yml" \
+        --extra-vars "mask_password=true" \
         --tags $TAG
   timeout: 10h
   rules:
@@ -194,9 +190,9 @@ before_script:
     - |
       ansible all \
         --private-key ./ansible_ssh_key \
-        --inventory $CI_PROJECT_DIR/$ENV/inventory \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/secrets.yml" \
         --vault-password-file ./vault_pass \
+        --inventory $CI_PROJECT_DIR/$ENV/inventory \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/secrets.yml" \
         -m ping
 
 .run_check_diff_template: &run_check_diff_template
@@ -205,11 +201,10 @@ before_script:
     - |
       ansible-playbook $PLAYBOOK \
         --private-key ./ansible_ssh_key \
-        --inventory $CI_PROJECT_DIR/$ENV/inventory \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/secrets.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/main.yml" \
-        --extra-vars "mask_password=true" \
         --vault-password-file ./vault_pass \
+        --inventory $CI_PROJECT_DIR/$ENV/inventory \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/secrets.yml" \
+        --extra-vars "mask_password=true" \
         --tags $TAG \
         --diff --check
   allow_failure: true
@@ -223,11 +218,10 @@ before_script:
     - |
       ansible-playbook $PLAYBOOK \
         --private-key ./ansible_ssh_key \
-        --inventory $CI_PROJECT_DIR/$ENV/inventory \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/secrets.yml" \
-        --extra-vars "@$CI_PROJECT_DIR/$ENV/vars/main.yml" \
-        --extra-vars "mask_password=true" \
         --vault-password-file ./vault_pass \
+        --inventory $CI_PROJECT_DIR/$ENV/inventory \
+        --extra-vars "@$CI_PROJECT_DIR/$ENV/secrets.yml" \
+        --extra-vars "mask_password=true" \
         --tags $TAG
   timeout: 10h
 
@@ -240,7 +234,7 @@ test-connect-staging:
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes:
         - staging/*
-        - staging/vars/*
+        - staging/group_vars/*
     - if: '$ENV == "staging"'
       when: manual
 
@@ -252,7 +246,7 @@ run-check-diff-staging:
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes:
         - staging/*
-        - staging/vars/*
+        - staging/group_vars/*
     - if: '$ENV == "staging"'
       when: manual
 
@@ -266,7 +260,7 @@ run-playbook-staging:
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes:
         - staging/*
-        - staging/vars/*
+        - staging/group_vars/*
     - if: '$ENV == "staging"'
       when: manual
 
@@ -279,7 +273,7 @@ test-connect-production:
     - if: '$CI_COMMIT_TAG =~ /^v(\d+\.)?(\d+\.)?(\d+)$/'
       changes:
         - production/*
-        - production/vars/*
+        - production/group_vars/*
     - if: '$ENV == "production"'
       when: manual
 
@@ -291,7 +285,7 @@ run-check-diff-production:
     - if: '$CI_COMMIT_TAG =~ /^v(\d+\.)?(\d+\.)?(\d+)$/'
       changes:
         - production/*
-        - production/vars/*
+        - production/group_vars/*
     - if: '$ENV == "production"'
       when: manual
 
@@ -305,7 +299,7 @@ run-playbook-production:
     - if: '$CI_COMMIT_TAG =~ /^v(\d+\.)?(\d+\.)?(\d+)$/'
       changes:
         - production/*
-        - production/vars/*
+        - production/group_vars/*
     - if: '$ENV == "production"'
       when: manual
 ```
@@ -355,9 +349,9 @@ jobs:
         run: |
           ansible all \
             --private-key ./ansible_ssh_key \
-            --inventory $GITHUB_WORKSPACE/inventory \
-            --extra-vars "@$GITHUB_WORKSPACE/vars/secrets.yml" \
             --vault-password-file ./vault_pass \
+            --inventory $GITHUB_WORKSPACE/inventory \
+            --extra-vars "@$GITHUB_WORKSPACE/secrets.yml" \
             -m ping
 
   run-playbook:
@@ -383,10 +377,9 @@ jobs:
         run: |
           ansible-playbook config_pgcluster.yml \
             --private-key ./ansible_ssh_key \
-            --inventory $GITHUB_WORKSPACE/inventory \
-            --extra-vars "@$GITHUB_WORKSPACE/vars/secrets.yml" \
-            --extra-vars "@$GITHUB_WORKSPACE/vars/main.yml" \
             --vault-password-file ./vault_pass \
+            --inventory $GITHUB_WORKSPACE/inventory \
+            --extra-vars "@$GITHUB_WORKSPACE/secrets.yml" \
             --extra-vars "mask_password=true"
 ```
 
@@ -394,18 +387,16 @@ This CI example assumes the following repository structure:
 
 ```
 .github/workflows/autobase.yml
-/vars
-  ├── main.yml
-  └── secrets.yml
-/README.md
+/group_vars/all.yml
+/secrets.yml
 /inventory
+/README.md
 ```
 
 :::info
+- **group_vars/all.yml**: Configuration variables — refer to the [default](https://github.com/vitabaks/autobase/blob/2.3.1/automation/roles/common/defaults/main.yml) values. Override them as needed using group_vars, host_vars, or directly in the inventory file.
+- **secrets.yml**: (optional) It contains secret data such as passwords encrypted using [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
 - **inventory**: Contains a list of servers to manage. See the inventory [example](https://github.com/vitabaks/autobase/blob/master/automation/inventory.example).
-- **vars**: Directory with variable files for Ansible.
-  - **main.yml**: Сonfiguration variables. See the default [variables](https://github.com/vitabaks/autobase/blob/2.3.1/automation/roles/common/defaults/main.yml).
-  - **secrets.yml**: (optional) It contains secret data such as passwords encrypted using [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
 
 The CI pipeline:
 
