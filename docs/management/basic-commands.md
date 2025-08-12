@@ -191,7 +191,7 @@ sudo ls -lth /var/log/postgresql/
 
 View current Postgres log (last 50 lines, with live updates):
 ```
-sudo tail -n 50 -f $(ls -t /var/log/postgresql/*.log | head -n 1)
+sudo tail -n 50 -f $(sudo ls -t /var/log/postgresql/*.log | head -n 1)
 ```
 
 **CLI (psql)**
