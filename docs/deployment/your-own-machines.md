@@ -176,10 +176,11 @@ Example of a cluster page:
 📩 Contact us at info@autobase.tech, and our team will provide you with deployment instructions tailored specifically to your infrastructure, including the most suitable parameters for optimal performance and reliability.
 :::
 
-#### 1. Prepare your inventory file
+#### Prepare your inventory
 
 ```
-curl -fsSL https://raw.githubusercontent.com/vitabaks/autobase/refs/tags/2.3.1/automation/inventory \
+curl -fsSL \
+  https://raw.githubusercontent.com/vitabaks/autobase/refs/tags/2.3.1/automation/inventory.example \
   --output ./inventory
 ```
 
@@ -189,30 +190,30 @@ Specify private IP addresses (not hostnames) and appropriate connection settings
 nano ./inventory
 ```
 
-#### 2. Prepare your variables file
+#### Prepare your variables
 
-Refer to the default [variables](https://github.com/vitabaks/autobase/blob/2.3.1/automation/roles/common/defaults/main.yml) for all configurable options. To override defaults, copy the relevant variables into your vars file.
+Refer to the default [variables](https://github.com/vitabaks/autobase/blob/2.3.1/automation/roles/common/defaults/main.yml) for all configurable options. Override them as needed using group_vars, host_vars, or directly in the inventory file. 
 
 ```
-nano ./vars.yml
+mkdir -p ./group_vars
+nano ./group_vars/all.yml
 ```
 
-#### 3. Run the deployment command
+#### Run the deployment command
 
 ```
 docker run --rm -it \
   -e ANSIBLE_SSH_ARGS="-F none" \
-  -e ANSIBLE_INVENTORY=/autobase/inventory \
-  -v $PWD/inventory:/autobase/inventory \
-  -v $PWD/vars.yml:/vars.yml \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
   autobase/automation:2.3.1 \
-    ansible-playbook deploy_pgcluster.yml -e "@/vars.yml"
+    ansible-playbook deploy_pgcluster.yml
 ```
 
 Alternatively, you can use [Ansible Collection](https://github.com/vitabaks/autobase/blob/master/automation/README.md)
 
-#### 4. Wait until deployment is complete
+#### Wait until deployment is complete
 
 This process takes about 10 to 15 minutes.
 
