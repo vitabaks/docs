@@ -105,7 +105,7 @@ const blocks = [
     title: 'Professional support',
     description: (
       <>
-      Autobase offers DBA as a Service (DBAaaS) with PostgreSQL experts.
+      Autobase offers <a href="/docs/support" target="_blank" rel="noopener noreferrer">DBA as a Service</a> (DBAaaS) with PostgreSQL experts.
       Whether you need consultation, optimization, or full database management, our DBAs ensure smooth and efficient operation of your infrastructure.
       </>
     ),
