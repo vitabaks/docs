@@ -57,7 +57,7 @@ Implementing VRRP (Virtual Router Redundancy Protocol) for Linux. In our configu
 Consul DCS selection is currently unavailable in the Console UI (if you’re interested in this feature, please consider becoming a [sponsor](/docs/sponsor)), but it can be configured via the command line.
 :::
 
-To use this scheme, specify `dcs_type: consul` in variable file vars/main.yml
+To use this scheme, specify `dcs_type: consul` variable.
 
 This scheme is suitable for master-only access and for load balancing (using DNS) for reading across replicas. Consul [Service Discovery](https://developer.hashicorp.com/consul/docs/concepts/service-discovery) with [DNS resolving ](https://developer.hashicorp.com/consul/docs/discovery/dns) is used as a client access point to the database.
 
