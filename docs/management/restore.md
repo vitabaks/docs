@@ -41,27 +41,20 @@ patroni_cluster_bootstrap_method: "pgbackrest"
 ```
 
 ```yaml
+# Optional. To restore replicas from a backup.
+# Otherwise, they fetch data from the Primary server after it’s restored.
 patroni_create_replica_methods:
   - pgbackrest
-  - basebackup
-
-pgbackrest:
-  - { option: "command", value: "{{ pgbackrest_patroni_cluster_restore_command }}" }
-  - { option: "keep_data", value: "True" }
-  - { option: "no_params", value: "True" }
-basebackup:
-  - { option: "max-rate", value: "1000M" }
-  - { option: "checkpoint", value: "fast" }
 ```
 
 ```yaml
-postgresql_restore_command: "pgbackrest --stanza={{ pgbackrest_stanza }} archive-get %f %p"
+# WAL file recovery command — required for performing Point-in-Time Recovery (PITR).
+postgresql_restore_command: "/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} archive-get %f %p"
 ```
 
 To restore the cluster from last backup (including all WALs):
 ```yaml
-pgbackrest_patroni_cluster_restore_command:
-  '/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} --delta restore'
+pgbackrest_patroni_cluster_restore_command: '/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} --delta restore'
 ```
 
 :::warning
@@ -72,15 +65,13 @@ Or, to restore the cluster from last backup (`immediate`):
 ```yaml
 # This parameter specifies that recovery should end as soon as a consistent state is reached, i.e., as early as possible.
 # When restoring from an online backup, this means the point where taking the backup ended.
-pgbackrest_patroni_cluster_restore_command:
-  '/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} --type=immediate --delta restore'
+pgbackrest_patroni_cluster_restore_command: '/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} --type=immediate --delta restore'
 ```
 
 Or, to restore the cluster to specific time (PITR):
 ```yaml
 # Restore to 2024-08-19 03:02:07.322658+00
-pgbackrest_patroni_cluster_restore_command:
-  '/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} --type=time --target="2024-08-19 03:02:07.322658+00" --delta restore'
+pgbackrest_patroni_cluster_restore_command: '/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} --type=time --target="2024-08-19 03:02:07.322658+00" --delta restore'
 ```
 
 The recovery steps that automation will perform:
@@ -104,7 +95,7 @@ The recovery steps that automation will perform:
 11. Start patroni service on the Master server;
 12. Check PostgreSQL is started and accepting connections on Master;
 13. Make sure the PostgreSQL users (superuser and replication) are present;
-    - and password does not differ from the specified in `vars/main.yml`.
+    - and password does not differ from the specified in variables.
 14. Update PostgreSQL authentication parameter in `patroni.yml`
     - Note: if superuser or replication users is changed.
 15. Start patroni service on Replica servers;
@@ -129,25 +120,20 @@ Additionally, define the following required variables for the restore process:
 patroni_cluster_bootstrap_method: "wal-g"
 ```
 ```yaml
+# Optional. To restore replicas from a backup.
+# Otherwise, they fetch data from the Primary server after it’s restored.
 patroni_create_replica_methods:
   - wal_g
-  - basebackup
-
-wal_g:
-  - { option: "command", value: "{{ wal_g_patroni_cluster_bootstrap_command }}" }
-  - { option: "no_params", value: "True" }
-basebackup:
-  - { option: "max-rate", value: "1000M" }
-  - { option: "checkpoint", value: "fast" }
 ```
 
 ```yaml
-postgresql_restore_command: "{{ wal_g_path }} wal-fetch %f %p"
+# # WAL file recovery command — required for performing Point-in-Time Recovery (PITR).
+postgresql_restore_command: "/usr/local/bin/wal-g --config {{ postgresql_home_dir }}/.walg.json wal-fetch %f %p"
 ```
 
 To restore the cluster from last backup (including all WALs):
 ```yaml
-wal_g_patroni_cluster_bootstrap_command: "{{ wal_g_path }} backup-fetch {{ postgresql_data_dir }} LATEST"
+wal_g_patroni_cluster_bootstrap_command: "/usr/local/bin/wal-g --config {{ postgresql_home_dir }}/.walg.json backup-fetch {{ postgresql_data_dir }} LATEST"
 ```
 
   </TabItem>
@@ -158,7 +144,9 @@ wal_g_patroni_cluster_bootstrap_command: "{{ wal_g_path }} backup-fetch {{ postg
 To restore the current cluster (PITR) run the following command:
 
 ```
-ansible-playbook deploy_pgcluster.yml -t point_in_time_recovery -e "disable_archive_command=false"
+ansible-playbook deploy_pgcluster.yml \
+  -t point_in_time_recovery \
+  -e disable_archive_command=false
 ```
 
 :::info
@@ -170,11 +158,13 @@ We set `disable_archive_command` to `false` so as not to disable `archive_comman
 To clone the cluster run the following command:
 
 ```
-ansible-playbook deploy_pgcluster.yml -e "disable_archive_command=true" -e "keep_patroni_dynamic_json=false"
+ansible-playbook deploy_pgcluster.yml \
+  -e disable_archive_command=true \
+  -e keep_patroni_dynamic_json=false
 ```
 
 :::info
 We set `disable_archive_command` to `true` to disable the `archive_command` after the restore. This is necessary to prevent conflicts in the archived log storage when multiple clusters attempt to archive WALs to the same storage.
 
-We also set `keep_patroni_dynamic_json` to `false` to remove the `patroni.dynamic.json` file after the restore. This ensures that the new parameters specified in `vars/main.yml` are applied, rather than restoring the cluster with the parameters used when the backup was created.
+We also set `keep_patroni_dynamic_json` to `false` to remove the `patroni.dynamic.json` file after the restore. This ensures that the new parameters specified in variables are applied, rather than restoring the cluster with the parameters used when the backup was created.
 :::
