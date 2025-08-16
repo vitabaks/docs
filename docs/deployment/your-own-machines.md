@@ -184,7 +184,7 @@ curl -fsSL \
   --output ./inventory
 ```
 
-Specify private IP addresses (not hostnames) and appropriate connection settings for your environment, such as ansible_user, ansible_ssh_pass, or ansible_ssh_private_key_file.
+Specify IP addresses and appropriate connection settings for your environment, such as ansible_user, ansible_ssh_pass, or ansible_ssh_private_key_file.
 
 ```
 nano ./inventory
