@@ -8,7 +8,7 @@ sidebar_position: 2
 
 RedHat and Debian based distros.
 
-- **Debian**: 11, 12
+- **Debian**: 11, 12, 13
 - **Ubuntu**: 22.04, 24.04
 - **CentOS Stream**: 9, 10
 - **Oracle Linux**: 8, 9, 10
@@ -23,4 +23,6 @@ When deploying to cloud providers (such as AWS, GCP, Azure, DigitalOcean, and He
 
 ### PostgreSQL versions
 
-All supported PostgreSQL versions. Tested, works fine: PostgreSQL 10, 11, 12, 13, 14, 15, 16, 17.
+All supported PostgreSQL versions.
+
+Tested, works fine: PostgreSQL 10, 11, 12, 13, 14, 15, 16, 17

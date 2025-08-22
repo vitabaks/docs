@@ -198,7 +198,7 @@ Execute the following command to deploy a PostgreSQL cluster (example):
 ```
 docker run --rm -it \
   --env GCP_SERVICE_ACCOUNT_CONTENTS=${GCP_SERVICE_ACCOUNT_CONTENTS} \
-  autobase/automation:2.3.1 \
+  autobase/automation:2.3.2 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "ansible_user=root \
        cloud_provider='gcp' \

@@ -11,7 +11,7 @@ This page outlines the essential requirements for deploying and managing your Po
 For users of the Autobase Console (UI), the setup is simplified. You only need [Docker](https://docs.docker.com/engine/install/) to run the container. All other dependencies and tools are bundled within the `autobase/automation` [image](https://hub.docker.com/r/autobase/automation).
 
 :::note
-Ensure that ports 80 (for the UI) and 8080 (for the API) are open to allow access to the Console and its underlying services.
+Ensure that ports 80 and 443 are open to allow access to the Console UI.
 :::
 
 ### Command line

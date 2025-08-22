@@ -32,7 +32,7 @@ stages:
   - test-connect
   - run-playbook
 
-image: autobase/automation:2.3.1
+image: autobase/automation:2.3.2
 
 variables:
     ANSIBLE_FORCE_COLOR: 'true'
@@ -65,7 +65,7 @@ This CI example assumes the following repository structure:
 ```
 
 :::info
-- **group_vars/all.yml**: Configuration variables — refer to the [default](https://github.com/vitabaks/autobase/blob/2.3.1/automation/roles/common/defaults/main.yml) values. Override them as needed using group_vars, host_vars, or directly in the inventory file.
+- **group_vars/all.yml**: Configuration variables — refer to the [default](https://github.com/vitabaks/autobase/blob/2.3.2/automation/roles/common/defaults/main.yml) values. Override them as needed using group_vars, host_vars, or directly in the inventory file.
 - **inventory**: Contains a list of servers to manage. See the inventory [example](https://github.com/vitabaks/autobase/blob/master/automation/inventory.example).
 
 The CI pipeline:
@@ -96,7 +96,7 @@ stages:
   - run-check-diff
   - run-playbook
 
-image: autobase/automation:2.3.1
+image: autobase/automation:2.3.2
 
 variables:
     ANSIBLE_FORCE_COLOR: 'true'
@@ -162,7 +162,7 @@ stages:
   - run-check-diff
   - run-playbook
 
-image: autobase/automation:2.3.1
+image: autobase/automation:2.3.2
 
 variables:
   ANSIBLE_FORCE_COLOR: 'true'
@@ -331,7 +331,7 @@ jobs:
     name: test-connect
     runs-on: ubuntu-latest
     container:
-      image: autobase/automation:2.3.1
+      image: autobase/automation:2.3.2
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -359,7 +359,7 @@ jobs:
     needs: test-connect
     runs-on: ubuntu-latest
     container:
-      image: autobase/automation:2.3.1
+      image: autobase/automation:2.3.2
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -394,7 +394,7 @@ This CI example assumes the following repository structure:
 ```
 
 :::info
-- **group_vars/all.yml**: Configuration variables — refer to the [default](https://github.com/vitabaks/autobase/blob/2.3.1/automation/roles/common/defaults/main.yml) values. Override them as needed using group_vars, host_vars, or directly in the inventory file.
+- **group_vars/all.yml**: Configuration variables — refer to the [default](https://github.com/vitabaks/autobase/blob/2.3.2/automation/roles/common/defaults/main.yml) values. Override them as needed using group_vars, host_vars, or directly in the inventory file.
 - **secrets.yml**: (optional) It contains secret data such as passwords encrypted using [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
 - **inventory**: Contains a list of servers to manage. See the inventory [example](https://github.com/vitabaks/autobase/blob/master/automation/inventory.example).
 
