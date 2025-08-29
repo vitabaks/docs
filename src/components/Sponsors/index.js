@@ -45,6 +45,12 @@ const Sponsors = [
     darkImage: require('@site/static/img/sponsors/codefloe.dark.png').default,
     link: 'https://codefloe.com',
   },
+  {
+    name: 'toncarton',
+    lightImage: require('@site/static/img/sponsors/toncarton.png').default,
+    darkImage: require('@site/static/img/sponsors/toncarton.dark.png').default,
+    link: 'https://www.toncarton.com',
+  },
 ];
 
 function Sponsor({ name, lightImage, darkImage, link }) {
