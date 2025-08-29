@@ -231,7 +231,13 @@ If you need to start from scratch, you can use the `remove_cluster.yml` playbook
 Run the following command to remove the specified components:
 
 ```
-ansible-playbook remove_cluster.yml -e "remove_postgres=true remove_etcd=true"
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.3.2 \
+    ansible-playbook remove_cluster.yml -e "remove_postgres=true remove_etcd=true"
 ```
 
 This command will delete the specified components, allowing you to start a new installation.

@@ -144,9 +144,15 @@ wal_g_patroni_cluster_bootstrap_command: "/usr/local/bin/wal-g --config {{ postg
 To restore the current cluster (PITR) run the following command:
 
 ```
-ansible-playbook deploy_pgcluster.yml \
-  -t point_in_time_recovery \
-  -e disable_archive_command=false
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.3.2 \
+    ansible-playbook deploy_pgcluster.yml \
+      -t point_in_time_recovery \
+      -e disable_archive_command=false
 ```
 
 :::info
@@ -158,9 +164,15 @@ We set `disable_archive_command` to `false` so as not to disable `archive_comman
 To clone the cluster run the following command:
 
 ```
-ansible-playbook deploy_pgcluster.yml \
-  -e disable_archive_command=true \
-  -e keep_patroni_dynamic_json=false
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.3.2 \
+    ansible-playbook deploy_pgcluster.yml \
+      -e disable_archive_command=true \
+      -e keep_patroni_dynamic_json=false
 ```
 
 :::info

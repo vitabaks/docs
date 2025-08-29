@@ -44,12 +44,7 @@ It adds repositories, installs packages, and sets parameters like shared_preload
 | [pg_stat_kcache](https://github.com/powa-team/pg_stat_kcache) | Gather statistics about physical disk access and CPU consumption done by backends | `enable_pg_stat_kcache` |
 | [pg_wait_sampling](https://github.com/postgrespro/pg_wait_sampling) | Sampling based statistics of wait events  | `enable_pg_wait_sampling` |
 
-Enable the following extensions by setting the respective variables to `true`, example:
-
-```
-ansible-playbook deploy_pgcluster.yml -e "enable_timescaledb=true"
-```
-
+Enable the following extensions by setting the respective variables to `true`.
 
 ### Method 2: Packages
 

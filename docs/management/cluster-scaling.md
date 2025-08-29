@@ -45,7 +45,13 @@ In this example, we add a node with the IP address `10.128.64.144`
 2. **Run the playbook**: Execute the `add_pgnode.yml` playbook to add the new node to your cluster.
 
 ```
-ansible-playbook add_pgnode.yml
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.3.2 \
+    ansible-playbook add_pgnode.yml
 ```
 
 :::note
@@ -76,7 +82,13 @@ In this example, we add a balancer node with the IP address `10.128.64.144`
 2. **Run the playbook**: Execute the `add_balancer.yml` playbook to add the new balancer node to your cluster.
 
 ```
-ansible-playbook add_balancer.yml
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.3.2 \
+    ansible-playbook add_balancer.yml
 ```
 
 :::note

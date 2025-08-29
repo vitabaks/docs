@@ -18,7 +18,7 @@ If you’re interested in having this functionality available through the UI, pl
 
 ### Command line
 
-Use the `update_pgcluster.yml` playbook for update to a new minor version (e.g., from version 16.1 to 16.2, and etc).
+Use the `update_pgcluster.yml` playbook for update to a new minor version (e.g., from version 17.1 to 17.2, and etc).
 
 By default, only PostgreSQL packages defined in the `postgresql_packages` variable are updated. In addition, you can update Patroni or the entire system.
 
@@ -30,17 +30,35 @@ When using load balancing for read-only traffic, zero downtime is expected (for 
 
 **Update Postgres**:
 ```
-ansible-playbook update_pgcluster.yml -e target=postgres
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.3.2 \
+    ansible-playbook update_pgcluster.yml -e target=postgres
 ```
 
 **Update Patroni**:
 ```
-ansible-playbook update_pgcluster.yml -e target=patroni
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.3.2 \
+    ansible-playbook update_pgcluster.yml -e target=patroni
 ```
 
 **Update all system** (includes Postgres and Patroni):
 ```
-ansible-playbook update_pgcluster.yml -e target=system
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.3.2 \
+    ansible-playbook update_pgcluster.yml -e target=system
 ```
 
 <details>
@@ -165,7 +183,7 @@ If you’re interested in having this functionality available through the UI, pl
 
 ### Command line
 
-Use the `pg_upgrade.yml` playbook to upgrade the PostgreSQL to a new major version (e.g., from version 15 to 16, and etc).
+Use the `pg_upgrade.yml` playbook to upgrade the PostgreSQL to a new major version (e.g., from version 16 to 17, and etc).
 
 :::info
 Database downtime considerations:
@@ -197,7 +215,13 @@ Specify the current (old) version of PostgreSQL in the `pg_old_version` variable
 :::
 
 ```
-ansible-playbook pg_upgrade.yml -e "pg_old_version=15 pg_new_version=16"
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.3.2 \
+    ansible-playbook pg_upgrade.yml -e "pg_old_version=16 pg_new_version=17"
 ```
 
 <details>
@@ -485,7 +509,13 @@ In some scenarios, if errors occur, the `pg_upgrade.yml` playbook may automatica
 Alternatively, if the automatic rollback does not occur, you can manually execute the `pg_upgrade_rollback.yml` playbook to revert the changes. 
 
 ```
-ansible-playbook pg_upgrade_rollback.yml -e "pg_old_version=15 pg_new_version=16"
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.3.2 \
+    ansible-playbook pg_upgrade_rollback.yml -e "pg_old_version=16 pg_new_version=17"
 ```
 :::note
 It's designed to be used when a PostgreSQL upgrade hasn't been fully completed and the new version hasn't been started. \
