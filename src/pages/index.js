@@ -27,7 +27,7 @@ function SectionWithBackground({ children }) {
     return null;
   }
 
-  const overlayOpacity = currentMode === 'dark' ? 0.7 : 0.6; // Dynamic transparency based on theme
+  const overlayOpacity = currentMode === 'dark' ? 0.6 : 0.5; // Dynamic transparency based on theme
 
   return (
     <div style={{ position: 'relative', padding: '40px 0', overflow: 'hidden' }}>
@@ -44,7 +44,8 @@ function SectionWithBackground({ children }) {
           left: 0,
           width: '100%',
           height: '100%',
-            objectFit: 'cover',
+          objectFit: 'cover',
+          filter: 'blur(2px)',
           zIndex: 0,
         }}
       />
