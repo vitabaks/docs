@@ -474,17 +474,26 @@ For more information on all available options, run `etcdctl --help`
 
 Lists all members in the cluster:
 ```
-etcdctl member list
+sudo etcdctl member list -w table \
+  --cacert=/etc/etcd/tls/ca.crt \
+  --cert=/etc/etcd/tls/server.crt \
+  --key=/etc/etcd/tls/server.key
 ```
 
 Check the cluster health:
 ```
-etcdctl endpoint health --cluster
+sudo etcdctl endpoint health --cluster -w table \
+  --cacert=/etc/etcd/tls/ca.crt \
+  --cert=/etc/etcd/tls/server.crt \
+  --key=/etc/etcd/tls/server.key
 ```
 
 Prints out the status of cluster endpoints:
 ```
-etcdctl endpoint status --cluster -w table
+sudo etcdctl endpoint status --cluster -w table \
+  --cacert=/etc/etcd/tls/ca.crt \
+  --cert=/etc/etcd/tls/server.crt \
+  --key=/etc/etcd/tls/server.key
 ```
 
 ## Consul
