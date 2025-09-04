@@ -183,6 +183,99 @@
   }
 }
 
+/* Layout switches */
+.desktopTabs { display: block; }
+.mobileAccordion { display: none; }
+
+@media (max-width: 900px) {
+  .desktopTabs { display: none; }
+  .mobileAccordion { display: block; margin-top: 1rem; }
+}
+
+/* Accordion base */
+.mobileAccordion {
+  border-radius: 18px;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 4px 14px -4px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+html[data-theme='dark'] .mobileAccordion {
+  background: var(--ifm-color-emphasis-100);
+  box-shadow: 0 4px 18px -6px rgba(0,0,0,0.55);
+}
+
+.acItem + .acItem {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+html[data-theme='dark'] .acItem + .acItem {
+  border-top-color: var(--ifm-color-emphasis-300);
+}
+
+.acHeader {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 1rem 1.25rem;
+  font: 500 1rem/1.3 var(--ifm-font-family-base);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  color: var(--ifm-font-color-base);
+  text-align: left;
+  transition: background .18s, color .18s;
+}
+
+.acHeader:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+html[data-theme='dark'] .acHeader:hover {
+  background: var(--ifm-color-emphasis-300);
+}
+
+.acIcon {
+  font-size: 1.25rem;
+  line-height: 1;
+  width: 1.5rem;
+  text-align: center;
+  font-weight: 400;
+  color: var(--ifm-color-emphasis-700);
+}
+
+html[data-theme='dark'] .acIcon {
+  color: var(--ifm-color-emphasis-500);
+}
+
+.open .acHeader {
+  font-weight: 600;
+}
+
+.acPanel {
+  padding: 0 1.25rem 1.5rem;
+  animation: fadeSlide .25s ease;
+}
+
+.acPanel .blockTitle {
+  font-size: 1.35rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slightly tighten spacing in mobile content */
+@media (max-width: 560px) {
+  .acHeader { padding: 0.9rem 1rem; }
+  .acPanel { padding: 0 1rem 1.25rem; }
+  .acPanel .blockTitle { font-size: 1.25rem; }
+}
+
 /* Dark theme */
 html[data-theme='dark'] .tabsNav {
   background: var(--ifm-color-emphasis-100);

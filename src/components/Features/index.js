@@ -124,43 +124,77 @@ export default function Features() {
 		<section className={styles.featuresSection}>
       <h1 style={{ textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>Features and Benefits</h1>
 
-			<div className={styles.tabsWrapper}>
-				<div className={styles.tabsNav} role="tablist" aria-orientation="vertical">
-					{blocks.map((b, i) => (
-						<button
-							key={b.id}
-							role="tab"
-							id={`feature-tab-${b.id}`}
-							aria-selected={i === active}
-							aria-controls={`feature-panel-${b.id}`}
-							tabIndex={i === active ? 0 : -1}
-							className={`${styles.tabButton} ${i === active ? styles.active : ''}`}
-							onClick={() => setActive(i)}
-							onKeyDown={(e) => handleKeyDown(e, i)}
-							type="button"
-						>
-							{b.title}
-						</button>
-					))}
-				</div>
+			{/* Desktop / tablet tabs */}
+			<div className={styles.desktopTabs}>
+				<div className={styles.tabsWrapper}>
+					<div className={styles.tabsNav} role="tablist" aria-orientation="vertical">
+						{blocks.map((b, i) => (
+							<button
+								key={b.id}
+								role="tab"
+								id={`feature-tab-${b.id}`}
+								aria-selected={i === active}
+								aria-controls={`feature-panel-${b.id}`}
+								tabIndex={i === active ? 0 : -1}
+								className={`${styles.tabButton} ${i === active ? styles.active : ''}`}
+								onClick={() => setActive(i)}
+								onKeyDown={(e) => handleKeyDown(e, i)}
+								type="button"
+							>
+								{b.title}
+							</button>
+						))}
+					</div>
 
-				<div className={styles.tabPanelWrapper}>
-					{blocks.map(
-						(b, i) =>
-							i === active && (
-								<div
-									key={b.id}
-									id={`feature-panel-${b.id}`}
-									role="tabpanel"
-									aria-labelledby={`feature-tab-${b.id}`}
-									className={styles.tabPanel}
-								>
-									<h3 className={styles.blockTitle}>{b.title}</h3>
-									<p className={styles.description}>{b.description}</p>
-								</div>
-							)
-					)}
+					<div className={styles.tabPanelWrapper}>
+						{blocks.map(
+							(b, i) =>
+								i === active && (
+									<div
+										key={b.id}
+										id={`feature-panel-${b.id}`}
+										role="tabpanel"
+										aria-labelledby={`feature-tab-${b.id}`}
+										className={styles.tabPanel}
+									>
+										<h3 className={styles.blockTitle}>{b.title}</h3>
+										<p className={styles.description}>{b.description}</p>
+									</div>
+								)
+						)}
+					</div>
 				</div>
+			</div>
+
+			{/* Mobile accordion */}
+			<div className={styles.mobileAccordion}>
+				{blocks.map((b, i) => {
+					const open = i === active;
+					return (
+						<div key={b.id} className={`${styles.acItem} ${open ? styles.open : ''}`}>
+							<button
+								type="button"
+								className={styles.acHeader}
+								aria-expanded={open}
+								aria-controls={`mob-panel-${b.id}`}
+								onClick={() => setActive(i)}
+							>
+								<span className={styles.acTitle}>{b.title}</span>
+								<span className={styles.acIcon} aria-hidden="true">
+									{open ? '−' : '+'}
+								</span>
+							</button>
+							<div
+								id={`mob-panel-${b.id}`}
+								role="region"
+								hidden={!open}
+								className={styles.acPanel}
+							>
+								<p className={styles.description}>{b.description}</p>
+							</div>
+						</div>
+					);
+				})}
 			</div>
 		</section>
 	);
