@@ -72,6 +72,75 @@
   margin-top: 20px;
 }
 
+/* Vertical tabs styles */
+.tabsWrapper {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.tabsNav {
+  display: flex;
+  flex-direction: column;
+  min-width: 340px;
+  background: var(--ifm-color-emphasis-0);
+  border-radius: 18px;
+  padding: 0.75rem 0;
+  box-shadow: 0 4px 12px -4px rgba(0,0,0,0.06);
+}
+
+.tabButton {
+  background: transparent;
+  border: 0;
+  text-align: left;
+  font: 500 1.05rem/1.35 var(--ifm-font-family-base);
+  padding: 1rem 1.75rem;
+  cursor: pointer;
+  color: var(--ifm-font-color-base);
+  border-left: 4px solid transparent;
+  transition: background .18s, color .18s, border-color .18s;
+}
+
+.tabButton:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.active {
+  background: var(--ifm-color-primary-contrast-background);
+  color: var(--ifm-color-primary);
+  border-left-color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+.tabPanelWrapper {
+  flex: 1;
+  min-width: 320px;
+  background: var(--ifm-background-surface-color);
+  border-radius: 18px;
+  padding: 2.25rem 2.75rem;
+  box-shadow: 0 6px 24px -6px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+.tabPanel {
+  animation: featureFade .30s ease;
+}
+
+@keyframes featureFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header inside the panel */
+.tabPanel .blockTitle,
+.blockTitle {
+  margin-top: 0;
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .featuresSection {
@@ -89,4 +158,41 @@
   .featuresImage img {
     max-width: 60px;
   }
+}
+
+@media (max-width: 900px) {
+  .tabsWrapper {
+    flex-direction: column;
+  }
+  .tabsNav {
+    flex-direction: row;
+    overflow-x: auto;
+    min-width: 100%;
+    padding: 0.5rem;
+  }
+  .tabButton {
+    flex: 0 0 auto;
+    border-left: 0;
+    border-bottom: 3px solid transparent;
+    border-radius: 10px;
+    margin-right: .25rem;
+  }
+  .active {
+    border-left: 0;
+    border-bottom-color: var(--ifm-color-primary);
+  }
+}
+
+/* Dark theme */
+html[data-theme='dark'] .tabsNav {
+  background: var(--ifm-color-emphasis-100);
+}
+
+html[data-theme='dark'] .tabPanelWrapper {
+  background: var(--ifm-color-emphasis-100);
+  box-shadow: 0 6px 24px -6px rgba(0,0,0,0.45);
+}
+
+html[data-theme='dark'] .tabButton:hover {
+  background: var(--ifm-color-emphasis-200);
 }
