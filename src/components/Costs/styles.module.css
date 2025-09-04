@@ -36,6 +36,12 @@
   margin-top: 6rem;
 }
 
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
 .smallText {
   font-size: 12px;
 }

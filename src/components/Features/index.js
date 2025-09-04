@@ -122,7 +122,7 @@ export default function Features() {
 
 	return (
 		<section className={styles.featuresSection}>
-      <h1 style={{ textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>Features and Benefits</h1>
+      <h1 className={styles.sectionTitle}>Features and Benefits</h1>
 
 			{/* Desktop / tablet tabs */}
 			<div className={styles.desktopTabs}>

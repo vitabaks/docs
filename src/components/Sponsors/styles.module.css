@@ -8,7 +8,7 @@
 
 .Sponsor {
   flex: 1 1 calc(20% - 40px);
-  max-width: 140px;
+  max-width: 130px;
   text-align: center;
   margin: 5px;
 }
@@ -23,6 +23,14 @@
 
 .SponsorImage:hover {
   transform: scale(1.1);
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 1rem;
 }
 
 /* Adaptive style for mobile devices */
