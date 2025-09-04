@@ -27,6 +27,11 @@ const CloudProviders = [
     image: '/img/hetzner.svg',
     link: '/docs/deployment/hetzner'
   },
+  {
+    name: 'Your Own Machines',
+    image: '/img/your-own-machines.svg',
+    link: '/docs/deployment/your-own-machines'
+  },
 ];
 
 function CloudProvider({ name, image, link }) {
@@ -42,7 +47,7 @@ function CloudProvider({ name, image, link }) {
 export default function CloudProviderSection() {
   return (
     <section>
-      <h3 className={styles.cloudProviders} style={{ marginBottom: '20px' }}>Available on multiple cloud providers</h3>
+      <h3 className={styles.cloudProviders} style={{ marginTop: '40px', marginBottom: '30px' }}>Available on multiple cloud providers and on-premises</h3>
       <div className={styles.cloudProviders}>
         {CloudProviders.map((provider, idx) => (
           <CloudProvider key={idx} {...provider} />

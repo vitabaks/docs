@@ -136,9 +136,9 @@ export default function Home() {
         <HomepageHeader />
       </SectionWithBackground>
       <main>
-        <Features />
         <CloudProviders />
         <DemoEmbed />
+        <Features />
         <Costs />
         <Sponsors />
       </main>
