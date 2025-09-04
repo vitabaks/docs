@@ -25,7 +25,7 @@ const blocks = [
 	},
 	{
 		id: 'cost',
-		title: 'Cost effective',
+		title: 'Cost-effective database',
 		description: (
 			<>
 				Save 40% and more vs. cloud-managed databases.
@@ -39,7 +39,7 @@ const blocks = [
 	},
 	{
 		id: 'easy',
-		title: 'Easy to manage',
+		title: 'Easy to manage (UI)',
 		description: (
 			<>
 				A user-friendly web interface that simplifies complex database deployment and management tasks.
@@ -49,14 +49,12 @@ const blocks = [
 		),
 	},
 	{
-		id: 'security',
-		title: 'Data security',
+		id: 'gitops',
+		title: 'Infrastructure as Code and GitOps',
 		description: (
 			<>
-				Built-in encryption, access management, and automated backups (PITR) ensure data security and compliance,
-				protecting your database from leaks, unauthorized access, and data loss.
-        <br /> <br />
-        Keep your data safe, recoverable, and always available.
+				Define your database infrastructure with repeatable and consistent configurations.
+				<a href="/docs/management/gitops" target="_blank" rel="noopener noreferrer"> GitOps</a> support ensures seamless integration with version control, simplifying management and ensuring full traceability.
 			</>
 		),
 	},
@@ -82,17 +80,19 @@ const blocks = [
 			</>
 		),
 	},
-	{
-		id: 'gitops',
-		title: 'Infrastructure as Code and GitOps',
+  {
+		id: 'security',
+		title: 'Data security',
 		description: (
 			<>
-				Define your database infrastructure with repeatable and consistent configurations.
-				<a href="/docs/management/gitops" target="_blank" rel="noopener noreferrer"> GitOps</a> support ensures seamless integration with version control, simplifying management and ensuring full traceability.
+				Built-in encryption, access management, and automated backups (PITR) ensure data security and compliance,
+				protecting your database from leaks, unauthorized access, and data loss.
+        <br /> <br />
+        Keep your data safe, recoverable, and always available.
 			</>
 		),
 	},
-	{
+  {
 		id: 'support',
 		title: 'Professional support',
 		description: (
