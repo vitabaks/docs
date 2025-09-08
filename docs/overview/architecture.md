@@ -4,9 +4,15 @@ sidebar_position: 1
 
 # Architecture
 
-import SchemeSwitcher from '@site/src/components/SchemeSwitcher.mdx';
+import ThemedImage from '@theme/ThemedImage';
 
-<SchemeSwitcher />
+<ThemedImage
+  alt="postgresql-cluster-scheme"
+  sources={{
+    light: '/img/postgresql_cluster.png',
+    dark: '/img/postgresql_cluster.dark_mode.png',
+  }}
+/>
 
 You have three schemes available for deployment:
 

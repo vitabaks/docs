@@ -9,9 +9,15 @@ sidebar_position: 1
 
 ### Supported setups of Postgres Cluster
 
-import SchemeSwitcher from '@site/src/components/SchemeSwitcher.mdx';
+import ThemedImage from '@theme/ThemedImage';
 
-<SchemeSwitcher />
+<ThemedImage
+  alt="postgresql-cluster-scheme"
+  sources={{
+    light: '/img/postgresql_cluster.png',
+    dark: '/img/postgresql_cluster.dark_mode.png',
+  }}
+/>
 
 For a detailed description of the cluster components, visit the [Architecture](./overview/architecture.md) page.
 
@@ -94,9 +100,6 @@ Alternatively, you can use [Ansible Collection](https://github.com/vitabaks/auto
 
 Infrastructure as Code (IaC) allows you to manage and provision database infrastructure through code instead of manual processes.
 GitOps builds on this by automating infrastructure updates using a Git workflow combined with continuous integration (CI) and continuous delivery (CI/CD).
-
-When changes are merged into your codebase, the CI/CD pipeline automatically applies them to your environment.
-Any configuration drift — such as manual changes or errors — is corrected by GitOps automation, ensuring the environment always matches the desired state defined in Git.
 
 #### Configure CI/CD
 
