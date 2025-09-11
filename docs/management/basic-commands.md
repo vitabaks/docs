@@ -505,7 +505,7 @@ Official [documentation](https://developer.hashicorp.com/consul/docs)
 **Configuration file**
 
 ```
-/etc/consul/config.json
+/etc/consul/config.hcl
 ```
 
 **Service**
@@ -536,22 +536,30 @@ For more information on all available options, run `consul --help`
 
 List all members in the cluster:
 ```
-consul members
+sudo consul members \
+  -http-addr=https://127.0.0.1:8500 \
+  -ca-file=/etc/consul/tls/ca.crt
 ```
 
 Check the health of the cluster:
 ```
-consul operator raft list-peers
+sudo consul operator raft list-peers \
+  -http-addr=https://127.0.0.1:8500 \
+  -ca-file=/etc/consul/tls/ca.crt
 ```
 
 Print out the status of all services in the cluster:
 ```
-consul catalog services
+sudo consul catalog services \
+  -http-addr=https://127.0.0.1:8500 \
+  -ca-file=/etc/consul/tls/ca.crt
 ```
 
 List all nodes running a specific service (e.g., postgres-cluster):
 ```
-consul catalog nodes -service=<cluster-name>
+sudo consul catalog nodes -service=<cluster-name> \
+  -http-addr=https://127.0.0.1:8500 \
+  -ca-file=/etc/consul/tls/ca.crt
 ```
 
 #### CLI (dig)
