@@ -51,6 +51,12 @@ const Sponsors = [
     darkImage: require('@site/static/img/sponsors/toncarton.dark.png').default,
     link: 'https://www.toncarton.com',
   },
+  {
+    name: 'Optiwise',
+    lightImage: require('@site/static/img/sponsors/optiwise.png').default,
+    darkImage: require('@site/static/img/sponsors/optiwise.dark.png').default,
+    link: 'https://optiwise.nl',
+  },
 ];
 
 function Sponsor({ name, lightImage, darkImage, link }) {

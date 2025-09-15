@@ -4,11 +4,14 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  --sponsor-item-width: 130px;
 }
 
 .Sponsor {
-  flex: 1 1 calc(20% - 40px);
-  max-width: 130px;
+  flex: 0 1 var(--sponsor-item-width);
+  max-width: var(--sponsor-item-width);
   text-align: center;
   margin: 5px;
 }
@@ -37,21 +40,13 @@
 @media (max-width: 768px) {
   .Sponsors {
     gap: 10px;
-  }
-
-  .Sponsor {
-    flex: 1 1 calc(30% - 20px);
-    max-width: 120px;
+    --sponsor-item-width: 120px;
   }
 }
 
 @media (max-width: 480px) {
   .Sponsors {
     gap: 5px;
-  }
-
-  .Sponsor {
-    flex: 1 1 calc(50% - 10px);
-    max-width: 100px;
+    --sponsor-item-width: 100px;
   }
 }
