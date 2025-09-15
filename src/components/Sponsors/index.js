@@ -57,6 +57,12 @@ const Sponsors = [
     darkImage: require('@site/static/img/sponsors/optiwise.dark.png').default,
     link: 'https://optiwise.nl',
   },
+  {
+    name: 'We Manage',
+    lightImage: require('@site/static/img/sponsors/we-manage.png').default,
+    darkImage: require('@site/static/img/sponsors/we-manage.png').default,
+    link: 'https://we-manage.de',
+  },
 ];
 
 function Sponsor({ name, lightImage, darkImage, link }) {

@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 10px 40px;
   max-width: 1200px;
   margin: 0 auto;
   --sponsor-item-width: 130px;
@@ -13,7 +13,7 @@
   flex: 0 1 var(--sponsor-item-width);
   max-width: var(--sponsor-item-width);
   text-align: center;
-  margin: 5px;
+  margin: 0;
 }
 
 .SponsorImage {
@@ -39,14 +39,16 @@
 /* Adaptive style for mobile devices */
 @media (max-width: 768px) {
   .Sponsors {
-    gap: 10px;
-    --sponsor-item-width: 120px;
+    max-width: 90%;
+    gap: 10px 30px;
+    --sponsor-item-width: 110px;
   }
 }
 
 @media (max-width: 480px) {
   .Sponsors {
-    gap: 5px;
+    max-width: 90%;
+    gap: 5px 20px;
     --sponsor-item-width: 100px;
   }
 }
