@@ -25,7 +25,7 @@
 
 .cloudProvider {
   flex: 1 1 calc(20% - 40px);
-  max-width: 130px;
+  max-width: 120px;
   text-align: center;
   margin: 10px;
   opacity: 0;
@@ -64,7 +64,6 @@
 
 .cloudProvider:hover img {
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cloudImage {
