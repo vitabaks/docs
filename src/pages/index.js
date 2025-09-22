@@ -66,14 +66,15 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <Heading as="h2" style={{ fontSize: '2.4rem', fontWeight: '600' }} className={styles.gradientText}>
+        <Heading as="h2" style={{ fontSize: '2.5rem', fontWeight: '600' }} className={styles.gradientText}>
           Autobase for PostgreSQL® - Your own DBaaS
         </Heading>
-        <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '500', marginTop: '20px', marginBottom: '10px' }} className={styles.heroBanner_description}>
-          Open Source, self-hosted DBaaS / Automation platform for PostgreSQL
+        <Heading as="h3" style={{ fontSize: '1.5rem', fontWeight: '500', marginTop: '20px', marginBottom: '10px' }} className={styles.heroBanner_description}>
+          Open Source, self-hosted DBaaS / Postgres automation
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginBottom: '30px', color: '#c7c7c7' }} className={styles.heroBanner_description}>
           Autobase automates deployment and maintenance, ensuring high availability, scalability, and cost efficiency—even for teams without deep DBA expertise.
+          <br />
           Say goodbye to manual database management!
         </Heading>
         <div className={styles.buttons}>
