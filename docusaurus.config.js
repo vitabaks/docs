@@ -9,7 +9,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Automated database platform for PostgreSQL',
-  tagline: 'Automate failover, backups, restore, upgrades, scaling, and more with ease',
+  tagline: 'Automate deployment, failover, backups, restore, upgrades, scaling, and more with ease',
   favicon: 'img/autobase.svg',
 
   // Set the production url of your site here
