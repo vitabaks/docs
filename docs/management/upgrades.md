@@ -35,7 +35,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.3.2 \
+  autobase/automation:2.4.0 \
     ansible-playbook update_pgcluster.yml -e target=postgres
 ```
 
@@ -46,7 +46,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.3.2 \
+  autobase/automation:2.4.0 \
     ansible-playbook update_pgcluster.yml -e target=patroni
 ```
 
@@ -57,7 +57,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.3.2 \
+  autobase/automation:2.4.0 \
     ansible-playbook update_pgcluster.yml -e target=system
 ```
 
@@ -74,7 +74,7 @@ docker run --rm -it \
 | `reboot_host_timeout`          | Maximum time to wait for the server to reboot and respond to a test command.                                                                                | `1800` seconds (30 minutes) |
 | `reboot_host_post_delay`       | Waiting time after the server reboot (in minutes) before updating the next server. Note: Relevant when there are multiple replicas.                   | `5` minutes              |
 
-The variable file is located on the path: [roles/update/defaults/main.yml](https://github.com/vitabaks/autobase/blob/2.3.2/automation/roles/update/defaults/main.yml)
+The variable file is located on the path: [roles/update/defaults/main.yml](https://github.com/vitabaks/autobase/blob/2.4.0/automation/roles/update/defaults/main.yml)
 
 </details>
 
@@ -220,7 +220,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.3.2 \
+  autobase/automation:2.4.0 \
     ansible-playbook pg_upgrade.yml -e "pg_old_version=16 pg_new_version=17"
 ```
 
@@ -262,7 +262,7 @@ docker run --rm -it \
 
 Note: For variables marked as "Derived value", the default value is determined based on other variables.
 
-The variable file is located on the path: [roles/upgrade/defaults/main.yml](https://github.com/vitabaks/autobase/blob/2.3.2/automation/roles/upgrade/defaults/main.yml)
+The variable file is located on the path: [roles/upgrade/defaults/main.yml](https://github.com/vitabaks/autobase/blob/2.4.0/automation/roles/upgrade/defaults/main.yml)
 
 </details>
 
@@ -514,7 +514,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.3.2 \
+  autobase/automation:2.4.0 \
     ansible-playbook pg_upgrade_rollback.yml -e "pg_old_version=16 pg_new_version=17"
 ```
 :::note

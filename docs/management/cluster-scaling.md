@@ -50,7 +50,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.3.2 \
+  autobase/automation:2.4.0 \
     ansible-playbook add_pgnode.yml
 ```
 
@@ -87,7 +87,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.3.2 \
+  autobase/automation:2.4.0 \
     ansible-playbook add_balancer.yml
 ```
 

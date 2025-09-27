@@ -15,7 +15,7 @@ RedHat and Debian based distros.
 - **Rocky Linux**: 8, 9, 10
 - **AlmaLinux**: 8, 9, 10
 
-Architecture: x86_64/amd64, arm64/aarch64
+Architecture: x86_64 (amd64), aarch64 (arm64).
 
 :::info
 When deploying to cloud providers (such as AWS, GCP, Azure, DigitalOcean, and Hetzner Cloud) using the Console UI, virtual machines running Ubuntu 24.04 LTS are created.
@@ -25,4 +25,4 @@ When deploying to cloud providers (such as AWS, GCP, Azure, DigitalOcean, and He
 
 All supported PostgreSQL versions.
 
-Tested, works fine: PostgreSQL 10, 11, 12, 13, 14, 15, 16, 17
+Tested, works fine: PostgreSQL 10, 11, 12, 13, 14, 15, 16, 17, 18

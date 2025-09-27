@@ -197,7 +197,7 @@ Execute the following command to deploy a PostgreSQL cluster (example):
 ```
 docker run --rm -it \
   --env DO_API_TOKEN=${DO_API_TOKEN} \
-  autobase/automation:2.3.2 \
+  autobase/automation:2.4.0 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "ansible_user=root \
        cloud_provider='digitalocean' \
@@ -242,7 +242,7 @@ Backup Parameters:
 - `AWS_SECRET_ACCESS_KEY`: Spaces secret keys (required).
 
 :::info
-See the [default](https://github.com/vitabaks/autobase/tree/master/automation/roles/common/defaults) automation variables for more details, including the list of available [variables](https://github.com/vitabaks/autobase/blob/master/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
+See the [default](https://github.com/vitabaks/autobase/tree/2.4.0/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/vitabaks/autobase/blob/2.4.0/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
 :::
 
 #### 3. Wait until deployment is complete
