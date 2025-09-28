@@ -211,7 +211,7 @@ docker run --rm -it \
        AWS_SECRET_ACCESS_KEY='YOUR_SECRET_KEY' \
        digital_ocean_spaces_region='nyc3' \
        pgbackrest_install=true \
-       postgresql_version=17 \
+       postgresql_version=18 \
        patroni_cluster_name='postgres-cluster-01' \
        ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
 ```

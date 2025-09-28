@@ -207,7 +207,7 @@ docker run --rm -it \
        server_image='ami-063fb82b183efe67d' \
        server_location='us-east-1' \
        volume_size=100 \
-       postgresql_version=17 \
+       postgresql_version=18 \
        patroni_cluster_name='postgres-cluster-01' \
        ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
 ```

@@ -210,7 +210,7 @@ docker run --rm -it \
        server_type='Standard_D4s_v5' \
        server_location='eastus' \
        volume_size=100 \
-       postgresql_version=17 \
+       postgresql_version=18 \
        patroni_cluster_name='postgres-cluster-01' \
        ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
 ```

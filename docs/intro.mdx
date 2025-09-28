@@ -85,7 +85,7 @@ docker run --rm -it \
   -v $HOME/.ssh:/root/.ssh \
   autobase/automation:2.4.0 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
-      "postgresql_version=17 \
+      "postgresql_version=18 \
        patroni_cluster_name=postgres-cluster"
 ```
 

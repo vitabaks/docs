@@ -202,13 +202,13 @@ docker run --rm -it \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "ansible_user=root \
        cloud_provider='gcp' \
-       cloud_load_balancer=ture \
+       cloud_load_balancer=true \
        server_count=3 \
        server_type='n2-standard-4' \
        server_image='projects/ubuntu-os-cloud/global/images/family/ubuntu-2404-lts-amd64' \
        server_location='us-east1' \
        volume_size=100 \
-       postgresql_version=17 \
+       postgresql_version=18 \
        patroni_cluster_name='postgres-cluster-01' \
        ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
 ```

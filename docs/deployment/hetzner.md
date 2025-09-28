@@ -210,7 +210,7 @@ docker run --rm -it \
        hetzner_object_storage_secret_key='YOUR_SECRET_KEY' \
        hetzner_object_storage_region='nbg1' \
        pgbackrest_install=true \
-       postgresql_version=17 \
+       postgresql_version=18 \
        patroni_cluster_name='postgres-cluster-01' \
        ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
 ```

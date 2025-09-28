@@ -20,29 +20,29 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-  <TabItem value="Postgres" label="Postgres" default>
+  <TabItem value="Your Own Machines" label="Your Own Machines" default>
 
-#### Add Postgres Node
+To scale your cluster by adding a new node, follow these steps:
 
-To scale your cluster by adding a new PostgreSQL node, follow these steps:
-
-1. **Modify the `inventory` file**: Add the new node's IP address and specify `new_node=true` to indicate that this is a new node.
+1. **Modify the `inventory` file**: Add the new node’s IP and set `new_node=true` variable.
 
 Example:
 
 ```
 [master]
-10.128.64.140 hostname=pgnode01 postgresql_exists=true
+10.128.64.141 hostname=pgnode01
 
 [replica]
-10.128.64.142 hostname=pgnode02 postgresql_exists=true
-10.128.64.143 hostname=pgnode03 postgresql_exists=true
-10.128.64.144 hostname=pgnode04 postgresql_exists=false new_node=true
+10.128.64.142 hostname=pgnode02
+10.128.64.143 hostname=pgnode03
+10.128.64.144 hostname=pgnode04 new_node=true
 ```
 
+:::info
 In this example, we add a node with the IP address `10.128.64.144`
+:::
 
-2. **Run the playbook**: Execute the `add_pgnode.yml` playbook to add the new node to your cluster.
+2. **Run the playbook**: Execute the `add_node.yml` playbook to add the new node to your cluster.
 
 ```
 docker run --rm -it \
@@ -51,48 +51,218 @@ docker run --rm -it \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
   autobase/automation:2.4.0 \
-    ansible-playbook add_pgnode.yml
+    ansible-playbook add_node.yml
 ```
 
-:::note
-When you run this playbook, the new node will undergo the same preparation process as during the initial cluster deployment. However, unlike the initial setup, all necessary configuration files will be automatically copied from server listed in the "master" group in the inventory file.
+:::tip
+You can scale PostgreSQL nodes, and DCS cluster (etcd or Consul), as well as HAProxy load balancers (when with_haproxy_load_balancing is set to true).
 :::
 
   </TabItem>
-  <TabItem value="HAProxy" label="HAProxy">
+  <TabItem value="AWS" label="AWS">
 
-#### Add HAProxy Node
+To scale your cluster by adding a new node, just increase `server_count` variable (e.g., from 3 to 5).
 
-If you’re using HAProxy load balancing (with the `with_haproxy_load_balancing` variable set to `true`), you can add a new balancer node by following these steps:
+:::note
+Specify the path to the private SSH key (its public pair must already be on cluster nodes) using either `ansible_ssh_private_key_file` or `--private-key` option.
+:::
 
-1. **Modify the `inventory` file**: Add the new balancer node's IP address and specify `new_node=true`
-
-Example:
+Execute the `add_node.yml` playbook to add the new node to your cluster, example:
 
 ```
-[balancers]
-10.128.64.140
-10.128.64.142
-10.128.64.143
-10.128.64.144 new_node=true
+export AWS_ACCESS_KEY_ID=<value>
+export AWS_SECRET_ACCESS_KEY=<value>
 ```
-
-In this example, we add a balancer node with the IP address `10.128.64.144`
-
-2. **Run the playbook**: Execute the `add_balancer.yml` playbook to add the new balancer node to your cluster.
 
 ```
 docker run --rm -it \
-  -e ANSIBLE_SSH_ARGS="-F none" \
-  -e ANSIBLE_INVENTORY=/project/inventory \
-  -v $PWD:/project \
+  -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
+  -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
   -v $HOME/.ssh:/root/.ssh \
   autobase/automation:2.4.0 \
-    ansible-playbook add_balancer.yml
+    ansible-playbook add_node.yml --extra-vars \
+      "ansible_user=ubuntu \
+       ansible_ssh_private_key_file=/root/.ssh/id_rsa \
+       cloud_provider='aws' \
+       server_count=5 \
+       server_type='m6i.xlarge' \
+       server_image='ami-063fb82b183efe67d' \
+       server_location='us-east-1' \
+       volume_size=100 \
+       postgresql_version=18 \
+       patroni_cluster_name='postgres-cluster-01' \
+       ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
 ```
 
+:::info
+Autobase will create and configure a new EC2 instances in your AWS account and add it to the cluster.
+:::
+
+  </TabItem>
+  <TabItem value="GCP" label="GCP">
+
+To scale your cluster by adding a new node, just increase `server_count` variable (e.g., from 3 to 5).
+
 :::note
-When you run this playbook, the new balancer node will be prepared similarly to the initial deployment. However, all necessary configuration files will be copied from the first server listed in the "balancers" group in the inventory file.
+Specify the path to the private SSH key (its public pair must already be on cluster nodes) using either `ansible_ssh_private_key_file` or `--private-key` option.
+:::
+
+Execute the `add_node.yml` playbook to add the new node to your cluster, example:
+
+```
+export GCP_SERVICE_ACCOUNT_CONTENTS='{
+  <value>
+}'
+```
+
+```
+docker run --rm -it \
+  -e GCP_SERVICE_ACCOUNT_CONTENTS=${GCP_SERVICE_ACCOUNT_CONTENTS} \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.4.0 \
+    ansible-playbook add_node.yml --extra-vars \
+      "ansible_user=root \
+       ansible_ssh_private_key_file=/root/.ssh/id_rsa \
+       cloud_provider='gcp' \
+       server_count=5 \
+       server_type='n2-standard-4' \
+       server_image='projects/ubuntu-os-cloud/global/images/family/ubuntu-2404-lts-amd64' \
+       server_location='us-east1' \
+       volume_size=100 \
+       postgresql_version=18 \
+       patroni_cluster_name='postgres-cluster-01' \
+       ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
+```
+
+:::info
+Autobase will create and configure a new VM instances in your Google Cloud account and add it to the cluster.
+:::
+
+  </TabItem>
+  <TabItem value="Azure" label="Azure">
+
+To scale your cluster by adding a new node, just increase `server_count` variable (e.g., from 3 to 5).
+
+:::note
+Specify the path to the private SSH key (its public pair must already be on cluster nodes) using either `ansible_ssh_private_key_file` or `--private-key` option.
+:::
+
+Execute the `add_node.yml` playbook to add the new node to your cluster, example:
+
+```
+export AZURE_SUBSCRIPTION_ID=<value>
+export AZURE_CLIENT_ID=<value>
+export AZURE_SECRET=<value>
+export AZURE_TENANT=<value>
+```
+
+```
+docker run --rm -it \
+  -e AZURE_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID} \
+  -e AZURE_CLIENT_ID=${AZURE_CLIENT_ID} \
+  -e AZURE_SECRET=${AZURE_SECRET} \
+  -e AZURE_TENANT=${AZURE_TENANT} \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.4.0 \
+    ansible-playbook add_node.yml --extra-vars \
+      "ansible_user=azureadmin \
+       ansible_ssh_private_key_file=/root/.ssh/id_rsa \
+       cloud_provider='azure' \
+       server_count=5 \
+       server_type='Standard_D4s_v5' \
+       server_location='eastus' \
+       volume_size=100 \
+       postgresql_version=18 \
+       patroni_cluster_name='postgres-cluster-01' \
+       ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
+```
+
+:::info
+Autobase will create and configure a new virtual machines in your Azure account and add it to the cluster.
+:::
+
+  </TabItem>
+  <TabItem value="DigitalOcean" label="DigitalOcean">
+
+To scale your cluster by adding a new node, just increase `server_count` variable (e.g., from 3 to 5).
+
+:::note
+Specify the path to the private SSH key (its public pair must already be on cluster nodes) using either `ansible_ssh_private_key_file` or `--private-key` option.
+:::
+
+Execute the `add_node.yml` playbook to add the new node to your cluster, example:
+
+```
+export DO_API_TOKEN=<value>
+```
+
+```
+docker run --rm -it \
+  -e DO_API_TOKEN=${DO_API_TOKEN} \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.4.0 \
+    ansible-playbook add_node.yml --extra-vars \
+      "ansible_user=root \
+       ansible_ssh_private_key_file=/root/.ssh/id_rsa \
+       cloud_provider='digitalocean' \
+       server_count=5 \
+       server_type='g-4vcpu-16gb' \
+       server_image='ubuntu-24-04-x64' \
+       server_location='nyc1' \
+       volume_size=100 \
+       AWS_ACCESS_KEY_ID='YOUR_ACCESS_KEY' \
+       AWS_SECRET_ACCESS_KEY='YOUR_SECRET_KEY' \
+       digital_ocean_spaces_region='nyc3' \
+       pgbackrest_install=true \
+       postgresql_version=18 \
+       patroni_cluster_name='postgres-cluster-01' \
+       ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
+```
+
+:::info
+Autobase will create and configure a new droplets in your DigitalOcean account and add it to the cluster.
+:::
+
+  </TabItem>
+  <TabItem value="Hetzner" label="Hetzner">
+
+To scale your cluster by adding a new node, just increase `server_count` variable (e.g., from 3 to 5).
+
+:::note
+Specify the path to the private SSH key (its public pair must already be on cluster nodes) using either `ansible_ssh_private_key_file` or `--private-key` option.
+:::
+
+Execute the `add_node.yml` playbook to add the new node to your cluster, example:
+
+```
+export HCLOUD_API_TOKEN=<value>
+```
+
+```
+docker run --rm -it \
+  -e HCLOUD_API_TOKEN=${HCLOUD_API_TOKEN} \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.4.0 \
+    ansible-playbook add_node.yml --extra-vars \
+      "ansible_user=root \
+       ansible_ssh_private_key_file=/root/.ssh/id_rsa \
+       cloud_provider='hetzner' \
+       server_count=5 \
+       server_type='CCX23' \
+       server_image='ubuntu-24.04' \
+       server_location='fsn1' \
+       volume_size=100 \
+       hetzner_object_storage_access_key='YOUR_ACCESS_KEY' \
+       hetzner_object_storage_secret_key='YOUR_SECRET_KEY' \
+       hetzner_object_storage_region='nbg1' \
+       pgbackrest_install=true \
+       postgresql_version=18 \
+       patroni_cluster_name='postgres-cluster-01' \
+       ssh_public_keys='ssh-rsa AAAAB3NzaC1yc2EAAAA******whzcMINzKKCc7AVGbk='"
+```
+
+:::info
+Autobase will create and configure a new servers in your Hetzner Cloud account and add it to the cluster.
 :::
 
   </TabItem>
