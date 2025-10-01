@@ -201,7 +201,7 @@ docker run --rm -it \
   --env AZURE_CLIENT_ID=${AZURE_CLIENT_ID} \
   --env AZURE_SECRET=${AZURE_SECRET} \
   --env AZURE_TENANT=${AZURE_TENANT} \
-  autobase/automation:2.4.0 \
+  autobase/automation:2.4.1 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "ansible_user=azureadmin \
        cloud_provider='azure' \
@@ -227,7 +227,7 @@ Key Parameters:
 - `ssh_public_keys`: Your SSH public key to access the database servers after deployment.
 
 :::note
-See the [default](https://github.com/vitabaks/autobase/tree/2.4.0/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/vitabaks/autobase/blob/2.4.0/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
+See the [default](https://github.com/vitabaks/autobase/tree/2.4.1/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/vitabaks/autobase/blob/2.4.1/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
 :::
 
 #### 3. Wait until deployment is complete

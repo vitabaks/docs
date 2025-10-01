@@ -180,7 +180,7 @@ Example of a cluster page:
 
 ```
 curl -fsSL \
-  https://raw.githubusercontent.com/vitabaks/autobase/refs/tags/2.4.0/automation/inventory.example \
+  https://raw.githubusercontent.com/vitabaks/autobase/refs/tags/2.4.1/automation/inventory.example \
   --output ./inventory
 ```
 
@@ -192,7 +192,7 @@ nano ./inventory
 
 #### Prepare your variables
 
-Refer to the default [variables](https://github.com/vitabaks/autobase/blob/2.4.0/automation/roles/common/defaults/main.yml) for all configurable options. Override them as needed using group_vars, host_vars, or directly in the inventory file. 
+Refer to the default [variables](https://github.com/vitabaks/autobase/blob/2.4.1/automation/roles/common/defaults/main.yml) for all configurable options. Override them as needed using group_vars, host_vars, or directly in the inventory file. 
 
 ```
 mkdir -p ./group_vars
@@ -207,7 +207,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.4.0 \
+  autobase/automation:2.4.1 \
     ansible-playbook deploy_pgcluster.yml
 ```
 
@@ -236,7 +236,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.4.0 \
+  autobase/automation:2.4.1 \
     ansible-playbook remove_cluster.yml -e "remove_postgres=true remove_etcd=true"
 ```
 

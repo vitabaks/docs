@@ -197,7 +197,7 @@ Execute the following command to deploy a PostgreSQL cluster (example):
 docker run --rm -it \
   --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
   --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
-  autobase/automation:2.4.0 \
+  autobase/automation:2.4.1 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "ansible_user=ubuntu \
        cloud_provider='aws' \
@@ -225,7 +225,7 @@ Key Parameters:
 - `ssh_public_keys`: Your SSH public key to access the database servers after deployment.
 
 :::note
-See the [default](https://github.com/vitabaks/autobase/tree/2.4.0/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/vitabaks/autobase/blob/2.4.0/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
+See the [default](https://github.com/vitabaks/autobase/tree/2.4.1/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/vitabaks/autobase/blob/2.4.1/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
 :::
 
 #### 3. Wait until deployment is complete
