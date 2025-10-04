@@ -63,6 +63,12 @@ const Sponsors = [
     darkImage: require('@site/static/img/sponsors/we-manage.png').default,
     link: 'https://we-manage.de',
   },
+  {
+    name: 'Axiom',
+    lightImage: require('@site/static/img/sponsors/axiom.png').default,
+    darkImage: require('@site/static/img/sponsors/axiom.dark.png').default,
+    link: 'https://axiom.trade',
+  },
 ];
 
 function Sponsor({ name, lightImage, darkImage, link }) {
