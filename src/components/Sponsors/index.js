@@ -60,7 +60,7 @@ const Sponsors = [
   {
     name: 'We Manage',
     lightImage: require('@site/static/img/sponsors/we-manage.png').default,
-    darkImage: require('@site/static/img/sponsors/we-manage.png').default,
+    darkImage: require('@site/static/img/sponsors/we-manage.dark.png').default,
     link: 'https://we-manage.de',
   },
   {
