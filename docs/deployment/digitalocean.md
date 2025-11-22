@@ -207,8 +207,8 @@ docker run --rm -it \
        server_image='ubuntu-24-04-x64' \
        server_location='nyc1' \
        volume_size=100 \
-       AWS_ACCESS_KEY_ID='YOUR_ACCESS_KEY' \
-       AWS_SECRET_ACCESS_KEY='YOUR_SECRET_KEY' \
+       digital_ocean_spaces_access_key='YOUR_ACCESS_KEY' \
+       digital_ocean_spaces_secret_key='YOUR_SECRET_KEY' \
        digital_ocean_spaces_region='nyc3' \
        pgbackrest_install=true \
        postgresql_version=18 \
@@ -219,7 +219,7 @@ docker run --rm -it \
 :::note
 Replace `YOUR_ACCESS_KEY` and `YOUR_SECRET_KEY` with your actual S3 credentials.
 
-Alternatively, you can remove the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `digital_ocean_spaces_*`, and `pgbackrest_install` variables if you don’t plan to configure backups for your cluster (not recommended for production use).
+Alternatively, you can remove the `digital_ocean_spaces_*`, and `pgbackrest_install` variables if you don’t plan to configure backups for your cluster (not recommended for production use).
 :::
 
 Key Parameters:
@@ -238,8 +238,8 @@ Backup Parameters:
 - `pgbackrest_install`: Enables backups using [pgBackRest](https://github.com/pgbackrest/pgbackrest). Use `wal_g_install` instead if you prefer [WAL-G](https://github.com/wal-g/wal-g).
 - `digital_ocean_spaces_name`: Name of the Spaces Object Storage (default: patroni_cluster_name-backup).
 - `digital_ocean_spaces_region`: Region for the S3 bucket (default: server_location). Recommended to use a different region than the database cluster.
-- `AWS_ACCESS_KEY_ID`: Spaces access key (required).
-- `AWS_SECRET_ACCESS_KEY`: Spaces secret keys (required).
+- `digital_ocean_spaces_access_key`: Spaces access key (required).
+- `digital_ocean_spaces_secret_key`: Spaces secret key (required).
 
 :::info
 See the [default](https://github.com/vitabaks/autobase/tree/2.5.0/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/vitabaks/autobase/blob/2.5.0/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
