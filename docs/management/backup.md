@@ -11,7 +11,7 @@ Configure database backups
 When deploying to cloud providers (such as [AWS](../deployment/aws.md), [GCP](../deployment/gcp.md), [Azure](../deployment/azure.md)) using the Console UI, the storage bucket and backups with [pgBackRest](https://pgbackrest.org) are automatically configured.
 
 :::note
-This feature is not yet available in the UI for [DigitalOcean](../deployment/digitalocean.md) and [Hetzner Cloud](../deployment/hetzner.md) as it requires providing access keys for the backup bucket. The ability to specify these keys is planned for future UI releases. It is already supported via the command line.
+Both [DigitalOcean](../deployment/digitalocean.md) and [Hetzner Cloud](../deployment/hetzner.md) require providing access keys for the bucket. This option is available in Expert Mode.
 :::
 
 - Backup schedule: Full backups every Sunday at 3:00 AM; differential backups Monday through Saturday at 3:00 AM.

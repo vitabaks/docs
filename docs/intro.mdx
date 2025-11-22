@@ -49,10 +49,10 @@ docker run -d --name autobase-console \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   --volume /tmp/ansible:/tmp/ansible \
   --restart=unless-stopped \
-  autobase/console:2.4.1
+  autobase/console:2.5.0
 ```
 
-Alternatively, you can use [Docker Compose](https://github.com/vitabaks/autobase/blob/2.4.1/console/docker-compose.yml).
+Alternatively, you can use [Docker Compose](https://github.com/vitabaks/autobase/blob/2.5.0/console/docker-compose.yml).
 
 :::info
 It is recommended to run the console in the same network as your database servers to enable monitoring of the cluster status.
@@ -83,7 +83,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.4.1 \
+  autobase/automation:2.5.0 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "postgresql_version=18 \
        patroni_cluster_name=postgres-cluster"
@@ -92,7 +92,7 @@ docker run --rm -it \
 Refer to the [Deployment](./docs/category/deployment) section to learn more about the different deployment methods.
 
 :::info
-Alternatively, you can use [Ansible Collection](https://github.com/vitabaks/autobase/blob/2.4.1/automation/README.md)
+Alternatively, you can use [Ansible Collection](https://github.com/vitabaks/autobase/blob/2.5.0/automation/README.md)
 :::
 
   </TabItem>

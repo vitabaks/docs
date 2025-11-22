@@ -10,7 +10,7 @@ Hetzner Cloud
 
 1. Hetzner Servers - a virtual machine (with a dedicated data disk), with all cluster components installed and configured.
 2. Hetzner Load Balancer to serve as the entry point for database connections.
-3. Hetzner Object Storage (S3 bucket), and configured backups using pgBackRest (_available via command line for now_).
+3. Hetzner Object Storage (S3 bucket), and configured backups using pgBackRest (_available via Expert Mode_).
 
 :::info
 All components are installed within your cloud account.
@@ -196,7 +196,7 @@ Execute the following command to deploy a PostgreSQL cluster (example):
 ```
 docker run --rm -it \
   --env HCLOUD_API_TOKEN=${HCLOUD_API_TOKEN} \
-  autobase/automation:2.4.1 \
+  autobase/automation:2.5.0 \
     ansible-playbook deploy_pgcluster.yml --extra-vars \
       "ansible_user=root \
        cloud_provider='hetzner' \
@@ -240,7 +240,7 @@ Backup Parameters:
 - `hetzner_object_storage_secret_key`: Object Storage SECRET KEY (required).
 
 :::info
-See the [default](https://github.com/vitabaks/autobase/tree/2.4.1/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/vitabaks/autobase/blob/2.4.1/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
+See the [default](https://github.com/vitabaks/autobase/tree/2.5.0/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/vitabaks/autobase/blob/2.5.0/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
 :::
 
 #### 3. Wait until deployment is complete
