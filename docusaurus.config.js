@@ -76,7 +76,7 @@ const config = {
       image: 'img/autobase-social-card.png',
       announcementBar: {
         content:
-          '🎉️ Introducing <b><a target="_blank" href="https://github.com/vitabaks/autobase/releases/tag/2.5.0">Autobase 2.5</a></b> — advanced configuration capabilities now available directly in the UI with Expert Mode. 🥳️',
+          '🎉️ Introducing <b><a target="_blank" href="https://github.com/vitabaks/autobase/releases/tag/2.5.0">Autobase 2.5</a></b> — Expert Mode brings advanced configuration right into the UI. 🥳',
           // '<b>Spread the word!</b> Help others discover <b>Autobase</b> — star us on <a target="_blank" rel="noopener noreferrer" href="https://github.com/vitabaks/autobase">GitHub</a>! ⭐',
           backgroundColor: '#f39c12',
           isCloseable: true,
