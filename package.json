@@ -1,6 +1,6 @@
 {
-  "name": "postgresql-cluster-docs",
-  "version": "0.0.0",
+  "name": "autobase-docs",
+  "version": "2.5.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
@@ -14,23 +14,23 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.9.1",
-    "@docusaurus/faster": "^3.9.1",
-    "@docusaurus/preset-classic": "^3.9.1",
-    "@mdx-js/react": "^3.1.0",
-    "chart.js": "^4.4.6",
-    "clsx": "^2.0.0",
-    "papaparse": "^5.4.1",
-    "prism-react-renderer": "^2.4.0",
-    "react": "^18.0.0",
-    "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18.0.0",
-    "recharts": "^2.13.3",
+    "@docusaurus/core": "^3.9.2",
+    "@docusaurus/faster": "^3.9.2",
+    "@docusaurus/preset-classic": "^3.9.2",
+    "@mdx-js/react": "^3.1.1",
+    "chart.js": "^4.5.1",
+    "clsx": "^2.1.1",
+    "papaparse": "^5.5.3",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.15.4",
     "scrollreveal": "^4.0.9"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.9.1",
-    "@docusaurus/types": "^3.9.1"
+    "@docusaurus/module-type-aliases": "^3.9.2",
+    "@docusaurus/types": "^3.9.2"
   },
   "browserslist": {
     "production": [
@@ -45,6 +45,6 @@
     ]
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=22.0"
   }
 }
