@@ -85,8 +85,8 @@ docker run --rm -it \
        ansible_ssh_private_key_file=/root/.ssh/id_rsa \
        cloud_provider='aws' \
        server_count=5 \
-       server_type='m6i.xlarge' \
-       server_image='ami-063fb82b183efe67d' \
+       server_type='m7i.xlarge' \
+       server_image='ami-034568121cfdea9c3' \
        server_location='us-east-1' \
        volume_size=100 \
        postgresql_version=18 \
