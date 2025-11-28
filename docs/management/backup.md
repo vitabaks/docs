@@ -11,7 +11,7 @@ Configure database backups
 When deploying to cloud providers (such as [AWS](../deployment/aws.md), [GCP](../deployment/gcp.md), [Azure](../deployment/azure.md)) using the Console UI, the storage bucket and backups with [pgBackRest](https://pgbackrest.org) are automatically configured.
 
 :::note
-Both [DigitalOcean](../deployment/digitalocean.md) and [Hetzner Cloud](../deployment/hetzner.md) require providing access keys for the bucket. This option is available in Expert Mode.
+Both [DigitalOcean](../deployment/digitalocean.md) and [Hetzner Cloud](../deployment/hetzner.md) require providing access keys for the bucket. This option is available in **Expert Mode**.
 :::
 
 - Backup schedule: Full backups every Sunday at 3:00 AM; differential backups Monday through Saturday at 3:00 AM.
@@ -20,15 +20,15 @@ Both [DigitalOcean](../deployment/digitalocean.md) and [Hetzner Cloud](../deploy
 - Log path: `/var/log/pgbackrest`
 - Cron job path: `/etc/cron.d/pgbackrest-<cluster_name>`
 
-Backup configuration changes are currently supported only through the command line.
-
-:::tip
-If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
+:::info
+Backup configuration changes after deployment are currently supported only through the command line.
+  :::tip
+  If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
 :::
 
 ### Command line
 
-:::info
+:::note
 When deploying to cloud providers (`cloud_provider` variable) such as AWS, GCP, Azure, the storage bucket and backups with [pgBackRest](https://pgbackrest.org) are automatically configured, controlled by the `pgbackrest_auto_conf` variable (specify `false` if you prefer to manually configure the backup).
 :::
 
