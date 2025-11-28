@@ -18,7 +18,7 @@ If you’re interested in having this functionality available through the UI, pl
 
 ### Command line
 
-Use the `update_pgcluster.yml` playbook for update to a new minor version (e.g., from version 17.1 to 17.2, and etc).
+Use the `update_pgcluster.yml` playbook for update to a new minor version (e.g., from version 18.1 to 18.2, and etc).
 
 By default, only PostgreSQL packages defined in the `postgresql_packages` variable are updated. In addition, you can update Patroni or the entire system.
 
@@ -183,7 +183,7 @@ If you’re interested in having this functionality available through the UI, pl
 
 ### Command line
 
-Use the `pg_upgrade.yml` playbook to upgrade the PostgreSQL to a new major version (e.g., from version 16 to 17, and etc).
+Use the `pg_upgrade.yml` playbook to upgrade the PostgreSQL to a new major version (e.g., from version 17 to 18, and etc).
 
 :::info
 Database downtime considerations:
@@ -221,7 +221,7 @@ docker run --rm -it \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
   autobase/automation:2.5.0 \
-    ansible-playbook pg_upgrade.yml -e "pg_old_version=16 pg_new_version=17"
+    ansible-playbook pg_upgrade.yml -e "pg_old_version=17 pg_new_version=18"
 ```
 
 <details>
@@ -515,7 +515,7 @@ docker run --rm -it \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
   autobase/automation:2.5.0 \
-    ansible-playbook pg_upgrade_rollback.yml -e "pg_old_version=16 pg_new_version=17"
+    ansible-playbook pg_upgrade_rollback.yml -e "pg_old_version=17 pg_new_version=18"
 ```
 :::note
 It's designed to be used when a PostgreSQL upgrade hasn't been fully completed and the new version hasn't been started. \
