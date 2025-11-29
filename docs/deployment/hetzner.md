@@ -218,7 +218,7 @@ You can either add your API token in advance on the **Settings** page under the 
           }}
         />
 
-        If needed, specify the Network (name or ID) to which the database servers will be added. If not specified, a new network will be created.
+        If needed, specify the Network name to which the database servers will be added. If not specified, a new network will be created.
 
         <ThemedImage
           alt="data-disk-storage"
