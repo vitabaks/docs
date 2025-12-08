@@ -69,6 +69,12 @@ const Sponsors = [
     darkImage: require('@site/static/img/sponsors/axiom.dark.png').default,
     link: 'https://axiom.trade',
   },
+  {
+    name: 'Fera.ai',
+    lightImage: require('@site/static/img/sponsors/fera.png').default,
+    darkImage: require('@site/static/img/sponsors/fera.dark.png').default,
+    link: 'https://fera.ai',
+  },
 ];
 
 function Sponsor({ name, lightImage, darkImage, link }) {
