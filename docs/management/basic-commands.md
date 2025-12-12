@@ -417,7 +417,7 @@ sudo systemctl [start|stop|restart|reload] vip-manager
 ```
 
 :::warning
-When the vip-manager service is stopped, the VIP address is [removed](https://github.com/vitabaks/autobase/blob/2.5.1/automation/roles/vip-manager/templates/vip-manager.service.j2#L12). It will be re-added when the service starts again, provided that the current server is the leader.
+When the vip-manager service is stopped, the VIP address is [removed](https://github.com/vitabaks/autobase/blob/2.5.2/automation/roles/vip-manager/templates/vip-manager.service.j2#L12). It will be re-added when the service starts again, provided that the current server is the leader.
 :::
 
 **logs**
