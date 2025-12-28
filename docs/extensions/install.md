@@ -47,8 +47,7 @@ It adds repositories, installs packages, and sets parameters like shared_preload
 |-----------------|-------------------------------|------------------------------|
 | [timescaledb](https://github.com/timescale/timescaledb)   | Enables scalable inserts and complex queries for time-series data. Provided by [Timescale](https://www.timescale.com) | `enable_timescaledb` |
 | [citus](https://github.com/citusdata/citus)   | Distributed PostgreSQL as an extension         | `enable_citus`       |
-| [pg_search](https://github.com/paradedb/paradedb/tree/dev/pg_search) | Full text search for PostgreSQL using BM25. Provided by [ParadeDB](https://www.paradedb.com) | `enable_pg_search` or `enable_paradedb` |
-| [pg_analytics](https://github.com/paradedb/pg_analytics) | Postgres for analytics, powered by DuckDB. Provided by [ParadeDB](https://www.paradedb.com) | `enable_pg_analytics` or `enable_paradedb` |
+| [pg_search](https://github.com/paradedb/paradedb/tree/dev/pg_search) | Full text search for PostgreSQL using BM25. Provided by [ParadeDB](https://www.paradedb.com) **Attention**! requires the purchase of a [license](https://docs.paradedb.com/deploy/enterprise#paradedb-enterprise). | `enable_pg_search` |
 | [vector](https://github.com/pgvector/pgvector)  | pgvector: vector data type and ivfflat and hnsw access methods | `enable_pgvector` |
 | [vectorscale](https://github.com/timescale/pgvectorscale)  | pgvectorscale: Advanced indexing for vector data | `enable_pgvectorscale`  |
 | [postgis](https://git.osgeo.org/gitea/postgis/postgis)    | PostGIS geometry and geography spatial types and functions | `enable_postgis`     |
