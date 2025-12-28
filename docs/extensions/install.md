@@ -2,6 +2,8 @@
 sidebar_position: 2
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 # Install Extension
 
 This section of the guide describes how to install extensions.
@@ -12,10 +14,24 @@ See the **[list of 400+ extensions](/docs/extensions/list)** available for insta
 
 ## Console (UI)
 
-Extension installation is currently supported only through the command line.
+Extension installation is available during new cluster deployment in Expert Mode.
 
-:::tip
-If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
+To install an extension:
+1. Enable the extension using the toggle switch.
+2. Select the target database(s) where the extension should be created.
+
+Autobase will automatically install the required packages and create the extension in each selected database.
+
+<ThemedImage
+alt="extensions"
+sources={{
+  light: '/img/extensions.expert-mode.png',
+  dark: '/img/extensions.expert-mode.dark.png',
+}}
+/>
+
+:::note
+Extensions can be installed via the UI only during cluster creation. For existing clusters, use the command line.
 :::
 
 ## Command line
