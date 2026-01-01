@@ -162,7 +162,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © 2019 - ${new Date().getFullYear()} Autobase. All rights reserved.`,
+        copyright: `Copyright © 2019 - 2026 Autobase. All rights reserved.`,
       },
       docs: {
         sidebar: {
