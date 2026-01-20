@@ -135,7 +135,7 @@ const config = {
             ],
           },
           {
-            title: 'Open source',
+            title: 'Source code',
             items: [
               {
                 label: 'GitHub',
