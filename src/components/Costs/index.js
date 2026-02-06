@@ -211,7 +211,7 @@ const CostComparisonComponent = () => {
   return (
     <div className={styles.costComparisonSection}>
       <div className={styles.textBlock}>
-        <h1 className={styles.sectionTitle}>Cost comparison</h1>
+        <h2 className={styles.sectionTitle}>Cost comparison</h2>
         <p>
           An open-source alternative to cloud-managed databases with cost-efficient infrastructure.
         </p>

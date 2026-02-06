@@ -30,6 +30,26 @@
   margin: 0 auto;
 }
 
+.heroLead {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 0 auto 0.75rem;
+  max-width: 70%;
+  color: #c7c7c7;
+}
+
+.heroBenefits {
+  max-width: 70%;
+  margin: 0 auto 1.5rem;
+  padding-left: 1.2rem;
+  text-align: left;
+  color: #c7c7c7;
+}
+
+.heroBenefits li + li {
+  margin-top: 0.4rem;
+}
+
 .buttons {
   display: flex;
   align-items: center;
@@ -48,7 +68,9 @@
 
 /* Adaptive style for mobile devices */
 @media (max-width: 1440px) {
-  .heroBanner_description {
+  .heroBanner_description,
+  .heroLead,
+  .heroBenefits {
     max-width: 75%;
   }
 }
@@ -62,6 +84,11 @@
   .heroBanner_description {
     max-width: 90%;
   }
+
+  .heroLead,
+  .heroBenefits {
+    max-width: 90%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -71,6 +98,12 @@
     max-width: 100%;
   }
   .heroBanner_description {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .heroLead,
+  .heroBenefits {
     text-align: left;
     max-width: 100%;
   }

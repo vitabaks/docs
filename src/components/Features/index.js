@@ -122,7 +122,7 @@ export default function Features() {
 
 	return (
 		<section className={styles.featuresSection}>
-      <h1 className={styles.sectionTitle}>Features and Benefits</h1>
+      <h2 className={styles.sectionTitle}>Features and Benefits</h2>
 
 			{/* Desktop / tablet tabs */}
 			<div className={styles.desktopTabs}>

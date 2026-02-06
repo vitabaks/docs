@@ -47,7 +47,7 @@ function CloudProvider({ name, image, link }) {
 export default function CloudProviderSection() {
   return (
     <section>
-      <h1 className={styles.cloudProviders}>Available on multiple cloud providers and on-premises</h1>
+      <h2 className={styles.cloudProviders}>Available on multiple cloud providers and on-premises</h2>
       <div className={styles.cloudProviders}>
         {CloudProviders.map((provider, idx) => (
           <CloudProvider key={idx} {...provider} />

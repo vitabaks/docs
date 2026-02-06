@@ -103,7 +103,7 @@ function Sponsor({ name, lightImage, darkImage, link }) {
 export default function SponsorSection() {
   return (
     <section>
-      <h1 className={styles.sectionTitle}>Sponsored by</h1>
+      <h2 className={styles.sectionTitle}>Sponsored by</h2>
       <div className={styles.Sponsors}>
         {Sponsors.map((sponsor, idx) => (
           <Sponsor key={idx} {...sponsor} />
