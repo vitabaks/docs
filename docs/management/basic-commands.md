@@ -178,7 +178,7 @@ For Red Hat-based distributions, the configuration files are located within the 
 **Service**
 
 :::note
-In a clustered environment, there is no need to manage PostgreSQL services separately, as Patroni handles this automatically. See Patroni "[Service](#service-operations)" section.
+In a clustered environment, there is no need to manage PostgreSQL services separately, as Patroni handles this automatically. See the [Patroni](#patroni) section.
 :::
 
 **logs**
