@@ -3,12 +3,9 @@ import { useColorMode } from '@docusaurus/theme-common';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import CloudProviders from '@site/src/components/CloudProviders';
-import About from '@site/src/components/About';
 import Features from '@site/src/components/Features';
 import Costs from '@site/src/components/Costs';
-import Subscriptions from '@site/src/components/Subscriptions';
 import Sponsors from '@site/src/components/Sponsors';
 
 import Heading from '@theme/Heading';
