@@ -17,10 +17,25 @@ import styles from './index.module.css';
 function SectionWithBackground({ children }) {
   const { colorMode } = useColorMode();
   const [currentMode, setCurrentMode] = useState(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     setCurrentMode(colorMode);
   }, [colorMode]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener('change', updatePreference);
+
+    return () => mediaQuery.removeEventListener('change', updatePreference);
+  }, []);
 
   if (currentMode === null) {
     return null;
@@ -30,24 +45,36 @@ function SectionWithBackground({ children }) {
 
   return (
     <div style={{ position: 'relative', padding: '40px 0', overflow: 'hidden' }}>
-      <video
-        src="/img/background.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          filter: 'blur(2px)',
-          zIndex: 0,
-        }}
-      />
+      {prefersReducedMotion ? (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 0,
+            background: 'linear-gradient(135deg, #0f172a 0%, #1d3557 45%, #0b3d91 100%)',
+          }}
+        />
+      ) : (
+        <video
+          src="/img/background.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+          }}
+        />
+      )}
       <div style={{ position: 'relative', zIndex: 2 }}>{children}</div>
       <div
         style={{
