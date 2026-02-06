@@ -94,7 +94,13 @@ function Sponsor({ name, lightImage, darkImage, link }) {
   return (
     <div className={styles.Sponsor} style={{ marginBottom: '30px' }}>
       <a href={link} target="_blank" rel="noopener noreferrer">
-        <img src={image} alt={name} className={styles.SponsorImage} />
+        <img
+          src={image}
+          alt={name}
+          className={styles.SponsorImage}
+          loading="lazy"
+          decoding="async"
+        />
       </a>
     </div>
   );
