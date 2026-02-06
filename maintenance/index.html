@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Autobase | Maintenance</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root {
+      --bg-a: #0f172a;
+      --bg-b: #1d3557;
+      --bg-c: #0b3d91;
+      --text: #e6edf6;
+      --muted: #a9b8cc;
+      --card: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--bg-a), var(--bg-b), var(--bg-c));
+      padding: 24px;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      border: 1px solid var(--border);
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .logo {
+      width: min(240px, 52vw);
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      line-height: 1.25;
+    }
+
+    p {
+      margin: 0 auto;
+      max-width: 56ch;
+      font-size: clamp(1rem, 2.6vw, 1.08rem);
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .hint {
+      margin-top: 18px;
+      font-size: 0.92rem;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img class="logo" src="./autobase-logo.svg" alt="Autobase" />
+    <h1>We are updating the platform</h1>
+    <p>
+      Autobase documentation is temporarily unavailable while a new version is being deployed.
+      Please refresh the page in a minute.
+    </p>
+    <p class="hint">If the issue persists, contact us: info@autobase.tech</p>
+  </main>
+</body>
+</html>

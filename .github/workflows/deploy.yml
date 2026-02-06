@@ -5,6 +5,15 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build:
     name: Build Docusaurus
@@ -24,13 +33,29 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --immutable
+
       - name: Build website
+        id: build_site
+        continue-on-error: true
         run: yarn build
+
+      - name: Prepare Pages Artifact
+        run: |
+          rm -rf pages_artifact
+          mkdir -p pages_artifact
+          if [ "${{ steps.build_site.outcome }}" = "success" ]; then
+            cp -R build/. pages_artifact/
+            echo "Deploying production build."
+          else
+            cp -R maintenance/. pages_artifact/
+            echo "Build failed. Deploying maintenance page."
+          fi
+          ls -la pages_artifact | sed -n '1,80p'
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: pages_artifact
 
   deploy:
     name: Deploy to GitHub Pages
