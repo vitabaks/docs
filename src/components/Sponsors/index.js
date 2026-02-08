@@ -75,6 +75,12 @@ const Sponsors = [
     darkImage: require('@site/static/img/sponsors/fera.dark.png').default,
     link: 'https://fera.ai',
   },
+  {
+    name: 'Newbyte',
+    lightImage: require('@site/static/img/sponsors/newbyte.png').default,
+    darkImage: require('@site/static/img/sponsors/newbyte.dark.png').default,
+    link: 'https://newbyte.net.br',
+  },
 ];
 
 function Sponsor({ name, lightImage, darkImage, link }) {
