@@ -28,7 +28,7 @@ const blocks = [
 		title: 'Cost-effective database',
 		description: (
 			<>
-				Save 40% and more vs. cloud-managed databases.
+				Save 40-60% and more vs. cloud-managed databases.
         <br />
         Autobase, an open-source DBaaS on your own infrastructure,
 				removes extra costs while ensuring the same reliability and automation.
