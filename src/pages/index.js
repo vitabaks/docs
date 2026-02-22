@@ -93,7 +93,7 @@ function HomepageHeader() {
           Autobase for PostgreSQL® - Your own DBaaS
         </Heading>
         <Heading as="h2" style={{ fontSize: '1.5rem', fontWeight: '500', marginBottom: '20px' }} className={styles.heroBanner_description}>
-          Open-source, self-hosted DBaaS / Postgres automation
+          Database Reliability Platform / Autonomous database
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.3rem', fontWeight: '400', marginBottom: '20px', color: '#c7c7c7' }} className={styles.heroBanner_description}>
           Autobase automates deployment and maintenance, ensuring high availability, scalability, and cost efficiency—even for teams without deep DBA expertise.
