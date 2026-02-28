@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 const blocks = [
 	{
 		id: 'automated',
-		title: 'Automated self-managed database',
+		title: 'Autonomous database',
 		description: (
 			<>
 				A powerful alternative to cloud-managed databases like Amazon RDS, Google Cloud SQL, and Azure Database—delivering a fully automated, self-managed PostgreSQL experience.
