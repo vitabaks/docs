@@ -78,15 +78,13 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/autobase-social-card.png',
-      /*
       announcementBar: {
         content:
-          '🎉️ Introducing <b><a target="_blank" href="https://github.com/vitabaks/autobase/releases/tag/2.5.0">Autobase 2.5</a></b> — Expert Mode brings advanced configuration right into the UI. 🥳',
+          '🎉️ Introducing <b><a target="_blank" href="https://github.com/vitabaks/autobase/releases/tag/2.6.0">Autobase 2.6</a></b> — major upgrades with near-zero downtime using Blue-Green deployment 🥳',
           // '<b>Spread the word!</b> Help others discover <b>Autobase</b> — star us on <a target="_blank" rel="noopener noreferrer" href="https://github.com/vitabaks/autobase">GitHub</a>! ⭐',
           backgroundColor: '#f39c12',
           isCloseable: true,
       },
-      */
       navbar: {
         title: 'autobase',
         logo: {
