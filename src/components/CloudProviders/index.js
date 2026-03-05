@@ -47,8 +47,10 @@ function CloudProvider({ name, image, link }) {
 export default function CloudProviderSection() {
   return (
     <section>
-      <h2 className={styles.cloudProviders}>Run your own managed Postgres on bare metal and cloud environments</h2>
-      <div className={styles.cloudProviders}>
+      <h2 className={styles.heading}>
+        Run <span className={styles.managedPostgres}>your own managed Postgres</span> on bare metal and in the cloud
+      </h2>
+      <div className={styles.cloudProvidersList}>
         {CloudProviders.map((provider, idx) => (
           <CloudProvider key={idx} {...provider} />
         ))}

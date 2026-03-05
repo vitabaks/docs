@@ -7,7 +7,19 @@
   }
 }
 
-.cloudProviders {
+.heading {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+.cloudProvidersList {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -16,11 +28,31 @@
   animation: fadeIn 0.3s ease-in-out;
   animation-delay: 1s;
   animation-fill-mode: forwards;
-  font-size: 1.6rem;
-  font-weight: bold;
   margin-top: 40px;
-  margin-bottom: 10px;
-  text-align: center;
+}
+
+.managedPostgres {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.2em;
+  z-index: 0;
+}
+
+.managedPostgres::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.08em;
+  bottom: -0.08em;
+  background: var(--ifm-color-primary);
+  opacity: 0.15;
+  border-radius: 0.18em;
+  z-index: -1;
+}
+
+[data-theme='dark'] .managedPostgres::after {
+  opacity: 0.20;
 }
 
 .cloudProvider {
@@ -73,8 +105,13 @@
 
 /* Adaptive style for mobile devices */
 @media (max-width: 768px) {
-  .cloudProviders {
+  .heading {
+    padding-inline: 20px;
+  }
+
+  .cloudProvidersList {
     gap: 20px;
+    padding-inline: 16px;
   }
 
   .cloudProvider {
@@ -84,8 +121,13 @@
 }
 
 @media (max-width: 480px) {
-  .cloudProviders {
+  .heading {
+    padding-inline: 12px;
+  }
+
+  .cloudProvidersList {
     gap: 10px;
+    padding-inline: 10px;
   }
 
   .cloudProvider {
