@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const CostComparisonComponent = () => {
-  const [selectedSize, setSelectedSize] = useState("small");
+  const [selectedSize, setSelectedSize] = useState("medium");
   const [aspectRatio, setAspectRatio] = useState(1.7);
   const { colorMode } = useColorMode();
 
