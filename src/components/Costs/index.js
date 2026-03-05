@@ -211,7 +211,9 @@ const CostComparisonComponent = () => {
   return (
     <div className={styles.costComparisonSection}>
       <div className={styles.textBlock}>
-        <h2 className={styles.sectionTitle}>PostgreSQL like AWS RDS — but 10x cheaper!</h2>
+        <h2 className={styles.sectionTitle}>
+          PostgreSQL like AWS RDS — <span className={styles.cheaperHighlight}>but 10x cheaper!</span>
+        </h2>
         <p>
           An open-source alternative to cloud-managed databases with cost-efficient infrastructure.
         </p>

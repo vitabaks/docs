@@ -42,6 +42,30 @@
   margin-bottom: 1rem;
 }
 
+.cheaperHighlight {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.2em;
+  z-index: 0;
+}
+
+.cheaperHighlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.08em;
+  bottom: -0.08em;
+  background: var(--ifm-color-primary);
+  opacity: 0.1;
+  border-radius: 0.18em;
+  z-index: -1;
+}
+
+[data-theme='dark'] .cheaperHighlight::after {
+  opacity: 0.16;
+}
+
 .smallText {
   font-size: 12px;
 }
