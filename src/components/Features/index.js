@@ -10,6 +10,7 @@ const blocks = [
 				A powerful alternative to cloud-managed databases like Amazon RDS, Google Cloud SQL, and Azure Database—delivering a fully automated, self-managed PostgreSQL experience.
         <br /> <br />
 				Autobase automates deployment, failover, backups, restores, upgrades, scaling, amd more, eliminating the need for manual database management.
+				Focus on building your applications while Autobase takes care of your database infrastructure.
 			</>
 		),
 	},
