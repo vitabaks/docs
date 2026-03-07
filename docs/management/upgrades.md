@@ -473,7 +473,7 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
 <details>
 <summary>Plan</summary>
 
-### Upgrade Plan:
+Upgrade Plan:
 
 #### PRE-UPGRADE: Perform Pre-Checks
 
@@ -767,7 +767,7 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
     - List the Patroni cluster members
     - Upgrade completed
 
-## Switchover plan
+Switchover plan:
 
 Note: for blue-green upgrade method (`pg_logical_switchover` playbook)
 
