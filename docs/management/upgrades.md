@@ -59,7 +59,7 @@ docker run --rm -it \
   </TabItem>
   <TabItem value="system" label="System">
 
-Update all system (includes Postgres and Patroni).
+Update all system packages (including Postgres and Patroni).
 
 ```
 docker run --rm -it \
@@ -210,11 +210,11 @@ If you’re interested in having this functionality available through the UI, pl
 
 :::info Database downtime considerations
 
-To minimize the downtime, we pause PgBouncer pools. This doesn’t terminate application connections, but may temporarily increase query latency while pools are paused. The pause typically lasts ~30-60 seconds, but may be longer for large databases due to pg_upgrade and rsync. The default maximum wait time during a pause is 2 minutes (controlled by the query_wait_timeout parameter).
+To minimize the downtime, we pause PgBouncer pools. This doesn’t terminate application connections, but may temporarily increase query latency while pools are paused. The pause typically lasts ~30-60 seconds, but may be longer for large databases due to pg_upgrade and rsync. The default maximum wait time during a pause is 2 minutes (controlled by the `query_wait_timeout` parameter).
 :::
 
 :::note
-There is no need to plan additional disk space, because when upgrading PostgreSQL using hard links instead of copying files. However, it is required that the `pg_old_datadir` and `pg_new_datadir` are located within the same top-level directory (`pg_upper_datadir` variable).
+There is no need to plan additional disk space, because PostgreSQL is upgraded using hard links instead of copying files. However, it is required that the `pg_old_datadir` and `pg_new_datadir` are located within the same top-level directory (`pg_upper_datadir` variable).
 :::
 
 #### Before Upgrade
@@ -324,9 +324,9 @@ all:
         10.142.0.43:
 ```
 
-#### 2. Upgrade the target cluster:
+#### 2. Upgrade the target cluster
 
-Upgrade the target cluster and converting a physical replica into a logical replica.
+Upgrade the target cluster and convert a physical replica into a logical replica.
 
 ```bash
 docker run --rm -it \
@@ -354,11 +354,13 @@ docker run --rm -it \
 
 :::warning
 If PgBouncer is not installed in your cluster, **traffic redirection will not happen** automatically.
+:::
+
 :::note
 In this case, use the following sequence:
-  1. Stop your application
-  2. Run the pg_logical_switchover playbook
-  3. Start your application and point it to the target (new) cluster address
+1. Stop your application
+2. Run the `pg_logical_switchover` playbook
+3. Start your application and point it to the target (new) cluster address
 :::
 
 Optionally:
@@ -447,7 +449,7 @@ docker run --rm -it \
 | `pg_replication_database`                    | Database name for the replication, 'all' for the entire database cluster.                                             |  `all`        |
 | `pg_allow_replica_identity_full`             | Set REPLICA IDENTITY FULL on tables without primary key.                                                              |  `true`       |
 | `pg_publication_count`                       | Number of publications, replication slots and subscriptions to be created for logical replication. |  `1`          |
-| `pg_publication_name`                        | Publication_name name for the logical replication.                                                                    | `pg_upgrade_publication` |
+| `pg_publication_name`                        | Publication name for logical replication.                                                                             | `pg_upgrade_publication` |
 | `pg_subscription_name`                       | Subscription name for the logical replication.                                                                        | `pg_upgrade_subscription` |
 | `pg_subscription_slot_name`                  | Subscription slot name for the logical replication. Base prefix for logical replication slot names; each slot name includes the database name (and _01, _02, ... suffix if pg_publication_count > 1) | `{{ pg_subscription_name }}_slot` |
 | `pg_wal_keep_gigabytes`                       | The number of WAL files (in gigabytes) to hold in the source cluster. Set '`none`' to not change the wal_keep_segments/wal_keep_size parameter. | `100` |
@@ -494,11 +496,11 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
   - Stop, if the current data directory is the same as `pg_new_datadir`.
   - Stop, if the current WAL directory is the same as `pg_new_wal_dir` (if a custom wal dir is used).
 - **Perform pre-checks and preparation for blue-green upgrade method**
-  - *Note: If the `pg_upgrade_logical` playbook is used*
+  - *Note: If the `pg_logical_upgrade.yml` playbook is used*
   - Get a list of databases from the source cluster
     - Note: if `pg_replication_database` == "`all`" (default: all)
   - Make sure that the wal_level parameter is set to 'logical'
-    - Stop, if wal_level != logicala
+    - Stop, if wal_level != logical
   - Make sure that the max_logical_replication_workers parameter is sufficient
     - Stop, if max_logical_replication_workers is too low for the number of publications and databases
   - Test access from the target cluster to the source database
@@ -551,9 +553,9 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
   - Get the current install user (rolname with oid = 10)
   - Get the current encoding and data_checksums settings
   - Initialize new PostgreSQL data directory
-    - for Debain based: on all database servers to create default config files
+    - for Debian based: on all database servers to create default config files
     - for RedHat based: on the primary only
-- **Copy files specified in the `copy_files_to_all_server` variable**, [optional]
+- **Copy files specified in the `upgrade_copy_files_to_all_server` variable** [optional]
   - Notes: for example, it may be necessary for Postgres Full-Text Search (FTS) files
 - **Schema compatibility check**
   - Get the current `shared_preload_libraries` settings
@@ -567,8 +569,8 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
     - Wait for the schema compatibility check to complete
   - Checking the result of the schema compatibility
     - Note: Checking for errors in `/tmp/pg_schema_compatibility_check.log`
-    - Stop, if the scheme is not compatible (there are errors)
-  - Print result of checking the compatibility of the scheme
+    - Stop, if the schema is not compatible (there are errors)
+  - Print result of checking the compatibility of the schema
   - Stop new PostgreSQL to re-initdb
   - Drop new PostgreSQL to re-initdb (perform pg_dropcluster for Debian based)
   - Reinitialize the database after checking schema compatibility
@@ -577,8 +579,8 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
   - Verify the two clusters are compatible (`pg_upgrade --check`)
   - Print the result of the pg_upgrade check
 
-#### PRE-UPGRADE: Create a publication/slot and reach recovery_target_lsn"
-  - *Note: for blue-green upgrade method (`pg_upgrade_logical` playbook)*
+#### PRE-UPGRADE: Create a publication/slot and reach recovery_target_lsn
+  - *Note: for blue-green upgrade method (`pg_logical_upgrade.yml` playbook)*
   - Stop PostgreSQL on target primary
     - Pause WAL replay (recovery) on the target cluster replicas
     - Pause Patroni on the target cluster before stopping PostgreSQL
@@ -595,7 +597,7 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
     - Create slots for logical replication
     - Stop pg_terminator script
     - Set variable: target_lsn
-    - Advance replication slots to target_lsn or each database
+    - Advance replication slots to target_lsn for each database
   - Reach recovery_target_lsn on target primary
     - Specify recovery parameters on the standby cluster leader
     - Start PostgreSQL on standby cluster leader to reach recovery_target_lsn
@@ -647,8 +649,8 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
   - Notes: if 'pgbouncer_install' is 'true' and 'pgbouncer_pool_pause' is 'true'
   - Notes: pgbouncer pause script performs the following actions:
     - Waits for active queries on the database servers to complete (with a runtime more than `pg_slow_active_query_treshold`).
-    - If there are no active queries, sends a `PAUSE` command to each pgbouncer servers in parallel (using `xargs` and ssh connections).
-    - If all pgbouncer are successfully paused, the script exits with code 0 (successful).
+    - If there are no active queries, sends a `PAUSE` command to each PgBouncer server in parallel (using `xargs` and ssh connections).
+    - If all PgBouncer pools are successfully paused, the script exits with code 0 (successful).
     - If active queries do not complete within 30 seconds (`pgbouncer_pool_pause_terminate_after` variable), the script terminates slow active queries (longer than `pg_slow_active_query_treshold_to_terminate`).
     - If after that it is still not possible to pause the pgbouncer servers within 60 seconds (`pgbouncer_pool_pause_stop_after` variable) from the start of the script, the script exits with an error.
       - Perform rollback
@@ -662,13 +664,13 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
   - if 'Latest checkpoint location' values match
     - Print info message:
       - "'Latest checkpoint location' is the same on the leader and its standbys"
-  - if 'Latest checkpoint location' values doesn't match
+  - if 'Latest checkpoint location' values do not match
     - Perform rollback
       - Print error message: "Latest checkpoint location' doesn't match on leader and its standbys. Please try again later"
 - **Upgrade the PostgreSQL on the primary** (using pg_upgrade --link)
   - Perform rollback, if the upgrade failed
   - Print the result of the pg_upgrade
-- **Make sure that the new data directory are empty on the replica**
+- **Make sure that the new data directory is empty on the replica**
 - **Upgrade the PostgreSQL on the replica** (using rsync --hard-links)
   - Wait for the rsync to complete
 - **Upgrade the PostgreSQL tablespaces on the replica** (using rsync --hard-links)
@@ -704,7 +706,7 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
   - Make sure that the cluster ip address (VIP) is running
 
 #### POST-UPGRADE: Create a subscription for logical replication
-  - *Note: for blue-green upgrade method (`pg_upgrade_logical` playbook)*
+  - *Note: for blue-green upgrade method (`pg_logical_upgrade.yml` playbook)*
   - Create a subscription on target primary
     - Create subscription for logical replication in each database
     - Make sure that logical replication is active
@@ -719,7 +721,7 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
   - Get list of installed PostgreSQL extensions
   - Get list of old PostgreSQL extensions
     - Update old PostgreSQL extensions
-      - Notes: excluding: 'pg_repack' and 'pg_stat_kcache' (is exists), as it requires re-creation to update
+      - Notes: excluding: 'pg_repack' and 'pg_stat_kcache' (if exists), as they require re-creation to update
     - Recreate old pg_stat_statements and pg_stat_kcache extensions to update
       - Notes: if pg_stat_kcache is installed
     - Recreate old pg_repack extension to update
@@ -733,11 +735,11 @@ The variable file is located on the path: [roles/upgrade/defaults/main.yml](http
     - Wait until the PostgreSQL replica is synchronized (max wait time: 2 minutes)
     - Drop a table "test_replication"
     - Print the result of checking the number of records
-    - if the number of rows match, print info message: "The PostgreSQL replication is OK. The number of records in the 'test_replication' table the same as the primary."
+    - if the number of rows match, print info message: "The PostgreSQL replication is OK. The number of records in the 'test_replication' table is the same as on the primary."
     - if the number of rows does not match, print error message: "The number of records in the 'test_replication' table does not match the primary. Please check the replication status and PostgreSQL logs."
 - **Perform Post-Upgrade tasks**
   - **Perform tasks for blue-green upgrade method**
-    - *Note: If the `pg_upgrade_logical` playbook is used*
+    - *Note: If the `pg_logical_upgrade.yml` playbook is used*
     - Reset the wal_keep_segments/wal_keep_size parameter to original state on the source primary
   - **Ensure the current data directory is the new data directory**
     - Notes: to prevent deletion the old directory if it is used
@@ -775,9 +777,9 @@ Note: for blue-green upgrade method (`pg_logical_switchover` playbook)
 - **Prepare pgbouncer configuration**
   - Note: if `pgbouncer_install` is `true`
   - Prepare PgBouncer configuration to redirect primary traffic
-    - Note: replase the 'host=' option value to target primary host address
+    - Note: replace the 'host=' option value with the target primary host address
   - Prepare PgBouncer configuration to redirect replica traffic
-    - Note: replase the 'host=' option value to target secondary hosts address
+    - Note: replace the 'host=' option value with the target secondary hosts addresses
   - Temporarily disable TLS from PgBouncer to Postgres during redirect
     - Note: if self-signed certificates are used (tls_cert_generate = true), target cluster uses a different CA, so PgBouncer on source may fail to verify TLS when connecting to Postgres on target
 - **Increase all sequence values**
