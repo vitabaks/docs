@@ -10,7 +10,7 @@ import ThemedImage from '@theme/ThemedImage';
 
 Hetzner Cloud
 
-**[Autobase](https://github.com/vitabaks/autobase)** will automatically set up the following in Hetzner Cloud:
+**[Autobase](https://github.com/autobase-tech/autobase)** will automatically set up the following in Hetzner Cloud:
 
 1. Hetzner Servers - a virtual machine (with a dedicated data disk), with all cluster components installed and configured.
 2. Hetzner Load Balancer to serve as the entry point for database connections.
@@ -347,7 +347,7 @@ You can either add your API token in advance on the **Settings** page under the 
         />
 
         :::info
-        By default, Autobase automatically configures these parameters. See the default settings for [Postgres](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml#L331) and the [kernel](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml#L889). \
+        By default, Autobase automatically configures these parameters. See the default settings for [Postgres](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml#L331) and the [kernel](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml#L889). \
         If you prefer to set the parameters manually, click **Configure** button and specify them in the usual key=value format.
         :::
 
@@ -416,7 +416,7 @@ You can either add your API token in advance on the **Settings** page under the 
           }}
         />
 
-        Autobase offers a wide range of functionality, and not all options can be fully represented in UI forms. That’s why we added a YAML editor — it allows you to set any parameters supported by Autobase. You can see available parameters [here](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/cloud_resources/defaults/main.yml) (for cloud resources) and [here](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml) (for cluster settings).
+        Autobase offers a wide range of functionality, and not all options can be fully represented in UI forms. That’s why we added a YAML editor — it allows you to set any parameters supported by Autobase. You can see available parameters [here](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/cloud_resources/defaults/main.yml) (for cloud resources) and [here](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml) (for cluster settings).
 
         Make the necessary changes and click the **"Create Cluster"** button.
       </TabItem>
@@ -520,7 +520,7 @@ You can either add your API token in advance on the **Settings** page under the 
   - `hetzner_object_storage_secret_key`: Object Storage SECRET KEY (required).
 
   :::info
-  See the [default](https://github.com/vitabaks/autobase/tree/2.6.0/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
+  See the [default](https://github.com/autobase-tech/autobase/tree/2.6.0/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
   :::
 
   #### 3. Wait until deployment is complete

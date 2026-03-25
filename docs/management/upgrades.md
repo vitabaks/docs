@@ -92,7 +92,7 @@ When using load balancing for read-only traffic, zero downtime is expected (for 
 | `reboot_host_timeout`          | Maximum time to wait for the server to reboot and respond to a test command.                                                                                | `1800` seconds (30 minutes) |
 | `reboot_host_post_delay`       | Waiting time after the server reboot (in minutes) before updating the next server. Note: Relevant when there are multiple replicas.                   | `5` minutes              |
 
-The variable file is located on the path: [roles/update/defaults/main.yml](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/update/defaults/main.yml)
+The variable file is located on the path: [roles/update/defaults/main.yml](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/update/defaults/main.yml)
 
 </details>
 
@@ -466,7 +466,7 @@ docker run --rm -it \
 
 Note: For variables marked as "Derived value", the default value is determined based on other variables.
 
-The variable file is located on the path: [roles/upgrade/defaults/main.yml](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/upgrade/defaults/main.yml)
+The variable file is located on the path: [roles/upgrade/defaults/main.yml](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/upgrade/defaults/main.yml)
 
 </details>
 

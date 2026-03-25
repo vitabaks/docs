@@ -18,7 +18,7 @@ If you’re interested in having this functionality available through the UI, pl
 
 To change the PostgreSQL configuration in a cluster using automation:
 
-1. Modify the desired parameters (e.g., `postgresql_parameters`). Refer to the [default](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml) values - override them as needed using group_vars, host_vars, or directly in the inventory file. 
+1. Modify the desired parameters (e.g., `postgresql_parameters`). Refer to the [default](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml) values - override them as needed using group_vars, host_vars, or directly in the inventory file. 
 2. Run the `config_pgcluster.yml` playbook to apply the changes.
 
 Example:

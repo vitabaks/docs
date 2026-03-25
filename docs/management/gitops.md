@@ -65,8 +65,8 @@ This CI example assumes the following repository structure:
 ```
 
 :::info
-- **group_vars/all.yml**: Configuration variables — refer to the [default](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml) values. Override them as needed using group_vars, host_vars, or directly in the inventory file.
-- **inventory**: Contains a list of servers to manage. See the inventory [example](https://github.com/vitabaks/autobase/blob/main/automation/inventory.example).
+- **group_vars/all.yml**: Configuration variables — refer to the [default](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml) values. Override them as needed using group_vars, host_vars, or directly in the inventory file.
+- **inventory**: Contains a list of servers to manage. See the inventory [example](https://github.com/autobase-tech/autobase/blob/main/automation/inventory.example).
 
 The CI pipeline:
 
@@ -85,7 +85,7 @@ This setup also integrates [Ansible Vault](https://docs.ansible.com/ansible/late
 Additionally, the pipeline includes two important variables:
 
 - `PLAYBOOK`: Allows you to specify the playbook to be used when manually triggering the pipeline. For example, you can set this variable to update_pgcluster.yml to run the update playbook or to any other available playbooks depending on your needs.
-- `TAG`: Provides the option to specify tags to run only specific parts of the playbook, improving execution speed by limiting the automation to the necessary sections. For example, you can set this variable to patroni, pgbouncer, or all to control which portion of the playbook gets executed. See the [tags.md](https://github.com/vitabaks/autobase/blob/main/automation/tags.md) file for a list of available tags.
+- `TAG`: Provides the option to specify tags to run only specific parts of the playbook, improving execution speed by limiting the automation to the necessary sections. For example, you can set this variable to patroni, pgbouncer, or all to control which portion of the playbook gets executed. See the [tags.md](https://github.com/autobase-tech/autobase/blob/main/automation/tags.md) file for a list of available tags.
 
 <details>
 <summary>Click here to expand...</summary>
@@ -394,9 +394,9 @@ This CI example assumes the following repository structure:
 ```
 
 :::info
-- **group_vars/all.yml**: Configuration variables — refer to the [default](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml) values. Override them as needed using group_vars, host_vars, or directly in the inventory file.
+- **group_vars/all.yml**: Configuration variables — refer to the [default](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml) values. Override them as needed using group_vars, host_vars, or directly in the inventory file.
 - **secrets.yml**: (optional) It contains secret data such as passwords encrypted using [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
-- **inventory**: Contains a list of servers to manage. See the inventory [example](https://github.com/vitabaks/autobase/blob/main/automation/inventory.example).
+- **inventory**: Contains a list of servers to manage. See the inventory [example](https://github.com/autobase-tech/autobase/blob/main/automation/inventory.example).
 
 The CI pipeline:
 

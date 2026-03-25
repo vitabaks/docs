@@ -20,7 +20,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'vitabaks', // Usually your GitHub org/user name.
+  organizationName: 'autobase-tech', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
   trailingSlash: false,
   onBrokenLinks: 'throw',
@@ -47,7 +47,7 @@ const config = {
           sidebarPath: './sidebars.js',
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/vitabaks/docs/tree/main/',
+            'https://github.com/autobase-tech/docs/tree/main/',
         },
         blog: false, // disable the blog plugin (TODO)
         /*
@@ -59,7 +59,7 @@ const config = {
           },
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/vitabaks/docs/tree/main/',
+            'https://github.com/autobase-tech/docs/tree/main/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -81,8 +81,8 @@ const config = {
       /*
       announcementBar: {
         content:
-          '🎉️ Introducing <b><a target="_blank" href="https://github.com/vitabaks/autobase/releases/tag/2.6.0">Autobase 2.6</a></b> — major upgrades with near-zero downtime using Blue-Green deployment 🥳',
-          // '<b>Spread the word!</b> Help others discover <b>Autobase</b> — star us on <a target="_blank" rel="noopener noreferrer" href="https://github.com/vitabaks/autobase">GitHub</a>! ⭐',
+          '🎉️ Introducing <b><a target="_blank" href="https://github.com/autobase-tech/autobase/releases/tag/2.6.0">Autobase 2.6</a></b> — major upgrades with near-zero downtime using Blue-Green deployment 🥳',
+          // '<b>Spread the word!</b> Help others discover <b>Autobase</b> — star us on <a target="_blank" rel="noopener noreferrer" href="https://github.com/autobase-tech/autobase">GitHub</a>! ⭐',
           backgroundColor: '#f39c12',
           isCloseable: true,
       },
@@ -107,7 +107,7 @@ const config = {
           {
             type: 'html',
             position: 'right',
-            value: `<a href="https://github.com/vitabaks/autobase" target="_blank" style="display: flex; align-items: center;"><img src="https://img.shields.io/github/stars/vitabaks/autobase?style=social" alt="GitHub stars" style="height: 22px;"></a>`,
+            value: `<a href="https://github.com/autobase-tech/autobase" target="_blank" style="display: flex; align-items: center;"><img src="https://img.shields.io/github/stars/autobase-tech/autobase?style=social" alt="GitHub stars" style="height: 22px;"></a>`,
           }
         ],
       },
@@ -137,7 +137,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/vitabaks/autobase',
+                href: 'https://github.com/autobase-tech/autobase',
               },
             ],
           },

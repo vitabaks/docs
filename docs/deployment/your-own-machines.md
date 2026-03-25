@@ -355,7 +355,7 @@ See also the [Requirements](../overview/requirements.md) and [Compatibility](../
         />
 
         :::info
-        By default, Autobase automatically configures these parameters. See the default settings for [Postgres](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml#L331) and the [kernel](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml#L889). \
+        By default, Autobase automatically configures these parameters. See the default settings for [Postgres](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml#L331) and the [kernel](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml#L889). \
         If you prefer to set the parameters manually, click **Configure** button and specify them in the usual key=value format.
         :::
 
@@ -423,7 +423,7 @@ See also the [Requirements](../overview/requirements.md) and [Compatibility](../
           }}
         />
 
-        Autobase offers a wide range of functionality, and not all options can be fully represented in UI forms. That’s why we added a YAML editor — it allows you to set any parameters supported by Autobase. You can see available parameters [here](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml).
+        Autobase offers a wide range of functionality, and not all options can be fully represented in UI forms. That’s why we added a YAML editor — it allows you to set any parameters supported by Autobase. You can see available parameters [here](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml).
 
         Make the necessary changes and click the **"Create Cluster"** button.
       </TabItem>
@@ -470,7 +470,7 @@ See also the [Requirements](../overview/requirements.md) and [Compatibility](../
 
     ```
     curl -fsSL \
-      https://raw.githubusercontent.com/vitabaks/autobase/refs/tags/2.6.0/automation/inventory.example \
+      https://raw.githubusercontent.com/autobase-tech/autobase/refs/tags/2.6.0/automation/inventory.example \
       --output ./inventory
     ```
 
@@ -482,7 +482,7 @@ See also the [Requirements](../overview/requirements.md) and [Compatibility](../
 
     #### Prepare your variables
 
-    Refer to the default [variables](https://github.com/vitabaks/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml) for all configurable options. Override them as needed using group_vars, host_vars, or directly in the inventory file. 
+    Refer to the default [variables](https://github.com/autobase-tech/autobase/blob/2.6.0/automation/roles/common/defaults/main.yml) for all configurable options. Override them as needed using group_vars, host_vars, or directly in the inventory file. 
 
     ```
     mkdir -p ./group_vars
@@ -501,7 +501,7 @@ See also the [Requirements](../overview/requirements.md) and [Compatibility](../
         ansible-playbook deploy_pgcluster.yml
     ```
 
-    Alternatively, you can use [Ansible Collection](https://github.com/vitabaks/autobase/blob/main/automation/README.md)
+    Alternatively, you can use [Ansible Collection](https://github.com/autobase-tech/autobase/blob/main/automation/README.md)
 
     #### Wait until deployment is complete
 
