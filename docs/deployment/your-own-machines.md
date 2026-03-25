@@ -501,7 +501,7 @@ See also the [Requirements](../overview/requirements.md) and [Compatibility](../
         ansible-playbook deploy_pgcluster.yml
     ```
 
-    Alternatively, you can use [Ansible Collection](https://github.com/vitabaks/autobase/blob/master/automation/README.md)
+    Alternatively, you can use [Ansible Collection](https://github.com/vitabaks/autobase/blob/main/automation/README.md)
 
     #### Wait until deployment is complete
 

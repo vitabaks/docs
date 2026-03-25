@@ -12,6 +12,6 @@ The documentation is hosted on the comprehensive ReadMe platform, providing an i
 
 The source code for the Autobase Console API is available on GitHub:
 
-- [API Service](https://github.com/vitabaks/autobase/tree/master/console/service)
+- [API Service](https://github.com/vitabaks/autobase/tree/main/console/service)
 
 Feel free to explore the code, submit issues, or contribute improvements!
