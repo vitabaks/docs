@@ -78,15 +78,13 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/autobase-social-card.png',
-      /*
       announcementBar: {
         content:
-          '🎉️ Introducing <b><a target="_blank" href="https://github.com/autobase-tech/autobase/releases/tag/2.6.0">Autobase 2.6</a></b> — major upgrades with near-zero downtime using Blue-Green deployment 🥳',
+          '🎉️ Introducing <b><a target="_blank" href="https://github.com/autobase-tech/autobase/releases/tag/2.7.0">Autobase 2.7</a></b> — embedded SQL editor & automated index maintenance 🥳',
           // '<b>Spread the word!</b> Help others discover <b>Autobase</b> — star us on <a target="_blank" rel="noopener noreferrer" href="https://github.com/autobase-tech/autobase">GitHub</a>! ⭐',
           backgroundColor: '#f39c12',
           isCloseable: true,
       },
-      */
       navbar: {
         title: 'autobase',
         logo: {
