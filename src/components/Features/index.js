@@ -4,58 +4,40 @@ import styles from './styles.module.css';
 const blocks = [
 	{
 		id: 'automated',
-		title: 'Autonomous database infrastructure',
+		title: 'Autonomous database',
 		description: (
 			<>
-				A powerful alternative to cloud-managed databases like Amazon RDS, Google Cloud SQL, and Azure Database—delivering a fully automated, self-managed PostgreSQL experience.
-        <br /> <br />
-				Autobase automates deployment, failover, backups, restores, upgrades, scaling, amd more, eliminating the need for manual database management.
+				A powerful alternative to cloud-managed databases like Amazon RDS, Google Cloud SQL, Azure Database, and others, delivering a fully automated, self-managed PostgreSQL experience.
+				<br /> <br />
+				Autobase automates deployment, failover, backups, restores, upgrades, scaling, and more, eliminating manual database management.
 				Focus on building your applications while Autobase takes care of your database infrastructure.
 			</>
 		),
 	},
 	{
-		id: 'control',
-		title: 'Full control without vendor lock-In',
-		description: (
-			<>
-				Your database environment remains fully under your control because both the Autobase and the PostgreSQL clusters it deploys
-				run on your own infrastructure—whether on your servers or a cloud provider of your choice—ensuring complete independence from vendor lock-in.
-			</>
-		),
-	},
-	{
 		id: 'cost',
-		title: 'Cost-effective database',
+		title: 'Cost-effective',
 		description: (
 			<>
-				Save 40-60% and more vs. cloud-managed databases.
-        <br />
-        Autobase, an open-source DBaaS on your own infrastructure,
-				removes extra costs while ensuring the same reliability and automation.
-        <br /> <br />
-				Pay only for the server resources you use—no vendor markups on your database.
+				Save 40-60% or more versus cloud-managed databases.
+				<br /> <br />
+		        Autobase, an open-source DBaaS on your own infrastructure,
+				reduces platform overhead while providing the same reliability and automation.
+				<br /> <br />
+				Pay only for the server resources you use, with no vendor markup on your database.
 			</>
 		),
 	},
 	{
-		id: 'easy',
-		title: 'Easy to manage (UI)',
+		id: 'control',
+		title: 'Full control, no vendor lock-in',
 		description: (
 			<>
-				A user-friendly web interface that simplifies complex database deployment and management tasks.
-        <br /> <br />
-				Reduce operational overhead, minimize human errors, and streamline workflows effortlessly.
-			</>
-		),
-	},
-	{
-		id: 'gitops',
-		title: 'Infrastructure as Code and GitOps',
-		description: (
-			<>
-				Define your database infrastructure with repeatable and consistent configurations.
-				<a href="/docs/management/gitops" target="_blank" rel="noopener noreferrer"> GitOps</a> support ensures seamless integration with version control, simplifying management and ensuring full traceability.
+				Your database environment remains fully under your control because both Autobase and the PostgreSQL clusters it deploys
+				run on your infrastructure, whether on your own servers or with a cloud provider of your choice.
+				<br /> <br />
+				You get flexibility for deep configuration changes and SSH access to database hosts, capabilities cloud-managed database services typically do not provide.
+				This ensures full operational independence with no vendor lock-in.
 			</>
 		),
 	},
@@ -65,8 +47,24 @@ const blocks = [
 		description: (
 			<>
 				Designed for businesses of all sizes, Autobase seamlessly adapts to evolving requirements.
-        <br /> <br />
-				Scale effortlessly with read replicas, ensuring high availability and optimal performance as your workload grows.
+				<br /> <br />
+				<strong>Optimal configuration.</strong> Autobase automatically creates an optimal setup to keep database performance consistently high.
+				<br /> <br />
+				<strong>Automated index maintenance.</strong> Autobase continuously monitors and maintains index health, preventing bloat and performance degradation before they become a problem.
+				<br /> <br />
+				<strong>Read-replicas.</strong> Scale effortlessly with read replicas to maintain high availability and strong performance as workload grows.
+			</>
+		),
+	},
+	{
+		id: 'blue-green',
+		title: 'Blue/Green deployment',
+		description: (
+			<>
+				Autobase supports Blue/Green deployment for <strong>zero-downtime major upgrades</strong>.
+				Run upgrades in a parallel environment, validate safely, and switch traffic only when everything is ready.
+				<br /> <br />
+				This capability is available starting with <a href="https://github.com/autobase-tech/autobase/releases/tag/2.6.0" target="_blank" rel="noopener noreferrer">Autobase 2.6</a>.
 			</>
 		),
 	},
@@ -81,19 +79,42 @@ const blocks = [
 			</>
 		),
 	},
-  {
+	{
 		id: 'security',
 		title: 'Data security',
 		description: (
 			<>
-				Built-in encryption, access management, and automated backups (PITR) ensure data security and compliance,
+				Built-in encryption, access management, and automated backups (PITR) help ensure security and compliance,
 				protecting your database from leaks, unauthorized access, and data loss.
-        <br /> <br />
-        Keep your data safe, recoverable, and always available.
+				<br /> <br />
+				Keep your data safe, recoverable, and always available.
 			</>
 		),
 	},
   {
+		id: 'ui',
+		title: 'User-friendly web interface (UI)',
+		description: (
+			<>
+				A user-friendly web interface that simplifies complex database deployment and management tasks.
+				<br /> <br />
+				With the built-in SQL Editor, you can connect to your clusters, run queries, and manage data directly from the console, all in one place.
+				<br /> <br />
+				Reduce operational overhead, minimize human error, and streamline workflows.
+			</>
+		),
+	},
+	{
+		id: 'gitops',
+		title: 'Infrastructure as Code and GitOps',
+		description: (
+			<>
+				Define your database infrastructure with repeatable and consistent configurations.
+				<a href="/docs/management/gitops" target="_blank" rel="noopener noreferrer"> GitOps</a> support ensures seamless integration with version control, simplifying management and ensuring full traceability.
+			</>
+		),
+	},
+	{
 		id: 'support',
 		title: 'Professional support',
 		description: (
