@@ -96,7 +96,7 @@ function HomepageHeader() {
           Run your own managed Postgres platform
         </Heading>
         <Heading as="h3" style={{ fontSize: '1.2rem', fontWeight: '400', marginBottom: '20px', color: '#c7c7c7' }} className={styles.heroBanner_description}>
-          The control layer for data infrastructure, automating deployment and operations, delivering lower costs and less overhead — even without a dedicated DBA team.
+          The control layer for data infrastructure, automating deployment and Day 2 operations, reducing cost and operational overhead — even without a dedicated DBA team.
         </Heading>
         <div className={styles.buttons}>
           <Link
