@@ -115,6 +115,17 @@ const blocks = [
 		),
 	},
 	{
+		id: 'no-kubernetes',
+		title: 'No Kubernetes required',
+		description: (
+			<>
+				Autobase provides a dedicated control layer for deploying, managing, and scaling PostgreSQL clusters directly on VMs and bare metal.
+				<br /> <br />
+				Instead of adding Kubernetes as another operational layer, Autobase works closer to the infrastructure itself, resulting in a simpler architecture, fewer moving parts, less overhead, and more direct control.
+			</>
+		),
+	},
+	{
 		id: 'support',
 		title: 'Professional support',
 		description: (
