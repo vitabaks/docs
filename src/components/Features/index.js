@@ -64,7 +64,7 @@ const blocks = [
 				Autobase supports Blue/Green deployment for <strong>zero-downtime major upgrades</strong>.
 				Run upgrades in a parallel environment, validate safely, and switch traffic only when everything is ready.
 				<br /> <br />
-				This capability is available starting with <a href="https://github.com/autobase-tech/autobase/releases/tag/2.6.0" target="_blank" rel="noopener noreferrer">Autobase 2.6</a>.
+				See more information in the <a href="/docs/management/upgrades" target="_blank" rel="noopener noreferrer">documentation</a>.
 			</>
 		),
 	},
