@@ -9,7 +9,7 @@ import ThemedImage from '@theme/ThemedImage';
 This section of the guide describes how to install extensions.
 
 :::info
-See the **[list of 400+ extensions](/docs/extensions/list)** available for installation, but you’re not limited to it—you can install any extension through various methods, including building from source.
+See the **[list of 500+ extensions](/docs/extensions/list)** available for installation, but you’re not limited to it—you can install any extension through various methods, including building from source.
 :::
 
 ## Console (UI)
