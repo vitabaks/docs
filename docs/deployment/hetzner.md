@@ -347,7 +347,7 @@ You can either add your API token in advance on the **Settings** page under the 
         />
 
         :::info
-        By default, Autobase automatically configures these parameters. See the default settings for [Postgres](https://github.com/autobase-tech/autobase/blob/2.7.0/automation/roles/common/defaults/main.yml#L331) and the [kernel](https://github.com/autobase-tech/autobase/blob/2.7.0/automation/roles/common/defaults/main.yml#L889). \
+        By default, Autobase automatically configures these parameters. See the default settings for [Postgres](https://github.com/autobase-tech/autobase/blob/2.7.1/automation/roles/common/defaults/main.yml#L331) and the [kernel](https://github.com/autobase-tech/autobase/blob/2.7.1/automation/roles/common/defaults/main.yml#L889). \
         If you prefer to set the parameters manually, click **Configure** button and specify them in the usual key=value format.
         :::
 
@@ -416,7 +416,7 @@ You can either add your API token in advance on the **Settings** page under the 
           }}
         />
 
-        Autobase offers a wide range of functionality, and not all options can be fully represented in UI forms. That’s why we added a YAML editor — it allows you to set any parameters supported by Autobase. You can see available parameters [here](https://github.com/autobase-tech/autobase/blob/2.7.0/automation/roles/cloud_resources/defaults/main.yml) (for cloud resources) and [here](https://github.com/autobase-tech/autobase/blob/2.7.0/automation/roles/common/defaults/main.yml) (for cluster settings).
+        Autobase offers a wide range of functionality, and not all options can be fully represented in UI forms. That’s why we added a YAML editor — it allows you to set any parameters supported by Autobase. You can see available parameters [here](https://github.com/autobase-tech/autobase/blob/2.7.1/automation/roles/cloud_resources/defaults/main.yml) (for cloud resources) and [here](https://github.com/autobase-tech/autobase/blob/2.7.1/automation/roles/common/defaults/main.yml) (for cluster settings).
 
         Make the necessary changes and click the **"Create Cluster"** button.
       </TabItem>
@@ -476,7 +476,7 @@ You can either add your API token in advance on the **Settings** page under the 
   ```
   docker run --rm -it \
     --env HCLOUD_API_TOKEN=${HCLOUD_API_TOKEN} \
-    autobase/automation:2.7.0 \
+    autobase/automation:2.7.1 \
       ansible-playbook deploy_pgcluster.yml --extra-vars \
         "ansible_user=root \
         cloud_provider='hetzner' \
@@ -520,7 +520,7 @@ You can either add your API token in advance on the **Settings** page under the 
   - `hetzner_object_storage_secret_key`: Object Storage SECRET KEY (required).
 
   :::info
-  See the [default](https://github.com/autobase-tech/autobase/tree/2.7.0/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/autobase-tech/autobase/blob/2.7.0/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
+  See the [default](https://github.com/autobase-tech/autobase/tree/2.7.1/automation/roles/common/defaults/main.yml) automation variables for more details, including the list of available [variables](https://github.com/autobase-tech/autobase/blob/2.7.1/automation/roles/cloud_resources/defaults/main.yml) for cloud resources.
   :::
 
   #### 3. Wait until deployment is complete
