@@ -74,7 +74,7 @@ const blocks = [
 		description: (
 			<>
 				PostgreSQL is highly extensible.
-				With Autobase, you can easily install any of the 400+ available <a href="/docs/extensions/list" target="_blank" rel="noopener noreferrer">extensions </a>
+				With Autobase, you can easily install any of the 500+ available <a href="/docs/extensions/list" target="_blank" rel="noopener noreferrer">extensions </a>
 				to equip your database with powerful capabilities tailored to your project’s unique requirements.
 			</>
 		),
