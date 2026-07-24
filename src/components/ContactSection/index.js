@@ -15,7 +15,6 @@ export default function ContactSection() {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
-        <h3 className={styles.title}>Contact</h3>
         <nav className={styles.links} aria-label="Contact links">
           {links.map((link, index) => (
             <React.Fragment key={link.label}>
