@@ -436,7 +436,7 @@ function ClusterFleet({ fleetRef, replicaCounts, stage }) {
       <div className={styles.fleetHeader}>
         <div>
           <div className={styles.fleetTitle}>PostgreSQL Clusters</div>
-          <div className={styles.fleetSubtitle}>One control plane. Fully managed lifecycle.</div>
+          <div className={styles.fleetSubtitle}>Fully managed lifecycle</div>
         </div>
         <div className={styles.fleetScale}>
           <span className={styles.fleetScaleLabel}>Managed fleet</span>
