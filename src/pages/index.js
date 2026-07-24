@@ -18,8 +18,8 @@ export default function Home() {
       <main>
         <ArchDiagramSection />
         <ValuePropsSection />
-        <ProductHighlightsSection />
         <CLISection />
+        {/* <ProductHighlightsSection /> */}
         <ContactSection />
         <SocialProofSection />
       </main>
