@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import { useColorMode } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
 const demos = [
@@ -31,8 +32,12 @@ export default function PlatformOverviewSection() {
   const sectionRef = useRef(null);
   const tabRefs = useRef([]);
   const videoRef = useRef(null);
+  const { colorMode } = useColorMode();
   const mediaRoot = useBaseUrl('/video/platform-overview/');
   const activeDemo = demos[activeIndex];
+  const themedFile = colorMode === 'dark'
+    ? activeDemo.file.replace(/\.mp4$/, '.dark.mp4')
+    : activeDemo.file;
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -45,7 +50,7 @@ export default function PlatformOverviewSection() {
 
   useEffect(() => {
     setMediaStatus('loading');
-  }, [activeIndex]);
+  }, [activeIndex, colorMode]);
 
   useEffect(() => {
     if (!sectionRef.current) return undefined;
@@ -73,7 +78,7 @@ export default function PlatformOverviewSection() {
     }
 
     videoRef.current.play().catch(() => {});
-  }, [activeIndex, mediaStatus, prefersReducedMotion, isInView]);
+  }, [activeIndex, themedFile, mediaStatus, prefersReducedMotion, isInView]);
 
   function selectTab(index) {
     setActiveIndex(index);
@@ -144,10 +149,10 @@ export default function PlatformOverviewSection() {
             className={styles.viewport}
           >
             <video
-              key={activeDemo.id}
+              key={`${activeDemo.id}-${colorMode}`}
               ref={videoRef}
               className={`${styles.video} ${mediaStatus === 'ready' ? styles.videoReady : ''}`}
-              src={`${mediaRoot}${activeDemo.file}`}
+              src={`${mediaRoot}${themedFile}`}
               muted
               playsInline
               preload="metadata"
@@ -184,7 +189,7 @@ export default function PlatformOverviewSection() {
                     <div className={styles.mockGrid}>
                       {Array.from({ length: 8 }, (_, index) => <span key={index} />)}
                     </div>
-                    <div className={styles.mediaHint}>/video/platform-overview/{activeDemo.file}</div>
+                    <div className={styles.mediaHint}>/video/platform-overview/{themedFile}</div>
                   </div>
                 </div>
               </div>
