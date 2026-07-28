@@ -125,19 +125,21 @@
 
 .viewport {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1440 / 762;
   overflow: hidden;
-  background: color-mix(in srgb, var(--color-text) 2%, var(--color-bg));
+  background: var(--color-bg);
 }
 
 .video {
   position: absolute;
-  inset: 0;
+  inset: 0 8px 8px;
   z-index: 2;
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: calc(100% - 16px);
+  height: calc(100% - 8px);
+  box-sizing: border-box;
+  background: var(--color-bg);
+  object-fit: contain;
   opacity: 0;
 }
 
@@ -270,6 +272,7 @@
   .browserBar { min-height: 34px; padding: 0 10px; }
   .browserControls { gap: 4px; }
   .browserControls span { width: 6px; height: 6px; }
+  .video { right: 4px; bottom: 4px; left: 4px; width: calc(100% - 8px); height: calc(100% - 4px); }
   .placeholderHeader { padding-bottom: 10px; font-size: 9px; }
   .placeholderBody { grid-template-columns: 42px 1fr; }
   .mockSidebar { gap: 10px; padding: 14px 8px; }

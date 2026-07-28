@@ -9,4 +9,4 @@ Place the locally hosted platform demo videos in this directory:
 - `sql-editor.mp4`
 - `sql-editor.dark.mp4`
 
-Recommended export: MP4 (H.264), 16:9, muted, 1080p or 1440p, optimized for web playback.
+Recommended export: MP4 (H.264), muted, 1440×762, optimized for web playback. Keep the same dimensions for light and dark variants.
