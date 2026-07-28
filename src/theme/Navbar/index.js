@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 const navLinks = [
   { label: '/pricing', to: '/pricing' },
   { label: '/docs',   to: '/docs' },
-  { label: '/github',   href: 'https://github.com/autobase-tech/autobase' },
+  { label: 'Get Started ↵', to: '/docs/#getting-started', isCta: true },
 ];
 
 function normalizePath(pathname) {
@@ -57,7 +57,11 @@ export default function Navbar(props) {
         <nav className={styles.navLinks} aria-label="Main navigation">
           {navLinks.map((link) =>
             link.to ? (
-              <Link key={link.label} to={link.to} className={styles.navLink}>
+              <Link
+                key={link.label}
+                to={link.to}
+                className={link.isCta ? `${styles.cta} ${styles.ctaPrimary}` : styles.navLink}
+              >
                 {link.label}
               </Link>
             ) : (
@@ -92,7 +96,7 @@ export default function Navbar(props) {
                   <Link
                     key={link.label}
                     to={link.to}
-                    className={styles.mobileNavLink}
+                    className={`${styles.mobileNavLink} ${link.isCta ? styles.mobileNavCta : ''}`}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.label}

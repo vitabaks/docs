@@ -17,6 +17,8 @@
   --color-border: #e0e0e0;
   --color-white: #ffffff;
   --color-primary: #ff5722;
+  --shadow-pixel: rgba(0, 0, 0, 0.05);
+  --shadow-pixel-hover: rgba(0, 0, 0, 0.1);
   background: var(--color-bg);
   padding: 0 !important;
   height: auto;
@@ -28,6 +30,8 @@
   --color-text: #f9fafb;
   --color-text-muted: #9ca3af;
   --color-border: #252a31;
+  --shadow-pixel: rgba(255, 255, 255, 0.06);
+  --shadow-pixel-hover: rgba(255, 255, 255, 0.11);
 }
 
 /* ─── Inner container — matches hero padding ──────────────────────── */
@@ -119,16 +123,16 @@
   flex-shrink: 0;
 }
 
-/* ─── CTA buttons (unchanged) ─────────────────────────────────────── */
+/* ─── CTA button ──────────────────────────────────────────────────── */
 .cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 44px;
-  padding: 0 20px;
+  height: 36px;
+  padding: 0 14px;
   border-radius: 0;
   font-family: var(--font-base);
-  font-size: var(--fs-sm);
+  font-size: 14px;
   font-weight: var(--fw-regular);
   white-space: nowrap;
   text-decoration: none;
@@ -138,16 +142,26 @@
 
 .cta:hover {
   text-decoration: none;
-  opacity: 0.85;
 }
 
 .ctaPrimary {
-  background: var(--color-primary);
-  color: var(--color-white);
-  border: none;
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  box-shadow: 4px 4px 0 var(--shadow-pixel);
 }
 
-.ctaPrimary:hover { color: var(--color-white); }
+.ctaPrimary:hover {
+  background: transparent;
+  color: var(--color-primary);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--shadow-pixel-hover);
+}
+
+.ctaPrimary:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
 
 .ctaSecondary {
   background: transparent;
@@ -247,6 +261,18 @@
   background: var(--color-surface);
   text-decoration: none;
   outline: none;
+}
+
+.mobileNavCta {
+  background: transparent;
+  color: var(--color-primary);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+
+.mobileNavCta:hover,
+.mobileNavCta:focus-visible {
+  background: var(--color-primary);
+  color: var(--color-white);
 }
 
 /* ─── Responsive ──────────────────────────────────────────────────── */

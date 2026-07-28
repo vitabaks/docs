@@ -2,7 +2,6 @@
 .section {
   --diagram-line: var(--color-diagram-line, #8f8f8f);
   --diagram-border: var(--color-diagram-border, #b7b7b7);
-  --feature-hover-bg: rgba(255, 87, 34, 0.08);
   width: 100vw;
   background: var(--color-bg);
   display: flex;
@@ -11,10 +10,6 @@
   position: relative;
   left: 50%;
   margin-left: -50vw;
-}
-
-[data-theme='dark'] .section {
-  --feature-hover-bg: rgba(255, 87, 34, 0.14);
 }
 
 .section::after {
@@ -93,18 +88,13 @@
   flex-direction: column;
   gap: 12px;
   padding: 20px 0 22px;
-  border-color: color-mix(in srgb, var(--color-primary) 52%, var(--color-border));
-  border-style: solid;
+  border-color: var(--color-primary);
+  border-style: dashed;
   border-width: 1px;
   width: 80%;
-  background: transparent;
+  background: color-mix(in srgb, var(--color-primary) 2.5%, var(--color-bg));
   box-shadow: none;
   transition: none;
-}
-
-.platform:hover {
-  border-color: var(--color-primary);
-  background: color-mix(in srgb, var(--color-primary) 2.5%, var(--color-bg));
 }
 
 .corner {
@@ -123,7 +113,7 @@
 .cornerBottomLeft { bottom: -7px; left: -5px; }
 .cornerBottomRight { right: -5px; bottom: -7px; }
 
-[data-theme='dark'] .platform:hover {
+[data-theme='dark'] .platform {
   background: color-mix(in srgb, var(--color-primary) 4%, var(--color-bg));
 }
 
@@ -704,7 +694,6 @@
 }
 
 .featureCard:last-child { border-right: none; }
-.featureCard:hover { background: var(--feature-hover-bg); }
 .featureCard:hover .featureIcon,
 .featureCard:hover .featureLabel {
   color: var(--color-primary);
