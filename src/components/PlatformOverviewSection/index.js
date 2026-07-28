@@ -166,7 +166,7 @@ export default function PlatformOverviewSection() {
               <div className={styles.placeholder} aria-live="polite">
                 <div className={styles.placeholderHeader}>
                   <span className={styles.placeholderPrompt}>&gt;</span>
-                  <span>{activeDemo.id.toUpperCase()} DEMO</span>
+                  <span>{activeDemo.id.toUpperCase()}</span>
                   <span className={styles.placeholderState}>
                     {mediaStatus === 'error' ? 'MEDIA PENDING' : 'LOADING'}
                   </span>
