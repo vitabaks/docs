@@ -1,0 +1,288 @@
+.section {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+  background: var(--color-bg);
+}
+
+.inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 80px 0;
+}
+
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 24px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.sectionLabel span,
+.placeholderPrompt {
+  color: var(--color-primary);
+}
+
+.tabPrompt {
+  color: var(--color-text-muted);
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: var(--font-base);
+  font-size: 14px;
+  font-weight: var(--fw-regular);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tab:hover {
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+}
+
+.tabActive,
+.tabActive:hover {
+  border-color: var(--color-border);
+  color: var(--color-text);
+  box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+
+.tabActive .tabPrompt {
+  color: var(--color-primary);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.browser {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 10px 10px 0 0;
+  background: var(--color-bg);
+  box-shadow: 8px 8px 0 var(--shadow-pixel);
+}
+
+.browserBar {
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.browserControls {
+  display: flex;
+  gap: 7px;
+}
+
+.browserControls span {
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.browserControls span:first-child {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  opacity: 1;
+}
+
+.viewport {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-text) 2%, var(--color-bg));
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+
+.videoReady {
+  opacity: 1;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  color: var(--color-text-muted);
+}
+
+.placeholderHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--color-border);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.placeholderState {
+  margin-left: auto;
+  color: var(--color-primary);
+}
+
+.placeholderBody {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  flex: 1;
+  min-height: 0;
+}
+
+.mockSidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 28px 18px;
+  border-right: 1px solid var(--color-border);
+}
+
+.mockSidebar span {
+  width: 28px;
+  height: 7px;
+  background: var(--color-border);
+}
+
+.mockSidebar .mockActive {
+  background: var(--color-primary);
+}
+
+.mockContent {
+  position: relative;
+  padding: 30px 34px;
+}
+
+.mockTitle {
+  max-width: 620px;
+  color: var(--color-text);
+  font-size: clamp(16px, 2vw, 24px);
+  line-height: 1.35;
+}
+
+.mockToolbar {
+  display: flex;
+  gap: 10px;
+  margin: 26px 0 20px;
+}
+
+.mockToolbar span {
+  width: 92px;
+  height: 26px;
+  border: 1px solid var(--color-border);
+}
+
+.mockToolbar span:first-child {
+  border-color: var(--color-primary);
+}
+
+.mockGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.mockGrid span {
+  aspect-ratio: 1.65;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.mediaHint {
+  position: absolute;
+  right: 34px;
+  bottom: 24px;
+  color: var(--color-text-muted);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+@media (max-width: 1100px) {
+  .inner { padding: 44px 48px 0; }
+}
+
+@media (max-width: 768px) {
+  .inner { padding: 36px 24px 0; }
+  .tabs { gap: 8px; }
+  .tab { min-height: 36px; padding: 0 12px; font-size: 13px; }
+  .placeholder { padding: 16px; }
+  .placeholderBody { grid-template-columns: 58px 1fr; }
+  .mockSidebar { gap: 16px; padding: 20px 12px; }
+  .mockSidebar span { width: 22px; }
+  .mockContent { padding: 22px; }
+  .mockGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .mockGrid span:nth-child(n+7) { display: none; }
+  .mediaHint { right: 22px; bottom: 16px; }
+}
+
+@media (max-width: 480px) {
+  .inner { padding: 32px 16px 0; }
+  .sectionLabel { margin-bottom: 18px; }
+  .browser { border-radius: 7px 7px 0 0; box-shadow: 5px 5px 0 var(--shadow-pixel); }
+  .browserBar { min-height: 34px; padding: 0 10px; }
+  .browserControls { gap: 4px; }
+  .browserControls span { width: 6px; height: 6px; }
+  .placeholderHeader { padding-bottom: 10px; font-size: 9px; }
+  .placeholderBody { grid-template-columns: 42px 1fr; }
+  .mockSidebar { gap: 10px; padding: 14px 8px; }
+  .mockSidebar span { width: 18px; height: 5px; }
+  .mockContent { padding: 14px; }
+  .mockToolbar { margin: 14px 0 12px; }
+  .mockToolbar span { width: 54px; height: 18px; }
+  .mockGrid { gap: 6px; }
+  .mediaHint { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video {
+    animation: none;
+  }
+}
