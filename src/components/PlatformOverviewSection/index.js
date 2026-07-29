@@ -1,0 +1,262 @@
+import React, { useEffect, useRef, useState } from 'react';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import { useColorMode } from '@docusaurus/theme-common';
+import styles from './styles.module.css';
+
+const demos = [
+  {
+    id: 'clusters',
+    label: 'Create Clusters',
+    file: 'clusters.mp4',
+    description: 'Create a production-ready PostgreSQL cluster.',
+  },
+  {
+    id: 'parameters',
+    label: 'Edit Parameters',
+    file: 'parameters.mp4',
+    description: 'Edit cluster and system parameters from the platform interface.',
+  },
+  {
+    id: 'yaml-editor',
+    label: 'YAML Editor',
+    file: 'yaml-editor.mp4',
+    description: 'Edit cluster configuration as declarative YAML.',
+  },
+  {
+    id: 'sql-editor',
+    label: 'SQL Editor',
+    file: 'sql-editor.mp4',
+    description: 'Run SQL queries directly from the platform interface.',
+  },
+];
+
+export default function PlatformOverviewSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [mediaStatus, setMediaStatus] = useState('loading');
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isNearView, setIsNearView] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
+  const sectionRef = useRef(null);
+  const tabRefs = useRef([]);
+  const videoRef = useRef(null);
+  const prefetchedVideosRef = useRef(new Set());
+  const { colorMode } = useColorMode();
+  const mediaRoot = useBaseUrl('/video/platform-overview/');
+  const activeDemo = demos[activeIndex];
+  const themedFile = colorMode === 'dark'
+    ? activeDemo.file.replace(/\.mp4$/, '.dark.mp4')
+    : activeDemo.file;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener?.('change', updatePreference);
+    return () => mediaQuery.removeEventListener?.('change', updatePreference);
+  }, []);
+
+  useEffect(() => {
+    setMediaStatus('loading');
+    setHasStartedPlaying(false);
+  }, [activeIndex, colorMode]);
+
+  useEffect(() => {
+    if (!sectionRef.current) return undefined;
+
+    if (!('IntersectionObserver' in window)) {
+      setIsNearView(true);
+      setIsInView(true);
+      return undefined;
+    }
+
+    const preloadObserver = new IntersectionObserver(
+      ([entry]) => setIsNearView(entry.isIntersecting),
+      { rootMargin: '75% 0px', threshold: 0 }
+    );
+    const playbackObserver = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting && entry.intersectionRatio >= 0.35),
+      { threshold: 0.35 }
+    );
+
+    preloadObserver.observe(sectionRef.current);
+    playbackObserver.observe(sectionRef.current);
+
+    return () => {
+      preloadObserver.disconnect();
+      playbackObserver.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isNearView || !videoRef.current || videoRef.current.readyState >= 3) return;
+    videoRef.current.load();
+  }, [isNearView, activeIndex, themedFile]);
+
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    if (prefersReducedMotion || !isInView) {
+      videoRef.current.pause();
+      return;
+    }
+
+    videoRef.current.play().catch(() => {});
+  }, [activeIndex, themedFile, mediaStatus, prefersReducedMotion, isInView]);
+
+  useEffect(() => {
+    if (!hasStartedPlaying || !isInView || prefersReducedMotion) return undefined;
+
+    const connection = navigator.connection
+      || navigator.mozConnection
+      || navigator.webkitConnection;
+    const shouldAvoidPrefetch = connection?.saveData
+      || ['slow-2g', '2g'].includes(connection?.effectiveType);
+
+    if (shouldAvoidPrefetch) return undefined;
+
+    const nextDemo = demos[(activeIndex + 1) % demos.length];
+    const nextFile = colorMode === 'dark'
+      ? nextDemo.file.replace(/\.mp4$/, '.dark.mp4')
+      : nextDemo.file;
+    const nextVideoUrl = `${mediaRoot}${nextFile}`;
+
+    if (prefetchedVideosRef.current.has(nextVideoUrl)) return undefined;
+
+    const prefetchNextVideo = () => {
+      if (prefetchedVideosRef.current.has(nextVideoUrl)) return;
+
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.as = 'video';
+      link.href = nextVideoUrl;
+      document.head.appendChild(link);
+      prefetchedVideosRef.current.add(nextVideoUrl);
+    };
+
+    const timeoutId = window.setTimeout(prefetchNextVideo, 1500);
+    return () => window.clearTimeout(timeoutId);
+  }, [activeIndex, colorMode, hasStartedPlaying, isInView, mediaRoot, prefersReducedMotion]);
+
+  function selectTab(index) {
+    setActiveIndex(index);
+  }
+
+  function handleVideoEnded() {
+    if (prefersReducedMotion || !isInView) return;
+    setActiveIndex((currentIndex) => (currentIndex + 1) % demos.length);
+  }
+
+  function handleTabKeyDown(event, index) {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+
+    event.preventDefault();
+    let nextIndex = index;
+
+    if (event.key === 'ArrowLeft') nextIndex = (index - 1 + demos.length) % demos.length;
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % demos.length;
+    if (event.key === 'Home') nextIndex = 0;
+    if (event.key === 'End') nextIndex = demos.length - 1;
+
+    selectTab(nextIndex);
+    tabRefs.current[nextIndex]?.focus();
+  }
+
+  return (
+    <section ref={sectionRef} className={styles.section} aria-labelledby="platform-overview-title">
+      <div className={styles.inner}>
+        <h2 id="platform-overview-title" className={styles.sectionLabel}>
+          <span aria-hidden="true">//</span>
+          Platform overview
+        </h2>
+
+        <div className={styles.tabs} role="tablist" aria-label="Platform demonstrations">
+          {demos.map((demo, index) => (
+            <button
+              key={demo.id}
+              ref={(element) => { tabRefs.current[index] = element; }}
+              id={`platform-tab-${demo.id}`}
+              type="button"
+              role="tab"
+              aria-selected={activeIndex === index}
+              aria-controls={`platform-panel-${demo.id}`}
+              tabIndex={activeIndex === index ? 0 : -1}
+              className={`${styles.tab} ${activeIndex === index ? styles.tabActive : ''}`}
+              onClick={() => selectTab(index)}
+              onKeyDown={(event) => handleTabKeyDown(event, index)}
+            >
+              <span className={styles.tabPrompt} aria-hidden="true">{activeIndex === index ? '>' : '/'}</span>
+              {demo.label}
+            </button>
+          ))}
+        </div>
+
+        <div className={styles.browser}>
+          <div className={styles.browserBar} aria-hidden="true">
+            <div className={styles.browserControls}>
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+
+          <div
+            id={`platform-panel-${activeDemo.id}`}
+            role="tabpanel"
+            aria-labelledby={`platform-tab-${activeDemo.id}`}
+            className={styles.viewport}
+          >
+            <video
+              key={`${activeDemo.id}-${colorMode}`}
+              ref={videoRef}
+              className={`${styles.video} ${mediaStatus === 'ready' ? styles.videoReady : ''}`}
+              src={`${mediaRoot}${themedFile}`}
+              muted
+              playsInline
+              preload={isNearView ? 'auto' : 'metadata'}
+              aria-label={activeDemo.description}
+              onCanPlay={() => setMediaStatus('ready')}
+              onPlaying={() => setHasStartedPlaying(true)}
+              onEnded={handleVideoEnded}
+              onError={() => setMediaStatus('error')}
+            />
+
+            {mediaStatus !== 'ready' && (
+              <div className={styles.placeholder} aria-live="polite">
+                <div className={styles.placeholderHeader}>
+                  <span className={styles.placeholderPrompt}>&gt;</span>
+                  <span>{activeDemo.id.toUpperCase()}</span>
+                  <span className={styles.placeholderState}>
+                    {mediaStatus === 'error' ? 'MEDIA PENDING' : 'LOADING'}
+                  </span>
+                </div>
+                <div className={styles.placeholderBody}>
+                  <div className={styles.mockSidebar}>
+                    <span className={styles.mockActive} />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                  <div className={styles.mockContent}>
+                    <div className={styles.mockTitle}>{activeDemo.description}</div>
+                    <div className={styles.mockToolbar}>
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+                    <div className={styles.mockGrid}>
+                      {Array.from({ length: 8 }, (_, index) => <span key={index} />)}
+                    </div>
+                    <div className={styles.mediaHint}>/video/platform-overview/{themedFile}</div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

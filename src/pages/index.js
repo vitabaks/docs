@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import HeroSection from '@site/src/components/HeroSection';
 import ArchDiagramSection from '@site/src/components/ArchDiagramSection';
+import PlatformOverviewSection from '@site/src/components/PlatformOverviewSection';
 import ValuePropsSection from '@site/src/components/ValuePropsSection';
 import ProductHighlightsSection from '@site/src/components/ProductHighlightsSection';
 import CLISection from '@site/src/components/CLISection';
@@ -17,6 +18,7 @@ export default function Home() {
       <HeroSection />
       <main>
         <ArchDiagramSection />
+        <PlatformOverviewSection />
         <ValuePropsSection />
         <CLISection />
         {/* <ProductHighlightsSection /> */}
