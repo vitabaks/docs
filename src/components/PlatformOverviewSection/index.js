@@ -34,10 +34,13 @@ export default function PlatformOverviewSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [mediaStatus, setMediaStatus] = useState('loading');
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isNearView, setIsNearView] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
   const sectionRef = useRef(null);
   const tabRefs = useRef([]);
   const videoRef = useRef(null);
+  const prefetchedVideosRef = useRef(new Set());
   const { colorMode } = useColorMode();
   const mediaRoot = useBaseUrl('/video/platform-overview/');
   const activeDemo = demos[activeIndex];
@@ -56,24 +59,40 @@ export default function PlatformOverviewSection() {
 
   useEffect(() => {
     setMediaStatus('loading');
+    setHasStartedPlaying(false);
   }, [activeIndex, colorMode]);
 
   useEffect(() => {
     if (!sectionRef.current) return undefined;
 
     if (!('IntersectionObserver' in window)) {
+      setIsNearView(true);
       setIsInView(true);
       return undefined;
     }
 
-    const observer = new IntersectionObserver(
+    const preloadObserver = new IntersectionObserver(
+      ([entry]) => setIsNearView(entry.isIntersecting),
+      { rootMargin: '75% 0px', threshold: 0 }
+    );
+    const playbackObserver = new IntersectionObserver(
       ([entry]) => setIsInView(entry.isIntersecting && entry.intersectionRatio >= 0.35),
       { threshold: 0.35 }
     );
 
-    observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+    preloadObserver.observe(sectionRef.current);
+    playbackObserver.observe(sectionRef.current);
+
+    return () => {
+      preloadObserver.disconnect();
+      playbackObserver.disconnect();
+    };
   }, []);
+
+  useEffect(() => {
+    if (!isNearView || !videoRef.current || videoRef.current.readyState >= 3) return;
+    videoRef.current.load();
+  }, [isNearView, activeIndex, themedFile]);
 
   useEffect(() => {
     if (!videoRef.current) return;
@@ -85,6 +104,40 @@ export default function PlatformOverviewSection() {
 
     videoRef.current.play().catch(() => {});
   }, [activeIndex, themedFile, mediaStatus, prefersReducedMotion, isInView]);
+
+  useEffect(() => {
+    if (!hasStartedPlaying || !isInView || prefersReducedMotion) return undefined;
+
+    const connection = navigator.connection
+      || navigator.mozConnection
+      || navigator.webkitConnection;
+    const shouldAvoidPrefetch = connection?.saveData
+      || ['slow-2g', '2g'].includes(connection?.effectiveType);
+
+    if (shouldAvoidPrefetch) return undefined;
+
+    const nextDemo = demos[(activeIndex + 1) % demos.length];
+    const nextFile = colorMode === 'dark'
+      ? nextDemo.file.replace(/\.mp4$/, '.dark.mp4')
+      : nextDemo.file;
+    const nextVideoUrl = `${mediaRoot}${nextFile}`;
+
+    if (prefetchedVideosRef.current.has(nextVideoUrl)) return undefined;
+
+    const prefetchNextVideo = () => {
+      if (prefetchedVideosRef.current.has(nextVideoUrl)) return;
+
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.as = 'video';
+      link.href = nextVideoUrl;
+      document.head.appendChild(link);
+      prefetchedVideosRef.current.add(nextVideoUrl);
+    };
+
+    const timeoutId = window.setTimeout(prefetchNextVideo, 1500);
+    return () => window.clearTimeout(timeoutId);
+  }, [activeIndex, colorMode, hasStartedPlaying, isInView, mediaRoot, prefersReducedMotion]);
 
   function selectTab(index) {
     setActiveIndex(index);
@@ -161,9 +214,10 @@ export default function PlatformOverviewSection() {
               src={`${mediaRoot}${themedFile}`}
               muted
               playsInline
-              preload="metadata"
+              preload={isNearView ? 'auto' : 'metadata'}
               aria-label={activeDemo.description}
               onCanPlay={() => setMediaStatus('ready')}
+              onPlaying={() => setHasStartedPlaying(true)}
               onEnded={handleVideoEnded}
               onError={() => setMediaStatus('error')}
             />
