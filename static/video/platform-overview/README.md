@@ -6,6 +6,8 @@ Place the locally hosted platform demo videos in this directory:
 - `clusters.dark.mp4`
 - `parameters.mp4`
 - `parameters.dark.mp4`
+- `yaml-editor.mp4`
+- `yaml-editor.dark.mp4`
 - `sql-editor.mp4`
 - `sql-editor.dark.mp4`
 

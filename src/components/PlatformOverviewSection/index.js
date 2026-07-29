@@ -6,15 +6,21 @@ import styles from './styles.module.css';
 const demos = [
   {
     id: 'clusters',
-    label: 'Deployment',
+    label: 'Create Clusters',
     file: 'clusters.mp4',
-    description: 'Provision a production-ready PostgreSQL cluster.',
+    description: 'Create a production-ready PostgreSQL cluster.',
   },
   {
     id: 'parameters',
-    label: 'Parameters',
+    label: 'Edit Parameters',
     file: 'parameters.mp4',
-    description: 'Change cluster and system parameters from the platform interface.',
+    description: 'Edit cluster and system parameters from the platform interface.',
+  },
+  {
+    id: 'yaml-editor',
+    label: 'YAML Editor',
+    file: 'yaml-editor.mp4',
+    description: 'Edit cluster configuration as declarative YAML.',
   },
   {
     id: 'sql-editor',
