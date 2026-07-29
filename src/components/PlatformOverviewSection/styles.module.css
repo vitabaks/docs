@@ -132,11 +132,11 @@
 
 .video {
   position: absolute;
-  inset: 0 8px 8px;
+  inset: 0 4px 4px;
   z-index: 2;
   display: block;
-  width: calc(100% - 16px);
-  height: calc(100% - 8px);
+  width: calc(100% - 8px);
+  height: calc(100% - 4px);
   box-sizing: border-box;
   background: var(--color-bg);
   object-fit: contain;
@@ -278,7 +278,7 @@
   .browserBar { min-height: 34px; padding: 0 10px; }
   .browserControls { gap: 4px; }
   .browserControls span { width: 6px; height: 6px; }
-  .video { right: 4px; bottom: 4px; left: 4px; width: calc(100% - 8px); height: calc(100% - 4px); }
+  .video { right: 2px; bottom: 2px; left: 2px; width: calc(100% - 4px); height: calc(100% - 2px); }
   .placeholderHeader { padding-bottom: 10px; font-size: 9px; }
   .placeholderBody { grid-template-columns: 42px 1fr; }
   .mockSidebar { gap: 10px; padding: 14px 8px; }
