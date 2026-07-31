@@ -4,6 +4,11 @@ import styles from './styles.module.css';
 const ROTATION_INTERVAL_MS = 6500;
 const EXIT_DURATION_MS = 340;
 const TRANSITION_DURATION_MS = 1200;
+const GITHUB_REPO_URL = 'https://github.com/autobase-tech/autobase';
+const GITHUB_REPO_API = 'https://api.github.com/repos/autobase-tech/autobase';
+const GITHUB_STARS_FALLBACK = 4300;
+const GITHUB_STARS_CACHE_KEY = 'autobase-github-stars';
+const GITHUB_STARS_CACHE_TTL_MS = 15 * 60 * 1000;
 
 const BANNERS = [
   {
@@ -18,6 +23,14 @@ const BANNERS = [
     before: 'in Production',
     after: null,
     visual: 'production-history',
+  },
+  {
+    id: 'open-source',
+    before: 'Open source forever',
+    after: null,
+    subtitleAccent: 'Trusted',
+    subtitle: 'by teams worldwide',
+    visual: 'open-source',
   },
 ];
 
@@ -45,6 +58,61 @@ function usePrefersReducedMotion() {
   }, []);
 
   return prefersReducedMotion;
+}
+
+function useGithubStars() {
+  const [stars, setStars] = useState({count: GITHUB_STARS_FALLBACK, isLive: false});
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    try {
+      const cachedValue = window.sessionStorage.getItem(GITHUB_STARS_CACHE_KEY);
+      const cached = cachedValue ? JSON.parse(cachedValue) : null;
+
+      if (
+        Number.isInteger(cached?.count)
+        && Date.now() - cached.timestamp < GITHUB_STARS_CACHE_TTL_MS
+      ) {
+        setStars({count: cached.count, isLive: true});
+        return () => controller.abort();
+      }
+    } catch {
+      // Storage can be unavailable in privacy-focused browser modes.
+    }
+
+    fetch(GITHUB_REPO_API, {
+      headers: {Accept: 'application/vnd.github+json'},
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error(`GitHub API responded with ${response.status}`);
+        return response.json();
+      })
+      .then((repository) => {
+        if (!Number.isInteger(repository.stargazers_count)) return;
+
+        setStars({count: repository.stargazers_count, isLive: true});
+
+        try {
+          window.sessionStorage.setItem(GITHUB_STARS_CACHE_KEY, JSON.stringify({
+            count: repository.stargazers_count,
+            timestamp: Date.now(),
+          }));
+        } catch {
+          // The live value still works even when it cannot be cached.
+        }
+      })
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          setStars({count: GITHUB_STARS_FALLBACK, isLive: false});
+        }
+      });
+
+    return () => controller.abort();
+  }, []);
+
+  return stars;
 }
 
 function CalendarWithClockIcon() {
@@ -118,7 +186,7 @@ function StopwatchIcon() {
   );
 }
 
-function BannerVisual({type}) {
+function BannerVisual({type, githubStars}) {
   if (type === 'production-history') {
     return (
       <div className={styles.productionTimeline} aria-hidden="true">
@@ -135,6 +203,26 @@ function BannerVisual({type}) {
           <span><b>&gt;</b> PRODUCTION READY</span>
         </div>
       </div>
+    );
+  }
+
+  if (type === 'open-source') {
+    const formattedStars = githubStars.count.toLocaleString('en-US');
+    const displayedStars = githubStars.isLive ? formattedStars : `${formattedStars}+`;
+
+    return (
+      <a
+        className={styles.githubProof}
+        href={GITHUB_REPO_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Autobase on GitHub, ${displayedStars} stars`}
+      >
+        <span className={styles.githubMetric}>
+          <strong className={styles.starCount}>{displayedStars}</strong>
+          <span className={styles.starLabel}>GitHub Stars</span>
+        </span>
+      </a>
     );
   }
 
@@ -169,6 +257,7 @@ export default function SocialProofSection() {
   const exitTimerRef = useRef(null);
   const transitionTimerRef = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
+  const githubStars = useGithubStars();
 
   useEffect(() => {
     setBannerOrder(getRandomBannerOrder(BANNERS.length));
@@ -254,10 +343,18 @@ export default function SocialProofSection() {
               {activeBanner.after && (
                 <p className={styles.after}>{activeBanner.after}</p>
               )}
+              {activeBanner.subtitle && (
+                <p className={styles.subtitle}>
+                  {activeBanner.subtitleAccent && (
+                    <span className={styles.subtitleAccent}>{activeBanner.subtitleAccent} </span>
+                  )}
+                  {activeBanner.subtitle}
+                </p>
+              )}
               <span className={styles.underbar} />
             </div>
 
-            <BannerVisual type={activeBanner.visual} />
+            <BannerVisual type={activeBanner.visual} githubStars={githubStars} />
           </div>
 
           <div className={styles.controls} aria-label="Social proof banners">
