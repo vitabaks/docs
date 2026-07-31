@@ -1,5 +1,51 @@
-import React from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from './styles.module.css';
+
+const ROTATION_INTERVAL_MS = 6500;
+const EXIT_DURATION_MS = 340;
+const TRANSITION_DURATION_MS = 1200;
+
+const BANNERS = [
+  {
+    id: 'time-to-value',
+    before: '1 Month of Infrastructure Work',
+    after: '10 Minutes in Autobase',
+    visual: 'time-to-value',
+  },
+  {
+    id: 'production-history',
+    beforeAccent: '7 Years',
+    before: 'in Production',
+    after: null,
+    visual: 'production-history',
+  },
+];
+
+function getRandomBannerOrder(length) {
+  const order = Array.from({length}, (_, index) => index);
+
+  for (let index = order.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [order[index], order[randomIndex]] = [order[randomIndex], order[index]];
+  }
+
+  return order;
+}
+
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener?.('change', updatePreference);
+    return () => mediaQuery.removeEventListener?.('change', updatePreference);
+  }, []);
+
+  return prefersReducedMotion;
+}
 
 function CalendarWithClockIcon() {
   return (
@@ -72,41 +118,159 @@ function StopwatchIcon() {
   );
 }
 
-export default function SocialProofSection() {
-  return (
-    <section className={styles.section} aria-labelledby="time-to-value-title">
-      <div className={styles.inner}>
-        <h2 id="time-to-value-title" className="landing-sr-only">Time to value</h2>
-        <div className={styles.banner}>
+function BannerVisual({type}) {
+  if (type === 'production-history') {
+    return (
+      <div className={styles.productionTimeline} aria-hidden="true">
+        <div className={styles.timelineYears}>
+          <span>2019</span>
+          <span>2026</span>
+        </div>
+        <div className={styles.timelineRail}>
+          <span className={styles.startNode} />
+          <span className={styles.currentYear} />
+        </div>
+        <div className={styles.timelineLabels}>
+          <span>INITIAL RELEASE</span>
+          <span><b>&gt;</b> PRODUCTION READY</span>
+        </div>
+      </div>
+    );
+  }
 
-          {/* Left — text */}
-          <div className={styles.text}>
-            <p className={styles.before}>1 Month of Infrastructure Work</p>
-            <p className={styles.after}>10 Minutes in Autobase</p>
-            <span className={styles.underbar} />
+  return (
+    <div className={styles.visual} aria-hidden="true">
+      <div className={styles.timeBlock}>
+        <CalendarWithClockIcon />
+        <span className={styles.timeLabel}>1 MONTH</span>
+      </div>
+
+      <svg className={styles.arrow} width="48" height="24" viewBox="0 0 48 24" fill="none">
+        <line x1="0" y1="12" x2="40" y2="12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+        <polyline points="30,4 42,12 30,20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+
+      <div className={styles.divider} />
+
+      <div className={styles.timeBlock}>
+        <StopwatchIcon />
+        <span className={`${styles.timeLabel} ${styles.accentLabel}`}>10 MINUTES</span>
+      </div>
+    </div>
+  );
+}
+
+export default function SocialProofSection() {
+  const [bannerOrder, setBannerOrder] = useState(() => BANNERS.map((_, index) => index));
+  const [activePosition, setActivePosition] = useState(0);
+  const [isExiting, setIsExiting] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isInteractionPaused, setIsInteractionPaused] = useState(false);
+  const exitTimerRef = useRef(null);
+  const transitionTimerRef = useRef(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    setBannerOrder(getRandomBannerOrder(BANNERS.length));
+  }, []);
+
+  useEffect(() => () => {
+    window.clearTimeout(exitTimerRef.current);
+    window.clearTimeout(transitionTimerRef.current);
+  }, []);
+
+  const showBanner = useCallback((nextPosition) => {
+    if (nextPosition === activePosition || isTransitioning) return;
+
+    if (prefersReducedMotion) {
+      setActivePosition(nextPosition);
+      return;
+    }
+
+    setIsTransitioning(true);
+    setIsExiting(true);
+
+    exitTimerRef.current = window.setTimeout(() => {
+      setActivePosition(nextPosition);
+      setIsExiting(false);
+    }, EXIT_DURATION_MS);
+
+    transitionTimerRef.current = window.setTimeout(() => {
+      setIsTransitioning(false);
+    }, TRANSITION_DURATION_MS);
+  }, [activePosition, isTransitioning, prefersReducedMotion]);
+
+  useEffect(() => {
+    if (
+      prefersReducedMotion
+      || isInteractionPaused
+      || isTransitioning
+    ) return undefined;
+
+    const rotationTimer = window.setTimeout(() => {
+      showBanner((activePosition + 1) % bannerOrder.length);
+    }, ROTATION_INTERVAL_MS);
+
+    return () => window.clearTimeout(rotationTimer);
+  }, [
+    activePosition,
+    bannerOrder.length,
+    isInteractionPaused,
+    isTransitioning,
+    prefersReducedMotion,
+    showBanner,
+  ]);
+
+  const activeBanner = BANNERS[bannerOrder[activePosition]];
+
+  return (
+    <section className={styles.section} aria-labelledby="social-proof-title">
+      <div className={styles.inner}>
+        <h2 id="social-proof-title" className="landing-sr-only">Why teams choose Autobase</h2>
+        <div
+          className={`${styles.banner} ${isTransitioning ? styles.transitioning : ''}`}
+          onMouseEnter={() => setIsInteractionPaused(true)}
+          onMouseLeave={() => setIsInteractionPaused(false)}
+          onFocusCapture={() => setIsInteractionPaused(true)}
+          onBlurCapture={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              setIsInteractionPaused(false);
+            }
+          }}
+        >
+          <div
+            key={activeBanner.id}
+            className={`${styles.slide} ${isExiting ? styles.exiting : ''}`}
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <div className={styles.text}>
+              <p className={styles.before}>
+                {activeBanner.beforeAccent && (
+                  <span className={styles.inlineAccent}>{activeBanner.beforeAccent} </span>
+                )}
+                {activeBanner.before}
+              </p>
+              {activeBanner.after && (
+                <p className={styles.after}>{activeBanner.after}</p>
+              )}
+              <span className={styles.underbar} />
+            </div>
+
+            <BannerVisual type={activeBanner.visual} />
           </div>
 
-          {/* Right — visual */}
-          <div className={styles.visual}>
-
-            <div className={styles.timeBlock}>
-              <CalendarWithClockIcon />
-              <span className={styles.timeLabel}>1 MONTH</span>
-            </div>
-
-            {/* Arrow */}
-            <svg className={styles.arrow} width="48" height="24" viewBox="0 0 48 24" fill="none" aria-hidden="true">
-              <line x1="0" y1="12" x2="40" y2="12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-              <polyline points="30,4 42,12 30,20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-
-            <div className={styles.divider} />
-
-            <div className={styles.timeBlock}>
-              <StopwatchIcon />
-              <span className={`${styles.timeLabel} ${styles.accentLabel}`}>10 MINUTES</span>
-            </div>
-
+          <div className={styles.controls} aria-label="Social proof banners">
+            {bannerOrder.map((bannerIndex, position) => (
+              <button
+                key={BANNERS[bannerIndex].id}
+                type="button"
+                className={`${styles.indicator} ${position === activePosition ? styles.activeIndicator : ''}`}
+                onClick={() => showBanner(position)}
+                aria-label={`Show banner ${position + 1} of ${BANNERS.length}`}
+                aria-pressed={position === activePosition}
+              />
+            ))}
           </div>
         </div>
       </div>
