@@ -50,7 +50,10 @@ export default function Navbar(props) {
             width={40}
             height={35}
           />
-          <span className={styles.logoText}>Autobase</span>
+          <span className={styles.logoWordmark}>
+            <span className={styles.logoSince} aria-hidden="true">since 2019</span>
+            <span className={styles.logoText}>Autobase</span>
+          </span>
         </Link>
 
         {/* Center nav links */}
