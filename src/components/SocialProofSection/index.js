@@ -9,6 +9,7 @@ const GITHUB_REPO_API = 'https://api.github.com/repos/autobase-tech/autobase';
 const GITHUB_STARS_FALLBACK = 4300;
 const GITHUB_STARS_CACHE_KEY = 'autobase-github-stars';
 const GITHUB_STARS_CACHE_TTL_MS = 15 * 60 * 1000;
+const EXTENSION_NAMES = ['postgis', 'vector', 'timescaledb', 'pg_partman', 'pg_cron', 'pgaudit'];
 
 const BANNERS = [
   {
@@ -31,6 +32,14 @@ const BANNERS = [
     subtitleAccent: 'Trusted',
     subtitle: 'by teams worldwide',
     visual: 'open-source',
+  },
+  {
+    id: 'extensions',
+    beforeAccent: '500+',
+    before: 'Extensions',
+    after: null,
+    subtitle: 'Go beyond vanilla PostgreSQL',
+    visual: 'extensions',
   },
 ];
 
@@ -221,6 +230,33 @@ function BannerVisual({type, githubStars}) {
         <span className={styles.githubMetric}>
           <strong className={styles.starCount}>{displayedStars}</strong>
           <span className={styles.starLabel}>GitHub Stars</span>
+        </span>
+      </a>
+    );
+  }
+
+  if (type === 'extensions') {
+    return (
+      <a
+        className={styles.extensionCatalog}
+        href="/docs/extensions/list"
+        aria-label="Browse more than 500 PostgreSQL extensions"
+      >
+        <span className={styles.catalogHeader}>
+          <b>&gt;</b> EXTENSION CATALOG
+        </span>
+        <span className={styles.extensionGrid}>
+          {EXTENSION_NAMES.map((extension, index) => (
+            <span
+              key={extension}
+              className={index === 1 ? styles.featuredExtension : undefined}
+            >
+              {extension}
+            </span>
+          ))}
+        </span>
+        <span className={styles.catalogCta}>
+          VIEW ALL EXTENSIONS <b>↗</b>
         </span>
       </a>
     );

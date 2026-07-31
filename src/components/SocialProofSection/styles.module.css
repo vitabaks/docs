@@ -15,6 +15,8 @@
 .banner {
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
+  height: 196px;
   padding: 40px 52px 46px;
   border: 1px solid var(--color-border);
   border-radius: 0;
@@ -48,6 +50,7 @@
 
 .slide {
   display: flex;
+  height: 100%;
   align-items: center;
   justify-content: space-between;
   gap: 60px;
@@ -306,6 +309,75 @@
   color: var(--color-text-muted);
 }
 
+/* ─── Extension catalog ───────────────────────────────────────────── */
+.extensionCatalog {
+  display: flex;
+  width: clamp(300px, 32vw, 380px);
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.extensionCatalog:hover {
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.extensionCatalog:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.catalogHeader,
+.catalogCta {
+  font-family: var(--font-base);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 1.2px;
+}
+
+.catalogHeader {
+  color: var(--color-text-muted);
+}
+
+.catalogHeader b,
+.catalogCta b {
+  color: var(--color-primary);
+  font-weight: inherit;
+}
+
+.extensionGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.extensionGrid > span {
+  overflow: hidden;
+  padding: 4px 6px;
+  border: 1px solid var(--color-border);
+  font-family: monospace;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.extensionGrid > .featuredExtension {
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.catalogCta {
+  align-self: flex-end;
+  color: var(--color-text);
+}
+
 /* ─── Carousel controls ───────────────────────────────────────────── */
 .controls {
   position: absolute;
@@ -347,20 +419,21 @@
 /* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .inner { padding: 0 48px; }
-  .banner { text-align: center; padding: 36px 40px 46px; }
-  .slide { flex-direction: column; gap: 32px; }
+  .banner { height: 320px; text-align: center; padding: 36px 40px 46px; }
+  .slide { flex-direction: column; justify-content: center; gap: 32px; }
   .underbar { margin: 10px auto 0; }
 }
 
 @media (max-width: 600px) {
   .inner { padding: 0 20px; }
-  .banner { padding: 28px 24px 44px; }
-  .slide { flex-direction: column; gap: 24px; }
+  .banner { height: 360px; padding: 28px 24px 44px; }
+  .slide { flex-direction: column; justify-content: center; gap: 24px; }
   .visual { gap: 16px; }
   .divider { display: none; }
   .before, .after { font-size: clamp(18px, 5vw, 24px); }
   .productionTimeline { width: min(100%, 300px); }
   .githubProof { min-width: 0; width: min(100%, 300px); padding: 12px 14px; }
+  .extensionCatalog { width: min(100%, 300px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
