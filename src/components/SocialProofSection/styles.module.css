@@ -169,13 +169,6 @@
   color: var(--color-text-muted);
 }
 
-.divider {
-  width: 1px;
-  height: 80px;
-  background: var(--color-border);
-  flex-shrink: 0;
-}
-
 /* ─── Production history timeline ─────────────────────────────────── */
 .productionTimeline {
   width: clamp(270px, 31vw, 360px);
@@ -424,10 +417,10 @@
 
 @media (max-width: 600px) {
   .inner { padding: 0 20px; }
-  .banner { height: 300px; padding: 18px 20px 36px; }
-  .slide { flex-direction: column; justify-content: center; gap: 20px; }
+  .banner { height: 280px; padding: 14px 20px 32px; }
+  .slide { flex-direction: column; justify-content: center; gap: 16px; }
   .visual { gap: 16px; }
-  .divider { display: none; }
+  .underbar { display: none; }
   .before, .after { font-size: clamp(18px, 5vw, 24px); }
   .productionTimeline { width: min(100%, 300px); }
   .githubProof { min-width: 0; width: min(100%, 300px); padding: 12px 14px; }

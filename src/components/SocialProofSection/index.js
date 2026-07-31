@@ -313,8 +313,6 @@ function BannerVisual({type, githubStars, productionHistory}) {
         <polyline points="30,4 42,12 30,20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
 
-      <div className={styles.divider} />
-
       <div className={styles.timeBlock}>
         <StopwatchIcon />
         <span className={`${styles.timeLabel} ${styles.accentLabel}`}>10 MINUTES</span>
