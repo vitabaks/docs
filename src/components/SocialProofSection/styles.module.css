@@ -369,6 +369,189 @@
   color: var(--color-text);
 }
 
+/* ─── Native system comparison ───────────────────────────────────── */
+.stackComparison {
+  display: grid;
+  width: clamp(300px, 32vw, 380px);
+  flex-shrink: 0;
+  grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
+  align-items: end;
+  gap: 10px;
+}
+
+.stackColumn {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stackTitle {
+  overflow: hidden;
+  font-family: var(--font-base);
+  font-size: 9px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 1.2px;
+  color: var(--color-text-muted);
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stackFrame {
+  display: flex;
+  box-sizing: border-box;
+  height: 94px;
+  padding: 4px;
+  border: 1px solid var(--color-border);
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+.stackLayers {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.k8sPrimitives {
+  display: grid;
+  box-sizing: border-box;
+  width: 96%;
+  min-height: 16px;
+  border: 0.5px dashed var(--color-text-muted);
+  grid-template-columns: 1.3fr 1fr 0.65fr 0.45fr;
+  align-self: center;
+  overflow: hidden;
+}
+
+.k8sPrimitives > span {
+  display: grid;
+  min-width: 0;
+  padding: 1px 2px;
+  border-left: 1px solid var(--color-border);
+  place-items: center;
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 6px;
+  line-height: 1;
+  color: var(--color-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.k8sPrimitives > span:first-child {
+  border-left: 0;
+}
+
+.k8sPrimitives > .morePrimitives {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+.stackLayers > span {
+  display: grid;
+  box-sizing: border-box;
+  min-height: 15px;
+  padding: 1px 7px;
+  border: 1px solid var(--color-border);
+  place-items: center;
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 9px;
+  line-height: 1.2;
+  color: var(--color-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.orchestratedStack .stackFrame {
+  position: relative;
+  gap: 2px;
+}
+
+.orchestratedStack .stackLayers {
+  gap: 2px;
+}
+
+.orchestratedStack .stackLayers > span {
+  min-height: 13px;
+  padding-block: 0;
+  font-size: 8px;
+}
+
+.workerNode {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  min-height: 66px;
+  padding: 2px;
+  border: 1px solid var(--color-border);
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.boundaryLabel {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  padding: 0 4px;
+  background: var(--color-bg);
+  font-family: var(--font-base);
+  font-size: 5px;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.hostFrame {
+  position: relative;
+}
+
+.orchestratedStack .stackLayers > .containerLayer {
+  display: flex;
+  min-height: 30px;
+  padding: 3px 4px;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.containerLayer small {
+  font-family: var(--font-base);
+  font-size: 6px;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+
+.containerLayer b {
+  display: grid;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 14px;
+  border: 1px solid var(--color-border);
+  place-items: center;
+  font-weight: inherit;
+}
+
+.stackVs {
+  align-self: center;
+  font-family: var(--font-base);
+  font-size: 9px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 1px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.nativeStack .stackTitle {
+  color: var(--color-primary);
+}
+
 /* ─── Carousel controls ───────────────────────────────────────────── */
 .controls {
   position: absolute;
@@ -425,6 +608,7 @@
   .productionTimeline { width: min(100%, 300px); }
   .githubProof { min-width: 0; width: min(100%, 300px); padding: 12px 14px; }
   .extensionCatalog { width: min(100%, 300px); }
+  .stackComparison { width: min(100%, 300px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

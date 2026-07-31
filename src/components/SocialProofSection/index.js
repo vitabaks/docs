@@ -44,6 +44,14 @@ const BANNERS = [
     subtitle: 'Go beyond vanilla PostgreSQL',
     visual: 'extensions',
   },
+  {
+    id: 'no-kubernetes',
+    before: 'Kubernetes is not required',
+    after: null,
+    subtitleAccent: 'Clean system.',
+    subtitle: 'Minimal overhead.',
+    visual: 'no-kubernetes',
+  },
 ];
 
 function getRandomBannerOrder(length) {
@@ -298,6 +306,48 @@ function BannerVisual({type, githubStars, productionHistory}) {
           ))}
         </span>
       </a>
+    );
+  }
+
+  if (type === 'no-kubernetes') {
+    return (
+      <div className={styles.stackComparison} aria-hidden="true">
+        <div className={`${styles.stackColumn} ${styles.orchestratedStack}`}>
+          <span className={styles.stackTitle}>KUBERNETES</span>
+          <div className={styles.stackFrame}>
+            <div className={styles.k8sPrimitives}>
+              <span>Operator</span>
+              <span>Service</span>
+              <span>PVC</span>
+              <span className={styles.morePrimitives}>…</span>
+            </div>
+            <div className={styles.workerNode}>
+              <span className={styles.boundaryLabel}>WORKER NODE</span>
+              <div className={styles.stackLayers}>
+                <span className={styles.containerLayer}>
+                  <small>Container</small>
+                  <b>PostgreSQL</b>
+                </span>
+                <span>Container Runtime</span>
+                <span>Linux OS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span className={styles.stackVs}>VS</span>
+
+        <div className={`${styles.stackColumn} ${styles.nativeStack}`}>
+          <span className={styles.stackTitle}>AUTOBASE</span>
+          <div className={`${styles.stackFrame} ${styles.hostFrame}`}>
+            <span className={styles.boundaryLabel}>HOST</span>
+            <div className={styles.stackLayers}>
+              <span>PostgreSQL</span>
+              <span>Linux OS</span>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 
