@@ -13,11 +13,11 @@
 
 /* ─── Banner card ─────────────────────────────────────────────────── */
 .banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 60px;
-  padding: 40px 52px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 196px;
+  padding: 40px 52px 46px;
   border: 1px solid var(--color-border);
   border-radius: 0;
   background: var(--color-bg);
@@ -28,6 +28,55 @@
 .banner:hover {
   border-color: var(--color-border);
   box-shadow: 10px 10px 0 var(--shadow-pixel-hover);
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background-image: repeating-conic-gradient(
+    var(--color-bg) 0 25%,
+    transparent 0 50%
+  );
+  background-size: 14px 14px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.transitioning::before {
+  animation: pixelDissolve 1200ms steps(9, end) both;
+}
+
+.slide {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  animation: bannerEnter 520ms steps(7, end) both;
+}
+
+.exiting {
+  animation: bannerExit 340ms steps(6, end) both;
+}
+
+@keyframes pixelDissolve {
+  0% { opacity: 0; }
+  18% { opacity: 0.78; }
+  38% { opacity: 0.32; }
+  62% { opacity: 0.12; }
+  100% { opacity: 0; }
+}
+
+@keyframes bannerEnter {
+  from { opacity: 0; transform: translateY(6px); filter: blur(1px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes bannerExit {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-6px); }
 }
 
 /* ─── Text block ──────────────────────────────────────────────────── */
@@ -46,6 +95,11 @@
   line-height: 1.2;
 }
 
+.inlineAccent {
+  color: var(--color-primary);
+  font-weight: var(--fw-black);
+}
+
 .after {
   font-family: var(--font-base);
   font-size: clamp(22px, 2.5vw, 30px);
@@ -53,6 +107,25 @@
   color: var(--color-primary);
   margin: 0;
   line-height: 1.2;
+}
+
+.afterText {
+  color: var(--color-text);
+  font-weight: var(--fw-bold);
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  font-family: var(--font-base);
+  font-size: clamp(15px, 1.6vw, 19px);
+  font-weight: var(--fw-regular);
+  line-height: 1.35;
+  color: var(--color-text-muted);
+}
+
+.subtitleAccent {
+  color: var(--color-primary);
+  font-weight: var(--fw-bold);
 }
 
 .underbar {
@@ -103,17 +176,268 @@
   flex-shrink: 0;
 }
 
+/* ─── Production history timeline ─────────────────────────────────── */
+.productionTimeline {
+  width: clamp(270px, 31vw, 360px);
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+.timelineYears {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-family: var(--font-base);
+  font-size: 18px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 1px;
+  color: var(--color-text);
+}
+
+.timelineYears span:last-child {
+  color: var(--color-primary);
+}
+
+.timelineRail {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 24px;
+}
+
+.timelineRail::before {
+  content: '';
+  position: absolute;
+  right: 5px;
+  left: 5px;
+  height: 3px;
+  background: var(--color-text-muted);
+}
+
+.startNode,
+.currentYear {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.startNode {
+  width: 10px;
+  height: 10px;
+  background: var(--color-text-muted);
+}
+
+.timelineRail .currentYear {
+  width: 13px;
+  height: 13px;
+  background: var(--color-primary);
+  box-shadow: 5px 5px 0 rgb(255 87 34 / 16%);
+}
+
+.timelineLabels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-family: var(--font-base);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 1.2px;
+  color: var(--color-text-muted);
+}
+
+.timelineLabels span:last-child {
+  color: var(--color-text);
+  text-align: right;
+}
+
+.timelineLabels b {
+  color: var(--color-primary);
+  font-weight: inherit;
+}
+
+/* ─── Open source / GitHub proof ──────────────────────────────────── */
+.githubProof {
+  position: relative;
+  display: flex;
+  min-width: 340px;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 30px 16px;
+  overflow: hidden;
+  color: var(--color-text);
+  text-decoration: none;
+  outline: 1px solid transparent;
+}
+
+.githubProof:hover {
+  color: var(--color-text);
+  text-decoration: none;
+  outline-color: var(--color-border);
+}
+
+.githubProof:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.githubMetric {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.starCount {
+  font-family: var(--font-base);
+  font-size: clamp(52px, 5.8vw, 72px);
+  font-weight: var(--fw-black);
+  line-height: 0.95;
+  letter-spacing: 2px;
+  color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Crect width='5' height='5' fill='%23ff5722'/%3E%3C/svg%3E");
+  background-size: 6px 6px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.starLabel {
+  margin-top: 10px;
+  font-family: var(--font-base);
+  font-size: 12px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.8px;
+  color: var(--color-text-muted);
+}
+
+/* ─── Extension catalog ───────────────────────────────────────────── */
+.extensionCatalog {
+  display: flex;
+  width: clamp(300px, 32vw, 380px);
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.extensionCatalog:hover {
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.extensionCatalog:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.catalogHeader {
+  font-family: var(--font-base);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 1.2px;
+}
+
+.catalogHeader {
+  color: var(--color-text-muted);
+}
+
+.catalogHeader b {
+  color: var(--color-primary);
+  font-weight: inherit;
+}
+
+.extensionGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.extensionGrid > span {
+  overflow: hidden;
+  padding: 4px 6px;
+  border: 1px solid var(--color-border);
+  font-family: monospace;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.extensionGrid > .featuredExtension {
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+/* ─── Carousel controls ───────────────────────────────────────────── */
+.controls {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.indicator {
+  appearance: none;
+  border: 1px solid var(--color-text-muted);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.indicator {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+}
+
+.indicator:hover,
+.activeIndicator {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+}
+
+.indicator:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
 /* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .inner { padding: 0 48px; }
-  .banner { flex-direction: column; gap: 32px; text-align: center; padding: 36px 40px; }
+  .banner { height: 320px; text-align: center; padding: 36px 40px 46px; }
+  .slide { flex-direction: column; justify-content: center; gap: 32px; }
   .underbar { margin: 10px auto 0; }
 }
 
 @media (max-width: 600px) {
   .inner { padding: 0 20px; }
-  .banner { flex-direction: column; gap: 24px; padding: 28px 24px; }
+  .banner { height: 300px; padding: 18px 20px 36px; }
+  .slide { flex-direction: column; justify-content: center; gap: 20px; }
   .visual { gap: 16px; }
   .divider { display: none; }
   .before, .after { font-size: clamp(18px, 5vw, 24px); }
+  .productionTimeline { width: min(100%, 300px); }
+  .githubProof { min-width: 0; width: min(100%, 300px); padding: 12px 14px; }
+  .extensionCatalog { width: min(100%, 300px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide,
+  .exiting,
+  .transitioning::before {
+    animation: none;
+  }
 }

@@ -1,5 +1,170 @@
-import React from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from './styles.module.css';
+
+const ROTATION_INTERVAL_MS = 6500;
+const EXIT_DURATION_MS = 340;
+const TRANSITION_DURATION_MS = 1200;
+const GITHUB_REPO_URL = 'https://github.com/autobase-tech/autobase';
+const GITHUB_REPO_API = 'https://api.github.com/repos/autobase-tech/autobase';
+const GITHUB_STARS_FALLBACK = 4300;
+const GITHUB_STARS_CACHE_KEY = 'autobase-github-stars';
+const GITHUB_STARS_CACHE_TTL_MS = 15 * 60 * 1000;
+const EXTENSION_NAMES = ['postgis', 'vector', 'timescaledb', 'pg_partman', 'pg_cron', 'pgaudit'];
+// Autobase was initially released Oct 8, 2019 (JavaScript months are zero-based).
+const AUTOBASE_INITIAL_RELEASE_DATE = {year: 2019, month: 9, day: 8};
+const PRODUCTION_AGE_REFRESH_MS = 60 * 60 * 1000;
+
+const BANNERS = [
+  {
+    id: 'time-to-value',
+    before: '1 Month of Infrastructure Work',
+    after: '10 Minutes in Autobase',
+    visual: 'time-to-value',
+  },
+  {
+    id: 'production-history',
+    before: '',
+    after: 'in Production',
+    afterColor: 'text',
+    visual: 'production-history',
+  },
+  {
+    id: 'open-source',
+    before: 'Open source forever',
+    after: null,
+    subtitleAccent: 'Trusted',
+    subtitle: 'by teams worldwide',
+    visual: 'open-source',
+  },
+  {
+    id: 'extensions',
+    beforeAccent: '500+',
+    before: 'Extensions',
+    after: null,
+    subtitle: 'Go beyond vanilla PostgreSQL',
+    visual: 'extensions',
+  },
+];
+
+function getRandomBannerOrder(length) {
+  const order = Array.from({length}, (_, index) => index);
+
+  for (let index = order.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [order[index], order[randomIndex]] = [order[randomIndex], order[index]];
+  }
+
+  return order;
+}
+
+function getProductionHistory(date = new Date()) {
+  const currentYear = date.getUTCFullYear();
+  const currentMonth = date.getUTCMonth();
+  const currentDay = date.getUTCDate();
+  let elapsedMonths =
+    (currentYear - AUTOBASE_INITIAL_RELEASE_DATE.year) * 12
+    + currentMonth
+    - AUTOBASE_INITIAL_RELEASE_DATE.month;
+
+  if (currentDay < AUTOBASE_INITIAL_RELEASE_DATE.day) elapsedMonths -= 1;
+
+  return {
+    currentYear,
+    years: Math.floor(elapsedMonths / 12),
+    months: elapsedMonths % 12,
+  };
+}
+
+function formatProductionAge({years, months}) {
+  const yearLabel = `${years} ${years === 1 ? 'Year' : 'Years'}`;
+  if (months === 0) return yearLabel;
+
+  return `${yearLabel} · ${months} ${months === 1 ? 'Month' : 'Months'}`;
+}
+
+function useProductionHistory() {
+  const [history, setHistory] = useState(() => getProductionHistory());
+
+  useEffect(() => {
+    const refreshTimer = window.setInterval(() => {
+      setHistory(getProductionHistory());
+    }, PRODUCTION_AGE_REFRESH_MS);
+
+    return () => window.clearInterval(refreshTimer);
+  }, []);
+
+  return history;
+}
+
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener?.('change', updatePreference);
+    return () => mediaQuery.removeEventListener?.('change', updatePreference);
+  }, []);
+
+  return prefersReducedMotion;
+}
+
+function useGithubStars() {
+  const [stars, setStars] = useState({count: GITHUB_STARS_FALLBACK, isLive: false});
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    try {
+      const cachedValue = window.sessionStorage.getItem(GITHUB_STARS_CACHE_KEY);
+      const cached = cachedValue ? JSON.parse(cachedValue) : null;
+
+      if (
+        Number.isInteger(cached?.count)
+        && Date.now() - cached.timestamp < GITHUB_STARS_CACHE_TTL_MS
+      ) {
+        setStars({count: cached.count, isLive: true});
+        return () => controller.abort();
+      }
+    } catch {
+      // Storage can be unavailable in privacy-focused browser modes.
+    }
+
+    fetch(GITHUB_REPO_API, {
+      headers: {Accept: 'application/vnd.github+json'},
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error(`GitHub API responded with ${response.status}`);
+        return response.json();
+      })
+      .then((repository) => {
+        if (!Number.isInteger(repository.stargazers_count)) return;
+
+        setStars({count: repository.stargazers_count, isLive: true});
+
+        try {
+          window.sessionStorage.setItem(GITHUB_STARS_CACHE_KEY, JSON.stringify({
+            count: repository.stargazers_count,
+            timestamp: Date.now(),
+          }));
+        } catch {
+          // The live value still works even when it cannot be cached.
+        }
+      })
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          setStars({count: GITHUB_STARS_FALLBACK, isLive: false});
+        }
+      });
+
+    return () => controller.abort();
+  }, []);
+
+  return stars;
+}
 
 function CalendarWithClockIcon() {
   return (
@@ -72,41 +237,222 @@ function StopwatchIcon() {
   );
 }
 
-export default function SocialProofSection() {
-  return (
-    <section className={styles.section} aria-labelledby="time-to-value-title">
-      <div className={styles.inner}>
-        <h2 id="time-to-value-title" className="landing-sr-only">Time to value</h2>
-        <div className={styles.banner}>
+function BannerVisual({type, githubStars, productionHistory}) {
+  if (type === 'production-history') {
+    return (
+      <div className={styles.productionTimeline} aria-hidden="true">
+        <div className={styles.timelineYears}>
+          <span>{AUTOBASE_INITIAL_RELEASE_DATE.year}</span>
+          <span>{productionHistory.currentYear}</span>
+        </div>
+        <div className={styles.timelineRail}>
+          <span className={styles.startNode} />
+          <span className={styles.currentYear} />
+        </div>
+        <div className={styles.timelineLabels}>
+          <span>INITIAL RELEASE</span>
+          <span><b>&gt;</b> PRODUCTION READY</span>
+        </div>
+      </div>
+    );
+  }
 
-          {/* Left — text */}
-          <div className={styles.text}>
-            <p className={styles.before}>1 Month of Infrastructure Work</p>
-            <p className={styles.after}>10 Minutes in Autobase</p>
-            <span className={styles.underbar} />
+  if (type === 'open-source') {
+    const formattedStars = githubStars.count.toLocaleString('en-US');
+    const displayedStars = githubStars.isLive ? formattedStars : `${formattedStars}+`;
+
+    return (
+      <a
+        className={styles.githubProof}
+        href={GITHUB_REPO_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Autobase on GitHub, ${displayedStars} stars`}
+      >
+        <span className={styles.githubMetric}>
+          <strong className={styles.starCount}>{displayedStars}</strong>
+          <span className={styles.starLabel}>GitHub Stars</span>
+        </span>
+      </a>
+    );
+  }
+
+  if (type === 'extensions') {
+    return (
+      <a
+        className={styles.extensionCatalog}
+        href="/docs/extensions/list"
+        aria-label="Browse more than 500 PostgreSQL extensions"
+      >
+        <span className={styles.catalogHeader}>
+          <b>&gt;</b> EXTENSION CATALOG
+        </span>
+        <span className={styles.extensionGrid}>
+          {EXTENSION_NAMES.map((extension, index) => (
+            <span
+              key={extension}
+              className={index === 1 ? styles.featuredExtension : undefined}
+            >
+              {extension}
+            </span>
+          ))}
+        </span>
+      </a>
+    );
+  }
+
+  return (
+    <div className={styles.visual} aria-hidden="true">
+      <div className={styles.timeBlock}>
+        <CalendarWithClockIcon />
+        <span className={styles.timeLabel}>1 MONTH</span>
+      </div>
+
+      <svg className={styles.arrow} width="48" height="24" viewBox="0 0 48 24" fill="none">
+        <line x1="0" y1="12" x2="40" y2="12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+        <polyline points="30,4 42,12 30,20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+
+      <div className={styles.divider} />
+
+      <div className={styles.timeBlock}>
+        <StopwatchIcon />
+        <span className={`${styles.timeLabel} ${styles.accentLabel}`}>10 MINUTES</span>
+      </div>
+    </div>
+  );
+}
+
+export default function SocialProofSection() {
+  const [bannerOrder, setBannerOrder] = useState(() => BANNERS.map((_, index) => index));
+  const [activePosition, setActivePosition] = useState(0);
+  const [isExiting, setIsExiting] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isInteractionPaused, setIsInteractionPaused] = useState(false);
+  const exitTimerRef = useRef(null);
+  const transitionTimerRef = useRef(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const githubStars = useGithubStars();
+  const productionHistory = useProductionHistory();
+
+  useEffect(() => {
+    setBannerOrder(getRandomBannerOrder(BANNERS.length));
+  }, []);
+
+  useEffect(() => () => {
+    window.clearTimeout(exitTimerRef.current);
+    window.clearTimeout(transitionTimerRef.current);
+  }, []);
+
+  const showBanner = useCallback((nextPosition) => {
+    if (nextPosition === activePosition || isTransitioning) return;
+
+    if (prefersReducedMotion) {
+      setActivePosition(nextPosition);
+      return;
+    }
+
+    setIsTransitioning(true);
+    setIsExiting(true);
+
+    exitTimerRef.current = window.setTimeout(() => {
+      setActivePosition(nextPosition);
+      setIsExiting(false);
+    }, EXIT_DURATION_MS);
+
+    transitionTimerRef.current = window.setTimeout(() => {
+      setIsTransitioning(false);
+    }, TRANSITION_DURATION_MS);
+  }, [activePosition, isTransitioning, prefersReducedMotion]);
+
+  useEffect(() => {
+    if (
+      prefersReducedMotion
+      || isInteractionPaused
+      || isTransitioning
+    ) return undefined;
+
+    const rotationTimer = window.setTimeout(() => {
+      showBanner((activePosition + 1) % bannerOrder.length);
+    }, ROTATION_INTERVAL_MS);
+
+    return () => window.clearTimeout(rotationTimer);
+  }, [
+    activePosition,
+    bannerOrder.length,
+    isInteractionPaused,
+    isTransitioning,
+    prefersReducedMotion,
+    showBanner,
+  ]);
+
+  const activeBanner = BANNERS[bannerOrder[activePosition]];
+  const activeBeforeAccent = activeBanner.id === 'production-history'
+    ? formatProductionAge(productionHistory)
+    : activeBanner.beforeAccent;
+
+  return (
+    <section className={styles.section} aria-labelledby="social-proof-title">
+      <div className={styles.inner}>
+        <h2 id="social-proof-title" className="landing-sr-only">Why teams choose Autobase</h2>
+        <div
+          className={`${styles.banner} ${isTransitioning ? styles.transitioning : ''}`}
+          onMouseEnter={() => setIsInteractionPaused(true)}
+          onMouseLeave={() => setIsInteractionPaused(false)}
+          onFocusCapture={() => setIsInteractionPaused(true)}
+          onBlurCapture={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              setIsInteractionPaused(false);
+            }
+          }}
+        >
+          <div
+            key={activeBanner.id}
+            className={`${styles.slide} ${isExiting ? styles.exiting : ''}`}
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <div className={styles.text}>
+              <p className={styles.before}>
+                {activeBeforeAccent && (
+                  <span className={styles.inlineAccent}>{activeBeforeAccent} </span>
+                )}
+                {activeBanner.before}
+              </p>
+              {activeBanner.after && (
+                <p className={`${styles.after} ${activeBanner.afterColor === 'text' ? styles.afterText : ''}`}>
+                  {activeBanner.after}
+                </p>
+              )}
+              {activeBanner.subtitle && (
+                <p className={styles.subtitle}>
+                  {activeBanner.subtitleAccent && (
+                    <span className={styles.subtitleAccent}>{activeBanner.subtitleAccent} </span>
+                  )}
+                  {activeBanner.subtitle}
+                </p>
+              )}
+              <span className={styles.underbar} />
+            </div>
+
+            <BannerVisual
+              type={activeBanner.visual}
+              githubStars={githubStars}
+              productionHistory={productionHistory}
+            />
           </div>
 
-          {/* Right — visual */}
-          <div className={styles.visual}>
-
-            <div className={styles.timeBlock}>
-              <CalendarWithClockIcon />
-              <span className={styles.timeLabel}>1 MONTH</span>
-            </div>
-
-            {/* Arrow */}
-            <svg className={styles.arrow} width="48" height="24" viewBox="0 0 48 24" fill="none" aria-hidden="true">
-              <line x1="0" y1="12" x2="40" y2="12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-              <polyline points="30,4 42,12 30,20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-
-            <div className={styles.divider} />
-
-            <div className={styles.timeBlock}>
-              <StopwatchIcon />
-              <span className={`${styles.timeLabel} ${styles.accentLabel}`}>10 MINUTES</span>
-            </div>
-
+          <div className={styles.controls} aria-label="Social proof banners">
+            {bannerOrder.map((bannerIndex, position) => (
+              <button
+                key={BANNERS[bannerIndex].id}
+                type="button"
+                className={`${styles.indicator} ${position === activePosition ? styles.activeIndicator : ''}`}
+                onClick={() => showBanner(position)}
+                aria-label={`Show banner ${position + 1} of ${BANNERS.length}`}
+                aria-pressed={position === activePosition}
+              />
+            ))}
           </div>
         </div>
       </div>
