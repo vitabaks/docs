@@ -109,6 +109,11 @@
   line-height: 1.2;
 }
 
+.afterText {
+  color: var(--color-text);
+  font-weight: var(--fw-bold);
+}
+
 .subtitle {
   margin: 2px 0 0;
   font-family: var(--font-base);

@@ -10,6 +10,9 @@ const GITHUB_STARS_FALLBACK = 4300;
 const GITHUB_STARS_CACHE_KEY = 'autobase-github-stars';
 const GITHUB_STARS_CACHE_TTL_MS = 15 * 60 * 1000;
 const EXTENSION_NAMES = ['postgis', 'vector', 'timescaledb', 'pg_partman', 'pg_cron', 'pgaudit'];
+// Autobase was initially released Oct 8, 2019 (JavaScript months are zero-based).
+const AUTOBASE_INITIAL_RELEASE_DATE = {year: 2019, month: 9, day: 8};
+const PRODUCTION_AGE_REFRESH_MS = 60 * 60 * 1000;
 
 const BANNERS = [
   {
@@ -20,9 +23,9 @@ const BANNERS = [
   },
   {
     id: 'production-history',
-    beforeAccent: '7 Years',
-    before: 'in Production',
-    after: null,
+    before: '',
+    after: 'in Production',
+    afterColor: 'text',
     visual: 'production-history',
   },
   {
@@ -52,6 +55,45 @@ function getRandomBannerOrder(length) {
   }
 
   return order;
+}
+
+function getProductionHistory(date = new Date()) {
+  const currentYear = date.getUTCFullYear();
+  const currentMonth = date.getUTCMonth();
+  const currentDay = date.getUTCDate();
+  let elapsedMonths =
+    (currentYear - AUTOBASE_INITIAL_RELEASE_DATE.year) * 12
+    + currentMonth
+    - AUTOBASE_INITIAL_RELEASE_DATE.month;
+
+  if (currentDay < AUTOBASE_INITIAL_RELEASE_DATE.day) elapsedMonths -= 1;
+
+  return {
+    currentYear,
+    years: Math.floor(elapsedMonths / 12),
+    months: elapsedMonths % 12,
+  };
+}
+
+function formatProductionAge({years, months}) {
+  const yearLabel = `${years} ${years === 1 ? 'Year' : 'Years'}`;
+  if (months === 0) return yearLabel;
+
+  return `${yearLabel} · ${months} ${months === 1 ? 'Month' : 'Months'}`;
+}
+
+function useProductionHistory() {
+  const [history, setHistory] = useState(() => getProductionHistory());
+
+  useEffect(() => {
+    const refreshTimer = window.setInterval(() => {
+      setHistory(getProductionHistory());
+    }, PRODUCTION_AGE_REFRESH_MS);
+
+    return () => window.clearInterval(refreshTimer);
+  }, []);
+
+  return history;
 }
 
 function usePrefersReducedMotion() {
@@ -195,13 +237,13 @@ function StopwatchIcon() {
   );
 }
 
-function BannerVisual({type, githubStars}) {
+function BannerVisual({type, githubStars, productionHistory}) {
   if (type === 'production-history') {
     return (
       <div className={styles.productionTimeline} aria-hidden="true">
         <div className={styles.timelineYears}>
-          <span>2019</span>
-          <span>2026</span>
+          <span>{AUTOBASE_INITIAL_RELEASE_DATE.year}</span>
+          <span>{productionHistory.currentYear}</span>
         </div>
         <div className={styles.timelineRail}>
           <span className={styles.startNode} />
@@ -294,6 +336,7 @@ export default function SocialProofSection() {
   const transitionTimerRef = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
   const githubStars = useGithubStars();
+  const productionHistory = useProductionHistory();
 
   useEffect(() => {
     setBannerOrder(getRandomBannerOrder(BANNERS.length));
@@ -347,6 +390,9 @@ export default function SocialProofSection() {
   ]);
 
   const activeBanner = BANNERS[bannerOrder[activePosition]];
+  const activeBeforeAccent = activeBanner.id === 'production-history'
+    ? formatProductionAge(productionHistory)
+    : activeBanner.beforeAccent;
 
   return (
     <section className={styles.section} aria-labelledby="social-proof-title">
@@ -371,13 +417,15 @@ export default function SocialProofSection() {
           >
             <div className={styles.text}>
               <p className={styles.before}>
-                {activeBanner.beforeAccent && (
-                  <span className={styles.inlineAccent}>{activeBanner.beforeAccent} </span>
+                {activeBeforeAccent && (
+                  <span className={styles.inlineAccent}>{activeBeforeAccent} </span>
                 )}
                 {activeBanner.before}
               </p>
               {activeBanner.after && (
-                <p className={styles.after}>{activeBanner.after}</p>
+                <p className={`${styles.after} ${activeBanner.afterColor === 'text' ? styles.afterText : ''}`}>
+                  {activeBanner.after}
+                </p>
               )}
               {activeBanner.subtitle && (
                 <p className={styles.subtitle}>
@@ -390,7 +438,11 @@ export default function SocialProofSection() {
               <span className={styles.underbar} />
             </div>
 
-            <BannerVisual type={activeBanner.visual} githubStars={githubStars} />
+            <BannerVisual
+              type={activeBanner.visual}
+              githubStars={githubStars}
+              productionHistory={productionHistory}
+            />
           </div>
 
           <div className={styles.controls} aria-label="Social proof banners">
