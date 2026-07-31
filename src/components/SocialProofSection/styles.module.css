@@ -338,8 +338,7 @@
   outline-offset: 3px;
 }
 
-.catalogHeader,
-.catalogCta {
+.catalogHeader {
   font-family: var(--font-base);
   font-size: 10px;
   font-weight: var(--fw-bold);
@@ -350,8 +349,7 @@
   color: var(--color-text-muted);
 }
 
-.catalogHeader b,
-.catalogCta b {
+.catalogHeader b {
   color: var(--color-primary);
   font-weight: inherit;
 }
@@ -375,11 +373,6 @@
 
 .extensionGrid > .featuredExtension {
   border-color: var(--color-primary);
-  color: var(--color-text);
-}
-
-.catalogCta {
-  align-self: flex-end;
   color: var(--color-text);
 }
 

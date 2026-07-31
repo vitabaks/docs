@@ -297,9 +297,6 @@ function BannerVisual({type, githubStars, productionHistory}) {
             </span>
           ))}
         </span>
-        <span className={styles.catalogCta}>
-          VIEW ALL EXTENSIONS <b>↗</b>
-        </span>
       </a>
     );
   }
