@@ -109,7 +109,7 @@ This section guides you through changing your PostgreSQL cluster configuration.
 
     1. Modify the desired parameters (for example, `postgresql_parameters`).
     :::info
-    Refer to the [default](https://github.com/autobase-tech/autobase/blob/2.9.0/automation/roles/common/defaults/main.yml) values; override them as needed using group_vars, host_vars, or directly in the inventory file.
+    Refer to the [default](https://github.com/autobase-tech/autobase/blob/2.10.0/automation/roles/common/defaults/main.yml) values; override them as needed using group_vars, host_vars, or directly in the inventory file.
     :::
     2. Run the `config_pgcluster.yml` playbook to apply the changes.
 
@@ -120,7 +120,7 @@ This section guides you through changing your PostgreSQL cluster configuration.
       -e ANSIBLE_INVENTORY=/project/inventory \
       -v $PWD:/project \
       -v $HOME/.ssh:/root/.ssh \
-      autobase/automation:2.9.0 \
+      autobase/automation:2.10.0 \
         ansible-playbook config_pgcluster.yml
     ```
 
