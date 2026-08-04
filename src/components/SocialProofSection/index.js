@@ -353,7 +353,7 @@ function BannerVisual({type, githubStars, productionHistory}) {
     <div className={styles.visual} aria-hidden="true">
       <div className={styles.timeBlock}>
         <CalendarWithClockIcon />
-        <span className={styles.timeLabel}>1 MONTH</span>
+        <span className={styles.timeLabel}>1 WEEK</span>
       </div>
 
       <svg className={styles.arrow} width="48" height="24" viewBox="0 0 48 24" fill="none">
