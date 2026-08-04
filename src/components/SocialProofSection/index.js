@@ -17,8 +17,8 @@ const PRODUCTION_AGE_REFRESH_MS = 60 * 60 * 1000;
 const BANNERS = [
   {
     id: 'time-to-value',
-    before: '1 Month of Infrastructure Work',
-    after: '10 Minutes in Autobase',
+    before: '1 week of DevOps work',
+    after: '10 minutes in Autobase',
     visual: 'time-to-value',
   },
   {
