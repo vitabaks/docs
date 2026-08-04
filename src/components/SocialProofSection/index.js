@@ -317,20 +317,19 @@ function BannerVisual({type, githubStars, productionHistory}) {
           <div className={styles.stackFrame}>
             <div className={styles.k8sPrimitives}>
               <span>Operator</span>
-              <span>Service</span>
-              <span>PVC</span>
+              <span>Manifest</span>
+              <span>kubectl</span>
               <span className={styles.morePrimitives}>…</span>
             </div>
-            <div className={styles.workerNode}>
-              <span className={styles.boundaryLabel}>WORKER NODE</span>
-              <div className={styles.stackLayers}>
-                <span className={styles.containerLayer}>
+            <div className={styles.k8sHostStack}>
+              <div className={styles.runtimeLayer}>
+                <div className={styles.containerLayer}>
                   <small>Container</small>
                   <b>PostgreSQL</b>
-                </span>
-                <span>Container Runtime</span>
-                <span>Linux OS</span>
+                </div>
+                <small>Container Runtime</small>
               </div>
+              <span className={styles.osLayer}>Linux OS</span>
             </div>
           </div>
         </div>
@@ -339,8 +338,7 @@ function BannerVisual({type, githubStars, productionHistory}) {
 
         <div className={`${styles.stackColumn} ${styles.nativeStack}`}>
           <span className={styles.stackTitle}>AUTOBASE</span>
-          <div className={`${styles.stackFrame} ${styles.hostFrame}`}>
-            <span className={styles.boundaryLabel}>HOST</span>
+          <div className={styles.stackFrame}>
             <div className={styles.stackLayers}>
               <span>PostgreSQL</span>
               <span>Linux OS</span>

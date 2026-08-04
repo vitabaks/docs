@@ -372,7 +372,7 @@
 /* ─── Native system comparison ───────────────────────────────────── */
 .stackComparison {
   display: grid;
-  width: clamp(300px, 32vw, 380px);
+  width: clamp(310px, 34vw, 400px);
   flex-shrink: 0;
   grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
   align-items: end;
@@ -389,7 +389,7 @@
 .stackTitle {
   overflow: hidden;
   font-family: var(--font-base);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: var(--fw-bold);
   letter-spacing: 1.2px;
   color: var(--color-text-muted);
@@ -401,7 +401,7 @@
 .stackFrame {
   display: flex;
   box-sizing: border-box;
-  height: 94px;
+  height: 86px;
   padding: 4px;
   border: 1px solid var(--color-border);
   flex-direction: column;
@@ -419,9 +419,9 @@
   display: grid;
   box-sizing: border-box;
   width: 96%;
-  min-height: 16px;
+  min-height: 18px;
   border: 0.5px dashed var(--color-text-muted);
-  grid-template-columns: 1.3fr 1fr 0.65fr 0.45fr;
+  grid-template-columns: 1fr 1fr 0.8fr 0.35fr;
   align-self: center;
   overflow: hidden;
 }
@@ -434,7 +434,7 @@
   place-items: center;
   overflow: hidden;
   font-family: monospace;
-  font-size: 6px;
+  font-size: 7px;
   line-height: 1;
   color: var(--color-text-muted);
   text-overflow: ellipsis;
@@ -453,13 +453,13 @@
 .stackLayers > span {
   display: grid;
   box-sizing: border-box;
-  min-height: 15px;
+  min-height: 17px;
   padding: 1px 7px;
   border: 1px solid var(--color-border);
   place-items: center;
   overflow: hidden;
   font-family: monospace;
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.2;
   color: var(--color-text-muted);
   text-overflow: ellipsis;
@@ -471,61 +471,44 @@
   gap: 2px;
 }
 
-.orchestratedStack .stackLayers {
-  gap: 2px;
-}
-
-.orchestratedStack .stackLayers > span {
-  min-height: 13px;
-  padding-block: 0;
-  font-size: 8px;
-}
-
-.workerNode {
-  position: relative;
+.k8sHostStack {
   display: flex;
   box-sizing: border-box;
-  min-height: 66px;
-  padding: 2px;
-  border: 1px solid var(--color-border);
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.boundaryLabel {
-  position: absolute;
-  top: -4px;
-  left: 50%;
-  padding: 0 4px;
-  background: var(--color-bg);
-  font-family: var(--font-base);
-  font-size: 5px;
-  font-weight: var(--fw-bold);
-  line-height: 1;
-  letter-spacing: 0.6px;
-  color: var(--color-text-muted);
-  white-space: nowrap;
-  transform: translateX(-50%);
-}
-
-.hostFrame {
-  position: relative;
-}
-
-.orchestratedStack .stackLayers > .containerLayer {
-  display: flex;
-  min-height: 30px;
-  padding: 3px 4px;
+  min-height: 58px;
   flex-direction: column;
   gap: 2px;
 }
 
-.containerLayer small {
+.runtimeLayer {
+  display: flex;
+  box-sizing: border-box;
+  min-height: 42px;
+  padding: 2px 3px;
+  border: 1px solid var(--color-border);
+  flex-direction: column;
+  gap: 1px;
+  overflow: hidden;
+}
+
+.runtimeLayer > small,
+.containerLayer > small {
   font-family: var(--font-base);
-  font-size: 6px;
-  font-weight: var(--fw-bold);
+  font-size: 7px;
+  font-weight: var(--fw-regular);
   line-height: 1;
   letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.containerLayer {
+  display: flex;
+  box-sizing: border-box;
+  min-height: 28px;
+  padding: 2px 3px;
+  border: 1px solid var(--color-border);
+  flex-direction: column;
+  gap: 1px;
 }
 
 .containerLayer b {
@@ -535,13 +518,36 @@
   min-height: 14px;
   border: 1px solid var(--color-border);
   place-items: center;
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 9px;
+  line-height: 1;
+  color: var(--color-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-weight: inherit;
+}
+
+.osLayer {
+  display: grid;
+  box-sizing: border-box;
+  min-height: 14px;
+  padding: 0 7px;
+  border: 1px solid var(--color-border);
+  place-items: center;
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 9px;
+  line-height: 1;
+  color: var(--color-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .stackVs {
   align-self: center;
   font-family: var(--font-base);
-  font-size: 9px;
+  font-size: 9.5px;
   font-weight: var(--fw-bold);
   letter-spacing: 1px;
   color: var(--color-text-muted);
