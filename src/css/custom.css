@@ -263,7 +263,10 @@ html[data-theme='dark']:has(.landingPage) .main-wrapper {
 
   html:has(.landingPage),
   body:has(.landingPage) {
-    overflow-x: hidden;
+    /* `hidden` makes the other axis compute to `auto`, creating a nested
+       vertical scroll container in mobile Chrome. `clip` only trims the
+       horizontal overflow and keeps the document's normal scroll root. */
+    overflow-x: clip;
   }
 
   .landingPage {
