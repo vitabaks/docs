@@ -1,20 +1,21 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-const sponsors = [
-  { name: 'Axiom', img: '/img/sponsors/axiom.png', darkImg: '/img/sponsors/axiom.dark.png', href: 'https://axiom.trade' },
-  { name: 'Awarebuildings', img: '/img/sponsors/awarebuildings.png', darkImg: '/img/sponsors/awarebuildings.dark.png', href: 'https://www.awarebuildings.com' },
-  { name: 'Antistock', img: '/img/sponsors/antistock.png', darkImg: '/img/sponsors/antistock.dark.png', href: 'https://antistock.io' },
-  { name: 'Codefloe', img: '/img/sponsors/codefloe.png', darkImg: '/img/sponsors/codefloe.dark.png', href: 'https://codefloe.com' },
-  { name: 'Edclub', img: '/img/sponsors/edclub.png', darkImg: '/img/sponsors/edclub.dark.png', href: 'https://www.edclub.com' },
-  { name: 'Fera', img: '/img/sponsors/fera.png', darkImg: '/img/sponsors/fera.dark.png', href: 'https://fera.ai' },
-  { name: 'GS Labs', img: '/img/sponsors/gs-labs.png', darkImg: '/img/sponsors/gs-labs.dark.png', href: 'https://gs-labs.ru' },
-  { name: 'New Byte', img: '/img/sponsors/newbyte.png', darkImg: '/img/sponsors/newbyte.dark.png', href: 'https://newbyte.net.br' },
-  { name: 'Optiwise', img: '/img/sponsors/optiwise.png', darkImg: '/img/sponsors/optiwise.dark.png', href: 'https://optiwise.nl' },
-  { name: 'Postgres.AI', img: '/img/sponsors/postgresai.png', darkImg: '/img/sponsors/postgresai.dark.png', href: 'https://postgres.ai' },
-  { name: 'Staffery', img: '/img/sponsors/staffery.png', href: 'https://www.staffery.com' },
-  { name: 'Toncarton', img: '/img/sponsors/toncarton.png', darkImg: '/img/sponsors/toncarton.dark.png', href: 'https://www.toncarton.com' },
-  { name: 'We-Manage', img: '/img/sponsors/we-manage.png', darkImg: '/img/sponsors/we-manage.dark.png', href: 'https://we-manage.de' },
+const trusted = [
+  { name: 'Axiom', img: '/img/trusted/axiom.png', darkImg: '/img/trusted/axiom.dark.png', href: 'https://axiom.trade' },
+  { name: 'Awarebuildings', img: '/img/trusted/awarebuildings.png', darkImg: '/img/trusted/awarebuildings.dark.png', href: 'https://www.awarebuildings.com' },
+  { name: 'Antistock', img: '/img/trusted/antistock.png', darkImg: '/img/trusted/antistock.dark.png', href: 'https://antistock.io' },
+  { name: 'Codefloe', img: '/img/trusted/codefloe.png', darkImg: '/img/trusted/codefloe.dark.png', href: 'https://codefloe.com' },
+  { name: 'Edclub', img: '/img/trusted/edclub.png', darkImg: '/img/trusted/edclub.dark.png', href: 'https://www.edclub.com' },
+  { name: 'Fera', img: '/img/trusted/fera.png', darkImg: '/img/trusted/fera.dark.png', href: 'https://fera.ai' },
+  { name: 'GS Labs', img: '/img/trusted/gs-labs.png', darkImg: '/img/trusted/gs-labs.dark.png', href: 'https://gs-labs.ru' },
+  { name: 'New Byte', img: '/img/trusted/newbyte.png', darkImg: '/img/trusted/newbyte.dark.png', href: 'https://newbyte.net.br' },
+  { name: 'Optiwise', img: '/img/trusted/optiwise.png', darkImg: '/img/trusted/optiwise.dark.png', href: 'https://optiwise.nl' },
+  { name: 'Postgres.AI', img: '/img/trusted/postgresai.png', darkImg: '/img/trusted/postgresai.dark.png', href: 'https://postgres.ai' },
+  { name: 'Staffery', img: '/img/trusted/staffery.png', href: 'https://www.staffery.com' },
+  { name: 'Toncarton', img: '/img/trusted/toncarton.png', darkImg: '/img/trusted/toncarton.dark.png', href: 'https://www.toncarton.com' },
+  { name: 'We-Manage', img: '/img/trusted/we-manage.png', darkImg: '/img/trusted/we-manage.dark.png', href: 'https://we-manage.de' },
+  { name: 'Asakabank', img: '/img/trusted/asakabank.png', darkImg: '/img/trusted/asakabank.dark.png', href: 'https://www.asakabank.uz/en/' },
 ];
 
 function normalizeLogoSize(event) {
@@ -31,7 +32,7 @@ function normalizeLogoSize(event) {
 function LogoSet({ hidden = false }) {
   return (
     <div className={styles.logoSet} aria-hidden={hidden}>
-      {sponsors.map((sponsor) => {
+      {trusted.map((sponsor) => {
         const content = (
           <>
             <img
