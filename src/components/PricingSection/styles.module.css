@@ -335,7 +335,6 @@
 }
 
 .economicsIntro {
-  max-width: 760px;
   margin-bottom: 24px;
 }
 
@@ -358,7 +357,12 @@
   line-height: 1.1;
 }
 
-.economicsHeading { font-size: var(--fs-body-lg); }
+.economicsHeading {
+  font-size: var(--fs-body-lg);
+  white-space: nowrap;
+}
+
+.economicsHighlight { color: var(--color-primary); }
 
 .comparisonGrid {
   display: grid;
@@ -698,6 +702,7 @@
     gap: 6px;
   }
   .economics { padding: 32px 0 16px; }
+  .economicsHeading { white-space: normal; }
   .comparisonGrid { grid-template-columns: 1fr; }
   .comparisonCard {
     min-height: auto;

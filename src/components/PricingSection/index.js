@@ -141,7 +141,7 @@ export default function PricingSection() {
           <span className={styles.valueLabel}>monthly break-even for Premium</span>
         </div>
         <div className={styles.valueItem}>
-          <span className={styles.valueNumber}>39–56%</span>
+          <span className={styles.valueNumber}>39-56%</span>
           <span className={styles.valueLabel}>lower infrastructure cost vs managed PostgreSQL</span>
         </div>
       </div>
@@ -239,7 +239,7 @@ export default function PricingSection() {
         <div className={styles.economicsIntro}>
           <p className={styles.eyebrow}>The economics</p>
           <h3 id="economics-heading" className={styles.economicsHeading}>
-            Run PostgreSQL at scale - without scaling repetitive work.
+            Run <span className={styles.economicsHighlight}>PostgreSQL at scale</span> - without scaling repetitive work.
           </h3>
         </div>
 
