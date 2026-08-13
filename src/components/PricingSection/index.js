@@ -6,6 +6,16 @@ import styles from './styles.module.css';
 
 const DEFAULT_ENGINEERING_COST_PER_MONTH = 8500;
 const ENGINEERING_HOURS_PER_MONTH = 160;
+const WORKFORCE_STEPS = [1, 160, 320, 480];
+
+function PersonIcon() {
+  return (
+    <svg viewBox="0 0 12 14" aria-hidden="true" focusable="false">
+      <circle cx="6" cy="3" r="2.25" />
+      <path d="M2 13v-2.5a4 4 0 0 1 8 0V13" />
+    </svg>
+  );
+}
 
 const plans = [
   {
@@ -75,6 +85,7 @@ export default function PricingSection() {
   const [monthly, setMonthly] = useState(true);
   const [releasedHours, setReleasedHours] = useState(160);
   const [engineeringCostPerMonth, setEngineeringCostPerMonth] = useState(DEFAULT_ENGINEERING_COST_PER_MONTH);
+  const [engineeringCostInput, setEngineeringCostInput] = useState(String(DEFAULT_ENGINEERING_COST_PER_MONTH));
   const [isEditingEngineeringCost, setIsEditingEngineeringCost] = useState(false);
   const economicsReportUrl = useBaseUrl('/Autobase_PostgreSQL_Economics.pdf');
   const getDisplayedPrice = (price) => (monthly ? price : price * 11);
@@ -82,6 +93,12 @@ export default function PricingSection() {
     monthly ? 'per month' : 'per year';
   const premiumMonthlyCost = monthly ? 4096 : (4096 * 11) / 12;
   const engineeringCostPerHour = engineeringCostPerMonth / ENGINEERING_HOURS_PER_MONTH;
+  const releasedEngineers = Math.min(3, Math.max(1, Math.round(releasedHours / ENGINEERING_HOURS_PER_MONTH)));
+  const workforceLabel = releasedHours < ENGINEERING_HOURS_PER_MONTH
+    ? '1 engineer'
+    : releasedEngineers === 1
+      ? '1 full-time engineer'
+      : `${releasedEngineers} full-time engineers`;
   const breakEvenHours = Math.round(premiumMonthlyCost / engineeringCostPerHour);
   const releasedValuePerMonth = releasedHours * engineeringCostPerHour;
   const netBenefitPerYear = Math.max(0, (releasedValuePerMonth - premiumMonthlyCost) * 12);
@@ -95,6 +112,21 @@ export default function PricingSection() {
     currency: 'USD',
     maximumFractionDigits: 0,
   }).format(engineeringCostPerMonth);
+  const toggleEngineeringCostEditor = () => {
+    if (!isEditingEngineeringCost) {
+      setEngineeringCostInput(String(engineeringCostPerMonth));
+    }
+
+    setIsEditingEngineeringCost(!isEditingEngineeringCost);
+  };
+  const updateEngineeringCost = (value) => {
+    setEngineeringCostInput(value);
+
+    const parsedValue = Number(value);
+    if (value !== '' && Number.isFinite(parsedValue) && parsedValue > 0) {
+      setEngineeringCostPerMonth(parsedValue);
+    }
+  };
   const renderCta = (plan) => {
     const isExternal = plan.href.startsWith('http');
     const content = (
@@ -239,7 +271,7 @@ export default function PricingSection() {
         <div className={styles.economicsIntro}>
           <p className={styles.eyebrow}>The economics</p>
           <h3 id="economics-heading" className={styles.economicsHeading}>
-            Run <span className={styles.economicsHighlight}>PostgreSQL at scale</span> - without scaling repetitive work.
+            PostgreSQL is free. Running it at scale is not.
           </h3>
         </div>
 
@@ -279,7 +311,7 @@ export default function PricingSection() {
               <button
                 type="button"
                 className={styles.editAssumption}
-                onClick={() => setIsEditingEngineeringCost((isEditing) => !isEditing)}
+                onClick={toggleEngineeringCostEditor}
                 aria-expanded={isEditingEngineeringCost}
                 aria-controls="engineering-cost-input"
               >
@@ -296,8 +328,8 @@ export default function PricingSection() {
                     type="number"
                     min="1"
                     step="100"
-                    value={engineeringCostPerMonth}
-                    onChange={(event) => setEngineeringCostPerMonth(Math.max(1, Number(event.target.value) || 1))}
+                    value={engineeringCostInput}
+                    onChange={(event) => updateEngineeringCost(event.target.value)}
                   />
                 </span>
               </label>
@@ -305,17 +337,33 @@ export default function PricingSection() {
           </div>
 
           <label className={styles.hoursControl} htmlFor="released-hours">
-            <span>Engineering hours released per month (up to ~3 full-time engineers)</span>
+            <span>Engineering hours released per month</span>
             <input
               id="released-hours"
               type="range"
-              min="0"
+              min="1"
               max="480"
               step="1"
               value={releasedHours}
               onChange={(event) => setReleasedHours(Number(event.target.value))}
             />
-            <output htmlFor="released-hours">{releasedHours} h</output>
+            <span className={styles.workforceScale} aria-label="Full-time engineer equivalents based on 160 hours per month">
+              {WORKFORCE_STEPS.map((hours) => (
+                <span className={styles.workforceStep} key={hours}>
+                  <span className={styles.workforceTick} aria-hidden="true" />
+                  <span>{hours} h</span>
+                </span>
+              ))}
+            </span>
+            <span className={styles.workforceSummary}>
+              <output htmlFor="released-hours">{releasedHours} h</output>
+              <span className={styles.currentWorkforce}>
+                <span className={styles.workforcePeople} aria-hidden="true">
+                  {Array.from({ length: releasedEngineers }, (_, index) => <PersonIcon key={index} />)}
+                </span>
+                <span>{workforceLabel}</span>
+              </span>
+            </span>
           </label>
 
           <div className={styles.roiResult} aria-live="polite">
@@ -333,7 +381,7 @@ export default function PricingSection() {
 
         <div className={styles.economicsFooter}>
           <p className={styles.disclaimer}>
-            Modeled estimates only. Results vary by region, topology, storage, IOPS, backups, traffic and discounts.
+            This estimates the value of engineering capacity released for product work, not salary savings or headcount reduction.
           </p>
           <a className={styles.reportLink} href={economicsReportUrl} download>
             <span aria-hidden="true">↓</span>

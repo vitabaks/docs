@@ -12,18 +12,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-bottom: 32px;
-  margin-bottom: 32px;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  background: var(--color-border);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .heading {
@@ -362,8 +352,6 @@
   white-space: nowrap;
 }
 
-.economicsHighlight { color: var(--color-primary); }
-
 .comparisonGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -536,12 +524,71 @@
   cursor: pointer;
 }
 
+.workforceScale {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: -5px;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.workforceStep {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.workforceStep:first-child { align-items: flex-start; }
+.workforceStep:last-child { align-items: flex-end; }
+
+.workforceTick {
+  width: 1px;
+  height: 6px;
+  background: var(--color-border);
+}
+
+.workforcePeople {
+  display: inline-flex;
+  align-items: center;
+  min-height: 14px;
+  gap: 2px;
+  color: var(--color-primary);
+}
+
+.workforcePeople svg {
+  width: 10px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+
+.currentWorkforce {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  line-height: 1.2;
+}
+
 .hoursControl output {
   color: var(--color-text);
   font-family: var(--font-base);
   font-size: var(--fs-body-lg);
   font-weight: var(--fw-bold);
   line-height: 1;
+}
+
+.workforceSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 3px;
 }
 
 .roiResult {
@@ -671,8 +718,8 @@
   .section { padding: 24px 24px 20px; }
   .hero {
     gap: 12px;
-    padding-bottom: 24px;
-    margin-bottom: 24px;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
   }
   .switcherWrap {
     align-items: stretch;
@@ -739,8 +786,8 @@
   .section { padding: 20px 16px; }
   .hero {
     gap: 10px;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
   }
   .switcherWrap { margin-bottom: 20px; }
   .cardBody {
