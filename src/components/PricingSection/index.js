@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
+
+const DEFAULT_ENGINEERING_COST_PER_MONTH = 8500;
+const ENGINEERING_HOURS_PER_MONTH = 160;
 
 const plans = [
   {
@@ -69,9 +73,28 @@ const plans = [
 
 export default function PricingSection() {
   const [monthly, setMonthly] = useState(true);
+  const [releasedHours, setReleasedHours] = useState(160);
+  const [engineeringCostPerMonth, setEngineeringCostPerMonth] = useState(DEFAULT_ENGINEERING_COST_PER_MONTH);
+  const [isEditingEngineeringCost, setIsEditingEngineeringCost] = useState(false);
+  const economicsReportUrl = useBaseUrl('/Autobase_PostgreSQL_Economics.pdf');
   const getDisplayedPrice = (price) => (monthly ? price : price * 11);
   const getBillingLabel = () =>
     monthly ? 'per month' : 'per year';
+  const premiumMonthlyCost = monthly ? 4096 : (4096 * 11) / 12;
+  const engineeringCostPerHour = engineeringCostPerMonth / ENGINEERING_HOURS_PER_MONTH;
+  const breakEvenHours = Math.round(premiumMonthlyCost / engineeringCostPerHour);
+  const releasedValuePerMonth = releasedHours * engineeringCostPerHour;
+  const netBenefitPerYear = Math.max(0, (releasedValuePerMonth - premiumMonthlyCost) * 12);
+  const formattedNetBenefit = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  }).format(netBenefitPerYear);
+  const formattedEngineeringCost = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  }).format(engineeringCostPerMonth);
   const renderCta = (plan) => {
     const isExternal = plan.href.startsWith('http');
     const content = (
@@ -106,6 +129,21 @@ export default function PricingSection() {
           You are not buying a tool. You are buying a{' '}
           <span className={styles.orange}>system</span>.
         </p>
+      </div>
+
+      <div className={styles.valueStrip} aria-label="Autobase value highlights">
+        <div className={styles.valueItem}>
+          <span className={styles.valueNumber}>90%+</span>
+          <span className={styles.valueLabel}>less hands-on setup time</span>
+        </div>
+        <div className={styles.valueItem}>
+          <span className={styles.valueNumber}>~77 h</span>
+          <span className={styles.valueLabel}>monthly break-even for Premium</span>
+        </div>
+        <div className={styles.valueItem}>
+          <span className={styles.valueNumber}>39–56%</span>
+          <span className={styles.valueLabel}>lower infrastructure cost vs managed PostgreSQL</span>
+        </div>
       </div>
 
       {/* ── Billing switcher (placeholder) ── */}
@@ -196,6 +234,113 @@ export default function PricingSection() {
           <span>All-in-one Payment management</span>
         </div>
       </div>
+
+      <section className={styles.economics} aria-labelledby="economics-heading">
+        <div className={styles.economicsIntro}>
+          <p className={styles.eyebrow}>The economics</p>
+          <h3 id="economics-heading" className={styles.economicsHeading}>
+            Run PostgreSQL at scale - without scaling repetitive work.
+          </h3>
+        </div>
+
+        <div className={styles.comparisonGrid}>
+          <article className={styles.comparisonCard}>
+            <p className={styles.comparisonLabel}>Without Autobase</p>
+            <p className={styles.comparisonText}>
+              Your team builds and maintains the operations layer, or pays more for a managed PostgreSQL service.
+            </p>
+          </article>
+          <article className={clsx(styles.comparisonCard, styles.comparisonCardAccent)}>
+            <p className={styles.comparisonLabel}>With Autobase</p>
+            <p className={styles.comparisonText}>
+              Your database infrastructure is ready to use and kept operational automatically.
+            </p>
+          </article>
+        </div>
+
+        <div className={styles.setupCallout}>
+          <div>
+            <span className={styles.calloutNumber}>4-5 h</span>
+            <span className={styles.calloutLabel}>typical DIY production setup</span>
+          </div>
+          <span className={styles.calloutArrow} aria-hidden="true">→</span>
+          <div>
+            <span className={styles.calloutNumber}>10-15 min</span>
+            <span className={styles.calloutLabel}>with Autobase</span>
+          </div>
+        </div>
+
+        <div className={styles.roiCalculator}>
+          <div className={styles.calculatorIntro}>
+            <p className={styles.eyebrow}>Estimate your return</p>
+            <h4 className={styles.calculatorHeading}>What is released engineering time worth?</h4>
+            <div className={styles.calculatorDescription}>
+              <span>Based on a modeled engineering cost of {formattedEngineeringCost} per month.</span>
+              <button
+                type="button"
+                className={styles.editAssumption}
+                onClick={() => setIsEditingEngineeringCost((isEditing) => !isEditing)}
+                aria-expanded={isEditingEngineeringCost}
+                aria-controls="engineering-cost-input"
+              >
+                {isEditingEngineeringCost ? 'Done' : 'Edit assumption'}
+              </button>
+            </div>
+            {isEditingEngineeringCost && (
+              <label className={styles.costControl} htmlFor="engineering-cost-input">
+                <span>Engineering cost / month</span>
+                <span className={styles.costInputWrap}>
+                  <span aria-hidden="true">$</span>
+                  <input
+                    id="engineering-cost-input"
+                    type="number"
+                    min="1"
+                    step="100"
+                    value={engineeringCostPerMonth}
+                    onChange={(event) => setEngineeringCostPerMonth(Math.max(1, Number(event.target.value) || 1))}
+                  />
+                </span>
+              </label>
+            )}
+          </div>
+
+          <label className={styles.hoursControl} htmlFor="released-hours">
+            <span>Engineering hours released per month (up to ~3 full-time engineers)</span>
+            <input
+              id="released-hours"
+              type="range"
+              min="0"
+              max="480"
+              step="1"
+              value={releasedHours}
+              onChange={(event) => setReleasedHours(Number(event.target.value))}
+            />
+            <output htmlFor="released-hours">{releasedHours} h</output>
+          </label>
+
+          <div className={styles.roiResult} aria-live="polite">
+            <span className={styles.roiResultLabel}>
+              {releasedHours < breakEvenHours ? 'Hours to break even' : 'Estimated net benefit per year'}
+            </span>
+            <strong className={styles.roiResultValue}>
+              {releasedHours < breakEvenHours ? `${breakEvenHours - releasedHours} h/month` : formattedNetBenefit}
+            </strong>
+            <span className={styles.roiResultDetail}>
+              Premium breaks even at approximately {breakEvenHours} engineering hours per month.
+            </span>
+          </div>
+        </div>
+
+        <div className={styles.economicsFooter}>
+          <p className={styles.disclaimer}>
+            Modeled estimates only. Results vary by region, topology, storage, IOPS, backups, traffic and discounts.
+          </p>
+          <a className={styles.reportLink} href={economicsReportUrl} download>
+            <span aria-hidden="true">↓</span>
+            Download the full economics report (PDF)
+          </a>
+        </div>
+      </section>
 
     </section>
   );
