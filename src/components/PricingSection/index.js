@@ -8,10 +8,12 @@ const plans = [
     id: 'free',
     name: 'Free',
     image: '/img/pricing/header-free.png',
-    description: 'Open-source version with limited platform functionality.',
+    price: 0,
+    billing: 'per month',
     features: [
       'MIT License',
-      'No support included',
+      { label: 'Limited platform functionality', supported: false },
+      { label: 'No support included', supported: false },
     ],
     cta: 'Try Free',
     href: 'https://github.com/autobase-tech/autobase/blob/main/README.md#getting-started',
@@ -144,7 +146,7 @@ export default function PricingSection() {
               <p className={styles.planName}>{plan.name}</p>
 
               <div className={styles.priceBlock}>
-                {plan.price ? (
+                {plan.price !== undefined ? (
                   <>
                     <p className={styles.price}>
                       <span className={styles.currency}>$</span>
@@ -152,18 +154,23 @@ export default function PricingSection() {
                     </p>
                     <p className={styles.billing}>{getBillingLabel()}</p>
                   </>
-                ) : (
-                  <p className={styles.freeDesc}>{plan.description}</p>
-                )}
+                ) : null}
               </div>
 
               <ul className={styles.featureList}>
-                {plan.features.map((f) => (
-                  <li key={f} className={styles.featureItem}>
-                    <span className={styles.checkIcon} aria-hidden="true">✓</span>
-                    <span>{f}</span>
-                  </li>
-                ))}
+                {plan.features.map((feature) => {
+                  const isSupported = typeof feature === 'string' || feature.supported !== false;
+                  const label = typeof feature === 'string' ? feature : feature.label;
+
+                  return (
+                    <li key={label} className={styles.featureItem}>
+                      <span className={styles.checkIcon} aria-hidden="true">
+                        {isSupported ? '✓' : '−'}
+                      </span>
+                      <span>{label}</span>
+                    </li>
+                  );
+                })}
               </ul>
 
               <div className={styles.ctaWrap}>
