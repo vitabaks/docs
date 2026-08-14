@@ -20,9 +20,12 @@ This architecture allows Autobase to provide a DBaaS-like experience while keepi
   }}
 />
 
-Users define the desired cluster topology, configuration, and maintenance actions in the Console UI. The Console API validates requests, stores the desired state in the Console DB, prepares the inventory and variables, and delegates execution to the Automation container.
-Autobase Automation provisions infrastructure when needed, installs and configures PostgreSQL, sets up high availability, applies configuration changes, scales clusters, and performs maintenance operations.
-Results, logs, metadata, and execution status are written back to the Console DB and displayed in the UI.
+### How it works
+
+1. Users define the desired cluster topology, configuration, and maintenance actions in the Console UI.
+2. The Console API validates the request, stores the desired state in the Console DB, prepares inventory and variables, and delegates execution to the Automation container.
+3. Autobase Automation provisions infrastructure when needed, installs and configures PostgreSQL, sets up high availability, applies configuration changes, scales clusters, and performs maintenance operations.
+4. Results, logs, metadata, and execution status are written back to the Console DB and displayed in the UI for monitoring and troubleshooting.
 
 #### Components:
 
