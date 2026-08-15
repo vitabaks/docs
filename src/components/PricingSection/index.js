@@ -120,7 +120,7 @@ export default function PricingSection() {
   const [engineeringCostPerMonth, setEngineeringCostPerMonth] = useState(DEFAULT_ENGINEERING_COST_PER_MONTH);
   const [engineeringCostInput, setEngineeringCostInput] = useState(String(DEFAULT_ENGINEERING_COST_PER_MONTH));
   const [isEditingEngineeringCost, setIsEditingEngineeringCost] = useState(false);
-  const [infrastructureSize, setInfrastructureSize] = useState('small');
+  const [infrastructureSize, setInfrastructureSize] = useState('medium');
   const economicsReportUrl = useBaseUrl('/Autobase_PostgreSQL_Economics.pdf');
   const getDisplayedPrice = (price) => (monthly ? price : price * 11);
   const getBillingLabel = () =>
@@ -424,6 +424,10 @@ export default function PricingSection() {
                   key={size}
                   type="button"
                   className={clsx(styles.infrastructureSwitchBtn, infrastructureSize === size && styles.infrastructureSwitchBtnActive)}
+                  style={infrastructureSize === size ? {
+                    backgroundColor: 'var(--color-primary)',
+                    color: 'var(--color-white)',
+                  } : undefined}
                   onClick={() => setInfrastructureSize(size)}
                   aria-pressed={infrastructureSize === size}
                 >
