@@ -7,6 +7,39 @@ import styles from './styles.module.css';
 const DEFAULT_ENGINEERING_COST_PER_MONTH = 8500;
 const ENGINEERING_HOURS_PER_MONTH = 160;
 const WORKFORCE_STEPS = [1, 160, 320, 480];
+const INFRASTRUCTURE_COSTS = {
+  small: {
+    label: '8 vCPU, 32 GB RAM, 500 GB storage',
+    providers: [
+      { name: 'AWS', managed: 2083, autobase: 949 },
+      { name: 'GCP', managed: 1956, autobase: 1105 },
+      { name: 'Azure', managed: 1610, autobase: 953 },
+      { name: 'DigitalOcean', managed: 1536, autobase: 906 },
+    ],
+  },
+  medium: {
+    label: '32 vCPU, 128 GB RAM, 1 TB storage',
+    providers: [
+      { name: 'AWS', managed: 8095, autobase: 3557 },
+      { name: 'GCP', managed: 7154, autobase: 3913 },
+      { name: 'Azure', managed: 6217, autobase: 3588 },
+      { name: 'DigitalOcean', managed: 5586, autobase: 3324 },
+    ],
+  },
+  large: {
+    label: '96 vCPU, 768 GB RAM, 10 TB storage',
+    providers: [
+      { name: 'AWS', managed: 33748, autobase: 15463 },
+      { name: 'GCP', managed: 31127, autobase: 18872 },
+      { name: 'Azure', managed: 28530, autobase: 15495 },
+    ],
+  },
+};
+const formatCurrency = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  maximumFractionDigits: 0,
+});
 
 function PersonIcon() {
   return (
@@ -87,6 +120,7 @@ export default function PricingSection() {
   const [engineeringCostPerMonth, setEngineeringCostPerMonth] = useState(DEFAULT_ENGINEERING_COST_PER_MONTH);
   const [engineeringCostInput, setEngineeringCostInput] = useState(String(DEFAULT_ENGINEERING_COST_PER_MONTH));
   const [isEditingEngineeringCost, setIsEditingEngineeringCost] = useState(false);
+  const [infrastructureSize, setInfrastructureSize] = useState('small');
   const economicsReportUrl = useBaseUrl('/Autobase_PostgreSQL_Economics.pdf');
   const getDisplayedPrice = (price) => (monthly ? price : price * 11);
   const getBillingLabel = () =>
@@ -102,16 +136,9 @@ export default function PricingSection() {
   const breakEvenHours = Math.round(premiumMonthlyCost / engineeringCostPerHour);
   const releasedValuePerMonth = releasedHours * engineeringCostPerHour;
   const netBenefitPerYear = Math.max(0, (releasedValuePerMonth - premiumMonthlyCost) * 12);
-  const formattedNetBenefit = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(netBenefitPerYear);
-  const formattedEngineeringCost = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(engineeringCostPerMonth);
+  const formattedNetBenefit = formatCurrency.format(netBenefitPerYear);
+  const formattedEngineeringCost = formatCurrency.format(engineeringCostPerMonth);
+  const infrastructureProfile = INFRASTRUCTURE_COSTS[infrastructureSize];
   const toggleEngineeringCostEditor = () => {
     if (!isEditingEngineeringCost) {
       setEngineeringCostInput(String(engineeringCostPerMonth));
@@ -174,7 +201,7 @@ export default function PricingSection() {
         </div>
         <div className={styles.valueItem}>
           <span className={styles.valueNumber}>39-56%</span>
-          <span className={styles.valueLabel}>lower infrastructure cost vs managed PostgreSQL</span>
+          <span className={styles.valueLabel}>lower infrastructure cost vs Managed Postgres</span>
         </div>
       </div>
 
@@ -279,7 +306,7 @@ export default function PricingSection() {
           <article className={styles.comparisonCard}>
             <p className={styles.comparisonLabel}>Without Autobase</p>
             <p className={styles.comparisonText}>
-              Your team builds and maintains the operations layer, or pays more for a managed PostgreSQL service.
+              Your team builds and maintains the operations layer, or pays more for a Managed Postgres service.
             </p>
           </article>
           <article className={clsx(styles.comparisonCard, styles.comparisonCardAccent)}>
@@ -377,12 +404,80 @@ export default function PricingSection() {
               Premium breaks even at approximately {breakEvenHours} engineering hours per month.
             </span>
           </div>
-        </div>
 
-        <div className={styles.economicsFooter}>
-          <p className={styles.disclaimer}>
+          <p className={styles.calculatorContext}>
             This estimates the value of engineering capacity released for product work, not salary savings or headcount reduction.
           </p>
+        </div>
+
+        <section className={styles.infrastructureComparison} aria-labelledby="infrastructure-heading">
+          <div className={styles.infrastructureHeader}>
+            <div>
+              <p className={styles.eyebrow}>Infrastructure cost</p>
+              <h4 id="infrastructure-heading" className={styles.infrastructureHeading}>
+                Managed Postgres vs Autobase
+              </h4>
+            </div>
+            <div className={styles.infrastructureSwitcher} aria-label="Infrastructure size">
+              {Object.keys(INFRASTRUCTURE_COSTS).map((size) => (
+                <button
+                  key={size}
+                  type="button"
+                  className={clsx(styles.infrastructureSwitchBtn, infrastructureSize === size && styles.infrastructureSwitchBtnActive)}
+                  onClick={() => setInfrastructureSize(size)}
+                  aria-pressed={infrastructureSize === size}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <p className={styles.infrastructureSetup}>{infrastructureProfile.label}</p>
+          <div className={styles.infrastructureLegend} aria-label="Cost comparison legend">
+            <span><i className={styles.managedSwatch} aria-hidden="true" />Managed Postgres</span>
+            <span><i className={styles.autobaseSwatch} aria-hidden="true" />Autobase Postgres</span>
+          </div>
+
+          <div className={styles.infrastructureRows}>
+            {infrastructureProfile.providers.map((provider) => {
+              const savingsAmount = provider.managed - provider.autobase;
+              const savingsPercentage = Math.round((savingsAmount / provider.managed) * 100);
+              const autobaseWidth = (provider.autobase / provider.managed) * 100;
+
+              return (
+                <article key={provider.name} className={styles.infrastructureRow}>
+                  <p className={styles.providerName}>{provider.name}</p>
+                  <div className={styles.costBars}>
+                    <div className={styles.costBarGroup}>
+                      <div className={styles.costBarTrack} aria-label={`Managed Postgres: ${formatCurrency.format(provider.managed)} per month`}>
+                        <span className={styles.managedBar} style={{ width: '100%' }}>
+                          <strong className={styles.costBarValue}>{formatCurrency.format(provider.managed)}/mo</strong>
+                        </span>
+                      </div>
+                    </div>
+                    <div className={styles.costBarGroup}>
+                      <div className={styles.costBarTrack} aria-label={`Autobase Postgres: ${formatCurrency.format(provider.autobase)} per month`}>
+                        <span className={styles.autobaseBar} style={{ width: `${autobaseWidth}%` }}>
+                          <strong className={styles.costBarValue}>{formatCurrency.format(provider.autobase)}/mo</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={styles.infrastructureSavings}>
+                    <strong>-{savingsPercentage}%</strong>
+                    <span>{formatCurrency.format(savingsAmount)}/mo less</span>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+          <p className={styles.infrastructureNote}>
+            Infrastructure cost estimates are based on a cluster with one primary and two replicas. Autobase license is not included.
+          </p>
+        </section>
+
+        <div className={styles.economicsFooter}>
           <a className={styles.reportLink} href={economicsReportUrl} download>
             <span aria-hidden="true">↓</span>
             Download the full economics report (PDF)

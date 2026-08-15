@@ -460,6 +460,15 @@
   line-height: 1.45;
 }
 
+.calculatorContext {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-base);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
 .editAssumption {
   padding: 0;
   border: 0;
@@ -615,21 +624,187 @@
   line-height: 1;
 }
 
-.economicsFooter {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+/* ─── Infrastructure comparison ─────────────────────────────────── */
+.infrastructureComparison {
   margin-top: 16px;
+  padding: 28px 24px;
+  border: 1px solid var(--color-border);
 }
 
-.disclaimer {
-  max-width: 650px;
+.infrastructureHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.infrastructureHeading {
   margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-base);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+}
+
+.infrastructureSwitcher {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+}
+
+.infrastructureSwitchBtn {
+  min-height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-right: 1px solid var(--color-border);
+  background: transparent;
   color: var(--color-text-muted);
   font-family: var(--font-base);
   font-size: 12px;
-  line-height: 1.45;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.infrastructureSwitchBtn:last-child { border-right: 0; }
+
+.infrastructureSwitchBtn:hover {
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.infrastructureSwitchBtnActive,
+.infrastructureSwitchBtnActive:hover {
+  color: var(--color-white);
+  background: var(--color-primary);
+}
+
+.infrastructureSetup {
+  margin: 14px 0 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-base);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.infrastructureLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin: 20px 0 10px;
+  color: var(--color-text-muted);
+  font-family: var(--font-base);
+  font-size: 12px;
+}
+
+.infrastructureLegend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.infrastructureLegend i {
+  display: inline-block;
+  width: 14px;
+  height: 4px;
+}
+
+.managedSwatch { background: var(--color-text-muted); }
+.autobaseSwatch { background: var(--color-primary); }
+
+.infrastructureRows { border: 1px solid var(--color-border); }
+
+.infrastructureRow {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 130px;
+  align-items: center;
+  gap: 24px;
+  padding: 18px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.infrastructureRow:last-child { border-bottom: 0; }
+
+.providerName {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+}
+
+.costBars {
+  display: grid;
+  gap: 10px;
+}
+
+.costBarGroup { padding-top: 18px; }
+
+.costBarTrack {
+  position: relative;
+  height: 6px;
+  background: var(--color-surface);
+}
+
+.managedBar,
+.autobaseBar {
+  display: block;
+  position: relative;
+  height: 100%;
+}
+
+.managedBar { background: var(--color-text-muted); }
+.autobaseBar { background: var(--color-primary); }
+
+.costBarValue {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  color: var(--color-text);
+  font-family: var(--font-base);
+  font-size: 12px;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.infrastructureSavings {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: right;
+  font-family: var(--font-base);
+}
+
+.infrastructureSavings strong {
+  color: var(--color-primary);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+}
+
+.infrastructureSavings span {
+  color: var(--color-text-muted);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.infrastructureNote {
+  margin: 12px 0 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-base);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.economicsFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+  margin-top: 16px;
 }
 
 .reportLink {
@@ -769,6 +944,19 @@
     border-top: 1px solid var(--color-border);
     border-left: 0;
   }
+  .infrastructureComparison { padding: 22px 20px; }
+  .infrastructureHeader {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .infrastructureSwitcher { width: 100%; }
+  .infrastructureRow {
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+  }
+  .costBars { grid-column: 1 / -1; }
+  .infrastructureSavings { grid-column: 2; }
   .economicsFooter {
     align-items: stretch;
     flex-direction: column;
@@ -804,4 +992,6 @@
     border-top: 1px solid var(--color-border);
   }
   .card:first-child { border-top: 0; }
+  .infrastructureComparison { padding: 20px 16px; }
+  .infrastructureRow { padding: 16px; }
 }
