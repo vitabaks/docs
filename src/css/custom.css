@@ -351,3 +351,8 @@ html[data-theme='dark']:has(.landingPage) .main-wrapper {
 .navbar.navbar--transparent :is(.navbar__item, .navbar__link, .navbar__brand) {
   transition: color 0.2s ease;
 }
+
+/* Match the standard document spacing when a tab section follows an image. */
+.tabs-container [role='tabpanel'] > img + h3 {
+  margin-top: calc(var(--ifm-h3-vertical-rhythm-top) * var(--ifm-leading));
+}

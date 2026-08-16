@@ -11,98 +11,110 @@ import ThemedImage from '@theme/ThemedImage';
 This section guides you through changing your PostgreSQL cluster configuration.
 
 <Tabs defaultValue="console-ui">
-  {/* ===== EXTERNAL TABS: Console (UI) / Command line ===== */}
   <TabItem value="console-ui" label="Console (UI)">
 
     Click the name of your cluster on the **Clusters** page, then open the **Parameters** tab to view and edit cluster settings.
 
-    {/* ===== INTERNAL TAB: cluster ===== */}
-    <Tabs defaultValue="cluster">
-      <TabItem value="cluster" label="Cluster">
+    ### Cluster
 
     View and modify general cluster settings such as synchronous replication, disk size, IOPS, throughput, networking options, and the index maintenance.
 
-        <ThemedImage
-          alt="deployment-destination"
-          sources={{
-            light: '/img/cluster-edit.png',
-            dark: '/img/cluster-edit.dark.png',
-          }}
-        />
+    <ThemedImage
+      alt="cluster-parameters"
+      sources={{
+        light: '/img/cluster-edit.png',
+        dark: '/img/cluster-edit.dark.png',
+      }}
+      style={{ width: '80%' }}
+    />
 
-      </TabItem>
-
-    {/* ===== INTERNAL TAB: postgres ===== */}
-      <TabItem value="postgres" label="Postgres">
+    ### Postgres
 
     Configure PostgreSQL-specific runtime parameters (for example, autovacuum settings, WAL and checkpoint behavior, memory-related parameters). Use the search and filters to find parameters and review which settings require a restart.
 
-        <ThemedImage
-          alt="deployment-destination"
-          sources={{
-            light: '/img/postgres-edit.png',
-            dark: '/img/postgres-edit.dark.png',
-          }}
-        />
+    <ThemedImage
+      alt="postgres-parameters"
+      sources={{
+        light: '/img/postgres-edit.png',
+        dark: '/img/postgres-edit.dark.png',
+      }}
+    />
 
-    </TabItem>
-
-    {/* ===== INTERNAL TAB: hba ===== */}
-      <TabItem value="hba" label="HBA">
+    ### HBA
 
     Manage PostgreSQL host-based authentication (HBA) rules. Add, edit, or remove rules that control which hosts and users can connect and which authentication methods are enforced.
 
+    <ThemedImage
+      alt="hba-rules"
+      sources={{
+        light: '/img/postgres-hba-edit.png',
+        dark: '/img/postgres-hba-edit.dark.png',
+      }}
+    />
 
-        <ThemedImage
-          alt="deployment-destination"
-          sources={{
-            light: '/img/postgres-hba-edit.png',
-            dark: '/img/postgres-hba-edit.dark.png',
-          }}
-        />
-
-    </TabItem>
-
-    {/* ===== INTERNAL TAB: pools ===== */}
-      <TabItem value="pools" label="Connection Pools">
+    ### Connection Pools
 
     Configure connection pool settings and individual pools. Set pool counts, pool modes, max client connections, and per-pool parameters to control how client connections are multiplexed.
 
-        <ThemedImage
-          alt="deployment-destination"
-          sources={{
-            light: '/img/pools-edit.png',
-            dark: '/img/pools-edit.dark.png',
-          }}
-        />
+    <ThemedImage
+      alt="connection-pools"
+      sources={{
+        light: '/img/pools-edit.png',
+        dark: '/img/pools-edit.dark.png',
+      }}
+      style={{ width: '70%' }}
+    />
 
-    </TabItem>
+    ### System
 
-    {/* ===== INTERNAL TAB: yaml ===== */}
-      <TabItem value="yaml" label="YAML editor">
+    :::info
+    The **System** tab is available when **Expert Mode** is enabled. To enable it, go to the **Settings** page and turn on “Enable expert mode”.
+    :::
 
-    The YAML editor allows you to specify any parameters that were previously available only in command-line mode. Designed for experienced users.
+    Edit the advanced system configuration, including Regional Settings, Host Mappings, DNS Servers, NTP Servers, Kernel Parameters, and SSH Public Keys.
 
-    To open the editor, click the **YAML** icon in the top-right corner of the cluster page.
+    <ThemedImage
+      alt="system-parameters"
+      sources={{
+        light: '/img/system-edit.png',
+        dark: '/img/system-edit.dark.png',
+      }}
+      style={{ width: '80%' }}
+    />
+    <ThemedImage
+      alt="system-parameters"
+      sources={{
+        light: '/img/system-edit-2.png',
+        dark: '/img/system-edit-2.dark.png',
+      }}
+      style={{ width: '80%' }}
+    />
 
-        <ThemedImage
-          alt="deployment-destination"
-          sources={{
-            light: '/img/yaml-edit.png',
-            dark: '/img/yaml-edit.dark.png',
-          }}
-        />
+    ### YAML Editor
 
     :::info
     To use the YAML editor, go to the **Settings** page and turn on “Enable expert mode” and “Enable YAML editor”.
     :::
 
-    </TabItem>
-    </Tabs>
+    The YAML editor allows experienced users to configure any available options. Refer to the [defaults](https://github.com/autobase-tech/autobase/blob/2.10.0/automation/roles/common/defaults/main.yml).
+
+    <ThemedImage
+      alt="yaml-editor"
+      sources={{
+        light: '/img/yaml-edit.png',
+        dark: '/img/yaml-edit.dark.png',
+      }}
+    />
+
+    To apply configuration changes:
+
+    1. Open the cluster.
+    2. Click the **YAML** icon in the top-right corner of the cluster page.
+    3. Update the required options.
+    4. Select **Show Diff** to review the changes.
+    5. Click **Apply changes** to apply the configuration.
 
   </TabItem>
-
-  {/* ===== EXTERNAL TAB: Command line ===== */}
   <TabItem value="command-line" label="Command line">
 
     To change the cluster configuration using the automation image:
