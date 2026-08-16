@@ -356,3 +356,8 @@ html[data-theme='dark']:has(.landingPage) .main-wrapper {
 .tabs-container [role='tabpanel'] > img + h3 {
   margin-top: calc(var(--ifm-h3-vertical-rhythm-top) * var(--ifm-leading));
 }
+
+/* Keep generated-index cards in a consistent two-column grid. */
+section.row > article.col {
+  min-width: 0;
+}
