@@ -2,6 +2,7 @@
   "label": "Management",
   "position": 4,
   "link": {
-    "type": "generated-index"
+    "type": "generated-index",
+    "description": "Manage the full lifecycle of your PostgreSQL clusters, from configuration and backups to restores, upgrades, scaling, and GitOps workflows."
   }
 }
