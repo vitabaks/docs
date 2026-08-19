@@ -320,6 +320,7 @@
 
 /* ─── Economics ─────────────────────────────────────────────────── */
 .economics {
+  margin-top: 48px;
   padding: 40px 0 16px;
   border-top: 1px solid var(--color-border);
 }
@@ -327,6 +328,22 @@
 .economicsIntro {
   margin-bottom: 24px;
 }
+
+.economicsLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  color: var(--color-text-muted);
+  font-family: var(--font-base);
+  font-size: 13px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.economicsLabel span { color: var(--color-primary); }
 
 .eyebrow {
   margin: 0 0 10px;
@@ -923,7 +940,7 @@
     min-height: 60px;
     gap: 6px;
   }
-  .economics { padding: 32px 0 16px; }
+  .economics { margin-top: 32px; padding: 32px 0 16px; }
   .economicsHeading { white-space: normal; }
   .comparisonGrid { grid-template-columns: 1fr; }
   .comparisonCard {

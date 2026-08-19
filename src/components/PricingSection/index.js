@@ -296,7 +296,10 @@ export default function PricingSection() {
 
       <section className={styles.economics} aria-labelledby="economics-heading">
         <div className={styles.economicsIntro}>
-          <p className={styles.eyebrow}>The economics</p>
+          <p className={styles.economicsLabel}>
+            <span aria-hidden="true">//</span>
+            The economics
+          </p>
           <h3 id="economics-heading" className={styles.economicsHeading}>
             PostgreSQL is free. Running it at scale is not.
           </h3>
