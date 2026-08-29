@@ -74,6 +74,8 @@ const plans = [
     features: [
       'Commercial license',
       'Up to 2 clusters',
+      'Up to 1 TB storage',
+      'Up to 10 000 TPS',
       'Up to 1 DBA hour included',
       'SLA: up to 24 hours (5×8)',
     ],
@@ -90,6 +92,8 @@ const plans = [
     features: [
       'Commercial license',
       'Up to 10 clusters',
+      'Up to 30 TB storage',
+      'Up to 100 000 TPS',
       'Up to 5 DBA hours included',
       'SLA: up to 8 hours (5×8)',
     ],
@@ -106,6 +110,8 @@ const plans = [
     features: [
       'Commercial license',
       'Unlimited clusters',
+      'Unlimited storage',
+      'Unlimited TPS',
       'Up to 15 DBA hours included',
       'SLA: up to 1 hour (7×24)',
     ],
