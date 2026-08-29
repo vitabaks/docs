@@ -121,7 +121,7 @@ export default function PricingSection() {
   const [engineeringCostInput, setEngineeringCostInput] = useState(String(DEFAULT_ENGINEERING_COST_PER_MONTH));
   const [isEditingEngineeringCost, setIsEditingEngineeringCost] = useState(false);
   const [infrastructureSize, setInfrastructureSize] = useState('medium');
-  const economicsReportUrl = useBaseUrl('/Autobase_PostgreSQL_Economics.pdf');
+  const economicsReportUrl = useBaseUrl('/Autobase_PostgreSQL_Stack_and_Economics.pdf');
   const getDisplayedPrice = (price) => (monthly ? price : price * 11);
   const getBillingLabel = () =>
     monthly ? 'per month' : 'per year';
