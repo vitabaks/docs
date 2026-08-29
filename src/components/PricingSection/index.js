@@ -199,15 +199,11 @@ export default function PricingSection() {
       <div className={styles.valueStrip} aria-label="Autobase value highlights">
         <div className={styles.valueItem}>
           <span className={styles.valueNumber}>90%+</span>
-          <span className={styles.valueLabel}>less hands-on setup time</span>
+          <span className={styles.valueLabel}>less manual work to deploy and manage a production PostgreSQL cluster</span>
         </div>
         <div className={styles.valueItem}>
-          <span className={styles.valueNumber}>~77 h</span>
-          <span className={styles.valueLabel}>monthly break-even for Premium</span>
-        </div>
-        <div className={styles.valueItem}>
-          <span className={styles.valueNumber}>39-56%</span>
-          <span className={styles.valueLabel}>lower infrastructure cost vs Managed Postgres</span>
+          <span className={styles.valueNumber}>40-60%</span>
+          <span className={styles.valueLabel}>lower infrastructure cost vs. managed PostgreSQL</span>
         </div>
       </div>
 
@@ -415,7 +411,7 @@ export default function PricingSection() {
           </div>
 
           <p className={styles.calculatorContext}>
-            This estimates the value of engineering capacity released for product work, not salary savings or headcount reduction.
+            The freed time can be directed to work where engineering expertise is needed most, rather than absorbing the cost of routine database operations.
           </p>
         </div>
 
