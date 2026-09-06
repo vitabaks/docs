@@ -21,7 +21,7 @@ Both [DigitalOcean](../deployment/digitalocean.md) and [Hetzner Cloud](../deploy
 - Cron job path: `/etc/cron.d/pgbackrest-<cluster_name>`
 
 :::info
-Backup configuration changes after deployment are currently supported only through the command line.
+Backup configuration changes - Coming soon in version 2.11.0
 :::
 
 ### Command line

@@ -8,7 +8,9 @@ Restore and Cloning
 
 ## Console (UI)
 
-Restoring a cluster from backup (PITR) is currently supported only through the command line.
+:::info
+Coming soon in version 2.11.0
+:::
 
 ## Command line
 
@@ -145,7 +147,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.10.0 \
+  autobase/automation:2.11.0 \
     ansible-playbook deploy_pgcluster.yml \
       -t point_in_time_recovery \
       -e disable_archive_command=false
@@ -165,7 +167,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.10.0 \
+  autobase/automation:2.11.0 \
     ansible-playbook deploy_pgcluster.yml \
       -e disable_archive_command=true \
       -e keep_patroni_dynamic_json=false
