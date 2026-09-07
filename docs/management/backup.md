@@ -2,29 +2,45 @@
 sidebar_position: 30
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ThemedImage from '@theme/ThemedImage';
+
 # Backup
 
-Configure database backups
+Configure and manage database backups
 
-### Console (UI)
+<Tabs defaultValue="console-ui">
+  <TabItem value="console-ui" label="Console (UI)">
 
 When deploying to cloud providers (such as [AWS](../deployment/aws.md), [GCP](../deployment/gcp.md), [Azure](../deployment/azure.md)) using the Console UI, the storage bucket and backups with [pgBackRest](https://pgbackrest.org) are automatically configured.
 
-:::note
+:::info
 Both [DigitalOcean](../deployment/digitalocean.md) and [Hetzner Cloud](../deployment/hetzner.md) require providing access keys for the bucket. This option is available in **Expert Mode**.
 :::
 
-- Backup schedule: Full backups every Sunday at 3:00 AM; differential backups Monday through Saturday at 3:00 AM.
-- Backup retention: 4 full backups (1 month).
-- Config path: `/etc/pgbackrest/pgbackrest.conf`
-- Log path: `/var/log/pgbackrest`
-- Cron job path: `/etc/cron.d/pgbackrest-<cluster_name>`
+To view and manage backups in the Console UI, open **Clusters** in the sidebar and select **Backups**.
 
-:::info
-Backup configuration changes - Coming soon in version 2.11.0
-:::
+The **Backups & Restore** page displays the current backup configuration and schedule. Use the **Edit** buttons to update the backup configuration, retention period, and backup schedule.
 
-### Command line
+<ThemedImage
+  alt="Backups and Restore page"
+  sources={{
+    light: '/img/backups.png',
+    dark: '/img/backups.dark.png',
+  }}
+/>
+
+Use the actions above the backup list to:
+
+- click **Refresh** to reload the list of available backups;
+- click **Restore** to restore the cluster from a backup. See [Restore](restore.md) for details;
+- click **Create backup** to optionally start an additional on-demand backup outside the scheduled backup cycle.
+
+The backup list shows the backup ID, start and finish times, duration, type, size, and available actions for each backup.
+
+  </TabItem>
+  <TabItem value="command-line" label="Command line">
 
 :::note
 When deploying to cloud providers (`cloud_provider` variable) such as AWS, GCP, Azure, the storage bucket and backups with [pgBackRest](https://pgbackrest.org) are automatically configured, controlled by the `pgbackrest_auto_conf` variable (specify `false` if you prefer to manually configure the backup).
@@ -33,9 +49,6 @@ When deploying to cloud providers (`cloud_provider` variable) such as AWS, GCP, 
 The following backup tools are supported:
 - [pgBackRest](https://github.com/pgbackrest/pgbackrest)
 - [WAL-G](https://github.com/wal-g/wal-g)
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 <Tabs>
   <TabItem value="pgBackRest" label="pgBackRest" default>
@@ -591,6 +604,9 @@ wal_g_cron_jobs:
 ```
 
 </details>
+
+  </TabItem>
+</Tabs>
 
   </TabItem>
 </Tabs>

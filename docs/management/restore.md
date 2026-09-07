@@ -2,179 +2,111 @@
 sidebar_position: 40
 ---
 
-# Restore
-
-Restore and Cloning
-
-## Console (UI)
-
-:::info
-Coming soon in version 2.11.0
-:::
-
-## Command line
-
-You can restore your PostgreSQL cluster in place (Point-In-Time Recovery), which is useful for recovering an existing cluster, or create a new cluster from a backup (Cloning), which involves creating a new cluster based on an existing backup.
-
-The following backup tools are supported:
-- [pgBackRest](https://github.com/pgbackrest/pgbackrest)
-- [WAL-G](https://github.com/wal-g/wal-g)
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import ThemedImage from '@theme/ThemedImage';
 
-<Tabs>
-  <TabItem value="pgBackRest" label="pgBackRest" default>
+# Restore
 
-Whether you want to restore the current cluster or perform cloning, you will need to configure the pgBackRest parameters to access the backups.
+Restore database
 
-:::tip
-You can find examples of `pgbackrest` configurations in the [Backup](/docs/management/backup) section.
+<Tabs defaultValue="console-ui">
+  <TabItem value="console-ui" label="Console (UI)">
+
+To restore a cluster in the Console UI, open **Clusters** in the sidebar, select **Backups**, and click **Restore**.
+
+The **Restore cluster** dialog provides three restore modes:
+
+### Latest
+
+Select **Latest** to recover the cluster to the latest available state. By default, recovery replays all available WAL files from the archive.
+
+:::info
+Optionally enable **Immediate recovery** to stop recovery as soon as a consistent state is reached instead of replaying all available WAL files.
+This option is typically used when the recovery must complete as quickly as possible, for example, for very large databases.
+Use this option with caution: it directly affects the recovery point objective (RPO), because the most recent WAL records may not be replayed.
 :::
 
-Additionally, define the following required variables for the restore process:
+<ThemedImage
+  alt="Restore cluster using the latest available state"
+  sources={{
+    light: '/img/restore-latest.png',
+    dark: '/img/restore-latest.dark.png',
+  }}
+/>
 
-```yaml
-patroni_cluster_bootstrap_method: "pgbackrest"
-```
+### Point in time
 
-```yaml
-# Optional. To restore replicas from a backup.
-# Otherwise, they fetch data from the Primary server after it’s restored.
-patroni_create_replica_methods:
-  - pgbackrest
-```
+Select **Point in time** to restore the cluster to a specific date and time. Enter the **Date** and **Time**, and adjust the **UTC offset** to match the timezone of the recovery target.
 
-```yaml
-# WAL file recovery command — required for performing Point-in-Time Recovery (PITR).
-postgresql_restore_command: "/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} archive-get %f %p"
-```
+<ThemedImage
+  alt="Restore cluster to a point in time"
+  sources={{
+    light: '/img/restore-pitr.png',
+    dark: '/img/restore-pitr.dark.png',
+  }}
+/>
 
-To restore the cluster from last backup (including all WALs):
-```yaml
-pgbackrest_patroni_cluster_restore_command: '/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} --delta restore'
-```
+### Specific backup
+
+Select **Specific backup** to restore the cluster from a particular backup. Choose the required **Backup ID** from the list of available backups.
+
+<ThemedImage
+  alt="Restore cluster from a specific backup"
+  sources={{
+    light: '/img/restore-backup.png',
+    dark: '/img/restore-backup.png.png',
+  }}
+/>
+
+:::info
+The **Target timeline** option is available only when **Expert Mode** is enabled. It defaults to `latest`; you can select `current`, `latest`, or specify a timeline ID.
+:::
 
 :::warning
-Recovery may error unless `--type=immediate` is specified. This is because after consistency is reached PostgreSQL will flag zeroed pages as errors even for a full-page write. For PostgreSQL ≥ 13 the `ignore_invalid_pages` setting may be used to ignore invalid pages. In this case it is important to check the logs after recovery to ensure that no invalid pages were reported in the selected databases.
+For all restore modes, the cluster data will be replaced and the cluster will be unavailable during recovery. Recovery time depends on the amount of data and disk performance.
 :::
 
-Or, to restore the cluster from last backup (`immediate`):
-```yaml
-# This parameter specifies that recovery should end as soon as a consistent state is reached, i.e., as early as possible.
-# When restoring from an online backup, this means the point where taking the backup ended.
-pgbackrest_patroni_cluster_restore_command: '/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} --type=immediate --delta restore'
-```
-
-Or, to restore the cluster to specific time (PITR):
-```yaml
-# Restore to 2024-08-19 03:02:07.322658+00
-pgbackrest_patroni_cluster_restore_command: '/usr/bin/pgbackrest --stanza={{ pgbackrest_stanza }} --type=time --target="2024-08-19 03:02:07.322658+00" --delta restore'
-```
-
-The recovery steps that automation will perform:
-
-<details>
-<summary>Click here to expand...</summary>
-
-1. Stop patroni service on the Replica servers;
-2. Stop patroni service on the Master server;
-3. Remove patroni cluster from DCS;
-4. Run "`/usr/bin/pgbackrest --stanza=<stanza_name> --delta restore`" on Master;
-5. Run "`/usr/bin/pgbackrest --stanza=<stanza_name> --delta restore`" on Replica;
-   - Note: if 'pgbackrest' in 'patroni_create_replica_methods' variable.
-6. Waiting for restore from backup;
-   - Note: timeout 24 hours.
-7. Start PostgreSQL for Recovery;
-8. Waiting for PostgreSQL Recovery to complete (WAL apply);
-9. Stop PostgreSQL instance (if running);
-10. Disable PostgreSQL `archive_command` (if enabled);
-    - Note: if 'disable_archive_command' variable is 'true'.
-11. Start patroni service on the Master server;
-12. Check PostgreSQL is started and accepting connections on Master;
-13. Make sure the PostgreSQL users (superuser and replication) are present;
-    - and password does not differ from the specified in variables.
-14. Update PostgreSQL authentication parameter in `patroni.yml`
-    - Note: if superuser or replication users is changed.
-15. Start patroni service on Replica servers;
-16. Check that the patroni is healthy on the replica server;
-    - Note: timeout 10 hours.
-17. Check PostgreSQL cluster health (finish).
-
-</details>
+Confirm that you understand the impact, then click **Restore cluster** to start the recovery.
 
   </TabItem>
-  <TabItem value="WAL-G" label="WAL-G">
+  <TabItem value="command-line" label="Command line">
 
-Whether you want to restore the current cluster or perform cloning, you will need to configure the WAL-G parameters to access the backups.
+The `restore_pgcluster` playbook restores the current PostgreSQL cluster from a pgBackRest or WAL-G backup. When needed, it prepares the recovery and Patroni configuration, then restores the master and replica nodes.
 
-:::tip
-You can find examples of `wal-g` configurations in the [Backup](/docs/management/backup) section.
-:::
+To restore the cluster run the following command:
 
-Additionally, define the following required variables for the restore process:
-
-```yaml
-patroni_cluster_bootstrap_method: "wal-g"
-```
-```yaml
-# Optional. To restore replicas from a backup.
-# Otherwise, they fetch data from the Primary server after it’s restored.
-patroni_create_replica_methods:
-  - wal_g
+```bash
+docker run --rm -it \
+  -e ANSIBLE_SSH_ARGS="-F none" \
+  -e ANSIBLE_INVENTORY=/project/inventory \
+  -v $PWD:/project \
+  -v $HOME/.ssh:/root/.ssh \
+  autobase/automation:2.11.0 \
+    ansible-playbook restore_pgcluster.yml
 ```
 
+Use the following variables to select the recovery target:
+
 ```yaml
-# # WAL file recovery command — required for performing Point-in-Time Recovery (PITR).
-postgresql_restore_command: "/usr/local/bin/wal-g --config {{ postgresql_home_dir }}/.walg.json wal-fetch %f %p"
+# Optional. Restore a specific backup set. An empty value uses the latest backup.
+restore_backup_name: "20260625-120000F_20260626-120000I"
+
+# Optional. Stop recovery as soon as a consistent state is reached.
+restore_immediate: true
+
+# Optional. Restore to a specific point in time, for example:
+restore_target_time: "2026-06-26 11:00:00+00"
+
+# Optional. Recovery timeline: current, latest, or a timeline ID.
+restore_target_timeline: latest
+
+# Optional. Action after reaching the recovery target: pause, promote, or shutdown.
+restore_target_action: promote
 ```
 
-To restore the cluster from last backup (including all WALs):
-```yaml
-wal_g_patroni_cluster_bootstrap_command: "/usr/local/bin/wal-g --config {{ postgresql_home_dir }}/.walg.json backup-fetch {{ postgresql_data_dir }} LATEST"
-```
+If no target time or immediate recovery is configured, the playbook performs a restore from latest backup and replays the available WAL records.
+It also prints recovery details from the PostgreSQL log when the operation completes.
 
   </TabItem>
 </Tabs>
-
-### Restore
-
-To restore the current cluster (PITR) run the following command:
-
-```
-docker run --rm -it \
-  -e ANSIBLE_SSH_ARGS="-F none" \
-  -e ANSIBLE_INVENTORY=/project/inventory \
-  -v $PWD:/project \
-  -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.11.0 \
-    ansible-playbook deploy_pgcluster.yml \
-      -t point_in_time_recovery \
-      -e disable_archive_command=false
-```
-
-:::info
-We set `disable_archive_command` to `false` so as not to disable `archive_command` after the restore.
-:::
-
-### Cloning
-
-To clone the cluster run the following command:
-
-```
-docker run --rm -it \
-  -e ANSIBLE_SSH_ARGS="-F none" \
-  -e ANSIBLE_INVENTORY=/project/inventory \
-  -v $PWD:/project \
-  -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.11.0 \
-    ansible-playbook deploy_pgcluster.yml \
-      -e disable_archive_command=true \
-      -e keep_patroni_dynamic_json=false
-```
-
-:::info
-We set `disable_archive_command` to `true` to disable the `archive_command` after the restore. This is necessary to prevent conflicts in the archived log storage when multiple clusters attempt to archive WALs to the same storage.
-
-We also set `keep_patroni_dynamic_json` to `false` to remove the `patroni.dynamic.json` file after the restore. This ensures that the new parameters specified in variables are applied, rather than restoring the cluster with the parameters used when the backup was created.
-:::
