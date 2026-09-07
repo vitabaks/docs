@@ -314,7 +314,7 @@ You can either add your API token in advance on the **Settings** page under the 
         />
 
         :::tip
-        This list includes all contrib extensions and some popular third-party ones. However, [more than 400 extensions are available](/docs/extensions/list). \
+        This list includes all contrib extensions and some popular third-party ones. However, [more than 500 extensions are available](/docs/extensions/list). \
         To install others, specify the [installation parameters](/docs/extensions/install) manually on the **YAML** tab.
         :::
 
