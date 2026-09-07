@@ -1,10 +1,10 @@
 /* ─── Navbar shell ────────────────────────────────────────────────── */
 .docsNavbar :global(.navbar) {
-  background-color: #ffffff !important;
+  background-color: #F9FAFB !important;
 }
 
 :global(html[data-theme='dark']) .docsNavbar :global(.navbar) {
-  background-color: #000000 !important;
+  background-color: #090C10 !important;
 }
 
 .navbar {
