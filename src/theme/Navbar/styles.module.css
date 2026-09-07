@@ -25,8 +25,8 @@
 }
 
 :global(html[data-theme='dark']) .navbar {
-  --color-bg: #11161d;
-  --color-surface: #11161d;
+  --color-bg: #0D1114;
+  --color-surface: #0D1114;
   --color-text: #f9fafb;
   --color-text-muted: #9ca3af;
   --color-border: #252a31;

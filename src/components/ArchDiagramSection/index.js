@@ -492,8 +492,8 @@ function FeatureGlyph({ children }) {
 
 const features = [
   {
-    label: 'High Availability',
-    description: 'Automatic Failover & Self-Healing',
+    label: 'HA',
+    description: 'High Availability & Self-Healing',
     icon: (
       <FeatureGlyph>
         <path d="M24 13l10 4v7c0 6-4 10-10 12-6-2-10-6-10-12v-7l10-4z" />

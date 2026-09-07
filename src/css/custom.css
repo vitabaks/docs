@@ -183,15 +183,15 @@ html:has(.landingPage) .main-wrapper {
 }
 
 [data-theme='dark'] .landingPage {
-  --ifm-background-color: #11161d !important;
-  --ifm-background-surface-color: #11161d !important;
+  --ifm-background-color: #0D1114 !important;
+  --ifm-background-surface-color: #0D1114 !important;
   --ifm-font-color-base: #f9fafb;
   --ifm-heading-color: #f9fafb;
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.08);
 
-  --color-bg: #11161d;
-  --color-bg-alt: #11161d;
-  --color-surface: #11161d;
+  --color-bg: #0D1114;
+  --color-bg-alt: #0D1114;
+  --color-surface: #0D1114;
   --color-text: #f9fafb;
   --color-text-muted: #9ca3af;
   --color-border: #252a31;
@@ -210,7 +210,14 @@ html[data-theme='dark']:has(.landingPage),
 html[data-theme='dark']:has(.landingPage) body,
 html[data-theme='dark']:has(.landingPage) #__docusaurus,
 html[data-theme='dark']:has(.landingPage) .main-wrapper {
-  background-color: #11161d;
+  background-color: #0D1114;
+}
+
+html[data-theme='dark']:has(.landingPage) .navbar,
+html[data-theme='dark']:has(.landingPage) .footer {
+  --color-bg: #0D1114;
+  --color-surface: #0D1114;
+  background-color: #0D1114;
 }
 
 .landingPage h1,
@@ -245,7 +252,7 @@ html[data-theme='dark']:has(.landingPage) .main-wrapper {
 }
 
 [data-theme='dark'] .landingPage main {
-  background-color: #11161d;
+  background-color: #0D1114;
 }
 
 @media (max-width: 900px) {

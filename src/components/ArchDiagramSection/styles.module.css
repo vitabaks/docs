@@ -87,7 +87,7 @@
   position: relative;
   flex-direction: column;
   gap: 12px;
-  padding: 20px 0 22px;
+  padding: 20px 0 12px;
   border-color: var(--color-primary);
   border-style: dashed;
   border-width: 1px;
