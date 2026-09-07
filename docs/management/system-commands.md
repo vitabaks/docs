@@ -7,7 +7,7 @@ sidebar_position: 100
 Commands for managing cluster services directly on the database servers.
 
 :::warning
-This page is optional. Manual changes to cluster configuration or services are not recommended for routine operations — prefer **Autobase** to apply configuration changes and manage services.
+Manual changes to cluster configuration or services are not recommended for routine operations — prefer **Autobase** to apply configuration changes and manage services.
 :::
 
 This guide covers the basic commands for managing various services in your PostgreSQL cluster. It includes instructions for working with Patroni, PostgreSQL, PgBouncer, etcd, and other essential services.
