@@ -1,46 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Link from '@docusaurus/Link';
 import TrustedByCarousel from '@site/src/components/TrustedByCarousel';
 import styles from './styles.module.css';
 
 const LINE1 = 'DATABASE PLATFORM';
 const LINE2 = 'FOR POSTGRESQL';
-const SUBTEXT = 'Self-Hosted DBaaS [Database as a Service]';
-const SUBTEXT_SPEED = 42;
-const SUB_DELAY = 160;
 
 export default function HeroSection() {
-  const [subCount, setSubCount] = useState(0);
-  const [subStarted, setSubStarted] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
-
-    updatePreference();
-    mediaQuery.addEventListener?.('change', updatePreference);
-    return () => mediaQuery.removeEventListener?.('change', updatePreference);
-  }, []);
-
-  useEffect(() => {
-    if (prefersReducedMotion) return undefined;
-    const id = setTimeout(() => setSubStarted(true), SUB_DELAY);
-    return () => clearTimeout(id);
-  }, [prefersReducedMotion]);
-
-  useEffect(() => {
-    if (prefersReducedMotion || !subStarted || subCount >= SUBTEXT.length) return undefined;
-    const id = setTimeout(() => setSubCount((count) => count + 1), SUBTEXT_SPEED);
-    return () => clearTimeout(id);
-  }, [subStarted, subCount, prefersReducedMotion]);
-
-  const visibleSubtext = prefersReducedMotion
-    ? SUBTEXT
-    : SUBTEXT.slice(0, subCount);
-
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
+        <p className={styles.label}><span aria-hidden="true">//</span> Self-Hosted DBaaS</p>
         <h1 className={styles.heading}>
           <span className="landing-sr-only">
             {LINE1} {LINE2}
@@ -52,14 +22,31 @@ export default function HeroSection() {
         </h1>
 
         <p className={styles.subheading}>
-          <span className="landing-sr-only">{SUBTEXT}</span>
-          <span aria-hidden="true">
-            {(subStarted || prefersReducedMotion) && visibleSubtext}
-            {(subStarted || prefersReducedMotion) && <span className={styles.cursor}>_</span>}
-          </span>
+          The simplicity of managed PostgreSQL.{' '}
+          <span className={styles.subheadingSecondLine}>On your own infrastructure.</span>
         </p>
 
+        <div className={styles.actions}>
+          <Link className={`${styles.button} ${styles.primaryButton}`} to="/docs#getting-started" aria-describedby="hero-trial-details">
+            <span aria-hidden="true">&gt;</span> Start your free trial <span aria-hidden="true">↵</span>
+          </Link>
+          <span id="hero-trial-details" className={styles.trialDetails}>Enterprise edition · 14 days free</span>
+        </div>
+
         <TrustedByCarousel />
+
+        <a
+          className={styles.reference}
+          href="https://docs.cloud.google.com/distributed-cloud/hosted/docs/latest/gdcag/solutions/postgres-db-architecture"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className={styles.referenceText}>
+            <strong>Named as a reference automation tool in Google Distributed Cloud air-gapped PostgreSQL architecture</strong>
+            <span><span className={styles.referenceAccent}>Google Cloud</span> documentation identifies Autobase for provisioning and configuring the HA PostgreSQL stack.</span>
+          </span>
+          <span className={styles.referenceLink}>View source documentation <span aria-hidden="true">↗</span></span>
+        </a>
       </div>
     </section>
   );
