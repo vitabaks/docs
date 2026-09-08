@@ -14,13 +14,49 @@ This section guides you through the process of performing minor and major upgrad
 
 Update to a new minor version (e.g., from version 18.1 to 18.2).
 
-### Console (UI)
+:::info Database downtime considerations
 
-:::info
-Coming soon in version 2.11.0
+When using load balancing for read-only traffic, zero downtime is expected (for read traffic), provided there is more than one replica in the cluster. For write traffic (to the Primary), the expected downtime is ~5-10 seconds.
 :::
 
-### Command line
+<Tabs defaultValue="console-ui">
+  <TabItem value="console-ui" label="Console (UI)">
+
+To upgrade a cluster in the Console UI, open **Clusters**, select the cluster, and click **Actions → Upgrade**.
+
+The **Minor Upgrade** tab updates PostgreSQL to the latest minor release within the current major version.
+
+<ThemedImage
+  alt="Minor PostgreSQL upgrade"
+  sources={{
+    light: '/img/minor-upgrade-postgres.png',
+    dark: '/img/minor-upgrade-postgres.dark.png',
+  }}
+/>
+
+Choose what to update:
+
+- **PostgreSQL** — update only the PostgreSQL packages;
+- **All system** — update all system packages, including PostgreSQL and Patroni.
+
+<ThemedImage
+  alt="Minor system upgrade"
+  sources={{
+    light: '/img/minor-upgrade-system.png',
+    dark: '/img/minor-upgrade-system.dark.png',
+  }}
+/>
+
+:::note
+Enable **Allow host restart** to permit an automatic server restart if it is required after updating system packages or the kernel.
+:::
+
+Select **I understand and want to continue**, and click **Run minor upgrade**.
+
+Wait for the upgrade to complete. You can monitor its progress and view the logs on the **Operations** page.
+
+  </TabItem>
+  <TabItem value="command-line" label="Command line">
 
 By default, only PostgreSQL packages defined in the `postgresql_packages` variable are updated. In addition, you can update Patroni or the entire system.
 
@@ -72,11 +108,6 @@ docker run --rm -it \
   </TabItem>
 </Tabs>
 
-:::info Database downtime considerations
-
-When using load balancing for read-only traffic, zero downtime is expected (for read traffic), provided there is more than one replica in the cluster. For write traffic (to the Primary), the expected downtime is ~5-10 seconds.
-:::
-
 <details>
 <summary>Variables</summary>
 
@@ -93,6 +124,9 @@ When using load balancing for read-only traffic, zero downtime is expected (for 
 The variable file is located on the path: [roles/update/defaults/main.yml](https://github.com/autobase-tech/autobase/blob/2.11.0/automation/roles/update/defaults/main.yml)
 
 </details>
+
+  </TabItem>
+</Tabs>
 
 <details>
 <summary>Plan</summary>
@@ -185,29 +219,51 @@ The variable file is located on the path: [roles/update/defaults/main.yml](https
 - Update completed.
 
 </details>
-
-
 ## Major Upgrade
 
 Upgrade to a new major version (e.g., from version 17 to 18).
 
-### Console (UI)
+:::info Database downtime considerations
 
-:::info
-Coming soon in version 2.11.0
+For an **In-place** upgrade, PgBouncer pools are paused to minimize downtime. This does not terminate application connections but may temporarily increase query latency. The pause typically lasts ~30-60 seconds and may be longer for large databases due to `pg_upgrade` and rsync.
+
+For a **Blue-Green** upgrade, a short service impact occurs only during switchover. Write traffic may be interrupted for approximately 10-15 seconds, while read traffic has near-zero downtime.
 :::
 
-### Command line
+:::note
+The Blue-Green upgrade method is currently available only through the Command line.
+:::
+
+<Tabs defaultValue="console-ui">
+  <TabItem value="console-ui" label="Console (UI)">
+
+To start a major upgrade in the Console UI, open **Clusters**, select the cluster, and click **Actions → Upgrade**.
+
+Open the **Major Upgrade** tab and select the target PostgreSQL version. The current version is shown automatically.
+
+<ThemedImage
+  alt="Major PostgreSQL upgrade"
+  sources={{
+    light: '/img/major-upgrade.png',
+    dark: '/img/major-upgrade.dark.png',
+  }}
+/>
+
+Select **I understand and want to continue**, and click **Upgrade**.
+
+Wait for the upgrade to complete. You can monitor its progress and view the logs on the **Operations** page.
+
+:::tip
+Before starting the upgrade, we recommend clicking **Run pre-check**. It only verifies database compatibility with the target PostgreSQL version and does not make any changes.
+:::
+
+  </TabItem>
+  <TabItem value="command-line" label="Command line">
 
 <Tabs>
   <TabItem value="in-place" label="In-place upgrade" default>
 
 **In-place** method upgrades the current production cluster directly. It is simpler and does not require additional servers, but it usually requires a short maintenance window (typically about 1 minute, depending on workload and environment).
-
-:::info Database downtime considerations
-
-To minimize the downtime, we pause PgBouncer pools. This doesn’t terminate application connections, but may temporarily increase query latency while pools are paused. The pause typically lasts ~30-60 seconds, but may be longer for large databases due to pg_upgrade and rsync. The default maximum wait time during a pause is 2 minutes (controlled by the `query_wait_timeout` parameter).
-:::
 
 :::note
 There is no need to plan additional disk space, because PostgreSQL is upgraded using hard links instead of copying files. However, it is required that the `pg_old_datadir` and `pg_new_datadir` are located within the same top-level directory (`pg_upper_datadir` variable).
@@ -278,11 +334,6 @@ This method is suitable when downtime must be limited to a few seconds: during s
 />
 
 Rollback is possible without losing changes made after cutover, because reverse logical replication is created during traffic switching.
-
-:::info Database downtime considerations
-
-A short service impact occurs only during switchover: the source cluster is briefly set to read-only, the remaining logical replication lag is drained, and traffic is redirected to target. Only the write traffic degrades (~10-15 seconds), while the read traffic has near-zero downtime.
-:::
 
 #### 1. Deploy the target cluster
 
@@ -465,6 +516,9 @@ Note: For variables marked as "Derived value", the default value is determined b
 The variable file is located on the path: [roles/upgrade/defaults/main.yml](https://github.com/autobase-tech/autobase/blob/2.11.0/automation/roles/upgrade/defaults/main.yml)
 
 </details>
+
+  </TabItem>
+</Tabs>
 
 <details>
 <summary>Plan</summary>
