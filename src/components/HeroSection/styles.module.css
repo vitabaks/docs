@@ -171,7 +171,7 @@
 }
 
 .referenceText { display: flex; flex-direction: column; gap: 6px; }
-.referenceText strong { font-size: 15px; font-weight: 600; }
+.referenceText strong { font-size: 15px; font-weight: 500; }
 .referenceAccent { color: var(--color-primary); }
 .referenceText > span { max-width: 680px; font-size: 13px; line-height: 1.6; color: var(--color-text-muted); }
 .referenceLink { margin-left: auto; flex-shrink: 0; font-size: 13px; color: var(--color-primary); }
