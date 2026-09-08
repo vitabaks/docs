@@ -8,7 +8,7 @@ import ThemedImage from '@theme/ThemedImage';
 
 # Restore
 
-Restore database
+This section guides you through restoring a PostgreSQL database.
 
 <Tabs defaultValue="console-ui">
   <TabItem value="console-ui" label="Console (UI)">
