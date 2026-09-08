@@ -69,6 +69,8 @@ For all restore modes, the cluster data will be replaced and the cluster will be
 
 Confirm that you understand the impact, then click **Restore cluster** to start the recovery.
 
+Wait for the restore to complete. You can monitor its progress and view the logs on the **Operations** page.
+
   </TabItem>
   <TabItem value="command-line" label="Command line">
 

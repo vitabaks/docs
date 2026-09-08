@@ -2,20 +2,66 @@
 sidebar_position: 60
 ---
 
-# Cluster Scaling
-
-Once your PostgreSQL cluster is successfully deployed, you may find the need to scale it by adding additional nodes or balancers to handle increased load or redundancy.
-
-## Console (UI)
-
-:::info
-Coming soon in version 2.11.0
-:::
-
-## Command line
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import ThemedImage from '@theme/ThemedImage';
+
+# Cluster Scaling
+
+This section guides you through scaling your PostgreSQL cluster by adding nodes.
+
+:::tip
+You can easily start with a single-node PostgreSQL cluster and scale it out by adding replicas as your workload or high-availability requirements grow.
+:::
+
+<Tabs defaultValue="console-ui">
+  <TabItem value="console-ui" label="Console (UI)">
+
+To add replicas in the Console UI, open **Clusters**, select the cluster, click **Actions**, and choose **Add replica**.
+
+<Tabs defaultValue="your-own-machines">
+  <TabItem value="your-own-machines" label="Your Own Machines">
+
+Specify one or more servers as PostgreSQL replicas. The servers must be reachable over SSH.
+
+For each server, provide the **Hostname** and **IP Address**. The **SSH port** and **Location** fields are optional.
+
+<ThemedImage
+  alt="Add replicas on your own machines"
+  sources={{
+    light: '/img/add-replica-server.png',
+    dark: '/img/add-replica-server.dark.png',
+  }}
+/>
+
+Select **Add replicas** to start the scaling operation.
+
+  </TabItem>
+  <TabItem value="clouds" label="Clouds">
+
+:::info
+The same scaling method applies to all supported cloud providers: **AWS**, **GCP**, **Azure**, **DigitalOcean**, and **Hetzner Cloud**.
+:::
+
+Specify the desired number of **target nodes**
+
+<ThemedImage
+  alt="Add replicas using the existing cloud configuration"
+  sources={{
+    light: '/img/add-replica-clouds.png',
+    dark: '/img/add-replica-clouds.dark.png',
+  }}
+/>
+
+Select **I understand and want to continue**, and click **Add replica**.
+
+  </TabItem>
+</Tabs>
+
+Wait for the cluster scaling to complete. You can monitor its progress and view the logs on the **Operations** page.
+
+  </TabItem>
+  <TabItem value="command-line" label="Command line">
 
 <Tabs>
   <TabItem value="Your Own Machines" label="Your Own Machines" default>
@@ -262,6 +308,9 @@ docker run --rm -it \
 :::info
 Autobase will create and configure a new servers in your Hetzner Cloud account and add it to the cluster.
 :::
+
+  </TabItem>
+</Tabs>
 
   </TabItem>
 </Tabs>
