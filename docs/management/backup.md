@@ -8,7 +8,7 @@ import ThemedImage from '@theme/ThemedImage';
 
 # Backup
 
-Configure and manage database backups
+This section guides you through configuring and managing database backups.
 
 <Tabs defaultValue="console-ui">
   <TabItem value="console-ui" label="Console (UI)">
